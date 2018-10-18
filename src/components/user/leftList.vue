@@ -27,7 +27,7 @@
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="3">
-        <span slot="title">我的帖子</span>
+        <span slot="title"><router-link tag="li" active-class="active"  role="presentation" to="/user/15/forum">我的帖子</router-link></span>
       </el-submenu>
       <el-submenu index="4">
         <span slot="title">消息中心</span>
@@ -83,13 +83,6 @@
     top: 40px;
     /*left: 40px;*/
     /*background-color: rgba(255,255,255,0.5);*/
-  }
-  .listbg{
-    width: 200px;
-    height: 200px;
-
-    position: relative;
-    z-index: -1;
   }
 
 </style>

@@ -1,49 +1,40 @@
 <template>
     <div>
       <ul class="title">
-        <li><img src="" alt=""></li>
+        <li class="firstli"><img src="" alt=""></li>
         <li>主人</li>
         <li>昵称</li>
         <li>追求者</li>
       </ul>
       <hr>
-      <ul>
-        <li>tupian</li>
-        <li>小二</li>
-        <li>小小二</li>
-        <li>20</li>
+      <ul v-for="showList in showLists">
+        <li class="firstli">tupian</li>
+        <li>{{showList.userName}}</li>
+        <li>{{showList.PetName}}</li>
+        <li>{{showList.num}}</li>
       </ul>
-      <ul>
-        <li>tupian</li>
-        <li>小二</li>
-        <li>小小二</li>
-        <li>20</li>
-      </ul>
-      <ul>
-        <li>tupian</li>
-        <li>小二</li>
-        <li>小小二</li>
-        <li>20</li>
-      </ul>
-      <ul>
-        <li>tupian</li>
-        <li>小二</li>
-        <li>小小二</li>
-        <li>20</li>
-      </ul>
-      <ul>
-        <li>tupian</li>
-        <li>小二</li>
-        <li>小小二</li>
-        <li>20</li>
-      </ul>
-
     </div>
 </template>
 
 <script>
-    export default {
-        name: "hotlist"
+  import axios from 'axios'
+  export default {
+        name: "hotlist",
+      data(){
+          return{
+            hotdata:[],
+            showLists:[],
+          }
+      },
+      created(){
+        axios.get("http://localhost:3000/matchmaking/countAply").then((result) => {
+          console.log(result.data)
+          this.hotdata = result.data.data;
+          for (let i = 0; i < this.hotdata.length; i++) {
+            this.showLists.push(this.hotdata[i])
+          }
+        })
+      }
     }
 </script>
 
@@ -60,12 +51,17 @@
   }
   ul li{
     float: left;
-    padding-right: 10px;
-    width: 25%;
+    width: 26%;
     color: #7197ff;
-    /*background-color: white;*/
+    /*padding-right: 5px;*/
+  }
+  ul li:last-child{
+    width: 19%;
   }
   .title li{
     font-weight: bold;
+  }
+  .firstli{
+    margin-left: -20px;
   }
 </style>

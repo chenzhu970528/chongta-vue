@@ -1,12 +1,15 @@
-<!--我的招领-->
+<!--系统消息-->
 <template>
-  <div class="route">您的当前位置：<span>账号管理</span><span>/</span><span>编辑个人资料</span></div>
+  <div class="right" >
+    <div class="route">您的当前位置：<span>账号管理</span><span>/</span><span>编辑个人资料</span></div>
 
+
+  </div>
 </template>
 
 <script>
     export default {
-        name: "myhomls"
+        name: "sys"
     }
 </script>
 
@@ -19,7 +22,7 @@
     position: relative;
     left: 40px;
     min-height: 780px;
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255,255,255,0.6);
   }
   .route{
     position: relative;

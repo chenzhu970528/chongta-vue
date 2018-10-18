@@ -10,26 +10,25 @@ import AdoIssue from '../components/adoption/AdoptIssue.vue'
 import matchmain from '../components/matchmaking/matchmain'
 import matchDel from '../components/matchmaking/matchDel.vue'
 import  mpublish from '../components/matchmaking/mpublish.vue'
-// import Matchmaking from '../components/matchmaking/Matchmaking.vue'
 
 import User from '../components/user/User.vue'
 import UserDetails from '../components/user/UserDetails.vue'
-import personal from '../components/user/personal.vue'
-import forum from '../components/user/forum.vue'
+import personal from '../components/user/accManagement/personal.vue'
+import forum from '../components/user/Forum/forum.vue'
 import message from '../components/user/message.vue'
 import mypublish from '../components/user/mypublish.vue'
 
-import update from '../components/user/update.vue'
-import aplyme from '../components/user/aplyme.vue'
-import changepwd from '../components/user/changepwd.vue'
-import comme from '../components/user/comme.vue'
-import myado from '../components/user/myado.vue'
-import myaply from '../components/user/myaply.vue'
-import mycom from '../components/user/mycom.vue'
-import mylost from '../components/user/mylost.vue'
-import mymatch from '../components/user/mymatch.vue'
-import sys from '../components/user/sys.vue'
-import myhomls from '../components/user/myhomls.vue'
+import update from '../components/user/accManagement/update.vue'
+import aplyme from '../components/user/mesCenter/aplyme.vue'
+import changepwd from '../components/user/accManagement/changepwd.vue'
+import comme from '../components/user/mesCenter/comme.vue'
+import myado from '../components/user/Publishing/myado.vue'
+import myaply from '../components/user/mesCenter/myaply.vue'
+import mycom from '../components/user/mesCenter/mycom.vue'
+import mylost from '../components/user/Publishing/mylost.vue'
+import mymatch from '../components/user/Publishing/mymatch.vue'
+import sys from '../components/user/mesCenter/sys.vue'
+import myhomls from '../components/user/Publishing/myhomls.vue'
 
 import Homeless from '../components/homeless/Homeless.vue'
 import publish from '../components/homeless/publish.vue'
@@ -102,7 +101,7 @@ export default new Router({
       component : matchmain,
     },
     {
-      path:'/matchmaking/matchDel',
+      path:'/matchmaking/matchDel/:relId',
       name:'matchDel',
       component : matchDel,
     },
