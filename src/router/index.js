@@ -47,6 +47,7 @@ import Details from '../components/forum/Details.vue'
 // import Newest from '../components/forum/Newest.vue'
 
 import finish from '../components/finish'
+import backstage from '../components/backstage'
 import Share from '../components/forum/Share.vue'
 import login from '../components/login.vue'
 import register from '../components/register.vue'
@@ -61,6 +62,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/backstage',
+      name: 'backstage',
+      component: backstage,
     },
     {
       path: '/login',
