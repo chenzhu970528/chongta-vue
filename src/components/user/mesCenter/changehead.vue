@@ -13,31 +13,31 @@
 </template>
 
 <script>
-    export default {
-        name: "changehead",
-        mounted(){
-          (function($){
-            $('.heard').mouseover(function(){
-              $('.came').css('display','block');
-            });
-            $('.heard').mouseout(function(){
-              $('.came').css('display','none');
-            });
-            $('.heard').click(function(){
-              $('[type="file"]').trigger("click");
-            });
-            $('[type="file"]').change(function(){
-              var filed=new FileReader();
-              filed.onload=function(event){
-                var content=event.target.result;
-                $('.heard').css('background','url("'+ content +'")');
-                console.log(content);
-              };
-              filed.readAsDataURL($('[type="file"]')[0].files[0]);
-            });
-          })(jQuery)
-      }
+  export default {
+    name: "changehead",
+    mounted(){
+      (function($){
+        $('.heard').mouseover(function(){
+          $('.came').css('display','block');
+        });
+        $('.heard').mouseout(function(){
+          $('.came').css('display','none');
+        });
+        $('.heard').click(function(){
+          $('[type="file"]').trigger("click");
+        });
+        $('[type="file"]').change(function(){
+          var filed=new FileReader();
+          filed.onload=function(event){
+            var content=event.target.result;
+            $('.heard').css('background','url("'+ content +'")');
+            console.log(content);
+          };
+          filed.readAsDataURL($('[type="file"]')[0].files[0]);
+        });
+      })(jQuery)
     }
+  }
 </script>
 
 <style scoped>
@@ -87,8 +87,6 @@
   .came img{
     margin-top: -40%;
   }
-  /*.heard:hover .came{*/
-  /*display: block;*/
-  /*}*/
+
 
 </style>

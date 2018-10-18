@@ -18,7 +18,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><router-link tag="li" active-class="active" role="presentation" to="/register"><a>登录</a></router-link></li>
+        <li><router-link tag="li" active-class="active" role="presentation" to="/register" style="margin-top: 15px"><a>注册</a></router-link></li>
         <li v-if="!isLogin">
           <user-login></user-login>
         </li>
@@ -41,7 +41,7 @@
 
 <script>
   import {mapGetters} from 'vuex';
-  import Login from '../components/user/Login.vue'
+  import Login from '../components/login.vue'
   export default {
     name: "Header",
     components:{

@@ -1,6 +1,6 @@
 <template>
   <div>
-  <cat></cat>
+  <!--<cat></cat>-->
   <div class="container">
     <ol class="breadcrumb">
       您当前位置为：

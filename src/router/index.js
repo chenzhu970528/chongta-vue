@@ -45,7 +45,7 @@ import Lists from '../components/forum/Lists.vue'
 import Details from '../components/forum/Details.vue'
 // import Newest from '../components/forum/Newest.vue'
 
-
+import finish from '../components/finish'
 import Share from '../components/forum/Share.vue'
 import login from '../components/login.vue'
 import register from '../components/register.vue'
@@ -154,6 +154,11 @@ export default new Router({
       path: '/homeless/detail',
       name: 'detail',
       component: detail,
+    },
+    {
+      path: '/finish',
+      name: 'finish',
+      component: finish,
     },
     {
       path: '/homeless/people',

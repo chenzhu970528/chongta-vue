@@ -76,13 +76,15 @@
   import Sizer from '../adoption/AdoptionSizer'
   // 宠物列表
   import List from '../adoption/AdoptionList'
+  //获取所有信息
+  import axios from 'axios'
     export default {
         name: "Adoption",
       components:{
         'sildes-show':Slideshow,
         'ado-sizer': Sizer,
         'ado-list':List
-      }
+      },
     }
 </script>
 

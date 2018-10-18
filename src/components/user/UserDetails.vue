@@ -6,12 +6,13 @@
 </template>
 
 <script>
+
     export default {
         name: "UserDetails",
       data(){
-        return {
-          userId:this.$route.params.userId
-        }
+          return{
+            userId:this.$route.params.userId,
+          }
       }
     }
 </script>
