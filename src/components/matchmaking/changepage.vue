@@ -1,5 +1,6 @@
 <!--换页-->
 <template>
+  <div>
     <el-pagination
       background-color="transparent"
       @size-change="handleSizeChange"
@@ -9,6 +10,8 @@
       layout="prev, pager, next, jumper"
       :total="300">
     </el-pagination>
+  </div>
+
 </template>
 
 <script>
@@ -31,5 +34,8 @@
 </script>
 
 <style scoped>
-
+  div{
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 </style>

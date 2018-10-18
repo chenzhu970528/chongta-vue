@@ -50,7 +50,7 @@
     color: #b9ffff;
   }
   .page{
-    width: 100%;
+    width: 80%;
     position: absolute;
     bottom: 20px;
     left: 20%;

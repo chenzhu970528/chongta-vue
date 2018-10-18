@@ -11,31 +11,26 @@
     </el-row>
     <router-link to="/matchmaking/mpublish"><button>我要发布</button></router-link>
     <match-list></match-list>
-    <el-row>
-      <el-col :span="10" :push="7">
-        <change-page></change-page>
-      </el-col>
-    </el-row>
-    <br>
-    <br>
-    <br>
-
+    <match-hot></match-hot>
   </div>
 
 </template>
 <script>
+  import  matchhot from './match-hot.vue'
   import Header from '../Header.vue'
   import  matchlist from './matchlist.vue'
-  import changepage from './changepage.vue'
+  // import changepage from './changepage.vue'
   import select from '../adoption/AdoptionSizer'
   export default {
     name: "matchmain",
     components:{
       'app-header':Header,
       'match-list':matchlist,
-      'change-page':changepage,
+      // 'change-page':changepage,
       'app-select':select,
-    }
+      'match-hot':matchhot
+    },
+
   }
 </script>
 
@@ -54,7 +49,7 @@
     font-size: 20px;
     font-weight: bold;
     position: absolute;
-    right: 200px;
+    right: 170px;
     top: 200px;
   }
   .issue img{
@@ -62,5 +57,6 @@
     width: 300px;
     position: relative;
     top: 50px;
+    left: 20px;
   }
 </style>

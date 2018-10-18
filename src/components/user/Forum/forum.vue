@@ -1,7 +1,7 @@
 <template>
   <div class="right" >
     <div class="route">您的当前位置：<span>我的帖子</span></div>
-    <forum-list></forum-list>
+    <!--<forum-list></forum-list>-->
 
     <div class="page">
       <change-page></change-page>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import forumList from './forumList'
+  // import forumList from './forumList'
   import changePage from '../../matchmaking/changepage.vue'
     export default {
       name: "forum",
@@ -21,7 +21,7 @@
       },
       components:{
         'change-page':changePage,
-        'forum-list':forumList
+        // 'forum-list':forumList
       },
       methods: {
 
@@ -58,7 +58,7 @@
     color: #b9ffff;
   }
   .page{
-    width: 100%;
+    width: 80%;
     position: absolute;
     bottom: 20px;
     left: 20%;

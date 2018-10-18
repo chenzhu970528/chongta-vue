@@ -84,12 +84,5 @@
     /*left: 40px;*/
     /*background-color: rgba(255,255,255,0.5);*/
   }
-  .listbg{
-    width: 200px;
-    height: 200px;
-
-    position: relative;
-    z-index: -1;
-  }
 
 </style>

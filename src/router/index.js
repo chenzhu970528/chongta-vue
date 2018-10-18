@@ -100,7 +100,7 @@ export default new Router({
       component : matchmain,
     },
     {
-      path:'/matchmaking/matchDel',
+      path:'/matchmaking/matchDel/:relId',
       name:'matchDel',
       component : matchDel,
     },

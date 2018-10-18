@@ -7,13 +7,11 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-
 </template>
 
 <script>
     export default {
         name: "sowingmap",
-
     }
 </script>
 
