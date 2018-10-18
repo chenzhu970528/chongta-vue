@@ -52,6 +52,7 @@ import Share from '../components/forum/Share.vue'
 import login from '../components/login.vue'
 import register from '../components/register.vue'
 // import Matchmaking from '../components/matchmaking/Matchmaking.vue'
+
 Vue.use(Router);
 
 
@@ -137,8 +138,26 @@ export default new Router({
       name: 'publish',
       component: publish,
     },
+    // {
+    //   path: '/homeless/detailsimg',
+    //   name:'detailsimg',
+    //   component: detailsimg,
+    // },
+    {
+      path: '/homeless/details/:homeId',
+      name:'detail',
+      component: detail,
+    },
+    // {
+    //   path: '/homeless/details/:userId',
+    //   name:'detailsmes',
+    //   component: detailsmes,
+    // },
     // 论坛
-
+    {path: '/user/personal',
+      name: 'personal',
+      component: personal,
+    },
     {path: '/forum',
       name: 'Communication',
       component: Communication,
@@ -162,6 +181,11 @@ export default new Router({
       name: 'detail',
       component: detail,
     },
+    // {
+    //   path: '/homeless/details',
+    //   name: 'details',
+    //   component: details,
+    // },
     {
       path: '/finish',
       name: 'finish',
