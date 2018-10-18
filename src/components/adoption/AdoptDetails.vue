@@ -24,8 +24,7 @@
       </div>
       <div class="descript">
         <div class="container text-muted">
-          闺蜜明年出国，在家里养了半年的加菲，想物色一个好人家。要求对方是女生，喜欢小动物有爱心，有能抚养小动物的能力。猫咪已驱虫，并打疫苗。有意加V：17317717958，备注“猫咪”，谢谢。
-
+          {{mydata.detail}}
           联系我时，请说明来自：宠它
 
           <p class="text-danger" style="margin-top: 10px"><span class="glyphicon glyphicon-alert" aria-hidden="true"> </span> 安全提示：请不要相信任何需要金钱交易的无偿领养！例如宠物免费，骗取运费等常见骗术！</p>
@@ -37,16 +36,11 @@
         <ado-recommend></ado-recommend>
       </div>
     </div>
-
-    <!--<ul class="adoptive nav navbar-nav">-->
-      <!--<router-link tag="li" active-class="active"  role="presentation" to="/userDetails/1"><a>有意领养者1</a></router-link>-->
-      <!--<router-link tag="li" active-class="active"  role="presentation" to="/userDetails/2"><a>有意领养者2</a></router-link>-->
-      <!--<router-link tag="li" active-class="active"  role="presentation" to="/userDetails/3"><a>有意领养者3</a></router-link>-->
-    <!--</ul>-->
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
   import Recommend from '../adoption/DetailsRecommend'
   import Album from '../adoption/DetailsImg.vue'
   import Info from '../adoption/DetailsInfo.vue'
@@ -58,9 +52,17 @@
         'ado-recommend':Recommend
       },
       data(){
-        return {
-          adoId:this.$route.params.adoId
-        }
+          return{
+            adoId:this.$route.params.adoId,
+            // 详细信息
+            mydata:[],
+          }
+      },
+      created(){
+        axios.get(`http://localhost:3000/adoptions/details/${this.adoId}`).then((result) => {
+          // console.log(result.data)
+          this.mydata = result.data.data.jsondata;
+        })
       }
     }
 </script>
