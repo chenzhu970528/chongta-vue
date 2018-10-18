@@ -41,7 +41,7 @@
 
 <script>
   import {mapGetters} from 'vuex';
-  import Login from '../components/user/Login.vue'
+  import Login from '../components/login.vue'
   export default {
     name: "Header",
     components:{
