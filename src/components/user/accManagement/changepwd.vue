@@ -88,7 +88,7 @@
     position: relative;
     left: 40px;
     min-height: 780px;
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255,255,255,0.6);
   }
   .route{
     position: relative;
@@ -98,14 +98,14 @@
     line-height: 50px;
     font-size: 16px;
     /*background-color: palevioletred;*/
-    color: #747474;
+    color: #e7e7e7;
   }
   .route span{
     margin-right: 10px;
     font-size: 14px;
   }
   .route span:last-child{
-    color: #4e76ff;
+    color: #b9ffff;
   }
   .first{
     margin-top: 30px;
@@ -114,12 +114,14 @@
     text-align: left;
     margin-left: 1%;
     font-weight: bold;
+    color: #3e3e3e;
   }
   .inner{
     width: 80%;
     position: absolute;
     left: 10%;
     top: 10%;
+    color: #686868;
   }
   .sech3{
     margin-top: 30px;

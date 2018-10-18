@@ -3,7 +3,7 @@
       <div class="cir">
         <div class="heard"></div>
         <div class="came">
-          <img src="../../assets/user/cam.png" alt="">
+          <img src="../../../assets/user/cam.png" alt="">
         </div>
       </div>
       <form action="">
@@ -66,7 +66,7 @@
     border-radius: 100px;
     /*background-color: #dbb8b7;*/
     position: absolute;
-    background: 322px 400px url("../../assets/user/headpic.jpg");
+    background: 322px 400px url("../../../assets/user/headpic.jpg");
   }
   .came{
     width: 100px;

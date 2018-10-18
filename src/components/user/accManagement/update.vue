@@ -120,7 +120,7 @@
   .right{
     position: relative;
     left: 40px;
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255,255,255,0.6);
     min-height: 780px;
   }
   .route{
@@ -143,18 +143,18 @@
   h3{
     text-align: left;
     margin-left: 1%;
-    /*margin-top: 30px;*/
     font-weight: bold;
+    color: #3e3e3e;
   }
   .sech3{
     margin-top: 30px;
   }
   .inright{
     width: 80%;
-    /*background-color: palevioletred;*/
     position: absolute;
     top: 10%;
     left: 10%;
+    color: #686868;
   }
   span{
     display: inline-block;
