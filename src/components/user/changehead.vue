@@ -1,43 +1,43 @@
 <template>
-    <div class="changehead">
-      <div class="cir">
-        <div class="heard"></div>
-        <div class="came">
-          <img src="../../assets/user/cam.png" alt="">
-        </div>
+  <div class="changehead">
+    <div class="cir">
+      <div class="heard"></div>
+      <div class="came">
+        <img src="../../assets/user/cam.png" alt="">
       </div>
-      <form action="">
-        <input type="file">
-      </form>
     </div>
+    <form action="">
+      <input type="file">
+    </form>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "changehead",
-        mounted(){
-          (function($){
-            $('.heard').mouseover(function(){
-              $('.came').css('display','block');
-            });
-            $('.heard').mouseout(function(){
-              $('.came').css('display','none');
-            });
-            $('.heard').click(function(){
-              $('[type="file"]').trigger("click");
-            });
-            $('[type="file"]').change(function(){
-              var filed=new FileReader();
-              filed.onload=function(event){
-                var content=event.target.result;
-                $('.heard').css('background','url("'+ content +'")');
-                console.log(content);
-              };
-              filed.readAsDataURL($('[type="file"]')[0].files[0]);
-            });
-          })(jQuery)
-      }
+  export default {
+    name: "changehead",
+    mounted(){
+      (function($){
+        $('.heard').mouseover(function(){
+          $('.came').css('display','block');
+        });
+        $('.heard').mouseout(function(){
+          $('.came').css('display','none');
+        });
+        $('.heard').click(function(){
+          $('[type="file"]').trigger("click");
+        });
+        $('[type="file"]').change(function(){
+          var filed=new FileReader();
+          filed.onload=function(event){
+            var content=event.target.result;
+            $('.heard').css('background','url("'+ content +'")');
+            console.log(content);
+          };
+          filed.readAsDataURL($('[type="file"]')[0].files[0]);
+        });
+      })(jQuery)
     }
+  }
 </script>
 
 <style scoped>
