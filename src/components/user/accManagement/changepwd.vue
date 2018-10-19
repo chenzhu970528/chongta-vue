@@ -38,7 +38,7 @@
             @change="checkPwd"
           >
           </el-input>
-          <span v-if="flag1">{{msgPassword}}</span>
+          <span  v-if="flag1">{{msgPassword}}</span>
         </el-col>
       </el-row>
       <el-row>
