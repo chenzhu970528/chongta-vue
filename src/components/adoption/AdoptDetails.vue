@@ -11,7 +11,7 @@
       <span class="text-primary">领养详情</span>
     </div>
     <div class="adoTitle">
-      <h3 class="text-primary">可爱小猫求领养</h3>
+      <h3 class="text-primary">{{mydata.adoTitle}}</h3>
     </div>
     <div class="container">
       <div class="row">

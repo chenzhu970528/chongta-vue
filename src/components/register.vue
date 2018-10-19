@@ -4,9 +4,7 @@
       title=""
       type="info" style="font-size: 20px;float: left">
       欢迎来到宠它网，已有账号，去
-      <router-link  tag="li" active-class="active"  role="presentation" to="/login" style="float: right;list-style: none">
-        <a href="">登录</a>
-      </router-link>
+      <user-login></user-login>
     </el-alert>
     <div class="bg">
     <form class="form-horizontal" style="margin-top: 200px;margin-left: 10px">
@@ -19,31 +17,31 @@
       <div class="form-group">
         <label for="inputkind" class="col-sm-3 control-label col-sm-offset-2">密码</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="" placeholder="请输入密码">
+          <input type="text" class="form-control"  placeholder="请输入密码">
         </div>
       </div>
       <div class="form-group">
         <label for="inputkind" class="col-sm-3 control-label col-sm-offset-2">确认密码</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="" placeholder="再次输入密码">
+          <input type="text" class="form-control"  placeholder="再次输入密码">
         </div>
       </div>
       <div class="form-group">
         <label for="inputkind" class="col-sm-3 control-label col-sm-offset-2">手机号</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="" placeholder="填写正确手机号">
+          <input type="text" class="form-control"  placeholder="填写正确手机号">
         </div>
       </div>
       <div class="form-group">
         <label for="inputkind" class="col-sm-3 control-label col-sm-offset-2">短信验证码</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="" placeholder="短信请输入验证码">
+          <input type="text" class="form-control" placeholder="短信请输入验证码">
         </div>
       </div>
       <div class="form-group">
         <label for="inputkind" class="col-sm-3 control-label col-sm-offset-2">电子邮箱</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="" placeholder="请输入有效邮箱">
+          <input type="text" class="form-control"  placeholder="请输入有效邮箱">
         </div>
       </div>
       <div class="form-group">
@@ -64,13 +62,11 @@
 </template>
 
 <script>
-  import login from './login'
-  import finish from './finish'
+  import Login from '../components/user/Login.vue'
     export default {
       name: "register",
       components: {
-        'login': login,
-        'finish':finish
+        'user-login': Login,
       }
     }
 </script>
@@ -99,7 +95,4 @@ h3{
 .form-group{
   padding-top: 15px;
 }
-  /*.first{*/
-    /*!*margin-top: 10px;*!*/
-  /*}*/
 </style>

@@ -18,21 +18,21 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><router-link tag="li" active-class="active" role="presentation" to="/register" style="margin-top: 15px"><a>注册</a></router-link></li>
+        <li v-if="!isLogin"><router-link tag="li" active-class="active" role="presentation" to="/register" style="margin-top: 15px"><a>注册</a></router-link></li>
         <li v-if="!isLogin">
           <user-login></user-login>
         </li>
         <!--登录成功-->
         <li class="dropdown" v-if="isLogin">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-             aria-expanded="false">{{UserName}}<span class="caret"></span></a>
+             aria-expanded="false">{{UserName.replace(/\"/g, "")}}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <router-link tag="li" active-class="active" role="presentation" :to="'/user/'+UserId+'/personal'"><a>个人中心</a></router-link>
             <li role="separator" class="divider"></li>
-            <li><a href="/">退出登录</a></li>
+            <li><a href="#" @click="cleanUser">退出登录</a></li>
           </ul>
         </li>
-        <li><a href="#">定位</a></li>
+        <li><a>定位</a></li>
       </ul>
     </div><!-- /.container-fluid -->
   </nav>
@@ -40,23 +40,32 @@
 </template>
 
 <script>
+  import Login from '../components/user/Login.vue'
   import {mapGetters} from 'vuex';
-  import Login from '../components/login.vue'
   export default {
     name: "Header",
     components:{
-      'user-login':Login
+      'user-login':Login,
     },
     computed: mapGetters([
       'UserId',
       'UserName',
       'isLogin'
     ])
+    ,methods:{
+      cleanUser(){
+        localStorage.clear();
+        location.href = "http://localhost:8080";
+      }
+    }
 
   }
 </script>
 
 <style scoped>
+  a{
+    text-decoration: none;
+  }
   .logo {
     width: 150px;
     height: 70px;

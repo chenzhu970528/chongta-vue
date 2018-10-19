@@ -16,7 +16,7 @@
         </el-col>
       </el-row>
 
-      <button style="margin: 20px auto" type="button" class="btn btn-default btn-lg btn-block">加载更多</button>
+      <button style="margin: 20px auto" type="button" @click="getMore" class="btn btn-default btn-lg btn-block">加载更多</button>
     </div>
 </template>
 
@@ -28,9 +28,17 @@
         return {
           mydata: [],
           diarys: [],
+          // moren:6
         };
       },
+      methods:{
+          getMore(){
+            // this.moren+=3;
+            // this.$forceUpdate()
+          }
+      },
       created(){
+          let _this = this
         axios.get("http://localhost:3000/adoptions").then((result) => {
           // console.log(result.data)
           this.mydata = result.data.data;

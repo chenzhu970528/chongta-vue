@@ -5,6 +5,7 @@ Vue.use(Vuex)
 function isLogin() {
   var login = {};
   login.userId = localStorage.getItem("userId");
+  login.userName =localStorage.getItem("userName");
   if (login.userId) {
     login.isLogin = true;
   } else {
@@ -15,23 +16,20 @@ function isLogin() {
 
 export default new Vuex.Store({
   state:{
-    userName:'小锤锤',
-    // userId: isLogin().userId,
-    // isLogin: isLogin().isLogin,
-    isLogin:true,
-    userId:15
-
+    userId: isLogin().userId,
+    isLogin: isLogin().isLogin,
+    userName:isLogin().userName,
   },
   getters:{
-    UserName(state){
-      return state.userName;
-    },
     isLogin(state) {
       return state.isLogin;
     },
     UserId(state) {
       return state.userId;
     },
+    UserName(state){
+      return state.userName
+    }
   }
 })
 

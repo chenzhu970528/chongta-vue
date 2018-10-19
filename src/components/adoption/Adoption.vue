@@ -60,7 +60,7 @@
             </div>
             <!--二维码-->
             <div class="qrCord">
-              <router-link tag="div" to="/adoption/issue/7"><a>求抱走</a></router-link>
+              <router-link tag="div" :to="'/adoption/issue/'+UserId"><a>求抱走</a></router-link>
               <img src="../../assets/adoption/0974a659d83ad4c85bf93dd1c987cae2.png" alt="">
             </div>
           </div>
@@ -77,6 +77,7 @@
   // 宠物列表
   import List from '../adoption/AdoptionList'
   //获取所有信息
+  import {mapGetters} from 'vuex';
   import axios from 'axios'
     export default {
         name: "Adoption",
@@ -85,6 +86,11 @@
         'ado-sizer': Sizer,
         'ado-list':List
       },
+      computed: mapGetters([
+        'UserId',
+        'UserName',
+        'isLogin'
+      ])
     }
 </script>
 

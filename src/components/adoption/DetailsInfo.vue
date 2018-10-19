@@ -8,7 +8,7 @@
         <span class="glyphicon glyphicon-glass" aria-hidden="true"> 宠物性别：</span> {{jsondata1.sex?'母':'公'}}
       </li>
       <li class="list-group-item list-group-item-info">
-        <span class="glyphicon glyphicon-time" aria-hidden="true"> 发布时间：</span> {{jsondata1.adoTime}}
+        <span class="glyphicon glyphicon-time" aria-hidden="true" value-format="yyyy-MM-dd HH:mm:ss"> 发布时间：</span> {{jsondata1.adoTime}}
       </li>
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-map-marker" aria-hidden="true"> 地址：</span> {{jsondata1.adoAddress}}

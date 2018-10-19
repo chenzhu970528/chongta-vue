@@ -48,7 +48,6 @@ import Details from '../components/forum/Details.vue'
 
 import finish from '../components/finish'
 import Share from '../components/forum/Share.vue'
-import login from '../components/login.vue'
 import register from '../components/register.vue'
 // import Matchmaking from '../components/matchmaking/Matchmaking.vue'
 Vue.use(Router);
@@ -61,11 +60,6 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: login,
     },
     {
       path: '/register',
