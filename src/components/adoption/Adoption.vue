@@ -60,8 +60,11 @@
             </div>
             <!--二维码-->
             <div class="qrCord">
+              <router-link tag="div" to="/adoption/issue/7"><a>求抱走</a></router-link>
+              <div class="erweima"><img src="" alt=""></div>
               <router-link tag="div" :to="'/adoption/issue/'+UserId"><a>求抱走</a></router-link>
               <img src="../../assets/adoption/0974a659d83ad4c85bf93dd1c987cae2.png" alt="">
+
             </div>
           </div>
         </div>
@@ -136,6 +139,17 @@
     position: absolute;
     left: 65px;
     top: 12px;
+  }
+  .erweima{
+    border:2px solid darkslategray;
+    width: 200px;height: 200px;
+    margin-top: 153px;
+    margin-left: -13px;
+    box-shadow: darkgrey 10px 10px 30px 5px
+  }
+  .erweima img{
+    width: 200px;
+    height: 200px;
   }
 
   /*小猫*/
