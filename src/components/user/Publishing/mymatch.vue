@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import  matchList from './matchList.vue'
   import changePage from '../../matchmaking/changepage.vue'
     export default {

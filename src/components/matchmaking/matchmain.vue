@@ -1,6 +1,7 @@
 <!--婚介中心-->
 <template>
   <div class="cont container">
+    <div class="route">您的当前位置：<span>宠物婚介</span></div>
     <el-row>
       <el-col :span="14">
         <app-select></app-select>
@@ -19,18 +20,15 @@
   import  matchhot from './match-hot.vue'
   import Header from '../Header.vue'
   import  matchlist from './matchlist.vue'
-  // import changepage from './changepage.vue'
   import select from '../adoption/AdoptionSizer'
   export default {
     name: "matchmain",
     components:{
       'app-header':Header,
       'match-list':matchlist,
-      // 'change-page':changepage,
       'app-select':select,
       'match-hot':matchhot
     },
-
   }
 </script>
 
@@ -52,11 +50,24 @@
     right: 170px;
     top: 200px;
   }
+  .route{
+    position: relative;
+    left: 1%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #747474;
+  }
+  .route span{
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  .route span:last-child{
+    color: #4e76ff;
+  }
   .issue img{
-    /*margin-left: 55px;*/
     width: 300px;
     position: relative;
-    top: 50px;
     left: 20px;
   }
 </style>

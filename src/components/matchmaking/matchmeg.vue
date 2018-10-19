@@ -1,6 +1,6 @@
 <template>
     <div class="col-xs-6 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-1">
-      <h3>小宠信息</h3>
+      <h3><span><img src="../../assets/match/love.png" alt=""></span>小宠信息</h3>
       <div class="Pet">
         <span>姓名：{{Mdeldata.PetName}}</span>
         <span>性别：{{Mdeldata.sex}}</span>
@@ -9,7 +9,7 @@
         <span>配种史：{{Mdeldata.maHistory}}</span>
         <span>详情：{{Mdeldata.detail}}</span>
       </div>
-      <h3>主人信息</h3>
+      <h3><span><img src="../../assets/match/user.png" alt=""></span>主人信息</h3>
       <div class="use">
         <span>昵称：{{Mdeldata.userName}}</span><span>所在地：{{Mdeldata.address}}</span><span>电话：{{Mdeldata.userPhone}}</span>
       </div>
@@ -52,12 +52,16 @@
     font-weight: bold;
     color: #af7adb;
   }
+  h3 span{
+    padding-right: 10px;
+  }
   .Pet span{
      display:block;
      height: 30px;
      line-height: 30px;
      font-size: 14px;
      color: grey;
+    padding-left: 30px;
    }
   .use span{
     padding-right: 20px;
@@ -65,5 +69,8 @@
     line-height: 30px;
     font-size: 14px;
     color: grey;
+  }
+  .use span:first-child{
+    padding-left: 30px;
   }
 </style>

@@ -166,8 +166,8 @@
   }
   [type="submit"]{
     position: relative;
-    top: 5px;
-    bottom: 3px;
+    top: 20px;
+    margin-bottom: 10px;
     left: 100px;
     border: none;
     background-color: #8ba5ff;
