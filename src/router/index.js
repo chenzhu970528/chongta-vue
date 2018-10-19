@@ -13,7 +13,6 @@ import  mpublish from '../components/matchmaking/mpublish.vue'
 
 import User from '../components/user/User.vue'
 import UserDetails from '../components/user/UserDetails.vue'
-import personal from '../components/user/accManagement/personal.vue'
 import forum from '../components/user/Forum/forum.vue'
 import message from '../components/user/message.vue'
 import mypublish from '../components/user/mypublish.vue'
@@ -37,6 +36,7 @@ import detail from '../components/homeless/detail.vue'
 import wantadopt from '../components/homeless/wantadopt'
 import people from '../components/homeless/people'
 
+import personal from '../components/user/accManagement/personal'
 import Communication from '../components/forum/Communication.vue'
 // import Page from '../components/forum/Page.vue'
 // import Share from '../components/forum/Share.vue'
@@ -51,6 +51,7 @@ import Share from '../components/forum/Share.vue'
 import login from '../components/login.vue'
 import register from '../components/register.vue'
 // import Matchmaking from '../components/matchmaking/Matchmaking.vue'
+
 Vue.use(Router);
 
 
@@ -61,6 +62,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/user/accManagement/personal',
+      name: 'personal',
+      component: personal,
     },
     {
       path: '/backstage',
@@ -136,8 +142,26 @@ export default new Router({
       name: 'publish',
       component: publish,
     },
+    // {
+    //   path: '/homeless/detailsimg',
+    //   name:'detailsimg',
+    //   component: detailsimg,
+    // },
+    {
+      path: '/homeless/details/:homeId',
+      name:'detail',
+      component: detail,
+    },
+    // {
+    //   path: '/homeless/details/:userId',
+    //   name:'detailsmes',
+    //   component: detailsmes,
+    // },
     // 论坛
-
+    {path: '/user/personal',
+      name: 'personal',
+      component: personal,
+    },
     {path: '/forum',
       name: 'Communication',
       component: Communication,
@@ -161,6 +185,11 @@ export default new Router({
       name: 'detail',
       component: detail,
     },
+    // {
+    //   path: '/homeless/details',
+    //   name: 'details',
+    //   component: details,
+    // },
     {
       path: '/finish',
       name: 'finish',
