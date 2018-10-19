@@ -33,7 +33,7 @@
       },
       created(){
         axios.get(`http://localhost:3000/user/showUser/${this.userId}`).then((result) => {
-          console.log(result.data.data[0]);
+          // console.log(result.data.data[0]);
           this.personal = result.data.data[0];
         })
       }

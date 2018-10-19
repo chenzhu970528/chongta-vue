@@ -6,13 +6,13 @@
     <div class="page">
       <change-page></change-page>
     </div>
-    <noList></noList>
+    <!--<noList></noList>-->
   </div>
 </template>
 
 <script>
   import axios from 'axios'
-  import noList from '../noList.vue'
+  // import noList from '../noList.vue'
   import  matchList from './matchList.vue'
   import changePage from '../../matchmaking/changepage.vue'
     export default {
@@ -20,7 +20,7 @@
       components:{
         'match-list':matchList,
         'change-page':changePage,
-        'noList':noList
+        // 'noList':noList
       }
     }
 </script>
