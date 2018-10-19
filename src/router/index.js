@@ -13,7 +13,6 @@ import  mpublish from '../components/matchmaking/mpublish.vue'
 
 import User from '../components/user/User.vue'
 import UserDetails from '../components/user/UserDetails.vue'
-import personal from '../components/user/accManagement/personal.vue'
 import forum from '../components/user/Forum/forum.vue'
 import message from '../components/user/message.vue'
 import mypublish from '../components/user/mypublish.vue'
@@ -37,6 +36,7 @@ import detail from '../components/homeless/detail.vue'
 import wantadopt from '../components/homeless/wantadopt'
 import people from '../components/homeless/people'
 
+import personal from '../components/user/accManagement/personal'
 import Communication from '../components/forum/Communication.vue'
 // import Page from '../components/forum/Page.vue'
 // import Share from '../components/forum/Share.vue'
@@ -62,6 +62,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/user/accManagement/personal',
+      name: 'personal',
+      component: personal,
     },
     {
       path: '/backstage',
