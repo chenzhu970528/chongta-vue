@@ -5,8 +5,8 @@
       <el-col :span="8">
         <div class="top">
           <change-head></change-head>
-          <span class="name">用户名</span><br/>
-          <span class="name">长长的个性签名</span>
+          <span class="name">{{personal.userName}}</span><br/>
+          <span class="name">{{personal.signature}}</span>
         </div>
         <left-list></left-list>
       </el-col>
@@ -16,18 +16,26 @@
 </template>
 
 <script>
-  import change from './mesCenter/changehead.vue'
+  import change from './accManagement/changehead.vue'
   import left from './leftList.vue'
+  import  axios from 'axios'
     export default {
       name: "User",
       data(){
         return {
-          userId:this.$route.params.userId
+          userId:this.$route.params.userId,
+          personal:[],
         }
       },
       components:{
         'change-head':change,
         'left-list':left
+      },
+      created(){
+        axios.get(`http://localhost:3000/user/showUser/${this.userId}`).then((result) => {
+          console.log(result.data.data[0]);
+          this.personal = result.data.data[0];
+        })
       }
     }
 </script>
@@ -58,10 +66,11 @@
   }
   .name{
     display: inline-block;
-    width: 150px;
+    /*width: 150px;*/
     height: 30px;
     line-height: 30px;
     /*background-color: orangered;*/
-    margin-top: 20px;
+    margin-top: 15px;
+    /*background-color: yellow;*/
   }
 </style>

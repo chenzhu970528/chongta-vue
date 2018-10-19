@@ -6,14 +6,14 @@
           <div class="pic"></div>
         </el-col>
         <el-col :span="15">
-          <p class="title">标题：<span>一只可爱的小喵</span></p>
-          <p>发布时间：<span>2018/09/24</span></p>
-          <p>地点：<span>上海</span></p>
-          <p>申请人数：<span>4</span></p>
+          <p class="title">标题：<span>{{matchlist.title}}</span></p>
+          <p>发布时间：<span>{{matchlist.relTime}}</span></p>
+          <p>地点：<span>{{matchlist.address}}</span></p>
+          <p>申请人数：<span>{{matchlist.num}}</span></p>
           <el-row>
             <el-col :span="5">详细信息：</el-col>
             <el-col :span="18" >
-              <span class="detail">水电费健康和飞机晒覅U盾和数据库表查询即可部件汉化in的哈你好啊</span>
+              <span class="detail">{{matchlist.detail}}</span>
             </el-col>
           </el-row>
         </el-col>
@@ -21,11 +21,11 @@
           <el-popover
             placement="top"
             width="160"
-            v-model="visible1">
+            v-model="visiblematch">
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="visible1 = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="visible1 = false">确定</el-button>
+              <el-button size="mini" type="text" @click="visiblematch = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="visiblematch = false">确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>
             <!--<el-button slot="reference">删除</el-button>-->
@@ -39,7 +39,24 @@
 <script>
   import axios from 'axios'
     export default {
-        name: "matchList"
+        name: "matchList",
+      data(){
+        return{
+          visiblematch: false,
+          relId:this.$route.params.userId,
+          matchlist:[]
+        }
+      },
+      created(){
+        axios.get(`http://localhost:3000/matchmaking/matchdetail/${this.relId}`).then((result) => {
+          console.log(this.relId)
+          console.log(result.data.data[0])
+          this.matchlist = result.data.data[0];
+          // if(this.matchlist.medReport !=null){
+          //   this.matchlist.medReport='已提交体检报告'
+          // }else this.matchlist.medReport='未提交体检报告'
+        })
+      }
     }
 </script>
 
