@@ -10,26 +10,24 @@ import AdoIssue from '../components/adoption/AdoptIssue.vue'
 import matchmain from '../components/matchmaking/matchmain'
 import matchDel from '../components/matchmaking/matchDel.vue'
 import  mpublish from '../components/matchmaking/mpublish.vue'
-// import Matchmaking from '../components/matchmaking/Matchmaking.vue'
 
 import User from '../components/user/User.vue'
 import UserDetails from '../components/user/UserDetails.vue'
-import personal from '../components/user/personal.vue'
-import forum from '../components/user/forum.vue'
+import forum from '../components/user/Forum/forum.vue'
 import message from '../components/user/message.vue'
 import mypublish from '../components/user/mypublish.vue'
 
-import update from '../components/user/update.vue'
-import aplyme from '../components/user/aplyme.vue'
-import changepwd from '../components/user/changepwd.vue'
-import comme from '../components/user/comme.vue'
-import myado from '../components/user/myado.vue'
-import myaply from '../components/user/myaply.vue'
-import mycom from '../components/user/mycom.vue'
-import mylost from '../components/user/mylost.vue'
-import mymatch from '../components/user/mymatch.vue'
-import sys from '../components/user/sys.vue'
-import myhomls from '../components/user/myhomls.vue'
+import update from '../components/user/accManagement/update.vue'
+import aplyme from '../components/user/mesCenter/aplyme.vue'
+import changepwd from '../components/user/accManagement/changepwd.vue'
+import comme from '../components/user/mesCenter/comme.vue'
+import myado from '../components/user/Publishing/myado.vue'
+import myaply from '../components/user/mesCenter/myaply.vue'
+import mycom from '../components/user/mesCenter/mycom.vue'
+import mylost from '../components/user/Publishing/mylost.vue'
+import mymatch from '../components/user/Publishing/mymatch.vue'
+import sys from '../components/user/mesCenter/sys.vue'
+import myhomls from '../components/user/Publishing/myhomls.vue'
 
 import Homeless from '../components/homeless/Homeless.vue'
 import publish from '../components/homeless/publish.vue'
@@ -38,6 +36,7 @@ import detail from '../components/homeless/detail.vue'
 import wantadopt from '../components/homeless/wantadopt'
 import people from '../components/homeless/people'
 
+import personal from '../components/user/accManagement/personal'
 import Communication from '../components/forum/Communication.vue'
 // import Page from '../components/forum/Page.vue'
 // import Share from '../components/forum/Share.vue'
@@ -46,11 +45,12 @@ import Lists from '../components/forum/Lists.vue'
 import Details from '../components/forum/Details.vue'
 // import Newest from '../components/forum/Newest.vue'
 
-
+import finish from '../components/finish'
+import backstage from '../components/backstage'
 import Share from '../components/forum/Share.vue'
-import login from '../components/login.vue'
 import register from '../components/register.vue'
 // import Matchmaking from '../components/matchmaking/Matchmaking.vue'
+
 Vue.use(Router);
 
 
@@ -63,9 +63,14 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/login',
-      name: 'login',
-      component: login,
+      path: '/user/accManagement/personal',
+      name: 'personal',
+      component: personal,
+    },
+    {
+      path: '/backstage',
+      name: 'backstage',
+      component: backstage,
     },
     {
       path: '/register',
@@ -95,7 +100,7 @@ export default new Router({
       component : matchmain,
     },
     {
-      path:'/matchmaking/matchDel',
+      path:'/matchmaking/matchDel/:relId',
       name:'matchDel',
       component : matchDel,
     },
@@ -131,8 +136,26 @@ export default new Router({
       name: 'publish',
       component: publish,
     },
+    // {
+    //   path: '/homeless/detailsimg',
+    //   name:'detailsimg',
+    //   component: detailsimg,
+    // },
+    {
+      path: '/homeless/details/:homeId',
+      name:'detail',
+      component: detail,
+    },
+    // {
+    //   path: '/homeless/details/:userId',
+    //   name:'detailsmes',
+    //   component: detailsmes,
+    // },
     // 论坛
-
+    {path: '/user/personal',
+      name: 'personal',
+      component: personal,
+    },
     {path: '/forum',
       name: 'Communication',
       component: Communication,
@@ -155,6 +178,16 @@ export default new Router({
       path: '/homeless/detail',
       name: 'detail',
       component: detail,
+    },
+    // {
+    //   path: '/homeless/details',
+    //   name: 'details',
+    //   component: details,
+    // },
+    {
+      path: '/finish',
+      name: 'finish',
+      component: finish,
     },
     {
       path: '/homeless/people',

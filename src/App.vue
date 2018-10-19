@@ -10,8 +10,8 @@
       <canvas></canvas>
     </div>
     <div class="foot">
-      <foot></foot>
-    </div>
+    <foot></foot>
+  </div>
   </div>
 </template>
 

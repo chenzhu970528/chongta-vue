@@ -1,6 +1,6 @@
 <template>
   <div>
-  <cat></cat>
+  <!--<cat></cat>-->
   <div class="container">
     <ol class="breadcrumb">
       您当前位置为：
@@ -47,7 +47,7 @@
   import fenlei from './fenlei'
   import cat from './cat'
   export default {
-    name: "Homeless",
+    name: "homeless",
     methods:{
       toHome(){
         this.$router.push({path:'/'})
@@ -66,7 +66,7 @@
 <style scoped>
   .container{
     background:rgba(255,255,255,0.9);
-    margin-top:50px ;
+    margin-top:130px ;
     box-shadow:-2px 2px 10px 2px #bcbcbc;
     width: 1240px;
   }

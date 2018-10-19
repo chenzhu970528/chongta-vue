@@ -61,7 +61,10 @@
             <!--二维码-->
             <div class="qrCord">
               <router-link tag="div" to="/adoption/issue/7"><a>求抱走</a></router-link>
+              <div class="erweima"><img src="../../assets/homeless/E997FFB8C02AEA4FDB1644CF03466ED5.png" alt=""></div>
+              <router-link tag="div" :to="'/adoption/issue/'+UserId"><a>求抱走</a></router-link>
               <img src="../../assets/adoption/0974a659d83ad4c85bf93dd1c987cae2.png" alt="">
+
             </div>
           </div>
         </div>
@@ -76,13 +79,21 @@
   import Sizer from '../adoption/AdoptionSizer'
   // 宠物列表
   import List from '../adoption/AdoptionList'
+  //获取所有信息
+  import {mapGetters} from 'vuex';
+  import axios from 'axios'
     export default {
         name: "Adoption",
       components:{
         'sildes-show':Slideshow,
         'ado-sizer': Sizer,
         'ado-list':List
-      }
+      },
+      computed: mapGetters([
+        'UserId',
+        'UserName',
+        'isLogin'
+      ])
     }
 </script>
 
@@ -128,6 +139,20 @@
     position: absolute;
     left: 65px;
     top: 12px;
+  }
+  .erweima{
+    /*border:2px solid darkslategray;*/
+    width: 200px;height: 200px;
+    margin-top: 153px;
+    margin-left: -13px;
+    /*box-shadow: darkgrey 10px 10px 30px 5px*/
+  }
+  .erweima img{
+    width: 200px;
+    height: 200px;
+    margin-top: 153px;
+    margin-left: 1px;
+
   }
 
   /*小猫*/

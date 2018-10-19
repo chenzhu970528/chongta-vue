@@ -1,32 +1,44 @@
 <template>
     <div>
-        <el-row>
-          <el-col :span="7" v-for="(o, index) in 3" :key="o" :offset="index > 0 ? 3 : 0">
-            <router-link tag="div" to="/adoption/details/8"><a>
+      <el-row>
+        <el-col :span="7" v-for="(diary, index) in diarys"  :key="diarys.length" :offset="index > 0 ? 3 : 0">
+          <router-link tag="div" :to="'/adoption/details/'+diary.adoId"><a>
             <el-card :body-style="{ padding: '0px' }">
               <img src="../../assets/homeless/u=1177403016,309772193&fm=26&gp=0.jpg" class="image">
               <div style="padding: 14px;">
-                <span>可爱小猫求领养</span>
+                <span>{{diary.adoTitle}}</span>
                 <div class="bottom clearfix">
-                  <time class="time">{{ currentDate }}</time>
+                  <time class="time">{{ diary.adoAddress }}</time>
                 </div>
               </div>
             </el-card>
-            </a></router-link>
-          </el-col>
-        </el-row>
-
+          </a></router-link>
+        </el-col>
+      </el-row>
     </div>
 </template>
 
 <script>
+  import axios from 'axios'
     export default {
         name: "DetailsRecommend",
       data() {
         return {
-          currentDate: new Date()
+          mydata: [],
+          diarys: [],
         };
+      },
+      created(){
+        axios.get("http://localhost:3000/adoptions").then((result) => {
+          // console.log(result.data)
+          this.mydata = result.data.data;
+          var re = Math.round(Math.random()*6)
+          for (let i = re; i < re+3; i++) {
+            this.diarys.push(this.mydata[i])
+          }
+        })
       }
+
     }
 </script>
 

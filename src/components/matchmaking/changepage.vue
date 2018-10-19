@@ -1,35 +1,41 @@
 <!--换页-->
 <template>
-  <nav aria-label="Page navigation">
-    <ul class="pagination">
-      <li>
-        <a href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li>
-        <a href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <div>
+    <el-pagination
+      background-color="transparent"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page.sync="currentPage3"
+      :page-size="10"
+      layout="prev, pager, next, jumper"
+      :total="300">
+    </el-pagination>
+  </div>
+
 </template>
 
 <script>
     export default {
-        name: "changepage"
+        name: "changepage",
+      methods: {
+        handleSizeChange(val) {
+          console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+          console.log(`当前页: ${val}`);
+        }
+      },
+      data() {
+        return {
+          currentPage3: 1,
+        };
+      }
     }
 </script>
 
 <style scoped>
-  ul{
-    margin-left: 40%;
+  div{
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
-
 </style>
