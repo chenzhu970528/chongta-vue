@@ -13,14 +13,19 @@
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-map-marker" aria-hidden="true"> 地址：</span> {{jsondata1.address}}
       </li>
-      <!--<li class="list-group-item list-group-item-info">-->
-        <!--<span class="glyphicon glyphicon-user" aria-hidden="true"> 联系人：</span> {{jsondata1.realName}}-->
-      <!--</li>-->
-      <!--<li class="list-group-item list-group-item-info">-->
-        <!--<span class="glyphicon glyphicon-earphone" aria-hidden="true"> 联系电话：</span> {{jsondata1.userPhone}}-->
-      <!--</li>-->
+      <li class="list-group-item list-group-item-info">
+        <span class="glyphicon glyphicon-tag" aria-hidden="true"> 详细描述：</span> {{jsondata1.detail}}
+      </li>
+      <li class="list-group-item list-group-item-info">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"> 发布者：</span>
+        <a href="" style="text-decoration: none">{{jsondata1.userName}}</a>
+        <!--游客可见的个人信息-->
+
+      </li>
       <!--<li class="list-group-item list-group-item-info">-->
         <!--<span class="glyphicon glyphicon-heart-empty"  aria-hidden="true"> 有意领养者：</span>-->
+
+
         <!--<span style="margin-left: 10px" v-for="diary in diarys">-->
           <!--<router-link tag="a" :to="'/userDetails/'+diary.userId">{{diary.realName}}</router-link>-->
         <!--</span>-->
@@ -40,12 +45,13 @@
         homeId:this.$route.params.homeId,
         // 详细信息
         jsondata1:[],
+        diarys:[]
       }
     },
     created(){
       axios.get(`http://localhost:3000/homeless/details/${this.homeId}`).then((result) => {
-        // console.log(result.data)
-        this.jsondata1 = result.data.data
+        console.log(result.data.data);
+        this.jsondata1 = result.data.data;
       })
     }
   }
