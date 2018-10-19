@@ -4,7 +4,7 @@
     <a href="#" class="list-group-item active">
      丢丢丢丢丢丢丢丢丢丢
     </a>
-    <div v-for="(diary, index) in diarys"  :key="diarys.length" :offset="index > 0 ? 3 : 0">
+    <div v-for="diary in diarys">
       <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="list-style: none" exact>
         <a href="#" class="list-group-item"><span>{{diary.getmes}}</span> </a>
       </router-link>

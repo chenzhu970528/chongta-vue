@@ -1,7 +1,7 @@
 <template>
   <div>
-  <el-collapse v-model="activeName" accordion v-for="(diary, index) in diarys"  :key="diarys.length" :offset="index > 0 ? 3 : 0">
-    <el-collapse-item title="努力寻找中：" name="1" >
+  <el-collapse v-model="activeName" accordion v-for="diary in diarys" >
+    <el-collapse-item title="努力寻找中："  >
       <div>标题：<span>{{diary.lpmes}}</span></div>
       <div>地点：<span>{{diary.detail}}</span></div>
       <div>奖赏：<span>{{diary.reward}}</span>
