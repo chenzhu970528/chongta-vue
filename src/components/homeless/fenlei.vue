@@ -4,7 +4,6 @@
       <div style="font-size: 18px">
         <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
           <el-tab-pane label="全部" name="first">
-            <!--<div style="background-color: yellow;height: 300px;width: 700px"></div>-->
             <all></all>
           </el-tab-pane>
           <el-tab-pane label="寻找中" name="second" ><div ><looking></looking></div></el-tab-pane>
@@ -23,7 +22,6 @@
       </div>
     </div>
     <hot></hot>
-    <!--<reward></reward>-->
   </div>
 </template>
 
@@ -34,9 +32,10 @@
   import looked from './looked'
   import hot from './hot'
   import personal from '../user/accManagement/personal'
-  // import reward from './reward'
+
 
     export default {
+      name: "fenlei",
       components: {
         'required': required,
         'all':all,

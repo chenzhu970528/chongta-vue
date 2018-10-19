@@ -47,7 +47,7 @@
   import fenlei from './fenlei'
   import cat from './cat'
   export default {
-    name: "Homeless",
+    name: "homeless",
     methods:{
       toHome(){
         this.$router.push({path:'/'})
