@@ -1,8 +1,8 @@
 <template>
-   <!--<div> &lt;!&ndash;发帖&ndash;&gt;-->
-  <!--<div id="editorElem" style="text-align:left"></div>-->
-  <!--<button v-on:click="getContent">发表</button>-->
-  <!--</div>-->
+   <div> <!--发帖-->
+  <div id="editorElem" style="text-align:left"></div>
+  <button v-on:click="getContent">发表</button>
+  </div>
 </template>
 <script>
   // import E from 'wangeditor'
@@ -33,15 +33,15 @@
           'bgcolor'
         ];
         this.editorContent = html
-        // editor.config.menus = $.map(wangEditor.config.menus, function(item, key) {
-        //   if (item === 'insertcode') {
-        //     return null;
-        //   }
-        //   if (item === 'fullscreen') {
-        //     return null;
-        //   }
-        //   return item;
-        // });
+        editor.config.menus = $.map(wangEditor.config.menus, function(item, key) {
+          if (item === 'insertcode') {
+            return null;
+          }
+          if (item === 'fullscreen') {
+            return null;
+          }
+          return item;
+        });
       }
 
       editor.create()

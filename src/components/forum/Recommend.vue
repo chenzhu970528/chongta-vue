@@ -21,6 +21,17 @@
           </ul>
         </div>
 
+        <!--<div class="item">-->
+          <!--<ul class="ul">-->
+            <!--<li class="li" v-for="val in values">-->
+              <!--<router-link tag="a" active-class="active" role="presentation" to="/forum/details">-->
+                <!--<img class=img :src=imgs[0].img>-->
+                <!--<p class="p"><span class="left0">荐</span><a class="a title">{{val.faTitle}}</a></p>-->
+              <!--</router-link>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</div>-->
+
         <div class="item">
           <ul class="ul">
             <li class="li" v-for="val in values">
@@ -44,9 +55,9 @@
         &nbsp
       </div>
       <!-- Controls -->
-      <a class=" carousel-control" data-slide="prev">
+      <a class="carousel-control" data-slide="prev">
       </a>
-      <a class=" carousel-control" data-slide="next">
+      <a class="carousel-control" data-slide="next">
       </a>
 
     </div>
@@ -54,6 +65,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     name: "Recommend",
     data() {
@@ -63,16 +75,36 @@
           {img: require("../../assets/images/a.jpg"), title: '标题'},
           {img: require("../../assets/images/a.jpg"), title: '标题'},
 
-        ]
+        ],
+        value:[],
       }
     },
+    mounted(){
+      // mounted(){
+      axios.get("http://localhost:3000/forumSee/time").then((result) => {
+        this.mydata = result.data.data;
+        for (let i = 0; i < 9; i++) {
+          this.value.push(this.mydata[i])
+        }
+      })
+    }
   }
 </script>
 
 <style scoped>
-
+#carousel-example-generic{
+  width: 1190px;
+  /*padding-right:40px;*/
+  margin:auto;
+}
+.carousel-control{
+  width: 20px;
+  margin:auto;
+}
   .ul {
-    margin-left: -15px;
+    width: 1300px;
+    margin-left: -40px;
+    margin-right:-30px;
   }
 
   .li {
@@ -82,7 +114,8 @@
     list-style: none;
     width: 380px;
     margin-bottom: 40px;
-    margin-right: 25px;
+    margin-right:25px;
+
   }
 
   .img {

@@ -1,28 +1,33 @@
 <template>
   <div>
     <div class="con">
+      <!--{{sum}}-->
       <ul>
-        <li v-for="value in values">
+        <li :key="index" v-model="val.faId" v-for="(val,index) in value[0]">
           <div class="head" >
-            <router-link tag="h1" active-class="active"  role="presentation" to="/forum/details">  <h1 class="title"><a>{{value.title}}</a></h1></router-link>
+            <router-link tag="h1" active-class="active"  role="presentation" to="/forum/details">
+              <h1 class="title"><a>{{val.faTitle}}</a></h1>
+            </router-link>
             <p class="name">
-              <span>{{value.name}}</span>
-              <span>{{value.time}}</span>
-              <span>❤ 88</span>
-              <span>&nbsp{{value.num}}回复</span>
+              <span>{{val.userName}}</span>
+              <span>{{val.time.slice(0,16).replace('T',' ')}}</span>
+
             </p>
           </div>
           <div class="photo">
-            <router-link tag="a" active-class="active"  role="presentation" to="/forum/details"><img :src='value.src' alt="图片"></router-link>
+            <router-link tag="a" active-class="active"  role="presentation" to="/forum/details">
+              <img :src='imgs[0].img' alt="图片">
+            </router-link>
             <a></a>
           </div>
 
           <div class="value">
-            <p class="val">{{value.val}}</p>
+            <p class="val">{{val.faText}}</p>
             <router-link tag="a" active-class="active"  role="presentation" to="/forum/details">
               <button type="button" class="btn btn-default">阅读全文</button>
             </router-link>
-
+            <hr>
+            <p class="c">#{{Names[0]}}</p>
           </div>
 
         </li>
@@ -39,99 +44,56 @@
 </template>
 
 <script>
+  import  axios from 'axios'
   export default {
     name: "List",
     data() {
       return {
-        values: [
-          {
-            title: '这是第一个标题',
-            val: '1少时诵诗书所所所所所所所撒所所哇少时诵诗书所所所所所所所撒所所哇句号之前',
-            name: '明明',
-            time: '2018/10/16/13:04',
-            num: 61,
-            src: require("../../assets/images/a.jpg")
-
-          },
-          {
-            title: '这是第一个标题',
-            val: '1少时诵诗书所所所所所所所撒所所哇少时诵诗书所所所所所所所撒所所哇句号之前',
-            name: '白白',
-            time: '2018/10/16/13:04',
-            num: 62,
-            src: require("../../assets/images/a.jpg")
-
-          },
-          {
-            title: '这是第一个标题',
-            val: '1少时诵诗书所所所所所所所撒所所哇少时诵诗书所所所所所所所撒所所哇句号之前',
-            name: '妥妥',
-
-            time: '2018/10/16/13:04',
-            num: 63
-            ,
-            src: require("../../assets/images/a.jpg")
-
-          },
-          {
-            title: '这是第一个标题',
-            val: '1少时诵诗书所所所所所所所撒所所哇少时诵诗书所所所所所所所撒所所哇句号之前',
-            name: '明明',
-
-            time: '2018/10/16/13:04',
-            num: 64
-            ,
-            src: require("../../assets/images/a.jpg")
-
-          },
-          {
-            title: '这是第一个标题',
-            val: '1少时诵诗书所所所所所所所撒所所哇少时诵诗书所所所所所所所撒所所哇句号之前',
-            name: '当当',
-
-            time: '2018/10/16/13:04',
-            num: 65
-            ,
-            src: require("../../assets/images/a.jpg")
-
-          },
-          {
-            title: '这是第一个标题',
-            val: '1少时诵诗书所所所所所所所撒所所哇少时诵诗书所所所所所所所撒所所哇句号之前',
-            name: '明明',
-
-            time: '2018/10/16/13:04',
-            num: 66
-            ,
-            src: require("../../assets/images/a.jpg")
-
-          },
-          {
-            title: '这是第一个标题',
-            val: '1少时诵诗书所所所所所所所撒所所哇少时诵诗书所所所所所所所撒所所哇句号之前',
-            name: '丽丽',
-
-            time: '2018/10/16/13:04',
-            num: 67
-            ,
-            src: require("../../assets/images/a.jpg")
-          },
-          {
-            title: '这是第一个标题',
-            val: '1少时诵诗书所所所所所所所发过火过付付付付付付付付付付付付付付撒所所哇少时诵诗书所所所所所所所撒所所哇句号之前',
-            name: '对对',
-
-            time: '2018/10/16/13:04',
-            num: 68
-            ,
-            src: require("../../assets/images/a.jpg")
-
-          },
-        ]
-
+        imgs: [{img: require("../../assets/images/a.jpg")}],
+        value: [
+          {values0: []},
+          {values1: []},
+          {values2: []},
+          {values3: []}],
+        Names: ['最新', '精品推荐', '宠物日记', '交流分享'],
+        faId:'',
+        count:[]
       }
-    }
+    },
+    mounted() {
+      axios.get("http://localhost:3000/forumSee/time").then((result) => {
+        this.mydata = result.data.data;
+        for (let i = 0; i <this.mydata.length; i++) {
+          this.value[0].values0.push(this.mydata[i])
+        }
+        this.value[0] = this.value[0].values0
+      })
 
+      axios.get("http://localhost:3000/forumSee/essence").then((result) => {
+        this.mydata1 = result.data.data;
+        for (let i = 0; i < this.mydata1.length; i++) {
+          this.value[1].values1.push(this.mydata1[i])
+        }
+        this.value[1] = this.value[1].values1
+      })
+
+      axios.get("http://localhost:3000/forumSee/diary").then((result) => {
+        this.mydata2 = result.data.data;
+        for (let i = 0; i < this.mydata2.length; i++) {
+          this.value[2].values2.push(this.mydata2[i])
+        }
+        this.value[2] = this.value[2].values2
+      })
+
+      axios.get("http://localhost:3000/forumSee/gossip").then((result) => {
+        this.mydata3 = result.data.data;
+        for (let i = 0; i < this.mydata3.length; i++) {
+          this.value[3].values3.push(this.mydata3[i])
+        }
+        this.value[3] = this.value[3].values3
+      })
+
+    }
   }
 </script>
 
@@ -197,5 +159,8 @@
     color: #323232;
   }
 
-
+.c{
+  font-size:18px;
+  color: #939393;
+}
 </style>

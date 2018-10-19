@@ -1,24 +1,34 @@
 <template>
     <div>
-      <div class="d1">
-        <div class="top"><span class="left">热门文章</span></div>
-        <div class="bot" v-for="(list,index) in lists">
-          <router-link tag="p" active-class="active"  role="presentation" to="/forum/details"><span>{{index+1}}</span>&nbsp<a href="">{{list}}</a></router-link>
+      <div class="d1" >
+        <div class="top"><span class="left">收藏榜单</span></div>
+        <div class="bot" v-for="(list,index) in list1" >
+          <router-link  tag="p" active-class="active"  role="presentation" to="/forum/details">
+            <span>{{index+1}}</span>&nbsp<a href="">{{list.faTitle}}</a>
+          </router-link>
         </div>
       </div>
     </div>
 </template>
 
 <script>
+  import axios from 'axios';
     export default {
-        name: "Com_c",
+        name: "Ranking",
       data(){
           return{
-            lists:['今天是晴天','阴天转多云','五十六个民族五十六朵花','五十六个兄弟姐妹是一家',
-              '今天是晴天','阴天转多云','五十六个民族五十六朵花','五十六个兄弟姐妹是一家',
-              '今天是晴天','阴天转多云'
-            ]
+            mydata:[],
+            list1:[]
           }
+      },
+      mounted(){
+        axios.get("http://localhost:3000/forumSee/time").then((result) => {
+          this.mydata = result.data.data;
+          for (let i = 0; i < 10; i++) {
+            this.list1.push(this.mydata[i])
+          }
+        })
+
       }
     }
 </script>
