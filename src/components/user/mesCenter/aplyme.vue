@@ -2,7 +2,6 @@
   <div class="right" >
     <div class="route">您的当前位置：<span>账号管理</span><span>/</span><span>编辑个人资料</span></div>
 
-
   </div>
 </template>
 
