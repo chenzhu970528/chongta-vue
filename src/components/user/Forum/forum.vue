@@ -1,6 +1,6 @@
 <template>
   <div class="right" >
-    <div class="route">您的当前位置：<span>我的帖子</span></div>
+    <div class="route">您的当前位置：<span>论坛</span><span>/</span><span>我的帖子</span></div>
     <forum-list></forum-list>
     <div class="page">
       <change-page></change-page>
