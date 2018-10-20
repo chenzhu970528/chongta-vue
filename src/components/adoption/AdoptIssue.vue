@@ -196,10 +196,10 @@
           data: _this.adoForm,
           success: function (result) {
             console.log(result.data)
+            alert("注册成功")
+            location.href = "http://localhost:8080/adoption";
           }
         })
-        alert("注册成功")
-        location.href = "http://localhost:8080/adoption";
       },
       handleRemove(file, fileList) {
         console.log(file, fileList);
