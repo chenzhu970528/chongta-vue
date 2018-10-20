@@ -1,68 +1,111 @@
 <template>
-  <!--<div>-->
-    <!--<el-row class="row1">-->
-      <!--<el-col :span="4">-->
-        <!--<el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>-->
-      <!--</el-col>-->
-      <!--<el-col :span="10">-->
-        <!--标题-->
-      <!--</el-col>-->
-      <!--<el-col :span="5">发布时间</el-col>-->
-      <!--<el-col :span="5">操作</el-col>-->
-    <!--</el-row>-->
-    <!--<el-row v-for="city in cities" :label="city" class="list">-->
-      <!--<el-checkbox-group v-model="checkedCities">-->
-      <!--<el-col :span="4">-->
-        <!--<el-checkbox :label="city"> </el-checkbox>-->
-      <!--</el-col>-->
-      <!--</el-checkbox-group>-->
-      <!--<el-col :span="10">-->
-        <!--ffgdfgaddddddddd-->
-      <!--</el-col>-->
-      <!--<el-col :span="5">2018/7/5</el-col>-->
-      <!--<el-col :span="5">shanchu</el-col>-->
-    <!--</el-row>-->
-
-  <!--</div>-->
+  <div class="inner_ado">
+    <div class="tol">
+      <el-row class="card">
+        <el-col :span="7" class="petPic">
+          <div class="pic"></div>
+        </el-col>
+        <el-col :span="15">
+          <p class="title">标题：<span>一个标题</span></p>
+          <!--<p>发布时间：<span>{{showList.relTime}}</span></p>-->
+          <!--<p>地点：<span>{{showList.address}}</span></p>-->
+          <!--<p>申请人数：<span>{{showList.num}}</span></p>-->
+          <el-row>
+            <!--<el-col :span="5">详细信息：</el-col>-->
+            <!--<el-col :span="18" >-->
+              <!--<span class="detail">{{showList.detail}}</span>-->
+            <!--</el-col>-->
+          </el-row>
+        </el-col>
+        <div class="title del">
+          <el-popover
+            placement="top"
+            width="160"
+            v-model="visible">
+            <p>确定删除吗？</p>
+            <div style="text-align: right; margin: 0">
+              <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="visible = false">确定</el-button>
+            </div>
+            <el-button slot="reference" icon="el-icon-delete" circle></el-button>
+            <!--<el-button slot="reference">删除</el-button>-->
+          </el-popover>
+        </div>
+      </el-row>
+    </div>
+    <div v-if="isshow" class="noList">
+      <img src="../../../assets/user/default8.png" alt="">
+      <p>还没有任何发布哦，快去发布吧</p>
+    </div>
+  </div>
 
 </template>
 
 <script>
-  const cityOptions = ['上海', '北京', '广州', '深圳'];
     export default {
-        name: "forumList",
-      data() {
-        return {
-          checkAll: false,
-          checkedCities: [],
-          cities: cityOptions,
-          isIndeterminate: true
-        };
-      },
-      methods: {
-        handleCheckAllChange(val) {
-          this.checkedCities = val ? cityOptions : [];
-          this.isIndeterminate = false;
-        },
-        handleCheckedCitiesChange(value) {
-          let checkedCount = value.length;
-          this.checkAll = checkedCount === this.cities.length;
-          this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+      name: "forumList",
+      data(){
+        return{
+          visible: false,
+          isshow:false
         }
       }
     }
 </script>
 
 <style scoped>
-  .row1{
-    font-size: 16px;
-    font-weight: bolder;
-    margin-top: 50px;
-    text-align: center;
-    background-color: grey;
+  .inner_ado{
+    width: 80%;
+    margin-left: 9%;
+    margin-top: 5%;
+    position: relative;
+    /*background-color: yellow;*/
+    min-height: 500px;
+    font-size: 13px;
+    color: #737373;
   }
-  .list{
-    font-weight: normal;
-    font-size: 14px;
+  .card{
+    width: 100%;
+    height: 200px;
+  }
+  .tol{
+    border-radius: 20px;
+    background-color: rgba(255,255,255,0.5);
+    margin-bottom: 25px;
+  }
+  .pic{
+    width: 110px;
+    height: 110px;
+    border-radius: 110px;
+    background: -10px -10px url("../../../assets/match/mao1.jpg");
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+  .petPic{
+    height: 200px;
+    /*background-color: red;*/
+  }
+
+  p{
+    padding-top: 7px;
+  }
+  .detail{
+    display: inline-block;
+    /*height: 70px;*/
+    overflow: hidden;
+    /*background-color: plum;*/
+    text-overflow: ellipsis;
+  }
+  .noList{
+    text-align: center;
+    color: #575757;
+    /*position: relative;*/
+    /*top:-500px;*/
+  }
+  .showList{
+    text-align: center;
+    color: #575757;
+    position: relative;
+    top:-500px;
   }
 </style>

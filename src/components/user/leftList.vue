@@ -27,7 +27,12 @@
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="3">
-        <span slot="title"><router-link tag="li" active-class="active"  role="presentation" :to="'/user/'+UserId+'/forum'">我的帖子</router-link></span>
+        <span slot="title">论坛</span>
+        <el-menu-item-group>
+          <el-menu-item index="3-1"><router-link tag="li" active-class="active"  role="presentation" :to="'/user/'+UserId+'/forum'">我的帖子</router-link></el-menu-item>
+          <el-menu-item index="3-2"><router-link tag="li" active-class="active"  role="presentation" :to="'/user/'+UserId+'/diary'">领养日记</router-link></el-menu-item>
+          <el-menu-item index="3-3"><router-link tag="li" active-class="active"  role="presentation" :to="'/user/'+UserId+'/dailylife'">小日常</router-link></el-menu-item>
+        </el-menu-item-group>
       </el-submenu>
       <el-submenu index="4">
         <span slot="title">消息中心</span>
