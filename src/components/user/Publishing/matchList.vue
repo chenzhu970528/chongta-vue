@@ -56,12 +56,12 @@
         }
       },
       created(){
-          let _this=this
+          // let _this=this
         axios.get(`http://localhost:3000/matchmaking/matchdetail/${this.relId}`).then((result) => {
-          _this.matchlist = result.data.data;
+          this.matchlist = result.data.data;
           console.log(result.data.data.length);
-          for (let i = 0; i < _this.matchlist.length; i++) {
-            _this.showLists.push(_this.matchlist[i])
+          for (let i = 0; i < this.matchlist.length; i++) {
+            this.showLists.push(this.matchlist[i])
           }
           if(result.data.data.length==0){
             this.showPic()
@@ -97,6 +97,7 @@
   .tol{
     border-radius: 20px;
     background-color: rgba(255,255,255,0.5);
+    margin-bottom: 25px;
   }
   .pic{
     width: 110px;
