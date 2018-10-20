@@ -92,7 +92,7 @@ export default new Router({
       component: AdoDetails,
     },
     {
-      path: '/adoption/issue/:userId',
+      path: '/adoption/issue',
       name:'AdoIssue',
       component: AdoIssue,
     },

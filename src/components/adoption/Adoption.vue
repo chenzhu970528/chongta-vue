@@ -60,9 +60,8 @@
             </div>
             <!--二维码-->
             <div class="qrCord">
-              <router-link tag="div" to="/adoption/issue/7"><a>求抱走</a></router-link>
               <div class="erweima"><img src="../../assets/homeless/E997FFB8C02AEA4FDB1644CF03466ED5.png" alt=""></div>
-              <router-link tag="div" :to="'/adoption/issue/'+UserId"><a>求抱走</a></router-link>
+              <router-link tag="div" to="/adoption/issue"><a>求抱走</a></router-link>
               <img src="../../assets/adoption/0974a659d83ad4c85bf93dd1c987cae2.png" alt="">
 
             </div>
