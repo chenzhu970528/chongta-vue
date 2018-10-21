@@ -29,16 +29,16 @@
             </el-col>
           </el-row>
         </div>
-        <el-row class="row2" style="margin-top: 60px;background-color: #dfdfdf">
+        <el-row class="row2" style="margin-top: 60px;">
           <el-col :span="12"><div class="imgPic1"></div></el-col>
           <el-col :span="12">
             <h4>关于我们</h4>
             <p>我们为养宠用户提供了从迎接一只新宠物开始，直至它成为您生活里的重要成员所需的所有服务。在宠物社区内，您可以找到与您拥有相同品种宠物或与您同城的宠物家长，看到不同宠物主人分享的精彩养宠生活。</p>
           </el-col>
         </el-row>
-        <el-row class="row2" style="background-color: #dfdfdf">
+        <el-row class="row2" style="padding-bottom: 30px">
           <el-col :span="12">
-            <h4>关于我们</h4>
+            <h4>创建爱</h4>
             <p>西方人说：动物是另一种形态的人。它们是人类的朋友，依赖着人，忠诚于人。</p>
           </el-col>
           <el-col :span="12" ><div class="imgPic2"></div></el-col>
@@ -113,6 +113,9 @@
     height: 597px;
     width: 100%;
     background: url("../assets/gou.jpg") no-repeat;
+  }
+  .row2{
+    background-color: #dfdfdf
   }
   .row2 p{
     padding:30px;

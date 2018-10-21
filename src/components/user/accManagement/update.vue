@@ -6,7 +6,7 @@
       <h3>基本信息</h3>
       <el-row class="first">
         <el-col :span="7" :push="2"><span >登录名</span></el-col>
-        <el-col :span="12" :push="2"><span class="det">我的shoujihao</span></el-col>
+        <el-col :span="12" :push="2"><span class="det">{{personal.userPhone}}</span></el-col>
       </el-row>
       <el-row>
         <el-col :span="7" :push="2"><span>昵称</span></el-col>
@@ -52,7 +52,7 @@
       </el-row>
       <el-row>
         <el-col :span="7" :push="2"><span>手机</span></el-col>
-        <el-col :span="12" :push="2"><span class="det">我的shoujihao</span></el-col>
+        <el-col :span="12" :push="2"><span class="det">{{personal.userPhone}}</span></el-col>
       </el-row>
       <el-row>
         <el-col :span="10" :push="8"><input type="button" value="保存"></el-col>
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+  import  axios from 'axios'
     export default {
         name: "update",
       data() {
@@ -80,10 +81,24 @@
           msgmail:'',
           email:'',
           birth:'',
-          flag:false
+          flag:false,
+          userId:this.$route.params.userId,
+          activeName: 'first',
+          personal:[],
         };
       },
-
+      created(){
+        axios.get(`http://localhost:3000/user/showUser/${this.userId}`).then((result) => {
+          console.log(result.data.data[0]);
+          this.personal = result.data.data[0];
+          if(this.personal.sex =0){
+            this.personal.sex='男'
+          }else this.personal.sex='女';
+          if(this.personal.realName ==null){
+            this.personal.realName='尚未实名验证'
+          }
+        })
+      },
       methods: {
         handleItemChange(val) {
           console.log('active item:', val);
