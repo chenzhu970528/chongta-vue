@@ -27,14 +27,13 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex';
   import required from './required'
   import all from './all'
   import looking from './looking'
   import looked from './looked'
   import hot from './hot'
   import personal from '../user/accManagement/personal'
-
-
     export default {
       name: "fenlei",
       components: {
@@ -46,6 +45,11 @@
         'personal':personal
         // 'reward':reward
       },
+      computed: mapGetters([
+        'UserId',
+        'UserName',
+        'isLogin'
+      ]),
       data() {
         return {
           activeName2: 'first'
