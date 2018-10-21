@@ -25,7 +25,7 @@
     <!--发布按钮-->
     <ul class="nav navbar-nav" style="margin-top: -40px ;margin-left: 32px">
       <router-link  tag="li" active-class="active" role="presentation" to="/homeless/publish" style="float: left" exact><el-row><el-button type="primary" plain style="font-size: 25px;">我要发布</el-button></el-row></router-link>
-      <router-link  tag="li" active-class="active"  role="presentation" to="/homeless/wantadopt" style="float: right"><el-row><el-button type="primary" plain style="font-size: 25px">我要领养</el-button></el-row></router-link>
+      <router-link  tag="li" active-class="active"  role="presentation" to="/homeless/wantadopt" style="float: right"><el-row><el-button type="primary" plain style="font-size: 25px">我要寻找</el-button></el-row></router-link>
     </ul>
     <br> <br> <br> <br>
     <hr style="height:5px;border:none;border-top:2px ridge #95c9f4;width: 750px; margin-left: 0px">

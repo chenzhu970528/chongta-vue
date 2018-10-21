@@ -15,7 +15,7 @@
           <required></required>|意见发聩 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <el-badge :value="12" class="item">
             <router-link tag="li" active-class="active" role="presentation" :to="'/user/'+UserId+'/personal'" style="list-style: none">
-              <el-button size="small" style="margin-top: -15px;margin-left: 75px">全部消息</el-button>
+              <el-button size="small" class="fenlei" style="margin-top: -15px;margin-left: 75px">全部消息</el-button>
             </router-link>
 
       </el-badge>
@@ -65,5 +65,11 @@
     top: -10px;
     right: 50px;
   }
-
+.fenlei:hover{
+  position: relative;
+  left: -10px;
+  top:-10px;
+  box-shadow:2px 2px 5px 2px #a8a8a8;
+  margin-top: -20px;margin-left: 75px
+}
 </style>
