@@ -61,7 +61,7 @@
       <div class="form-group">
         <label class="col-sm-2 control-label col-sm-offset-2"></label>
         <div class="col-sm-4">
-          <input type="checkbox"> 我已阅读并同意 <a href="">《宠它网注册协议》</a>
+          <input type="checkbox" v-model="checked"> 我已阅读并同意 <a href="">《宠它网注册协议》</a>
         </div>
       </div>
       <div class="form-group">
@@ -91,6 +91,7 @@
           wechat:'',
           userEmail:'',
 
+          checked:false,
           namecheck:false,
           pwdcheck:false,
           phonecheck:false,
@@ -139,7 +140,7 @@
           }
         },
         checkname:function(){
-          var regName=/^[\u4e00-\u9fa5_a-zA-Z0-9_]{1,9}$/;
+          var regName=/^[\u4e00-\u9fa5_a-zA-Z0-9_]{2,10}$/;
           if(this.userName==''){
             this.msgname="请输入用户名";
           }else if(!regName.test(this.userName)){
@@ -163,7 +164,7 @@
           }
         },
         register:function(){
-          if(this.namecheck&&this.pwdcheck&&this.phonecheck&&this.mailcheck){
+          if(this.namecheck&&this.pwdcheck&&this.phonecheck&&this.mailcheck&&this.checked){
             // console.log('登录成功')
             let _this = this
             $.ajax({
@@ -178,12 +179,41 @@
               },
               success: function (result) {
                 console.log(result.data)
-                alert("注册成功")
-                location.href = "http://localhost:8080";
+                if(result.data.length==0){
+                  alert("该用户已存在")
+                }else {
+                  $.ajax({
+                    url: "http://localhost:3000/user/login",
+                    type: "post",
+                    data:{
+                      userPhone:_this.userPhone,
+                      userPwd:_this.userPwd2
+                    },
+                    success: function (result) {
+
+                      if (result.data == 1) {
+                        alert("手机号不能为空");
+                      } else if (result.data == 2) {
+                        alert("用户名或密码错误");
+                      } else if (result.data == 3) {
+                        alert("服务器错误");
+                      } else {
+                        alert("登录成功");
+                        console.log(result.data)
+                        if (localStorage) {
+                          localStorage.setItem("userId", JSON.stringify(result.data.userId));
+                          localStorage.setItem("userName", JSON.stringify(result.data.userName));
+                        }
+                      }
+                    }
+                  })
+                  alert("注册成功")
+                  location.href = "http://localhost:8080";
+                }
               }
             })
           }else{
-            alert('请完善个人信息')
+            alert('请完善个人信息并同意《宠它网注册协议》')
           }
         }
       }
