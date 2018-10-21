@@ -182,6 +182,31 @@
                 if(result.data.length==0){
                   alert("该用户已存在")
                 }else {
+                  $.ajax({
+                    url: "http://localhost:3000/user/login",
+                    type: "post",
+                    data:{
+                      userPhone:_this.userPhone,
+                      userPwd:_this.userPwd2
+                    },
+                    success: function (result) {
+
+                      if (result.data == 1) {
+                        alert("手机号不能为空");
+                      } else if (result.data == 2) {
+                        alert("用户名或密码错误");
+                      } else if (result.data == 3) {
+                        alert("服务器错误");
+                      } else {
+                        alert("登录成功");
+                        console.log(result.data)
+                        if (localStorage) {
+                          localStorage.setItem("userId", JSON.stringify(result.data.userId));
+                          localStorage.setItem("userName", JSON.stringify(result.data.userName));
+                        }
+                      }
+                    }
+                  })
                   alert("注册成功")
                   location.href = "http://localhost:8080";
                 }
