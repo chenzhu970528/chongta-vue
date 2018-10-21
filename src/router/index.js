@@ -28,6 +28,9 @@ import mylost from '../components/user/Publishing/mylost.vue'
 import mymatch from '../components/user/Publishing/mymatch.vue'
 import sys from '../components/user/mesCenter/sys.vue'
 import myhomls from '../components/user/Publishing/myhomls.vue'
+import diary from '../components/user/Forum/adodiary.vue'
+import dailylife from '../components/user/Forum/dailylife.vue'
+
 
 import Homeless from '../components/homeless/Homeless.vue'
 import publish from '../components/homeless/publish.vue'
@@ -89,7 +92,7 @@ export default new Router({
       component: AdoDetails,
     },
     {
-      path: '/adoption/issue/:userId',
+      path: '/adoption/issue',
       name:'AdoIssue',
       component: AdoIssue,
     },
@@ -216,6 +219,8 @@ export default new Router({
         {path:'mylost',component:mylost},
         {path:'sys',component:sys},
         {path:'myhomls',component:myhomls},
+        {path:'diary',component:diary},
+        {path:'dailylife',component:dailylife},
       ]
     },
     {

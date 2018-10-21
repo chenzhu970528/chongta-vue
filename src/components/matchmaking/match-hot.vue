@@ -22,8 +22,8 @@
     height: 500px;
     position: absolute;
     right: 10px;
-    top: 330px;
-    border: 2px dashed palevioletred;
+    top: 430px;
+    /*border: 2px dashed palevioletred;*/
   }
   hr{
     border: 1px solid palevioletred;

@@ -112,16 +112,8 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex';
   export default {
     name: "AdoptIssue",
-    components:{
-    },
-    computed: mapGetters([
-      'UserId',
-      'UserName',
-      'isLogin'
-    ]),
     data() {
       return {
         adoForm:{
@@ -134,8 +126,7 @@
           adoTitle:'',
           detail:'',
           adoAddress:'',
-          // userId:this.$store.state.userId,
-          userId:this.$route.params.userId,
+          userId:this.$store.state.userId
         },
         // pickerOptions1: {
         //   disabledDate(time) {
@@ -196,10 +187,10 @@
           data: _this.adoForm,
           success: function (result) {
             console.log(result.data)
+            alert("注册成功")
+            location.href = "http://localhost:8080/adoption";
           }
         })
-        alert("注册成功")
-        location.href = "http://localhost:8080/adoption";
       },
       handleRemove(file, fileList) {
         console.log(file, fileList);

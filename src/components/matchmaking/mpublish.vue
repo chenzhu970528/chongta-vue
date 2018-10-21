@@ -1,6 +1,6 @@
 <template>
   <div class="cont container">
-    <current-way></current-way>
+    <div class="route">您的当前位置：<span><a href="/matchmaking">宠物婚介</a></span><span>/</span><span>发布</span></div>
     <h3>发布婚介</h3>
     <form class="form-horizontal">
       <div class="form-group">
@@ -22,6 +22,7 @@
         <div class="col-sm-6">
           <el-date-picker
             v-model="value1"
+            value-format="yyyy-MM-dd"
             type="date"
             placeholder="选择日期">
           </el-date-picker>
@@ -129,34 +130,25 @@
       },
       data() {
         return {
+          publish:{
+            relId:this.$route.params.userId,
+            title:'',
+            sandword:'',
+            request:'',
+            detail:'',
+            address:'',
+            medReport:'',
+            birth:'',
+            type:'',
+            sex:'',
+            petPic:'',
+            age:'',
+            PetName:'',
+            maHistory:''
+          },
           radio: '1',
           radio1: '1',
           radio2:'1',
-          pickerOptions1: {
-            disabledDate(time) {
-              return time.getTime() > Date.now();
-            },
-            shortcuts: [{
-              text: '今天',
-              onClick(picker) {
-                picker.$emit('pick', new Date());
-              }
-            }, {
-              text: '昨天',
-              onClick(picker) {
-                const date = new Date();
-                date.setTime(date.getTime() - 3600 * 1000 * 24);
-                picker.$emit('pick', date);
-              }
-            }, {
-              text: '一周前',
-              onClick(picker) {
-                const date = new Date();
-                date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-                picker.$emit('pick', date);
-              }
-            }]
-          },
           value1: '',
           value2: '',
           options2: [{
@@ -227,5 +219,28 @@
     background-color: #F2DEDE;
     color: #C78382;
     margin-bottom: 5px;
+  }
+  a{
+    color: #747474;
+  }
+  a:hover{
+    text-decoration: none;
+    color: #4e76ff;
+  }
+  .route{
+    position: relative;
+    left: 1%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    /*background-color: palevioletred;*/
+    color: #747474;
+  }
+  .route span{
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  .route span:last-child{
+    color: #4e76ff;
   }
 </style>

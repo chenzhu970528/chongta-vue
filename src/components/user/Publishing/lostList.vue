@@ -32,6 +32,10 @@
         </div>
       </el-row>
     </div>
+    <div v-if="isshow" class="noList">
+      <img src="../../../assets/user/default8.png" alt="">
+      <p>还没有任何发布哦，快去发布吧</p>
+    </div>
   </div>
 </template>
 
@@ -41,6 +45,7 @@
       data(){
         return{
           visiblelost: false,
+          isshow:false
         }
       }
     }
@@ -64,6 +69,7 @@
   .tol{
     border-radius: 20px;
     background-color: rgba(255,255,255,0.5);
+    margin-bottom: 25px;
   }
   .pic{
     width: 110px;
@@ -87,5 +93,17 @@
     overflow: hidden;
     /*background-color: plum;*/
     text-overflow: ellipsis;
+  }
+  .noList{
+    text-align: center;
+    color: #575757;
+    /*position: relative;*/
+    /*top:-500px;*/
+  }
+  .showList{
+    text-align: center;
+    color: #575757;
+    position: relative;
+    top:-500px;
   }
 </style>

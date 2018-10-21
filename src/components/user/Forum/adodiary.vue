@@ -1,8 +1,7 @@
-<!--我的相亲角-->
 <template>
   <div class="right" >
-    <div class="route">您的当前位置：<span>我的发布</span><span>/</span><span>相亲角</span></div>
-    <match-list></match-list>
+    <div class="route">您的当前位置：<span>论坛</span><span>/</span><span>领养日记</span></div>
+    <adoDiarylist></adoDiarylist>
     <div class="page">
       <change-page></change-page>
     </div>
@@ -10,15 +9,15 @@
 </template>
 
 <script>
-  import  matchList from './matchList.vue'
+  import  adoDiarylist from './adoDiarylist.vue'
   import changePage from '../../matchmaking/changepage.vue'
-    export default {
-        name: "mymatch",
-      components:{
-        'match-list':matchList,
-        'change-page':changePage,
-      }
+  export default {
+        name: "diary",
+    components:{
+      'adoDiarylist':adoDiarylist,
+      'change-page':changePage,
     }
+  }
 </script>
 
 <style scoped>

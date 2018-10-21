@@ -1,11 +1,11 @@
 <template>
   <div>
+
     <div id="content">
-      <p>你的位置：宠它 > 宠宠交流 </p>
-
-
+      <p>你的位置：宠它 > 宠宠交流</p>
       <div>
         <recommend>精品推荐</recommend>
+
       </div>
       <com_d></com_d>
       <div>
@@ -60,7 +60,6 @@ import  mysql from'./mysql'
     width: 1240px;
     margin: auto;
     position: relative;
-    padding-bottom: 200px;
   }
 
   .body {

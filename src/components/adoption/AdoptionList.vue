@@ -28,22 +28,42 @@
         return {
           mydata: [],
           diarys: [],
-          // moren:6
+          moren:6,
+          dalength:""
         };
       },
       methods:{
           getMore(){
-            // this.moren+=3;
-            // this.$forceUpdate()
+            console.log("delength"+this.dalength)
+            if(this.dalength<3){
+              this.diarys=[];
+              axios.get("http://localhost:3000/adoptions").then((result) => {
+                for (let i = 0; i < result.data.data.length ; i++) {
+                  this.diarys.push(result.data.data[i])
+                }
+                console.log('没数据了')
+              })
+            }else {
+              this.dalength-=3;
+              this.moren+=3;
+              this.diarys=[];
+              axios.get("http://localhost:3000/adoptions").then((result) => {
+                for (let i = 0; i < this.moren; i++) {
+                  this.diarys.push(result.data.data[i])
+                }
+              })
+              // console.log(this.moren)
+            }
           }
       },
-      created(){
+      mounted(){
           let _this = this
         axios.get("http://localhost:3000/adoptions").then((result) => {
           // console.log(result.data)
           this.mydata = result.data.data;
+          this.dalength=result.data.data.length-6
           // console.log(result.data)
-          for (let i = 0; i < this.mydata.length; i++) {
+          for (let i = 0; i < this.moren; i++) {
             this.diarys.push(this.mydata[i])
           }
         })

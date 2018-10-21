@@ -6,26 +6,32 @@
           <div class="pic"></div>
         </el-col>
         <el-col :span="15">
-          <p class="title">标题：<span>一只可爱的小喵</span></p>
-          <p>发布时间：<span>2018/09/24</span></p>
-          <p>发布类型：<span>领养</span></p>
-          <p>收养状态：<span>暂未被收养</span></p>
-          <p>申请人数：<span>4</span></p>
+          <p class="title">标题：<span>一个标题</span></p>
+          <!--自定义吧-->
+          <!--<p>发布时间：<span>2018/04/09</span></p>-->
+          <!--<p>地点：<span>北京</span></p>-->
+          <!--<p>申请人数：<span>1</span></p>-->
+          <el-row>
+            <!--<el-col :span="5">详细信息：</el-col>-->
+            <!--<el-col :span="18" >-->
+            <!--<span class="detail">{{showList.detail}}</span>-->
+            <!--</el-col>-->
+          </el-row>
         </el-col>
-          <div class="title del">
-            <el-popover
-              placement="top"
-              width="160"
-              v-model="visible2">
-              <p>确定删除吗？</p>
-              <div style="text-align: right; margin: 0">
-                <el-button size="mini" type="text" @click="visible2 = false">取消</el-button>
-                <el-button type="primary" size="mini" @click="visible2 = false">确定</el-button>
-              </div>
-              <el-button slot="reference" icon="el-icon-delete" circle></el-button>
-              <!--<el-button slot="reference">删除</el-button>-->
-            </el-popover>
-          </div>
+        <div class="title del">
+          <el-popover
+            placement="top"
+            width="160"
+            v-model="visibleado">
+            <p>确定删除吗？</p>
+            <div style="text-align: right; margin: 0">
+              <el-button size="mini" type="text" @click="visibleado = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="visibleado = false">确定</el-button>
+            </div>
+            <el-button slot="reference" icon="el-icon-delete" circle></el-button>
+            <!--<el-button slot="reference">删除</el-button>-->
+          </el-popover>
+        </div>
       </el-row>
     </div>
     <div v-if="isshow" class="noList">
@@ -33,17 +39,16 @@
       <p>还没有任何发布哦，快去发布吧</p>
     </div>
   </div>
-
 </template>
 
 <script>
     export default {
-        name: "adoList",
+      name: "adoDiarylist",
       data(){
-          return{
-            visible2: false,
-            isshow:false
-          }
+        return{
+          visibleado: false,
+          isshow:false
+        }
       }
     }
 </script>

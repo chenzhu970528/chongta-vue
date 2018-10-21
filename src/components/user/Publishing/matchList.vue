@@ -1,23 +1,23 @@
 <template>
   <div class="inner_ado">
-    <div class="tol">
+    <div class="tol" v-for="showList in showLists">
       <el-row class="card">
         <el-col :span="7" class="petPic">
           <div class="pic"></div>
         </el-col>
         <el-col :span="15">
-          <p class="title">标题：<span>{{matchlist.title}}</span></p>
-          <p>发布时间：<span>{{matchlist.relTime}}</span></p>
-          <p>地点：<span>{{matchlist.address}}</span></p>
-          <p>申请人数：<span>{{matchlist.num}}</span></p>
+          <p class="title">标题：<span>{{showList.title}}</span></p>
+          <p>发布时间：<span>{{showList.relTime}}</span></p>
+          <p>地点：<span>{{showList.address}}</span></p>
+          <p>申请人数：<span>{{showList.num}}</span></p>
           <el-row>
             <el-col :span="5">详细信息：</el-col>
             <el-col :span="18" >
-              <span class="detail">{{matchlist.detail}}</span>
+              <span class="detail">{{showList.detail}}</span>
             </el-col>
           </el-row>
         </el-col>
-        <div class="title del">
+        <div>
           <el-popover
             placement="top"
             width="160"
@@ -33,29 +33,46 @@
         </div>
       </el-row>
     </div>
+    <div v-if="isshow" class="noList">
+      <img src="../../../assets/user/default8.png" alt="">
+      <p>还没有任何发布哦，快去发布吧</p>
+    </div>
   </div>
 </template>
 
 <script>
   import axios from 'axios'
     export default {
-        name: "matchList",
+      name: "matchList",
       data(){
         return{
           visiblematch: false,
           relId:this.$route.params.userId,
-          matchlist:[]
+          matchlist:[],
+          showLists:[],
+          isshow:false
         }
       },
       created(){
+          // let _this=this
         axios.get(`http://localhost:3000/matchmaking/matchdetail/${this.relId}`).then((result) => {
-          console.log(this.relId)
-          console.log(result.data.data[0])
-          this.matchlist = result.data.data[0];
-          // if(this.matchlist.medReport !=null){
-          //   this.matchlist.medReport='已提交体检报告'
-          // }else this.matchlist.medReport='未提交体检报告'
+          this.matchlist = result.data.data;
+          console.log(result.data.data.length);
+          for (let i = 0; i < this.matchlist.length; i++) {
+            this.showLists.push(this.matchlist[i])
+          }
+          if(result.data.data.length==0){
+            this.showPic()
+          // _this.isshow=true
+          }
         })
+      },
+      methods:{
+          showPic:function () {
+            // if(this.matchlist.length=0){
+              this.isshow=true
+            // }
+          }
       }
     }
 </script>
@@ -78,6 +95,7 @@
   .tol{
     border-radius: 20px;
     background-color: rgba(255,255,255,0.5);
+    margin-bottom: 25px;
   }
   .pic{
     width: 110px;
@@ -101,5 +119,17 @@
     overflow: hidden;
     /*background-color: plum;*/
     text-overflow: ellipsis;
+  }
+  .noList{
+    text-align: center;
+    color: #575757;
+    /*position: relative;*/
+    /*top:-500px;*/
+  }
+  .showList{
+    text-align: center;
+    color: #575757;
+    position: relative;
+    top:-500px;
   }
 </style>
