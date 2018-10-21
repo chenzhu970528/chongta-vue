@@ -2,7 +2,7 @@
   <div >
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"> 宠物类型：</span> {{jsondata1.pt}}
+        <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"> 宠物类型：</span> {{jsondata1.type?'猫':'狗'}}
       </li>
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-glass" aria-hidden="true"> 宠物性别：</span> {{jsondata1.sex?'母':'公'}}
@@ -18,7 +18,13 @@
       </li>
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-user" aria-hidden="true"> 发布者：</span>
-        <a href="" style="text-decoration: none">{{jsondata1.userName}}</a>
+        <!--<router-link tag="a" :to="">-->
+          <a href="../user/accManagement/personal.vue" style="text-decoration: none">{{jsondata1.userName}}</a>
+        &nbsp;&nbsp;&nbsp; <span>联系方式： {{jsondata1.userPhone}}</span>
+        <!--</router-link>-->
+
+
+
         <!--游客可见的个人信息-->
 
       </li>

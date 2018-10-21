@@ -3,17 +3,32 @@
     <h3>我要寻找</h3>
     <form class="form-horizontal">
       <div class="form-group">
-        <label for="inputkind" class="col-sm-3 control-label">丢失信息：</label>
+        <label for="inputkindreward" class="col-sm-3 control-label">寻宠报酬：</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputkind" placeholder="猫">
+          <input type="text" class="form-control"  v-model="addlose.reward" id="inputkindreward" placeholder="全凭个人自愿">
         </div>
       </div>
       <div class="form-group">
-        <label for="inputdetail" class="col-sm-3 control-label">丢失时间：</label>
+        <label for="inputkindtitle" class="col-sm-3 control-label">丢失信息：</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control"  v-model="addlose.lpmes" id="inputkindtitle" placeholder="简述">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">宠物类别：</label>
+        <div class="col-sm-6">
+          <el-radio v-model="addlose.type" label="1">猫</el-radio>
+          <el-radio v-model="addlose.type" label="2">狗</el-radio>
+          <el-radio v-model="addlose.type" label="3">其他</el-radio>
+        </div>
+      </div>
+      <div class="form-group">
+        <label  class="col-sm-3 control-label">生日：</label>
         <div class="col-sm-6">
           <el-date-picker
-            v-model="value1"
+            v-model="addlose.lpTime"
             type="date"
+            value-format="yyyy-MM-dd"
             placeholder="选择日期">
           </el-date-picker>
         </div>
@@ -21,14 +36,14 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">性别：</label>
         <div class="col-sm-6">
-          <el-radio v-model="radio" label="1">公</el-radio>
-          <el-radio v-model="radio" label="2">母</el-radio>
+          <el-radio v-model="addlose.sex" label="1">公</el-radio>
+          <el-radio v-model="addlose.sex" label="2">母</el-radio>
         </div>
       </div>
       <div class="form-group">
         <label for="inputTitle" class="col-sm-3 control-label">丢失地址:<br>（文字描述)</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="inputTitle" placeholder="xx市区xx地区附近 关键标志物">
+          <input type="text" class="form-control"  v-model="addlose.address" id="inputTitle" placeholder="xx市区xx地区附近 关键标志物">
         </div>
       </div>
       <div class="form-group">
@@ -42,10 +57,10 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputdetail" class="col-sm-3 control-label">宠物图片：</label>
+        <label for="inputdetailpic" class="col-sm-3 control-label">宠物图片：</label>
         <div class="col-sm-6">
           <el-upload
-            id="inputdetail"
+            id="inputdetailpic"
             class="upload-demo"
             action="https://jsonplaceholder.typicode.com/posts/"
             :on-preview="handlePreview"
@@ -60,19 +75,19 @@
       <div class="form-group">
         <label for="inputman" class="col-sm-3 control-label">联系人:</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="inputman" placeholder="可以是昵称">
+          <input type="text" class="form-control" v-model="addlose.lostpeople" id="inputman" placeholder="可以是昵称">
         </div>
       </div>
       <div class="form-group">
         <label for="inputphone" class="col-sm-3 control-label">联系人电话:</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="inputphone" placeholder="必须是11位手机号">
+          <input type="text" class="form-control" v-model="addlose.lostphone" id="inputphone" placeholder="必须是11位手机号">
         </div>
       </div>
       <div class="form-group">
         <label for="inputdetails" class="col-sm-3 control-label">详情描述：</label>
         <div class="col-sm-6">
-          <textarea id="inputdetails" class="form-control" rows="5"></textarea>
+          <textarea id="inputdetails"  v-model="addlose.detail" class="form-control" rows="5"></textarea>
         </div>
       </div>
       <div class="form-group">
@@ -85,8 +100,8 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <el-button type="primary" style="font-size: 25px">我要寻找</el-button>
+        <div class="col-sm-offset-2 col-sm-10" >
+          <button type="submit" @click="addlost" class="btn btn-default" style="font-size: 25px">提交</button>
         </div>
       </div>
     </form>
@@ -98,37 +113,20 @@
   export default {
     name: "wantadopt",
     data() {
-
       return {
-        radio: '1',
-        radio1: '1',
-        pickerOptions1: {
-          disabledDate(time) {
-            return time.getTime() > Date.now();
-          },
-          shortcuts: [{
-            text: '今天',
-            onClick(picker) {
-              picker.$emit('pick', new Date());
-            }
-          }, {
-            text: '昨天',
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24);
-              picker.$emit('pick', date);
-            }
-          }, {
-            text: '一周前',
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit('pick', date);
-            }
-          }]
+        addlose:{
+          sex:'0',
+          type:'0',
+          lostpeople:'',
+          lostphone:'',
+          lpTime:'2018-11-11',
+          lpmes:'',
+          detail:'',
+          address:'',
+          reward:'',
+          userId:this.$store.state.userId,
         },
-        value1: '',
-        value2: '',
+
         options2: [{
           label: '江苏',
           cities: []
@@ -145,6 +143,19 @@
     },
 
     methods: {
+      addlost(){
+        let _this = this
+        $.ajax({
+          url: "http://localhost:3000/homeless/addlost",
+          type: "post",
+          data: _this.addlose,
+          success: function (result) {
+            console.log(result.data)
+            alert("发布成功")
+            location.href = "http://localhost:8080/homeless";
+          }
+        })
+      },
       handleRemove(file, fileList) {
         console.log(file, fileList);
       },

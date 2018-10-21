@@ -14,9 +14,10 @@
         <span>公告：
           <required></required>|意见发聩 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <el-badge :value="12" class="item">
-          <router-link  tag="li" active-class="active" role="presentation" to="user/accManagement/personal" style="list-style: none">
-            <el-button size="small" style="margin-top: -15px;margin-left: 75px">全部消息</el-button>
-          </router-link>
+            <router-link tag="li" active-class="active" role="presentation" :to="'/user/'+UserId+'/personal'" style="list-style: none">
+              <el-button size="small" style="margin-top: -15px;margin-left: 75px">全部消息</el-button>
+            </router-link>
+
       </el-badge>
         </span>
       </div>

@@ -8,7 +8,8 @@
       :current-page.sync="currentPage3"
       :page-size="10"
       layout="prev, pager, next, jumper"
-      :total="300">
+      :total="300" >
+
     </el-pagination>
   </div>
 
@@ -38,4 +39,5 @@
     padding-top: 30px;
     padding-bottom: 30px;
   }
+
 </style>
