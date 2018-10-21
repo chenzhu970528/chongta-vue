@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <h2>首页</h2>
-
   </div>
 </template>
 
@@ -13,8 +12,9 @@
 
 <style scoped>
   .home{
-    background:rgba(255,255,255,0.9);
+    width: 100%;
+    background:rgba(255,255,255,0.5);
     box-shadow:-2px 2px 10px 2px #bcbcbc;
-    min-height: 500px;
+    position: absolute;
   }
 </style>
