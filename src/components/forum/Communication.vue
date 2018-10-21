@@ -55,7 +55,7 @@
     margin: auto;
     position: relative;
     padding-bottom: 200px;
-    margin-top:100px;
+    margin-top:150px;
   }
 
   .body {
