@@ -2,19 +2,21 @@
   <div>
     <span class="no">{{value}}</span>
     <!--图片 内容，小版块-->
-      <div class="con" :key='index' v-for="(val,index) in value">
+      <div class="con"  :key='index' v-for="(val,index) in value">
           <div class="top">
             <div><span class="left">{{Names[index]}}</span>
-              <router-link tag="span" active-class="active" role="presentation" to="/forum/lists">
-                <span class="right"><a>>>更多</a></span>
+              <router-link   tag="span" active-class="active" role="presentation" :to="`/forum/`+url[index]">
+                <span class="right" @click="but(index)"><a>>>更多</a></span>
               </router-link>
+              <audio src=""></audio>
             </div>
           </div>
           <div>
             <ul class="body">
               <li class="li1">
-                <router-link tag="a" active-class="active" role="presentation" to="/forum/details">
-                  <a href="">
+
+                <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val.faId">
+                  <a href="" @click="see(val[0].faId)">
                     <img :src='imgs[0].img' alt="">
                     <p class="title">{{val[0].faTitle}}</p>
                   </a>
@@ -24,32 +26,32 @@
             </ul>
             <ul class="foot">
               <li>
-                <router-link tag="a" active-class="active" role="presentation" to="/forum/details">
-                  <a href="">{{val[1].faTitle}}</a>
+                <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[1].faId">
+                  <a href="" @click="see(val[1].faId)">{{val[1].faTitle}}</a>
                   <span class="span">{{val[1].time.slice(5,10)}}</span>
                 </router-link>
               </li>
               <li>
-                <router-link tag="a" active-class="active" role="presentation" to="/forum/details">
-                  <a href="">{{val[2].faTitle}}</a>
+                <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[2].faId">
+                  <a href="" @click="see(val[2].faId)">{{val[2].faTitle}}</a>
                   <span class="span">{{val[2].time.slice(5,10)}}</span>
                 </router-link>
               </li>
               <li>
-                <router-link tag="a" active-class="active" role="presentation" to="/forum/details">
-                  <a href="">{{val[3].faTitle}}</a>
+                <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[3].faId">
+                  <a href="" @click="see(val[3].faId)">{{val[3].faTitle}}</a>
                   <span class="span">{{val[3].time.slice(5,10)}}</span>
                 </router-link>
               </li>
               <li>
-                <router-link tag="a" active-class="active" role="presentation" to="/forum/details">
-                  <a href="">{{val[4].faTitle}}</a>
+                <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[4].faId">
+                  <a href="" @click="see(val[4].faId)">{{val[4].faTitle}}</a>
                   <span class="span">{{val[4].time.slice(5,10)}}</span>
                 </router-link>
               </li>
               <li>
-                <router-link tag="a" active-class="active" role="presentation" to="/forum/details">
-                  <a href="">{{val[5].faTitle}}</a>
+                <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[5].faId">
+                  <a href="" @click="see(val[5].faId)">{{val[5].faTitle}}</a>
                   <span class="span">{{val[5].time.slice(5,10)}}</span>
                 </router-link>
               </li>
@@ -61,7 +63,7 @@
 
 <script>
   import axios from 'axios'
-
+  import store from './store.js'
   export default {
     name: "Block",
     data() {
@@ -71,45 +73,61 @@
           {values1: []},
           {values2: []},
           {values3: []}],
-        Names: ['最新', '精品推荐', '宠物日记', '交流分享'],
-        imgs: [{img: require("../../assets/images/a.jpg")},]
+        Names: ['最新', '精品推荐', '领养日记', '交流分享'],
+        url: ['new', 'recommend', 'diary', 'share'],
+        imgs: [{img: require("../../assets/images/a.jpg")}]
       }
     },
+    methods: {
+      but(index) {
+        store.commit('increment', {
+          amount: index
+        })
 
-    mounted() {
-      axios.get("http://localhost:3000/forumSee/time").then((result) => {
-        this.mydata = result.data.data;
-        for (let i = 0; i < 6; i++) {
-          this.value[0].values0.push(this.mydata[i])
-        }
-        this.value[0] = this.value[0].values0
-      })
+      },
+      see(index) {
+        store.commit('addID', {
+          amount: index
+        })
 
-      axios.get("http://localhost:3000/forumSee/essence").then((result) => {
-        this.mydata1 = result.data.data;
-        for (let i = 0; i < 6; i++) {
-          this.value[1].values1.push(this.mydata1[i])
-        }
-        this.value[1] = this.value[1].values1
-      })
+      },
+    },
+      mounted() {
+        console.log('gfsdfgdsgf')
+        console.log('gfsdfgdsgf')
+        axios.get("http://localhost:3000/forumSee/time").then((result) => {
+          this.mydata = result.data.data;
+          for (let i = 0; i < 6; i++) {
+            this.value[0].values0.push(this.mydata[i])
+          }
+          this.value[0] = this.value[0].values0
+        })
+        axios.get("http://localhost:3000/forumSee/essence").then((result) => {
+          this.mydata1 = result.data.data;
+          for (let i = 0; i < 6; i++) {
+            this.value[1].values1.push(this.mydata1[i])
+          }
+          this.value[1] = this.value[1].values1
+        })
 
-      axios.get("http://localhost:3000/forumSee/diary").then((result) => {
-        this.mydata2 = result.data.data;
-        for (let i = 0; i < 6; i++) {
-          this.value[2].values2.push(this.mydata2[i])
-        }
-        this.value[2] = this.value[2].values2
-      })
+        axios.get("http://localhost:3000/forumSee/diary").then((result) => {
+          this.mydata2 = result.data.data;
+          for (let i = 0; i < 6; i++) {
+            this.value[2].values2.push(this.mydata2[i])
+          }
+          this.value[2] = this.value[2].values2
+        })
 
-      axios.get("http://localhost:3000/forumSee/gossip").then((result) => {
-        this.mydata3 = result.data.data;
-        for (let i = 0; i < 6; i++) {
-          this.value[3].values3.push(this.mydata3[i])
-        }
-        // this.val[3]=this.value[3].values3
-        this.value[3] = this.value[3].values3
-      })
-    }
+        axios.get("http://localhost:3000/forumSee/gossip").then((result) => {
+          this.mydata3 = result.data.data;
+          for (let i = 0; i < 6; i++) {
+            this.value[3].values3.push(this.mydata3[i])
+          }
+          this.value[3] = this.value[3].values3
+        })
+        console.log(this.mydata)
+      }
+
   }
 </script>
 

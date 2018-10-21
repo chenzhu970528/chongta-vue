@@ -1,11 +1,9 @@
 <template>
   <div>
-
     <div id="content">
-      <p>你的位置：宠它 > 宠宠交流</p>
+      <p>你的位置：宠它 > 宠宠交流 </p>
       <div>
         <recommend>精品推荐</recommend>
-
       </div>
       <com_d></com_d>
       <div>
@@ -26,8 +24,6 @@
   import Com_d from './Com_d.vue'
   import Ranking from './Ranking'
   import Recommend from './Recommend.vue'
-  import  axios from 'axios'
-import  mysql from'./mysql'
   export default {
     name: "Communication",
     components: {
@@ -36,7 +32,6 @@ import  mysql from'./mysql'
       'ranking':Ranking,
       'com_d': Com_d,
       'recommend': Recommend,
-      'mysql':mysql
 
     },
     data :function (){
@@ -44,7 +39,6 @@ import  mysql from'./mysql'
 
       }
     },
-
   }
 </script>
 
@@ -60,6 +54,8 @@ import  mysql from'./mysql'
     width: 1240px;
     margin: auto;
     position: relative;
+    padding-bottom: 200px;
+    margin-top:100px;
   }
 
   .body {

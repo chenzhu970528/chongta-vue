@@ -4,7 +4,6 @@
       <com_d></com_d>
     </div>
     <div>
-
         <div class="left">
           <list></list>
         </div>
@@ -23,7 +22,6 @@
   import Ranking from './Ranking'
   import Com_paging from './Com_paging'
   import Com_d from './Com_d'
-
   export default {
     name: "Lists",
     components: {
@@ -48,6 +46,7 @@
     margin: auto;
     position: relative;
     padding-top:30px;
+    padding-bottom: 200px;
   }
 .top{
   margin-left:15px;

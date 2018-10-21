@@ -10,6 +10,7 @@ import AdoIssue from '../components/adoption/AdoptIssue.vue'
 import matchmain from '../components/matchmaking/matchmain'
 import matchDel from '../components/matchmaking/matchDel.vue'
 import  mpublish from '../components/matchmaking/mpublish.vue'
+// import Matchmaking from '../components/matchmaking/Matchmaking.vue'
 
 import User from '../components/user/User.vue'
 import UserDetails from '../components/user/UserDetails.vue'
@@ -41,16 +42,16 @@ import people from '../components/homeless/people'
 
 import personal from '../components/user/accManagement/personal'
 import Communication from '../components/forum/Communication.vue'
-// import Page from '../components/forum/Page.vue'
-// import Share from '../components/forum/Share.vue'
+
 
 import Lists from '../components/forum/Lists.vue'
 import Details from '../components/forum/Details.vue'
-// import Newest from '../components/forum/Newest.vue'
+
 
 import finish from '../components/finish'
 import backstage from '../components/backstage'
-import Share from '../components/forum/Share.vue'
+
+
 import register from '../components/register.vue'
 // import Matchmaking from '../components/matchmaking/Matchmaking.vue'
 
@@ -164,11 +165,20 @@ export default new Router({
       component: Communication,
     },
 
-    {path: '/forum/lists',
+
+    {path: '/forum',
       name: 'Lists',
       component: Lists,
+      children: [
+        {path:'new',component:Lists},
+        {path:'recommend',component:Lists},
+        {path:'diary',component:Lists},
+        {path:'share',component:Lists},
+        {path:'result',component:Lists},
+      ]
     },
-    {path: '/forum/details',
+
+    {path: '/forum/:faId',
       name: 'Details',
       component: Details,
     },

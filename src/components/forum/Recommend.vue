@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -12,42 +13,32 @@
       <div class="carousel-inner" role="listbox">
         <div class="item active">
           <ul class="ul">
-            <li class="li" v-for="val in values">
-              <router-link tag="a" active-class="active" role="presentation" to="/forum/details">
-                <img class=img :src=val.img>
-                <p class="p"><span class="left0">荐</span><a class="a title">{{val.title}}</a></p>
+            <li class="li" v-for="val in value">
+              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
+                <img  @click="see(val.faId)"  class=img :src=values[0].img>
+                <p @click="see(val.faId)" class="p"><span class="left0"></span><a @click="see(val.faId)"  class="a title">{{val.faTitle}}</a></p>
               </router-link>
             </li>
           </ul>
         </div>
 
-        <!--<div class="item">-->
-          <!--<ul class="ul">-->
-            <!--<li class="li" v-for="val in values">-->
-              <!--<router-link tag="a" active-class="active" role="presentation" to="/forum/details">-->
-                <!--<img class=img :src=imgs[0].img>-->
-                <!--<p class="p"><span class="left0">荐</span><a class="a title">{{val.faTitle}}</a></p>-->
-              <!--</router-link>-->
-            <!--</li>-->
-          <!--</ul>-->
-        <!--</div>-->
 
         <div class="item">
           <ul class="ul">
-            <li class="li" v-for="val in values">
-              <router-link tag="a" active-class="active" role="presentation" to="/forum/details">
-                <img class=img :src=val.img>
-                <p class="p"><span class="left0">荐</span><a class="a title">{{val.title}}</a></p>
+            <li class="li" v-for="val in value1">
+              <router-link @click="see(val.faId)" tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
+                <img class=img :src=values[0].img>
+                <p class="p"><span class="left0"></span><a class="a title">{{val.faTitle}}</a></p>
               </router-link>
             </li>
           </ul>
         </div>
         <div class="item">
           <ul class="ul">
-            <li class="li" v-for="val in values">
-              <router-link tag="a" active-class="active" role="presentation" to="/forum/details">
-                <img class=img :src=val.img>
-                <p class="p"><span class="left0">荐</span><a class="a title">{{val.title}}</a></p>
+            <li class="li" v-for="val in value2">
+              <router-link @click="see(val.faId)" tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
+                <img class=img :src=values[0].img>
+                <p class="p"><span class="left0"></span><a class="a title">{{val.faTitle}}</a></p>
               </router-link>
             </li>
           </ul>
@@ -66,6 +57,7 @@
 
 <script>
   import axios from 'axios'
+  import store from './store.js'
   export default {
     name: "Recommend",
     data() {
@@ -74,17 +66,32 @@
           {img: require("../../assets/images/a.jpg"), title: '标题'},
           {img: require("../../assets/images/a.jpg"), title: '标题'},
           {img: require("../../assets/images/a.jpg"), title: '标题'},
-
         ],
-        value:[],
+        value: [],
+        value1: [],
+        value2: [],
       }
     },
-    mounted(){
-      // mounted(){
-      axios.get("http://localhost:3000/forumSee/time").then((result) => {
+    methods:{
+      see(index){
+        store.commit('addID',{
+          amount:index
+        })
+        console.log(index)
+      },
+    }
+    ,
+    mounted() {
+      axios.get("http://localhost:3000/forumSee/essence").then((result) => {
         this.mydata = result.data.data;
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < 3; i++) {
           this.value.push(this.mydata[i])
+        }
+        for (let i = 3; i < 6; i++) {
+          this.value1.push(this.mydata[i])
+        }
+        for (let i = 6; i < 9; i++) {
+          this.value2.push(this.mydata[i])
         }
       })
     }
@@ -92,19 +99,21 @@
 </script>
 
 <style scoped>
-#carousel-example-generic{
-  width: 1190px;
-  /*padding-right:40px;*/
-  margin:auto;
-}
-.carousel-control{
-  width: 20px;
-  margin:auto;
-}
+  #carousel-example-generic {
+    width: 1190px;
+    /*padding-right:40px;*/
+    margin: auto;
+  }
+
+  .carousel-control {
+    width: 20px;
+    margin: auto;
+  }
+
   .ul {
     width: 1300px;
     margin-left: -40px;
-    margin-right:-30px;
+    margin-right: -30px;
   }
 
   .li {
@@ -114,7 +123,7 @@
     list-style: none;
     width: 380px;
     margin-bottom: 40px;
-    margin-right:25px;
+    margin-right: 25px;
 
   }
 
