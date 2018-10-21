@@ -118,7 +118,7 @@
       </div>
     </form>
   </div>
-    
+
 </template>
 
 <script>
@@ -135,15 +135,13 @@
               type:'0',
               name:'',
               relTime:'2018-11-11',
-              maHistory:'0',
+              maHistory:'0.jpg',
               title:'',
               request:'',
               detail:'',
               sandword:'',
               userId:this.$store.state.userId,
           },
-
-
           options2: [{
             label: '江苏',
             cities: []
