@@ -4,15 +4,12 @@
       <com_d></com_d>
     </div>
     <div>
-
         <div class="left">
           <list></list>
         </div>
 
-
         <div class="right">
-        <hot></hot>
-        <like></like>
+        <ranking></ranking>
 
       </div>
 
@@ -22,17 +19,14 @@
 
 <script>
   import List from './List'
-  import Hot from './Hot'
-  import Like from './Like'
+  import Ranking from './Ranking'
   import Com_paging from './Com_paging'
   import Com_d from './Com_d'
-
   export default {
     name: "Lists",
     components: {
       'list': List,
-      'hot': Hot,
-      'like': Like,
+      'ranking': Ranking,
       'com_paging': Com_paging,
       'com_d': Com_d,
     }
@@ -52,6 +46,7 @@
     margin: auto;
     position: relative;
     padding-top:30px;
+    padding-bottom: 200px;
   }
 .top{
   margin-left:15px;
@@ -59,6 +54,8 @@
   .left {
     display: inline-block;
     width: 830px;
+   position: relative;
+    top:-20px;
   }
 
   .right {
@@ -66,7 +63,7 @@
     top: 24px;
     right: 25px;
     width: 360px;
-    margin-top:50px;
+    margin-top:65px;
   }
 
 

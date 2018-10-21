@@ -1,27 +1,17 @@
 <template>
   <div>
-
     <div id="content">
-      <p>你的位置：宠它 > 宠宠交流</p>
+      <p>你的位置：宠它 > 宠宠交流 </p>
       <div>
         <recommend>精品推荐</recommend>
-
       </div>
       <com_d></com_d>
       <div>
         <div class="left">
-          <div class="row body">
-            <newest class="col-sm-6">最新</newest>
-            <diary class="col-sm-6">宠物日记</diary>
-          </div>
-          <div class="row body">
-            <share class="col-sm-6">日常交流</share>
-            <newest class="col-sm-6">宠物日记</newest>
-          </div>
+          <block></block>
         </div>
         <div class="right">
-          <hot></hot>
-          <like></like>
+          <ranking></ranking>
         </div>
       </div>
     </div>
@@ -29,27 +19,25 @@
 </template>
 
 <script>
+  import Block from './Block.vue'
   import Com_b from './Com_b.vue'
   import Com_d from './Com_d.vue'
+  import Ranking from './Ranking'
   import Recommend from './Recommend.vue'
-  import Newest from './Newest.vue'
-  import Hot from './Hot'
-  import Like from './Like'
-  import Share from './Share'
-  import Diary from './Diary'
-
-
   export default {
     name: "Communication",
     components: {
+      'block': Block,
       'com_b': Com_b,
+      'ranking':Ranking,
       'com_d': Com_d,
       'recommend': Recommend,
-      'newest': Newest,
-      'share':Share,
-      'diary':Diary,
-      'hot': Hot,
-      'like': Like,
+
+    },
+    data :function (){
+      return{
+
+      }
     },
   }
 </script>
@@ -64,9 +52,10 @@
     box-shadow: -2px 2px 10px 2px #bcbcbc;
     background: rgba(255, 255, 255, 0.9);
     width: 1240px;
-    height: 2000px;
-    margin:  100px auto 0;
+    margin: auto;
     position: relative;
+    padding-bottom: 200px;
+    margin-top:100px;
   }
 
   .body {

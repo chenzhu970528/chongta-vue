@@ -1,6 +1,6 @@
 <template>
   <div>
-  <el-collapse v-model="activeName" accordion v-for="(diary,index) in diarys" :key="diarys.length">
+  <el-collapse  accordion v-for="diary in diarys" >
     <el-collapse-item title="努力寻找中："  >
       <div>标题：<span>{{diary.lpmes}}</span></div>
       <div>地点：<span>{{diary.detail}}</span></div>
@@ -16,7 +16,6 @@
   export default {
     data() {
       return {
-        activeName: '1',
         mydata: [],
         diarys: [],
       };

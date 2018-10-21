@@ -13,21 +13,21 @@
           </div>
           <div class="modal-body">
             <form action="">
-              <div>宠物类型：
-                <p>
-                  <el-input
-                    placeholder="猫"
-                    v-model="inputkind"
-                    clearable>
-                  </el-input>
-                </p>
-              </div>
+              <!--<div>宠物类型：-->
+                <!--<p>-->
+                  <!--<el-input-->
+                    <!--placeholder="猫"-->
+                    <!--v-model="inputkind"-->
+                    <!--clearable>-->
+                  <!--</el-input>-->
+                <!--</p>-->
+              <!--</div>-->
               <div>
                 爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
                 <p>
                   <el-input
                     placeholder="请输入内容"
-                    v-model="inputName"
+                    v-model="aplymatch.PetName"
                     clearable>
                   </el-input>
                 </p>
@@ -37,7 +37,7 @@
                 <span class="demonstration">生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：</span>
                 <p>
                   <el-date-picker
-                    v-model="value1"
+                    v-model="aplymatch.birth"
                     type="date"
                     placeholder="选择日期">
                   </el-date-picker>
@@ -47,8 +47,28 @@
                 年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：
                 <p>
                   <el-input
+                    placeholder="数字"
+                    v-model="aplymatch.age"
+                    clearable>
+                  </el-input>
+                </p>
+              </div>
+              <div>
+                详&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;情：
+                <p>
+                  <el-input
                     placeholder="请输入内容"
-                    v-model="inputAge"
+                    v-model="aplymatch.detail"
+                    clearable>
+                  </el-input>
+                </p>
+              </div>
+              <div>
+                地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
+                <p>
+                  <el-input
+                    placeholder="请输入内容"
+                    v-model="aplymatch.address"
                     clearable>
                   </el-input>
                 </p>
@@ -69,25 +89,16 @@
                   <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                 </el-upload>
               </div>
-              <div>
-                地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
-                <p>
-                  <el-cascader
-                    :options="options2"
-                    @active-item-change="handleItemChange"
-                    :props="props"
-                  ></el-cascader>
-                </p>
-              </div>
+
               <div>性&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
-                <el-radio v-model="radiosex" label="1">公</el-radio>
-                <el-radio v-model="radiosex" label="2">母</el-radio>
+                <el-radio   v-model="aplymatch.sex"label="1">公</el-radio>
+                <el-radio   v-model="aplymatch.sex"label="2">母</el-radio>
               </div>
               <div>交&nbsp;&nbsp;配&nbsp;&nbsp;史：
-                <el-radio v-model="radio" label="1">有</el-radio>
-                <el-radio v-model="radio" label="2">无</el-radio>
+                <el-radio  v-model="aplymatch.maHistory" label="1">有</el-radio>
+                <el-radio  v-model="aplymatch.maHistory" label="2">无</el-radio>
               </div>
-              <input type="submit" value="提交">
+              <input type="submit" value="提交" @click="aply">
             </form>
           </div>
         </div>
@@ -101,6 +112,17 @@
     name: "maply",
     data() {
       return {
+        aplymatch:{
+          sex:'0',
+          maHistory:'0',
+          age:'',
+          detail:'',
+          address:'',
+          birth:'2018-11-11',
+          PetName:'',
+          userId:this.$store.state.userId,
+
+        },
         options2: [{
           label: '江苏',
           cities: []
@@ -123,6 +145,19 @@
       };
     },
     methods: {
+      aply(){
+        let _this = this
+        $.ajax({
+          url: "http://localhost:3000/matchmaking/addaply",
+          type: "post",
+          data: _this.aplymatch,
+          success: function (result) {
+            console.log(result.data)
+            alert("注册成功")
+            location.href = "http://localhost:8080/matchmaking";
+          }
+        })
+      },
       handleRemove(file, fileList) {
         console.log(file, fileList);
       },
