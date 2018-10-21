@@ -21,7 +21,7 @@
       </li>
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-heart-empty"  aria-hidden="true"> 有意领养者：</span>
-        <span style="margin-left: 10px" v-for="diary in diarys">
+        <span style=" margin-left: 10px" v-for="diary in diarys">
           <el-popover
             placement="right"
             width="400"

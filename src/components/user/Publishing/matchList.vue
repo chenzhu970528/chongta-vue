@@ -17,7 +17,7 @@
             </el-col>
           </el-row>
         </el-col>
-        <div class="title del">
+        <div>
           <el-popover
             placement="top"
             width="160"
@@ -43,9 +43,7 @@
 <script>
   import axios from 'axios'
     export default {
-        name: "matchList",
-      components:{
-      },
+      name: "matchList",
       data(){
         return{
           visiblematch: false,
