@@ -21,11 +21,9 @@
         <label for="inputdetail" class="col-sm-3 control-label">生日：</label>
         <div class="col-sm-6">
           <el-date-picker
-            v-model="value1"
             value-format="yyyy-MM-dd"
             v-model="value1.relTime"
             type="date"
-            value-format="yyyy-MM-dd"
             placeholder="选择日期">
           </el-date-picker>
         </div>
@@ -63,20 +61,20 @@
         </div>
         <label for="inputTitle" class="col-sm-3 control-label">标题：</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="inputTitle" placeholder="请输入标题">
+          <input type="text" class="form-control"  v-model="value1.title" id="inputTitle" placeholder="请输入标题">
         </div>
       </div>
       <div class="form-group">
         <label for="inputtextarea" class="col-sm-3 control-label">寄语：</label>
         <div class="col-sm-6">
           <!--<input type="" class="form-control" id="inputPassword3" placeholder="请输入寄语">-->
-          <textarea id="inputtextarea" class="form-control" rows="5"></textarea>
+          <textarea id="inputtextarea" class="form-control"  v-model="value1.sandword" rows="5"></textarea>
         </div>
       </div>
       <div class="form-group">
         <label for="inputask" class="col-sm-3 control-label">要求：</label>
         <div class="col-sm-6">
-          <textarea id="inputask" class="form-control" rows="5"></textarea>
+          <textarea id="inputask" class="form-control" rows="5" v-model="value1.request"></textarea>
         </div>
       </div>
       <div class="row">
@@ -85,7 +83,7 @@
       <div class="form-group">
         <label for="inputdetail" class="col-sm-3 control-label">详情描述：</label>
         <div class="col-sm-6">
-          <textarea id="inputdetail" class="form-control" rows="5"></textarea>
+          <textarea id="inputdetail" class="form-control" v-model="value1.detail" rows="5"></textarea>
         </div>
       </div>
       <div class="form-group">
@@ -115,7 +113,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-5 col-sm-7">
-          <button type="submit" class="btn btn-default">提交</button>
+          <button type="submit" @click="addmatch" class="btn btn-default">提交</button>
         </div>
       </div>
     </form>
@@ -145,52 +143,7 @@
               userId:this.$store.state.userId,
           },
 
-          // pickerOptions1: {
-          //   disabledDate(time) {
-          //     return time.getTime() > Date.now();
-          //   },
-          //   shortcuts: [{
-          //     text: '今天',
-          //     onClick(picker) {
-          //       picker.$emit('pick', new Date());
-          //     }
-          //   }, {
-          //     text: '昨天',
-          //     onClick(picker) {
-          //       const date = new Date();
-          //       date.setTime(date.getTime() - 3600 * 1000 * 24);
-          //       picker.$emit('pick', date);
-          //     }
-          //   }, {
-          //     text: '一周前',
-          //     onClick(picker) {
-          //       const date = new Date();
-          //       date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-          //       picker.$emit('pick', date);
-          //     }
-          //   }]
-          // },
-          publish:{
-            relId:this.$route.params.userId,
-            title:'',
-            sandword:'',
-            request:'',
-            detail:'',
-            address:'',
-            medReport:'',
-            birth:'',
-            type:'',
-            sex:'',
-            petPic:'',
-            age:'',
-            PetName:'',
-            maHistory:''
-          },
-          radio: '1',
-          radio1: '1',
-          radio2:'1',
-          value1: '',
-          value2: '',
+
           options2: [{
             label: '江苏',
             cities: []
@@ -215,7 +168,7 @@
 
       methods: {
               //发布
-        matchform(){
+        addmatch(){
           let _this = this
           $.ajax({
             url: "http://localhost:3000/matchmaking/addMatch",
