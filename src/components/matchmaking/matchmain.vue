@@ -34,7 +34,7 @@
 
 <style scoped>
   .cont{
-    width: 1179px;
+    width: 1240px;
     background:rgba(255,255,255,0.9);
     margin-top:100px ;
     box-shadow:-2px 2px 10px 2px #bcbcbc;

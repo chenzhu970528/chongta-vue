@@ -65,7 +65,7 @@
     background: rgba(255, 255, 255, 0.9);
     width: 1240px;
     height: 2000px;
-    margin: auto;
+    margin:  100px auto 0;
     position: relative;
   }
 
