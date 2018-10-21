@@ -1,6 +1,6 @@
 <template>
   <div class="cont container">
-    <current-way></current-way>
+    <div class="route">您的当前位置：<span><a href="/matchmaking">宠物婚介</a></span><span>/</span><span>发布</span></div>
     <h3>发布婚介</h3>
     <form class="form-horizontal">
       <div class="form-group">
@@ -14,13 +14,15 @@
       <div class="form-group">
         <label for="inputName" class="col-sm-3 control-label">宠物昵称：</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputName"  v-model="value1.name" placeholder="嘟嘟">
+          <input type="text" class="form-control" id="inputName" placeholder="嘟嘟">
         </div>
       </div>
       <div class="form-group">
         <label for="inputdetail" class="col-sm-3 control-label">生日：</label>
         <div class="col-sm-6">
           <el-date-picker
+            v-model="value1"
+            value-format="yyyy-MM-dd"
             v-model="value1.relTime"
             type="date"
             value-format="yyyy-MM-dd"
@@ -61,20 +63,20 @@
         </div>
         <label for="inputTitle" class="col-sm-3 control-label">标题：</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="inputTitle" v-model="value1.title" placeholder="请输入标题">
+          <input type="text" class="form-control" id="inputTitle" placeholder="请输入标题">
         </div>
       </div>
       <div class="form-group">
         <label for="inputtextarea" class="col-sm-3 control-label">寄语：</label>
         <div class="col-sm-6">
           <!--<input type="" class="form-control" id="inputPassword3" placeholder="请输入寄语">-->
-          <textarea id="inputtextarea" class="form-control" rows="5" v-model="value1.sandword"></textarea>
+          <textarea id="inputtextarea" class="form-control" rows="5"></textarea>
         </div>
       </div>
       <div class="form-group">
         <label for="inputask" class="col-sm-3 control-label">要求：</label>
         <div class="col-sm-6">
-          <textarea id="inputask" class="form-control" rows="5" v-model="value1.request"></textarea>
+          <textarea id="inputask" class="form-control" rows="5"></textarea>
         </div>
       </div>
       <div class="row">
@@ -83,14 +85,13 @@
       <div class="form-group">
         <label for="inputdetail" class="col-sm-3 control-label">详情描述：</label>
         <div class="col-sm-6">
-          <textarea id="inputdetail" class="form-control" rows="5" v-model="value1.detail"></textarea>
+          <textarea id="inputdetail" class="form-control" rows="5"></textarea>
         </div>
       </div>
       <div class="form-group">
         <label  class="col-sm-3 control-label">您所在地区：</label>
         <div class="col-sm-6">
           <el-cascader
-
             :options="options2"
             @active-item-change="handleItemChange"
             :props="props"
@@ -114,16 +115,15 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-5 col-sm-7">
-          <button type="submit" @click="matchform" class="btn btn-default">提交</button>
+          <button type="submit" class="btn btn-default">提交</button>
         </div>
       </div>
     </form>
   </div>
-
+    
 </template>
 
 <script>
-
   import  currentway from './currentway.vue'
     export default {
         name: "mpublish",
@@ -170,6 +170,27 @@
           //     }
           //   }]
           // },
+          publish:{
+            relId:this.$route.params.userId,
+            title:'',
+            sandword:'',
+            request:'',
+            detail:'',
+            address:'',
+            medReport:'',
+            birth:'',
+            type:'',
+            sex:'',
+            petPic:'',
+            age:'',
+            PetName:'',
+            maHistory:''
+          },
+          radio: '1',
+          radio1: '1',
+          radio2:'1',
+          value1: '',
+          value2: '',
           options2: [{
             label: '江苏',
             cities: []
@@ -252,5 +273,28 @@
     background-color: #F2DEDE;
     color: #C78382;
     margin-bottom: 5px;
+  }
+  a{
+    color: #747474;
+  }
+  a:hover{
+    text-decoration: none;
+    color: #4e76ff;
+  }
+  .route{
+    position: relative;
+    left: 1%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    /*background-color: palevioletred;*/
+    color: #747474;
+  }
+  .route span{
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  .route span:last-child{
+    color: #4e76ff;
   }
 </style>
