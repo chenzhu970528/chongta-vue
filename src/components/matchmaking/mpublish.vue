@@ -18,10 +18,10 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputdetail" class="col-sm-3 control-label">生日：</label>
+        <label  class="col-sm-3 control-label">生日：</label>
         <div class="col-sm-6">
           <el-date-picker
-            value-format="yyyy-MM-dd"
+
             v-model="value1.relTime"
             type="date"
             placeholder="选择日期">
@@ -81,9 +81,9 @@
         <div class="watch col-sm-6 col-sm-offset-3">注明宠物种类，例如‘哈士奇’</div>
       </div>
       <div class="form-group">
-        <label for="inputdetail" class="col-sm-3 control-label">详情描述：</label>
+        <label for="inputdetaildetail" class="col-sm-3 control-label">详情描述：</label>
         <div class="col-sm-6">
-          <textarea id="inputdetail" class="form-control" v-model="value1.detail" rows="5"></textarea>
+          <textarea id="inputdetaildetail" class="form-control" v-model="value1.detail" rows="5"></textarea>
         </div>
       </div>
       <div class="form-group">
@@ -97,7 +97,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputdetail" class="col-sm-3 control-label">体检报告：</label>
+        <label  class="col-sm-3 control-label">体检报告：</label>
         <div class="col-sm-6">
           <el-upload
             class="upload-demo"
