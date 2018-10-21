@@ -87,7 +87,8 @@
     line-height: 30px;
   }
   .bgsty{
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid cornflowerblue;
   }
 
 </style>
