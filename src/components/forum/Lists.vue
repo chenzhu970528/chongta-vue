@@ -44,6 +44,7 @@
     background: rgba(255, 255, 255, 0.9);
     width: 1240px;
     margin: auto;
+    margin-top:100px;
     position: relative;
     padding-top:30px;
     padding-bottom: 200px;

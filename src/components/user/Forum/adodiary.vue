@@ -9,6 +9,8 @@
 </template>
 
 <script>
+  import  axios from 'axios'
+  import {mapGetters} from 'vuex';
   import  adoDiarylist from './adoDiarylist.vue'
   import changePage from '../../matchmaking/changepage.vue'
   export default {
@@ -16,7 +18,11 @@
     components:{
       'adoDiarylist':adoDiarylist,
       'change-page':changePage,
-    }
+    },
+    computed: mapGetters([
+      'UserId',
+      'UserName',
+    ]),
   }
 </script>
 
@@ -28,7 +34,6 @@
   .right{
     position: relative;
     left: 40px;
-    min-height: 780px;
     background-color: rgba(255,255,255,0.6);
   }
   .route{
@@ -50,8 +55,12 @@
   }
   .page{
     width: 80%;
-    position: absolute;
+    height: 200px;
+    line-height: 200px;
+    position: relative;
     bottom: 20px;
-    left: 20%;
+    left:18%;
+    margin-top:50px;
+    margin-bottom:-50px;
   }
 </style>

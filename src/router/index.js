@@ -14,7 +14,8 @@ import  mpublish from '../components/matchmaking/mpublish.vue'
 
 import User from '../components/user/User.vue'
 import UserDetails from '../components/user/UserDetails.vue'
-import forum from '../components/user/Forum/forum.vue'
+
+
 import message from '../components/user/message.vue'
 import mypublish from '../components/user/mypublish.vue'
 
@@ -29,6 +30,7 @@ import mylost from '../components/user/Publishing/mylost.vue'
 import mymatch from '../components/user/Publishing/mymatch.vue'
 import sys from '../components/user/mesCenter/sys.vue'
 import myhomls from '../components/user/Publishing/myhomls.vue'
+
 import diary from '../components/user/Forum/adodiary.vue'
 import dailylife from '../components/user/Forum/dailylife.vue'
 
@@ -214,7 +216,6 @@ export default new Router({
       component: User,
       children:[
         {path:'personal',component:personal},
-        {path:'forum',component:forum},
         {path:'message',component:message},
         {path:'mypublish',component:mypublish},
 
@@ -229,7 +230,9 @@ export default new Router({
         {path:'mylost',component:mylost},
         {path:'sys',component:sys},
         {path:'myhomls',component:myhomls},
+
         {path:'diary',component:diary},
+
         {path:'dailylife',component:dailylife},
       ]
     },
