@@ -3,7 +3,7 @@
   <div>
     <div class="mainList">
         <el-row>
-          <el-col :span="6" style="margin-left: 4%;margin-top: 20px" v-for="(showList,index) in showLists" :offset="index>0?3:0">
+          <el-col :span="6" style="margin-left: 4%;margin-top: 20px" v-for="(showList,index) in showLists" :key="showLists.length" :offset="index>0?3:0">
             <div class="oneList">
               <router-link :to="'/matchmaking/matchDel/'+showList.relId"><img src="../../assets/match/mao1.jpg" alt="..." class="img-rounded"></router-link>
               <div>

@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="content">
+      <div class="route">您的当前位置：<span>宠物交流</span></div>
       <p>&nbsp</p>
       <div>
         <recommend>精品推荐</recommend>
@@ -81,6 +82,20 @@
     margin-top: 10px;
     margin-right: -35px;
   }
-
+  .route{
+    position: relative;
+    left: 1%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #747474;
+  }
+  .route span{
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  .route span:last-child{
+    color: #4e76ff;
+  }
 
 </style>
