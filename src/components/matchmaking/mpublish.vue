@@ -6,9 +6,9 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">宠物类别：</label>
         <div class="col-sm-6">
-          <el-radio v-model="radio2" label="1">猫</el-radio>
-          <el-radio v-model="radio2" label="2">狗</el-radio>
-          <el-radio v-model="radio2" label="3">其他</el-radio>
+          <el-radio v-model="value1.type" label="1">猫</el-radio>
+          <el-radio v-model="value1.type" label="2">狗</el-radio>
+          <el-radio v-model="value1.type" label="3">其他</el-radio>
         </div>
       </div>
       <div class="form-group">
@@ -18,11 +18,11 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputdetail" class="col-sm-3 control-label">生日：</label>
+        <label  class="col-sm-3 control-label">生日：</label>
         <div class="col-sm-6">
           <el-date-picker
-            v-model="value1"
-            value-format="yyyy-MM-dd"
+
+            v-model="value1.relTime"
             type="date"
             placeholder="选择日期">
           </el-date-picker>
@@ -31,15 +31,15 @@
       <div class="form-group">
       <label class="col-sm-3 control-label">性别：</label>
       <div class="col-sm-6">
-        <el-radio v-model="radio" label="1">公</el-radio>
-        <el-radio v-model="radio" label="2">母</el-radio>
+        <el-radio v-model="value1.sex" label="1">公</el-radio>
+        <el-radio v-model="value1.sex" label="2">母</el-radio>
       </div>
     </div>
       <div class="form-group">
         <label class="col-sm-3 control-label">有无配种史：</label>
         <div class="col-sm-6">
-          <el-radio v-model="radio1" label="1">有</el-radio>
-          <el-radio v-model="radio1" label="2">无</el-radio>
+          <el-radio v-model="value1.maHistory" label="1">有</el-radio>
+          <el-radio v-model="value1.maHistory" label="2">无</el-radio>
         </div>
       </div>
       <div class="form-group">
@@ -61,29 +61,29 @@
         </div>
         <label for="inputTitle" class="col-sm-3 control-label">标题：</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="inputTitle" placeholder="请输入标题">
+          <input type="text" class="form-control"  v-model="value1.title" id="inputTitle" placeholder="请输入标题">
         </div>
       </div>
       <div class="form-group">
         <label for="inputtextarea" class="col-sm-3 control-label">寄语：</label>
         <div class="col-sm-6">
           <!--<input type="" class="form-control" id="inputPassword3" placeholder="请输入寄语">-->
-          <textarea id="inputtextarea" class="form-control" rows="5"></textarea>
+          <textarea id="inputtextarea" class="form-control"  v-model="value1.sandword" rows="5"></textarea>
         </div>
       </div>
       <div class="form-group">
         <label for="inputask" class="col-sm-3 control-label">要求：</label>
         <div class="col-sm-6">
-          <textarea id="inputask" class="form-control" rows="5"></textarea>
+          <textarea id="inputask" class="form-control" rows="5" v-model="value1.request"></textarea>
         </div>
       </div>
       <div class="row">
         <div class="watch col-sm-6 col-sm-offset-3">注明宠物种类，例如‘哈士奇’</div>
       </div>
       <div class="form-group">
-        <label for="inputdetail" class="col-sm-3 control-label">详情描述：</label>
+        <label for="inputdetaildetail" class="col-sm-3 control-label">详情描述：</label>
         <div class="col-sm-6">
-          <textarea id="inputdetail" class="form-control" rows="5"></textarea>
+          <textarea id="inputdetaildetail" class="form-control" v-model="value1.detail" rows="5"></textarea>
         </div>
       </div>
       <div class="form-group">
@@ -97,7 +97,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputdetail" class="col-sm-3 control-label">体检报告：</label>
+        <label  class="col-sm-3 control-label">体检报告：</label>
         <div class="col-sm-6">
           <el-upload
             class="upload-demo"
@@ -113,12 +113,12 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-5 col-sm-7">
-          <button type="submit" class="btn btn-default">提交</button>
+          <button type="submit" @click="addmatch" class="btn btn-default">提交</button>
         </div>
       </div>
     </form>
   </div>
-    
+
 </template>
 
 <script>
@@ -130,27 +130,18 @@
       },
       data() {
         return {
-          publish:{
-            relId:this.$route.params.userId,
-            title:'',
-            sandword:'',
-            request:'',
-            detail:'',
-            address:'',
-            medReport:'',
-            birth:'',
-            type:'',
-            sex:'',
-            petPic:'',
-            age:'',
-            PetName:'',
-            maHistory:''
+            value1:{
+              sex:'0',
+              type:'0',
+              name:'',
+              relTime:'2018-11-11',
+              maHistory:'0.jpg',
+              title:'',
+              request:'',
+              detail:'',
+              sandword:'',
+              userId:this.$store.state.userId,
           },
-          radio: '1',
-          radio1: '1',
-          radio2:'1',
-          value1: '',
-          value2: '',
           options2: [{
             label: '江苏',
             cities: []
@@ -174,6 +165,20 @@
       },
 
       methods: {
+              //发布
+        addmatch(){
+          let _this = this
+          $.ajax({
+            url: "http://localhost:3000/matchmaking/addMatch",
+            type: "post",
+            data: _this.value1,
+            success: function (result) {
+              console.log(result.data)
+              alert("注册成功")
+              location.href = "http://localhost:8080/matchmaking";
+            }
+          })
+        },
         handleRemove(file, fileList) {
           console.log(file, fileList);
         },

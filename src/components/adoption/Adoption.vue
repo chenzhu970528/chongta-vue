@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin-top: 70px">
       <sildes-show></sildes-show>
       <div class="cont container">
         <!--小喵-->
@@ -101,7 +101,7 @@
     text-decoration: none;
   }
   .cont{
-    width: 1240px;
+    width: 1179px;
     position: relative;
     background:rgba(255,255,255,0.9);
     margin-top:100px;

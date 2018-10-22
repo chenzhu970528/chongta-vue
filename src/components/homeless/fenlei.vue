@@ -14,9 +14,10 @@
         <span>公告：
           <required></required>|意见发聩 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <el-badge :value="12" class="item">
-          <router-link  tag="li" active-class="active" role="presentation" to="user/accManagement/personal" style="list-style: none">
-            <el-button size="small" style="margin-top: -15px;margin-left: 75px">全部消息</el-button>
-          </router-link>
+            <router-link tag="li" active-class="active" role="presentation" :to="'/user/'+UserId+'/personal'" style="list-style: none">
+              <el-button size="small" class="fenlei" style="margin-top: -15px;margin-left: 75px">全部消息</el-button>
+            </router-link>
+
       </el-badge>
         </span>
       </div>
@@ -26,14 +27,13 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex';
   import required from './required'
   import all from './all'
   import looking from './looking'
   import looked from './looked'
   import hot from './hot'
   import personal from '../user/accManagement/personal'
-
-
     export default {
       name: "fenlei",
       components: {
@@ -45,6 +45,11 @@
         'personal':personal
         // 'reward':reward
       },
+      computed: mapGetters([
+        'UserId',
+        'UserName',
+        'isLogin'
+      ]),
       data() {
         return {
           activeName2: 'first'
@@ -64,5 +69,11 @@
     top: -10px;
     right: 50px;
   }
-
+.fenlei:hover{
+  position: relative;
+  left: -10px;
+  top:-10px;
+  box-shadow:2px 2px 5px 2px #a8a8a8;
+  margin-top: -20px;margin-left: 75px
+}
 </style>

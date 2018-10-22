@@ -1,46 +1,35 @@
 <template>
 <div>
+  <div>
+  <div class="listbox clearfix" v-for="diary in diarys"style="margin-bottom: 10px"  >
+      <div class="listimg img" style="float: left">
+        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>
+        <img src="../../assets/homeless/1.jpg" alt="" style="width: 150px;height: 140px;">
+        </router-link>
+      </div>
+      <div class="listInfo"   >
+        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>
+        <h4>{{diary.getmes}}</h4>
+        </router-link>
+        <div class="address">
+          <div><span>地址：</span><span>{{diary.address}}</span> <br>
+            <span>简述：</span><span>{{diary.detail}}</span></div>
 
-  <div style="margin-top: 30px" class="col-xs-12" v-for="diary in diarys"  >
-    <div class="left" style="width: 250px;height: 300px;float: left">
-      <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none" exact>
-        <img src="../../assets/homeless/u=1177403016,309772193&fm=26&gp=0.jpg" alt="">
-      </router-link>
-    </div>
-    <div class="right" style="height: 200px">
-      <div class="top" style="margin-left: 200px">
-        <div class="title"><span>{{diary.getmes}}</span> &nbsp;<span>{{diary.homeTime}}</span></div>
+        </div>
 
-        <div class="address"><span>地址：{{diary.address}}</span></div>
-        <div style="margin-left: 80px;width: 450px;height: 150px;border: 2px solid cadetblue;"><div>{{diary.detail}}</div></div>
-        <br>
-        <div style="margin-left: 480px"><button>评论</button></div>
+      </div>
+      <div class="listCell">
+        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="list-style: none;cursor: pointer" exact>
+          <span class="glyphicon glyphicon-earphone"> 联系{{diary.userName}}</span>
+        </router-link>
+
       </div>
     </div>
 
   </div>
   <button style="margin: 20px auto" type="button" class="btn btn-default btn-lg btn-block">加载更多</button>
-
 </div>
-
-    <!--<li><div style="margin-top: 30px" class="col-xs-12">-->
-      <!--<div class="left" style="width: 250px;height: 300px;float: left">-->
-        <!--<router-link  tag="li" active-class="active" role="presentation" to="/homeless/detail" style="float: left;list-style: none" exact><img src="../../assets/homeless/u=1177403016,309772193&fm=26&gp=0.jpg" alt=""></router-link>-->
-      <!--</div>-->
-      <!--<div class="right" style="height: 200px">-->
-        <!--<div class="top" style="margin-left: 200px">-->
-          <!--<div style="margin-left: 80px;width: 150px;height: 30px;border: 1px solid gainsboro;text-align: center;">标题  &nbsp;时间    &nbsp;地点</div>-->
-          <!--<div style="margin-left: 80px;width: 450px;height: 150px;border: 2px solid cadetblue;">文字介绍</div>-->
-          <!--<br>-->
-          <!--<div style="margin-left: 80px;width: 450px"><comment></comment></div>-->
-          <!--<div style="margin-left: 480px"><button>评论</button></div>-->
-        <!--</div>-->
-
-      <!--</div>-->
-    <!--</div></li>-->
-
-  <!--</ul>-->
-  <!--</div>-->
+<!--</div>-->
 
 </template>
 
@@ -56,17 +45,6 @@
       };
     },
     created() {
-      //     let _this = this;
-      //     this.$ajax.get(`http://localhost:3000/homeless/${this.id}`
-      //     ).then(function (result) {
-      //       // console.log(result.data.data.userHeadPic);
-      //       _this.mydata = result.data.data.mydata;
-      //       _this.diarys = result.data.data.diarys;
-      //       _this.homeTime = result.data.data.homeTime.substring(0, 10);
-      //     }, function (err) {
-      //       console.log(err);
-      //   })
-      // }
       axios.get("http://localhost:3000/homeless").then((result) => {
         // console.log(result.data)
         this.mydata = result.data.data;
@@ -81,23 +59,88 @@
 </script>
 
 <style scoped>
-.left img{
-  height: 300px;
-  width: 250px;
-  cursor: pointer;
-}
-.title{
-  margin-left: 80px;
-  width: 450px;height: 30px;
-  border: 1px solid gray;
-  margin-bottom: 5px;
-}
-.address{
-  margin-left: 80px;
-  width: 450px;height: 30px;
-  border: 1px solid gray;
-  margin-bottom: 5px;
-}
+  .listInfo {
+    width: 380px;
+    height: auto;
+    float: left;
+    margin-left: 20px;
+    display: block;
+    margin-top: 10px;
+  }
+  .listInfo span{
+    font-size: 20px;
+  }
+  .listbox {
+    border-bottom: 1px solid #e1e1e1;
+  }
+  .clearfix {
+    display: block;
+  }
+  a{color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    outline: 0;
+  }
+  .listCell {
+    width: 150px;
+    float: right;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    background-color: #9bc9f1;
+    color: #fff;
+    font-weight: 700;
+    margin: 50px 30px 0 0;
+    font-size: 16px;
+    text-align: center;
+  }
+  .listInfo h4 {
+    width: 480px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 20px;
+  }
+
+  .listInfo .des dl {
+    color: #999;
+    width: 440px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .address span {
+    font: 17px/2 "微软雅黑",Arial;
+    color: #666;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .clearfix:hover{
+    position: relative;
+    left: -10px;
+    top:-10px;
+    box-shadow:2px 2px 5px 2px #a8a8a8;
+  }
+
+
+/*.left img{*/
+  /*height: 300px;*/
+  /*width: 250px;*/
+  /*cursor: pointer;*/
+/*}*/
+/*.title{*/
+  /*margin-left: 80px;*/
+  /*width: 450px;height: 30px;*/
+  /*border: 1px solid gray;*/
+  /*margin-bottom: 5px;*/
+/*}*/
+/*.address{*/
+  /*margin-left: 80px;*/
+  /*width: 450px;height: 30px;*/
+  /*border: 1px solid gray;*/
+  /*margin-bottom: 5px;*/
+/*}*/
 
   /*.comment{*/
     /*width: 50px;*/

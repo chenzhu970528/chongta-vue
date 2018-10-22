@@ -1,19 +1,31 @@
 <template>
   <div class="list-group col-xs-4" >
   <div class="block">
-    <span class="demonstration" style="font-size: 20px">奖赏</span>
-    <el-carousel height="150px">
-      <el-carousel-item v-for="item in 4" :key="item">
-        <h3>{{ item }}</h3>
+    <span class="demonstration" style="font-size: 20px">丢失（有报酬）</span>
+    <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="list-style: none" exact>-->
+    <el-carousel   height="250px" >
+      <el-carousel-item v-for="(pet,index) in imgList" :key="index">
+        <a href=""><img :src="pet.url" ></a>
       </el-carousel-item>
     </el-carousel>
+    <!--</router-link>-->
     </div>
   </div>
 </template>
 
 <script>
     export default {
-        name: "honnor"
+        name: "reward",
+      data(){
+          return{
+            imgList:[
+              {url:require("../../assets/homeless/1.jpg")} ,
+              {url:require("../../assets/homeless/homeless.jpg")} ,
+              {url:require("../../assets/homeless/4 (1).jpg")} ,
+              {url:require("../../assets/homeless/4 (2).jpg")} ,
+            ]
+          }
+      }
     }
 </script>
 

@@ -76,9 +76,7 @@
     text-align: center;
     background-color: white;
   }
-  .oneList div{
 
-  }
   .oneList div span{
     /*margin-left: 10px;*/
     text-align: left;

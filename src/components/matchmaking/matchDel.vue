@@ -131,11 +131,11 @@
     margin-top: 30px;
   }
   .msg div{
-    height: 50px;
-    line-height: 50px;
+    /*height: 50px;*/
+    /*line-height: 50px;*/
     font-size: 15px;
     color: grey;
-    padding-left: 30px;
+    /*padding-left: 30px;*/
   }
   h3 span{
     padding-right: 10px;
