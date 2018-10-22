@@ -1,14 +1,16 @@
 <template>
   <div class="inner_ado">
-    <div class="tol">
+    <div class="tol" v-for="val in value">
       <el-row class="card">
         <el-col :span="7" class="petPic">
           <div class="pic"></div>
         </el-col>
         <el-col :span="15">
-          <p class="title">标题：<span>一个标题</span></p>
+          <p class="title">标题：<span>{{val.faTitle}}</span></p>
+
           <!--自定义吧-->
-          <!--<p>发布时间：<span>2018/04/09</span></p>-->
+          <p>发布时间：<span>{{val.time.slice(5,16).replace('T',' ')}}</span></p>
+          <p>{{val.faText}}</p>
           <!--<p>地点：<span>北京</span></p>-->
           <!--<p>申请人数：<span>1</span></p>-->
         </el-col>
@@ -36,16 +38,38 @@
 </template>
 
 <script>
-    export default {
-      name: "lifeList",
-      data(){
-        return{
-          visiblelife: false,
-          isshow:false
-        }
+  import  axios from 'axios'
+  import {mapGetters} from 'vuex';
+  import  lifelist from './lifeList.vue'
+  import changePage from '../../matchmaking/changepage.vue'
+  export default {
+    name: "lifeList",
+    components: {
+      'life-list': lifelist,
+      'change-page': changePage,
+    },
+    data() {
+      return {
+        visiblelife: false,
+        isshow:false,
+        value: [],
       }
+    },
+
+    computed: mapGetters([
+      'UserId',
+      'UserName',
+    ]),
+    mounted() {
+      let id = this.UserId.replace(/\"/g, "")
+      axios.get(`http://localhost:3000/forumSee/user/share?userId=${id}`).then((result) => {
+        this.value = result.data.data;
+
+      })
     }
+  }
 </script>
+
 
 <style scoped>
   .inner_ado{

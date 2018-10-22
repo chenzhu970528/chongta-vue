@@ -1,57 +1,45 @@
 <template>
   <div class="right" >
-    <div class="route">您的当前位置：<span>论坛</span><span>/</span><span>小日常</span></div>
-    <div id="scroll">
-      <life-list></life-list>
-    </div>
-
+    <div class="route">您的当前位置：<span>论坛</span><span>/</span><span>日常交流</span></div>
+    <life-list></life-list>
     <div class="page">
-      <!--<change-page></change-page>-->
+      <change-page></change-page>
     </div>
   </div>
 </template>
 
 <script>
+  import  axios from 'axios'
+  import {mapGetters} from 'vuex';
   import  lifelist from './lifeList.vue'
-  // import changePage from '../../matchmaking/changepage.vue'
+  import changePage from '../../matchmaking/changepage.vue'
     export default {
       name: "dailylife",
-      components:{
-        'life-list':lifelist,
-        // 'change-page':changePage,
-       },
+      components: {
+        'life-list': lifelist,
+        'change-page': changePage,
+      },
+      data() {
+        return {
+          value: []
+        }
+      },
 
+      computed: mapGetters([
+        'UserId',
+        'UserName',
+      ]),
+      mounted() {
+        id = this.UserId.replace(/\"/g, "")
+        axios.get(`http://localhost:3000/forumSee/user/share?userId=${id}`).then((result) => {
+          this.value = result.data.data;
+
+        })
+      }
     }
 </script>
 
 <style scoped>
-  #scroll{
-    /*padding: 35px;*/
-    /*width: 80%;*/
-    /*margin-left: 10%;*/
-    max-height: 600px;
-    /*background-color: rgba(237, 210, 234, 0.5);*/
-    /*margin-top: 30px;*/
-    overflow: auto;
-  }
-  #scroll::-webkit-scrollbar{
-    width:4px;
-    height:4px;
-  }
-  #scroll::-webkit-scrollbar-track{
-    background:rgba(255, 255, 255, 0.3);
-    border-radius:2px;
-  }
-  #scroll::-webkit-scrollbar-thumb{
-    background: #bababa;
-    border-radius:2px;
-  }
-  #scroll::-webkit-scrollbar-thumb:hover{
-    background: #747474;
-  }
-  #scroll::-webkit-scrollbar-corner {
-    background: #f6f6f6;
-  }
   *{
     padding: 0;
     margin: 0;
@@ -81,8 +69,11 @@
   }
   .page{
     width: 80%;
-    position: absolute;
+    position:relative;
     bottom: 20px;
-    left: 20%;
+    left: 18%;
+    margin-top:50px;
+    margin-bottom:-50px;
+
   }
 </style>

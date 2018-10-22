@@ -2,6 +2,7 @@
   <div>
     <div id="content">
       <div class="route">您的当前位置：<span>宠物交流</span></div>
+      <p>&nbsp</p>
       <div>
         <recommend>精品推荐</recommend>
       </div>

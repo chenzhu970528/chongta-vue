@@ -92,6 +92,8 @@
 
       },
     },
+
+
     mounted() {
         this.count = store.state.id
       if( this.count !=4) {

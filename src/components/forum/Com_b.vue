@@ -47,6 +47,11 @@
     methods: {
       addForum() {
         if (this.text != ''&&this.title!='') {
+          if(this.title.length>20){
+            alert('最多输入20个字哦')
+          }else{
+
+
           let aa = {
             faTitle: this.title,
             faText: this.text,
@@ -66,6 +71,7 @@
               _this.cc()
             }
           })
+        }
         }
       },
       cc(){
