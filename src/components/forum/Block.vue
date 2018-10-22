@@ -81,7 +81,7 @@
     methods: {
       but(index) {
         store.commit('increment', {
-          amount: index,
+          amount: index
         })
 
       },

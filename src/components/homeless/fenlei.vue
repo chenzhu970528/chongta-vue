@@ -69,11 +69,7 @@
     top: -10px;
     right: 50px;
   }
-.fenlei:hover{
-  position: relative;
-  left: -10px;
-  top:-10px;
-  box-shadow:2px 2px 5px 2px #a8a8a8;
+.fenlei{
   margin-top: -20px;margin-left: 75px
 }
 </style>
