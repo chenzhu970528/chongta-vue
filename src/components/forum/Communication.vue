@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="content">
-      <p>你的位置：宠它 > 宠宠交流 </p>
+      <p>&nbsp</p>
       <div>
         <recommend>精品推荐</recommend>
       </div>

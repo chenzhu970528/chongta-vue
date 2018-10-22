@@ -5,7 +5,7 @@
       <div class="con"  :key='index' v-for="(val,index) in value">
           <div class="top">
             <div><span class="left">{{Names[index]}}</span>
-              <router-link   tag="span" active-class="active" role="presentation" :to="`/forum/`+url[index]">
+              <router-link   tag="span" active-class="active" role="presentation" :to="`/forum/`+val[index]">
                 <span class="right" @click="but(index)"><a>>>更多</a></span>
               </router-link>
               <audio src=""></audio>
@@ -81,7 +81,7 @@
     methods: {
       but(index) {
         store.commit('increment', {
-          amount: index;
+          amount: index,
         })
 
       },

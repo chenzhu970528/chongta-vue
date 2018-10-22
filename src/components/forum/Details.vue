@@ -31,7 +31,7 @@
       <!--评论区域-->
       <div class="com">
         <ul>
-          <li v-for="(com,index) in value.comment">
+          <li class="hhh" v-for="(com,index) in value.comment">
             <div class="border1">
               <div class="head1">
                 <img :src='imgs[0]' alt="" class="img1">
@@ -47,9 +47,11 @@
                   </div>
                   <div class="com11" :key="index">
                     <!--<a @click="aaaa(index)" class="rr">回复</a>-->
+                    <a @click="aaaa" class="rr">回复</a>
                     <!--<div v-if="aaa(index)">-->
-                      <a class="rr">回复</a>
-                    <div >
+                    <div v-if="aaa">
+                      <!--<a class="rr">回复</a>-->
+                    <div class="h">
                       <el-input v-model="rep" style="width:705px;"></el-input>
                       <button @click="addReply(index)" type="button" class="rbtn btn btn-primary btn-sm active">发表
                       </button>
@@ -70,9 +72,11 @@
                   <div class="val1 but">
                     <p class="p">{{reply.frText}}</p>
                     <div class="com11" :key="keys">
-                      <a @click="bb(keys)" class="rr">回复</a>
+                      <!--<a @click="bb(keys)" class="rr">回复</a>-->
+                      <a @click="bb()" class="rr">回复</a>
                       <!--<p v-if="bbb[keys]">saaaaaaaaaaaaaaaaaaa</p>-->
                       <!--<div v-if="bbb[keys]">-->
+                      <div v-if="bbb">
                       <div>
                         <el-input v-model="rep" style="width:655px;"></el-input>
                         <button @click="addReply(index)" type="button" class="rbtn btn btn-primary btn-sm active">发表
@@ -84,7 +88,11 @@
                 </div>
               </div>
             </div>
-          </li>
+
+            </div>
+            </div>
+
+      </li>
         </ul>
         <br>
         <button type="button" @click="cc" class="btn btn-primary btn-lg btn-block">加载更多</button>
@@ -128,8 +136,10 @@
         input: '',
         rep: '',
         count: 0,
-        aaa: [],
-        bbb: [],
+        // aaa: [],
+        aaa:true,
+        // bbb: [],
+        bbb: true,
         vv:false,
       }
     },
@@ -190,6 +200,12 @@
           })
         }
       },
+      aaaa() {
+        this.aaa =!this.aaa
+      },
+      bb() {
+        this.bbb =!this.bbb
+      },
       // aaaa(index) {
       //
       //   this.aaa[index] =!this.aaa[index]
@@ -219,14 +235,14 @@
         if (get.value.comment) {
           for (let i = 0; i < get.value.comment.length; i++) {
             get.value.comment[i].replys = []
-            get.aaa.push(false)
+            // get.aaa.push(false)
 
             if (get.value.reply) {
 
               for (let j = 0; j < get.value.reply.length; j++) {
 
                 if (get.value.comment[i].fcId == get.value.reply[j].fcId) {
-                  get.bbb.push(false)
+                  // get.bbb.push(false)
                   get.value.comment[i].replys.push(get.value.reply[j])
                 }
               }
@@ -247,6 +263,13 @@
    left:30%;
     color:#ccc;
   }
+  /*.hhh{*/
+    /*height: auto;*/
+  /*}*/
+  /*.h{*/
+    /*height: 100px;*/
+    /*margin-bottom:180px;*/
+  /*}*/
   #content {
     box-shadow: -2px 2px 10px 2px #bcbcbc;
     background: rgba(255, 255, 255, 0.9);
@@ -338,6 +361,7 @@
 
   li {
     margin-left: -40px;
+    padding-bottom: 30px;
     list-style: none;
   }
 
@@ -374,8 +398,8 @@
   }
 
   .com1 {
-    margin-bottom: 0px;
-    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-top: 50px;
   }
 
   .com11 {
