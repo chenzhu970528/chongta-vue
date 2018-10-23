@@ -1,20 +1,8 @@
 <template>
   <div class="home">
     <div class="top">
-        <span>treat your pe</span><span>t like royalty</span>
+        <span>treat your </span><span>pet like royalty</span>
       </div>
-    <div class="num">
-      <el-row>
-        <el-col :span="8" :push="4" style="text-align: center">
-        <h3>发表量</h3>
-        <show-num></show-num>
-      </el-col>
-        <el-col :span="8" :push="4" style="text-align: center">
-          <h3>用户量</h3>
-          <show-num1></show-num1>
-        </el-col>
-      </el-row>
-    </div>
     <div class="bottom">
       <p>功能模块</p>
       <div class="bottom_list">
@@ -49,6 +37,18 @@
           </el-col>
         </el-row>
       </div>
+    </div>
+    <div class="num">
+      <el-row>
+        <el-col :span="8" :push="4" style="text-align: center">
+        <h3>发表量</h3>
+        <show-num></show-num>
+      </el-col>
+        <el-col :span="8" :push="4" style="text-align: center">
+          <h3>用户量</h3>
+          <show-num1></show-num1>
+        </el-col>
+      </el-row>
     </div>
     <div class="middle">
         <el-row>
@@ -94,6 +94,7 @@
   .top{
     height: 640px;
     background:0 0 url("../assets/HomePage/bg2.jpg") ;
+    background-size: 100% 100%;
   }
   .top img{
     width: 100%;
@@ -116,11 +117,12 @@
     right: -700px;
   }
   .bottom{
-    min-height: 500px;
+    min-height: 400px;
     text-align: center;
+    /*background-color: palevioletred;*/
   }
   .bottom p{
-    margin-top: 130px;
+    margin-top: 110px;
     font-size: 30px;
     color: grey;
   }
@@ -128,7 +130,6 @@
     margin-top: 50px;
     width: 80%;
     margin-left: 10%;
-    min-height: 300px;
     /*background-color: yellow;*/
   }
   .bottom_list span{
@@ -184,9 +185,9 @@
     background: 0 -100px url("../assets/HomePage/right.jpg");
   }
   .num{
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     /*background-color: yellow;*/
-    height: 300px;
+    height: 400px;
   }
   .num h3{
     margin-top: 80px;

@@ -61,7 +61,7 @@
             }
             current = start
             ele.innerHTML = current.toString().replace(/(\d)(?=(?:\d{3}[+]?)+$)/g, '$1,')
-          }, 20)
+          }, 50)
         }
       },
       mounted () {
