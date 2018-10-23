@@ -12,12 +12,8 @@
           <el-col :span="12" :push="2"><span class="det">{{personal.userName}}</span></el-col>
         </el-row>
         <el-row>
-          <el-col :span="7" :push="2"><span>真实姓名</span></el-col>
-          <el-col :span="12" :push="2"><span class="det">{{personal.realName}}</span></el-col>
-        </el-row>
-        <el-row>
           <el-col :span="7" :push="2"><span>所在地</span></el-col>
-          <el-col :span="12" :push="2"><span class="det">我的shoujihao</span></el-col>
+          <el-col :span="12" :push="2"><span class="det">{{personal.address}}</span></el-col>
         </el-row>
         <el-row>
           <el-col :span="7" :push="2"><span>性别</span></el-col>
@@ -59,8 +55,8 @@
           if(this.personal.sex =0){
             this.personal.sex='男'
           }else this.personal.sex='女';
-          if(this.personal.realName ==null){
-            this.personal.realName='尚未实名验证'
+          if(this.personal.userEmail ==null){
+            this.personal.userEmail='暂无邮箱'
           }
         })
       }

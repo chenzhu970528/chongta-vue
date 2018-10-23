@@ -10,6 +10,7 @@ function isLogin() {
     login.isLogin = true;
   } else {
     login.isLogin = false;
+    localStorage.clear();
   }
   return login;
 }
