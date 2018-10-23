@@ -61,7 +61,7 @@
             }
             current = start
             ele.innerHTML = current.toString().replace(/(\d)(?=(?:\d{3}[+]?)+$)/g, '$1,')
-          }, 10)
+          }, 20)
         }
       },
       mounted () {
@@ -81,6 +81,6 @@
     letter-spacing: 2.67px;
     /*margin:110px 0 20px;*/
     display: block;
-    line-height:64px;
+    line-height:80px;
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="song">
-  <div class="listbox clearfix" v-for="diary in diarys"style="margin-bottom: 10px" id="f" @click="fade" >
+  <div class="listbox clearfix" v-for="diary in diarys"style="margin-bottom: 10px"  >
       <div class="listimg img" style="float: left">
         <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>
         <img src="../../assets/homeless/1.jpg" alt="" style="width: 150px;height: 140px;">
@@ -36,8 +36,6 @@
 
 <script>
   import axios from 'axios'
-
-  import  animate from 'animate.css'
   export default {
     name: "all",
     data() {
@@ -47,11 +45,7 @@
         homeTime:[]
       };
     },
-    methods:{
-      fade:function () {
-        $('#f').addClass('animated bounceOutLeft')
-      }
-    },
+
     created() {
       axios.get("http://localhost:3000/homeless").then((result) => {
         // console.log(result.data)
