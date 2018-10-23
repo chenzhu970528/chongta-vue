@@ -6,7 +6,7 @@
     </a>
     <div v-for="diary in diarys">
       <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="list-style: none" exact>
-        <a href="#" class="list-group-item"><span>{{diary.getmes}}</span> </a>
+        <a href="#" class="list-group-item "><span>{{diary.getmes}}</span> </a>
       </router-link>
     </div>
     <div style="width: 1200px;margin-top: 30px"><reward></reward></div>

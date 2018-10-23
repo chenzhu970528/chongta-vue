@@ -148,10 +148,8 @@
         comm: '',
         rep: '',
         count: 0,
-        // aaa: [],
-        aaa:true,
-        // bbb: [],
-        bbb: true,
+        aaa: [],
+        bbb: [],
         vv:false,
       }
     },

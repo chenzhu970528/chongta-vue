@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import Home from '@/components/Home'
 import Home from '../components/Home.vue'
+import axios from 'axios'
+
 
 import Adoption from '../components/adoption/Adoption.vue'
 import AdoDetails from '../components/adoption/AdoptDetails.vue'
@@ -59,6 +61,7 @@ import register from '../components/register.vue'
 // import Matchmaking from '../components/matchmaking/Matchmaking.vue'
 
 Vue.use(Router);
+Vue.prototype.$axios = axios
 
 
 export default new Router({

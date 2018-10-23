@@ -80,16 +80,21 @@
       <div class="form-group">
         <label for="inputdetail" class="col-sm-3 control-label">上传图片：</label>
         <div class="col-sm-6">
-          <el-upload
-            class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :file-list="fileList2"
-            list-type="picture">
-            <!--<el-button size="small" type="primary">点击上传</el-button>-->
-            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-          </el-upload>
+          <input type="file" name="avatar"
+                 @change="changeImage($event)"
+                 accept="image/gif,image/jpeg,image/jpg,image/png"
+                 ref="avatarInput"
+                 multiple><br/>
+          <!--<el-upload-->
+            <!--class="upload-demo"-->
+            <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+            <!--:on-preview="handlePreview"-->
+            <!--:on-remove="handleRemove"-->
+            <!--:file-list="fileList2"-->
+            <!--list-type="picture">-->
+            <!--&lt;!&ndash;<el-button size="small" type="primary">点击上传</el-button>&ndash;&gt;-->
+            <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
+          <!--</el-upload>-->
         </div>
       </div>
       <div class="form-group">
@@ -126,38 +131,9 @@
           adoTitle:'',
           detail:'',
           adoAddress:'',
-          userId:this.$store.state.userId
+          userId:this.$store.state.userId,
         },
-        // pickerOptions1: {
-        //   disabledDate(time) {
-        //     return time.getTime() > Date.now();
-        //   },
-        //   shortcuts: [{
-        //     text: '今天',
-        //     onClick(picker) {
-        //       picker.$emit('pick', new Date());
-        //     }
-        //   }, {
-        //     text: '昨天',
-        //     onClick(picker) {
-        //       const date = new Date();
-        //       date.setTime(date.getTime() - 3600 * 1000 * 24);
-        //       picker.$emit('pick', date);
-        //     }
-        //   }, {
-        //     text: '一周前',
-        //     onClick(picker) {
-        //       const date = new Date();
-        //       date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-        //       picker.$emit('pick', date);
-        //     }
-        //   }]
-        // },
-        props: {
-          value: 'label',
-          children: 'cities'
-        },
-        fileList2: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
+        upath:'',  //保存选中的文件
       };
     },
     methods: {
@@ -175,23 +151,45 @@
         }else if(_this.adoForm.adoAddress==""){
           alert("请填写联系地址")
         }else {
-          this.adoInfoForm()
+          this.edit()
         }
       },
-      // 发布
-      adoInfoForm(){
-        let _this = this
-        $.ajax({
-          url: "http://localhost:3000/adoptions/adoAdd",
-          type: "post",
-          data: _this.adoForm,
-          success: function (result) {
-            console.log(result.data)
-            alert("注册成功")
-            location.href = "http://localhost:8080/adoption";
-          }
-        })
+      edit() {
+        console.log(this.upath);
+        var zipFormData = new FormData();
+        //依次添加多个文件
+        for(var i = 0 ; i< this.upath.length ; i++){
+          zipFormData.append('filename', this.upath[i]);
+        }
+        //添加其他的表单元素
+        zipFormData.append('userId',this.adoForm.userId)
+        zipFormData.append('sex',this.adoForm.sex)
+        zipFormData.append('adoType',this.adoForm.adoType)
+        zipFormData.append('petType',this.adoForm.petType)
+        zipFormData.append('limitTime',this.adoForm.limitTime)
+        zipFormData.append('age',this.adoForm.age)
+        zipFormData.append('birth',this.adoForm.birth)
+        zipFormData.append('adoTitle',this.adoForm.adoTitle)
+        zipFormData.append('detail',this.adoForm.detail)
+        zipFormData.append('adoAddress',this.adoForm.adoAddress)
+        let config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        this.$axios.post('http://localhost:3000/adoptions/adoAdd', zipFormData,config)
+          .then(function (response) {
+            console.log(response);
+            console.log(response.data);
+            console.log(response.bodyText);
+            alert("success")
+          }).catch((err) => {
+          console.log(err)
+          alert("err")
+        });
       },
+      //选中文件后，将文件保存到实例的变量中
+      changeImage(e) {
+        this.upath = e.target.files;
+      },
+      // 发布
+
       handleRemove(file, fileList) {
         console.log(file, fileList);
       },

@@ -1,20 +1,20 @@
 <!--婚介列表-->
 <template>
   <div>
-    <!--<div class="mainList">-->
-        <!--<el-row>-->
-          <!--<el-col :span="6" style="margin-left: 4%;margin-top: 20px" v-for="(showList,index) in showLists" :offset="index>0?3:0">-->
-            <!--<div class="oneList">-->
-              <!--<router-link :to="'/matchmaking/matchDel/'+showList.relId"><img src="../../assets/match/mao1.jpg" alt="..." class="img-rounded"></router-link>-->
-              <!--<div>-->
-                <!--<span>昵称: <span class="inner">{{showList.PetName}}</span></span>-->
-                <!--<span>性别: <span class="inner">{{showList.sex}}</span></span>-->
-                <!--<span>年龄: <span class="inner">{{showList.age}}个月</span></span>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</el-col>-->
-        <!--</el-row>-->
-    <!--</div>-->
+    <div class="mainList">
+        <el-row>
+          <el-col :span="6" style="margin-left: 4%;margin-top: 20px" v-for="(showList,index) in showLists" :key="showLists.length" :offset="index>0?3:0">
+            <div class="oneList">
+              <router-link :to="'/matchmaking/matchDel/'+showList.relId"><img src="../../assets/match/mao1.jpg" alt="..." class="img-rounded"></router-link>
+              <div>
+                <span>昵称: <span class="inner">{{showList.PetName}}</span></span>
+                <span>性别: <span class="inner">{{showList.sex}}</span></span>
+                <span>年龄: <span class="inner">{{showList.age}}个月</span></span>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+    </div>
     <el-row>
       <el-col :span="10" :push="7">
         <change-page></change-page>

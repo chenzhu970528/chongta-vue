@@ -1,5 +1,7 @@
 <template>
     <div class="block">
+
+
       <el-carousel height="300px">
         <el-carousel-item v-for="(img,index) in imgList" :key="index">
           <img :src="img.url">
@@ -9,17 +11,32 @@
 </template>
 
 <script>
+  import axios from 'axios'
     export default {
         name: "DetailsImg",
       data(){
           return{
+            adoId:this.$route.params.adoId,
             imgList:[
               {url:require("../../assets/adoption/dog1.jpg")} ,
               {url:require("../../assets/adoption/dog2.jpg")} ,
               {url:require("../../assets/adoption/dog3.jpg")} ,
               {url:require("../../assets/adoption/dog4.jpg")} ,
             ],
+            myImg:[],
           }
+      },
+      created() {
+          this.ajax()
+      },
+      methods:{
+          ajax(){
+            let _this=this
+            axios.get(`http://localhost:3000/adoptions/details/${this.adoId}`).then((result) => {
+              _this.myImg = result.data.data.jsondata.adoPic.split(",")
+              console.log(_this.myImg[0])
+            })
+          },
       }
     }
 </script>

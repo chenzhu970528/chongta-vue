@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div>
+  <div class="song">
   <div class="listbox clearfix" v-for="diary in diarys"style="margin-bottom: 10px"  >
       <div class="listimg img" style="float: left">
         <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>
@@ -19,12 +19,13 @@
 
       </div>
       <div class="listCell">
-        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="list-style: none;cursor: pointer" exact>
+        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId"
+                      style="list-style: none;cursor: pointer" exact>
           <span class="glyphicon glyphicon-earphone"> 联系{{diary.userName}}</span>
         </router-link>
 
       </div>
-    </div>
+    </div >
 
   </div>
   <button style="margin: 20px auto" type="button" class="btn btn-default btn-lg btn-block">加载更多</button>
@@ -40,10 +41,11 @@
     data() {
       return {
         mydata: [],
-        diarys: [],
+        diarys: [], diarys1: [], diarys2: [],
         homeTime:[]
       };
     },
+
     created() {
       axios.get("http://localhost:3000/homeless").then((result) => {
         // console.log(result.data)

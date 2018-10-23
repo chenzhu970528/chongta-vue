@@ -1,11 +1,12 @@
 <template>
   <div class="cont container">
-    <ol class="breadcrumb">
-      您当前位置为：
-      <li><a href="/adoption">流浪精灵</a></li>
-      <!--<li><a href="#">详情</a></li>-->
-      <li class="active">流浪详情</li>
-    </ol>
+    <div class="route">您的当前位置：<span>流浪精灵/寻宠之家</span><span>/</span><span>详情</span></div>
+    <!--<ol class="breadcrumb">-->
+      <!--您当前位置为：-->
+      <!--<li><a href="/adoption">流浪精灵</a></li>-->
+      <!--&lt;!&ndash;<li><a href="#">详情</a></li>&ndash;&gt;-->
+      <!--<li class="active">流浪详情</li>-->
+    <!--</ol>-->
     <div class="title">
       <img src="../../assets/adoption/take.png" width="50" alt="">
       <span class="text-primary">流浪详情</span>
@@ -70,7 +71,7 @@
 <style scoped>
   .cont{
     background:rgba(255,255,255,0.9);
-    margin-top:50px ;
+    margin-top:150px ;
     box-shadow:-2px 2px 10px 2px #bcbcbc;
     min-height: 500px;
     width: 1240px;
@@ -115,5 +116,20 @@
   .recommend h4{
     width: 200px;
     margin: 0 auto;
+  }
+  .route{
+    position: relative;
+    left: 1%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #747474;
+  }
+  .route span{
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  .route span:last-child{
+    color: #4e76ff;
   }
 </style>
