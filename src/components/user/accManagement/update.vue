@@ -16,16 +16,13 @@
         <el-col :span="7" :push="2"><span>生日</span></el-col>
         <el-col :span="12" :push="2">
             <el-date-picker
+              style="margin-top: 7px"
               v-model="birth"
               type="date"
               size="small"
               placeholder="选择日期">
             </el-date-picker>
         </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="7" :push="2"><span>真实姓名</span></el-col>
-        <el-col :span="12" :push="2"><span class="det">我的shoujihao</span></el-col>
       </el-row>
       <el-row>
         <el-col :span="7" :push="2"><span>所在地</span></el-col>

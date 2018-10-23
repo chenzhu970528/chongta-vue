@@ -30,7 +30,6 @@ import myaply from '../components/user/mesCenter/myaply.vue'
 import mycom from '../components/user/mesCenter/mycom.vue'
 import mylost from '../components/user/Publishing/mylost.vue'
 import mymatch from '../components/user/Publishing/mymatch.vue'
-import sys from '../components/user/mesCenter/sys.vue'
 import myhomls from '../components/user/Publishing/myhomls.vue'
 
 import diary from '../components/user/Forum/adodiary.vue'
@@ -232,7 +231,6 @@ export default new Router({
         {path:'myaply',component:myaply},
         {path:'mymatch',component:mymatch},
         {path:'mylost',component:mylost},
-        {path:'sys',component:sys},
         {path:'myhomls',component:myhomls},
 
         {path:'diary',component:diary},
