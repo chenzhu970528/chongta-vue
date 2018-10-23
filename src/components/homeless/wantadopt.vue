@@ -47,31 +47,31 @@
         </div>
       </div>
       <div class="form-group">
-        <label  class="col-sm-3 control-label">您所在地区：</label>
+        <label  class="col-sm-3 control-label">宠物图片：</label>
         <div class="col-sm-6">
-          <el-cascader
-            :options="options2"
-            @active-item-change="handleItemChange"
-            :props="props"
-          ></el-cascader>
+          <input type="file" name="avatar"
+                 @change="changeImage($event)"
+                 accept="image/gif,image/jpeg,image/jpg,image/png"
+                 ref="avatarInput"
+                 multiple><br/>
         </div>
       </div>
-      <div class="form-group">
-        <label for="inputdetailpic" class="col-sm-3 control-label">宠物图片：</label>
-        <div class="col-sm-6">
-          <el-upload
-            id="inputdetailpic"
-            class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :file-list="fileList2"
-            list-type="picture">
-            <!--<el-button size="small" type="primary">点击上传</el-button>-->
-            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-          </el-upload>
-        </div>
-      </div>
+      <!--<div class="form-group">-->
+        <!--<label for="inputdetailpic" class="col-sm-3 control-label">宠物图片：</label>-->
+        <!--<div class="col-sm-6">-->
+          <!--<el-upload-->
+            <!--id="inputdetailpic"-->
+            <!--class="upload-demo"-->
+            <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+            <!--:on-preview="handlePreview"-->
+            <!--:on-remove="handleRemove"-->
+            <!--:file-list="fileList2"-->
+            <!--list-type="picture">-->
+            <!--&lt;!&ndash;<el-button size="small" type="primary">点击上传</el-button>&ndash;&gt;-->
+            <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
+          <!--</el-upload>-->
+        <!--</div>-->
+      <!--</div>-->
       <div class="form-group">
         <label for="inputman" class="col-sm-3 control-label">联系人:</label>
         <div class="col-sm-6">
@@ -126,23 +126,46 @@
           reward:'',
           userId:this.$store.state.userId,
         },
-
-        options2: [{
-          label: '江苏',
-          cities: []
-        }, {
-          label: '浙江',
-          cities: []
-        }],
-        props: {
-          value: 'label',
-          children: 'cities'
-        },
-        fileList2: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
-      };
+        upath:''
+      }
     },
 
     methods: {
+      addlost() {
+        console.log(this.upath);
+        var zipFormData = new FormData();
+        //依次添加多个文件
+        for(var i = 0 ; i< this.upath.length ; i++){
+          zipFormData.append('filename', this.upath[i]);
+        }
+        //添加其他的表单元素
+        zipFormData.append('type',this.addlose.type)
+        zipFormData.append('sex',this.addlose.sex)
+        zipFormData.append('lostpeople',this.addlose.lostpeople)
+        zipFormData.append('lostphone',this.addlose.lostphone)
+        zipFormData.append('lpTime',this.addlose.lpTime)
+        zipFormData.append('lpmes',this.addlose.lpmes)
+        zipFormData.append('detali',this.addlose.detail)
+        zipFormData.append('address',this.addlose.address)
+        zipFormData.append('reward',this.addlose.reward)
+        zipFormData.append('userId',this.addlose.userId)
+        let config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        this.$axios.post('http://localhost:3000/homeless/addlost', zipFormData,config)
+          .then(function (response) {
+            console.log(response);
+            console.log(response.data);
+            console.log(response.bodyText);
+            alert("发布成功！！！")
+            location.href = "http://localhost:8080/homeless";
+          }).catch((err) => {
+          console.log(err)
+          alert(err)
+        });
+      },
+      //选中文件后，将文件保存到实例的变量中
+      changeImage(e) {
+        this.upath = e.target.files;
+      },
       // 登录验证
       islogin(){
         if(!this.$store.state.isLogin) {
@@ -152,39 +175,19 @@
           this.addlost()
         }
       },
-      addlost(){
-        let _this = this
-        $.ajax({
-          url: "http://localhost:3000/homeless/addlost",
-          type: "post",
-          data: _this.addlose,
-          success: function (result) {
-            console.log(result.data)
-            alert("发布成功！！！")
-            location.href = "http://localhost:8080/homeless";
-          }
-        })
-      },
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
-      handleItemChange(val) {
-        console.log('active item:', val);
-        setTimeout(_ => {
-          if (val.indexOf('江苏') > -1 && !this.options2[0].cities.length) {
-            this.options2[0].cities = [{
-              label: '南京'
-            }];
-          } else if (val.indexOf('浙江') > -1 && !this.options2[1].cities.length) {
-            this.options2[1].cities = [{
-              label: '杭州'
-            }];
-          }
-        }, 300);
-      }
+      // addlost(){
+      //   let _this = this
+      //   $.ajax({
+      //     url: "http://localhost:3000/homeless/addlost",
+      //     type: "post",
+      //     data: _this.addlose,
+      //     success: function (result) {
+      //       console.log(result.data)
+      //       alert("发布成功！！！")
+      //       location.href = "http://localhost:8080/homeless";
+      //     }
+      //   })
+      // },
     }
   };
 </script>
