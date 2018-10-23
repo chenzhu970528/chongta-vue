@@ -18,12 +18,12 @@
 
 <style scoped>
   .hot{
-    width: 300px;
+    width: 320px;
     height: 500px;
     position: absolute;
     right: 10px;
     top: 430px;
-    /*border: 2px dashed palevioletred;*/
+    border: 2px dashed palevioletred;
   }
   hr{
     border: 1px solid palevioletred;

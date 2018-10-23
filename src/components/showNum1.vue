@@ -28,6 +28,10 @@
         }
       },
       created(){
+
+      },
+      mounted () {
+        this.numberGrow(this.$refs.numberGrow1)
         axios.get(`http://localhost:3000/user/num`).then((result) => {
           // let _this=this;
           this.nums = result.data.data;
@@ -64,9 +68,7 @@
           }, 50)
         }
       },
-      mounted () {
-        this.numberGrow(this.$refs.numberGrow1)
-      },
+
     }
 </script>
 

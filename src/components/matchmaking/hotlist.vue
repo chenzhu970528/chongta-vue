@@ -7,12 +7,16 @@
         <li>追求者</li>
       </ul>
       <hr>
+
       <ul v-for="showList in showLists">
+        <router-link :to="'/matchmaking/matchDel/'+showList.relId">
         <li class="firstli">tupian</li>
         <li>{{showList.userName}}</li>
         <li>{{showList.PetName}}</li>
         <li>{{showList.num}}</li>
+        </router-link>
       </ul>
+
     </div>
 </template>
 

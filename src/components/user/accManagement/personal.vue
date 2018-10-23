@@ -1,7 +1,7 @@
 <template>
     <div class="right" >
       <div class="route">您的当前位置：<span>账号管理</span><span>/</span><span>个人资料</span></div>
-      <div class="inright">
+      <div class="inright" v-for="personal in personals">
         <h3>基本信息</h3>
         <el-row class="first">
           <el-col :span="7" :push="2"><span >登录名</span></el-col>
@@ -12,12 +12,8 @@
           <el-col :span="12" :push="2"><span class="det">{{personal.userName}}</span></el-col>
         </el-row>
         <el-row>
-          <el-col :span="7" :push="2"><span>真实姓名</span></el-col>
-          <el-col :span="12" :push="2"><span class="det">{{personal.realName}}</span></el-col>
-        </el-row>
-        <el-row>
           <el-col :span="7" :push="2"><span>所在地</span></el-col>
-          <el-col :span="12" :push="2"><span class="det">我的shoujihao</span></el-col>
+          <el-col :span="12" :push="2"><span class="det">{{personal.address}}</span></el-col>
         </el-row>
         <el-row>
           <el-col :span="7" :push="2"><span>性别</span></el-col>
@@ -44,7 +40,7 @@
         return {
           userId:this.$route.params.userId,
           activeName: 'first',
-          personal:[],
+          personals:[],
         };
       },
       methods: {
@@ -59,8 +55,8 @@
           if(this.personal.sex =0){
             this.personal.sex='男'
           }else this.personal.sex='女';
-          if(this.personal.realName ==null){
-            this.personal.realName='尚未实名验证'
+          if(this.personal.userEmail ==null){
+            this.personal.userEmail='暂无邮箱'
           }
         })
       }
