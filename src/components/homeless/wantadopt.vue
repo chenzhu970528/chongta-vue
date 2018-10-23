@@ -151,7 +151,7 @@
           data: _this.addlose,
           success: function (result) {
             console.log(result.data)
-            alert("发布成功")
+            alert("发布成功！！！")
             location.href = "http://localhost:8080/homeless";
           }
         })

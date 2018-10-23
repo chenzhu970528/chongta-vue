@@ -1,10 +1,10 @@
 <template>
 <div>
   <div class="song">
-  <div class="listbox clearfix" v-for="diary in diarys"style="margin-bottom: 10px"  >
+  <div class="listbox clearfix" v-for="(diary,index) in diarys"style="margin-bottom: 10px"  >
       <div class="listimg img" style="float: left">
         <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>
-        <img src="../../assets/homeless/1.jpg" alt="" style="width: 150px;height: 140px;">
+        <img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="" style="width: 150px;height: 140px;">
         </router-link>
       </div>
       <div class="listInfo"   >
@@ -41,7 +41,7 @@
     data() {
       return {
         mydata: [],
-        diarys: [], diarys1: [], diarys2: [],
+        diarys: [],
         homeTime:[]
       };
     },

@@ -89,12 +89,12 @@
     position: relative;
     /*box-shadow:-2px 2px 10px 2px #bcbcbc;*/
     /*position: absolute;*/
-    margin-top: 20px;
+    margin-top: 70px;
   }
   .top{
     height: 640px;
-    background:0 0 url("../assets/HomePage/bg2.jpg") ;
-    background-size: 100% 100%;
+    background: url("../assets/HomePage/bg2.jpg") center;
+    background-size: 100% auto;
   }
   .top img{
     width: 100%;
@@ -114,7 +114,7 @@
   .top span:last-child{
     position: relative;
     top:270px;
-    right: -700px;
+    right: -1000px;
   }
   .bottom{
     min-height: 400px;

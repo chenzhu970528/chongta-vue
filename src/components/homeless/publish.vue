@@ -147,7 +147,7 @@
           data: _this.hp,
           success: function (result) {
             console.log(result.data)
-            alert("注册成功")
+            alert("发布成功！！！")
             location.href = "http://localhost:8080/homeless";
           }
         })

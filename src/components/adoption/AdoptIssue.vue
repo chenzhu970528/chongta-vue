@@ -178,10 +178,11 @@
             console.log(response);
             console.log(response.data);
             console.log(response.bodyText);
-            alert("success")
+            alert("发布成功！！！")
+            location.href = "http://localhost:8080/adoption"
           }).catch((err) => {
           console.log(err)
-          alert("err")
+          alert(err)
         });
       },
       //选中文件后，将文件保存到实例的变量中

@@ -5,7 +5,7 @@
         <el-row>
           <el-col :span="6" style="margin-left: 4%;margin-top: 20px" v-for="(showList,index) in showLists" :key="showLists.length" :offset="index>0?3:0">
             <div class="oneList">
-              <router-link :to="'/matchmaking/matchDel/'+showList.relId"><img src="../../assets/match/mao1.jpg" alt="..." class="img-rounded"></router-link>
+              <router-link :to="'/matchmaking/matchDel/'+showList.relId"><img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="..." style="height: 180px" class="img-rounded"></router-link>
               <div>
                 <span>昵称: <span class="inner">{{showList.PetName}}</span></span>
                 <span>性别: <span class="inner">{{showList.sex}}</span></span>

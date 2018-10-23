@@ -86,6 +86,15 @@
 </script>
 
 <style scoped>
+  .fbut{
+    height: 70px;
+    font-size: 18px;
+    margin-left: 10px;
+    color: #337ab7;
+  }
+  .fbut :hover{
+    color: #23527c;
+  }
 
   .fbut{
     height: 70px;

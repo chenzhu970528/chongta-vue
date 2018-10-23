@@ -10,7 +10,7 @@
         <img src="../../assets/adoption/a051a6562121e26.png" alt="">
       </el-col>
     </el-row>
-    <router-link to="/matchmaking/mpublish"><button>我要发布</button></router-link>
+    <router-link to="/matchmaking/mpublish"><button style="font-size: 22px">我要发布</button></router-link>
     <match-list></match-list>
     <match-hot></match-hot>
   </div>
