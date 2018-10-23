@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="7" v-for="(diary, index) in diarys"  :key="diarys.length" :offset="index > 0 ? 3 : 0">
+      <el-col :span="7" v-for="(diary, index) in diarys" :key="diarys.length"  :offset="index > 0 ? 3 : 0">
         <router-link tag="div" :to="'/adoption/details/'+diary.adoId"><a>
           <el-card :body-style="{ padding: '0px' }">
             <img style="height: 180px" :src="douhao(diary.adoPic)" class="image">
@@ -80,15 +80,7 @@
     font-size: 13px;
     color: #999;
   }
-  a{
-    text-decoration: none;
-  }
-  .dong:hover{
-    position: relative;
-    left: -10px;
-    top:-10px;
-    box-shadow:2px 2px 5px 2px #a8a8a8;
-  }
+
   .el-col {
     margin-left: 25px;
     margin-top: 25px;

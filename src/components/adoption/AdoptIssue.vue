@@ -85,16 +85,6 @@
                  accept="image/gif,image/jpeg,image/jpg,image/png"
                  ref="avatarInput"
                  multiple><br/>
-          <!--<el-upload-->
-            <!--class="upload-demo"-->
-            <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-            <!--:on-preview="handlePreview"-->
-            <!--:on-remove="handleRemove"-->
-            <!--:file-list="fileList2"-->
-            <!--list-type="picture">-->
-            <!--&lt;!&ndash;<el-button size="small" type="primary">点击上传</el-button>&ndash;&gt;-->
-            <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
-          <!--</el-upload>-->
         </div>
       </div>
       <div class="form-group">
@@ -200,26 +190,6 @@
       },
       // 发布
 
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
-      handleItemChange(val) {
-        console.log('active item:', val);
-        setTimeout(_ => {
-          if (val.indexOf('江苏') > -1 && !this.options2[0].cities.length) {
-            this.options2[0].cities = [{
-              label: '南京'
-            }];
-          } else if (val.indexOf('浙江') > -1 && !this.options2[1].cities.length) {
-            this.options2[1].cities = [{
-              label: '杭州'
-            }];
-          }
-        }, 300);
-      }
     }
   };
 </script>
