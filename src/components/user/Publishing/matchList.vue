@@ -46,7 +46,7 @@
       data(){
         return{
           visiblematch: false,
-          relId:this.$route.params.userId,
+          relId:this.$store.state.userId,
           matchlist:[],
           showLists:[],
           isshow:false

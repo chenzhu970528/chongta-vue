@@ -214,11 +214,11 @@ export default new Router({
     },
     // 个人中心
     {
-      path: '/user/:userId',
+      path: '/user',
       name: 'User',
       component: User,
       children:[
-        {path:'personal',component:personal},
+        {path:'',component:personal},
         {path:'message',component:message},
         {path:'mypublish',component:mypublish},
 

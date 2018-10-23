@@ -46,7 +46,7 @@
             isshow:false,
             adolists:[],
             mydata:[],
-            userId:this.$route.params.userId,
+            userId:this.$store.state.userId,
           };
       },
       created() {
