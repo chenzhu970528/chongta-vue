@@ -1,18 +1,19 @@
 <template>
   <div class="inner_ado">
-    <div class="tol">
+    <div class="tol" v-for="lostlist in lostlists">
       <el-row class="card">
         <el-col :span="7" class="petPic">
           <div class="pic"></div>
         </el-col>
         <el-col :span="15">
-          <p class="title">标题：<span>一只可爱的小喵</span></p>
-          <p>发布时间：<span>2018/09/24</span></p>
-          <p>申请人数：<span>4</span></p>
+          <p class="title">标题：<span>{{lostlist.lpmes}}</span></p>
+          <p>发布时间：<span>{{lostlist.pbTime}}</span></p>
+          <p>丢失时间：<span>{{lostlist.lpTime}}</span></p>
+          <p>失主奖励：<span>{{lostlist.reward}}</span></p>
           <el-row>
             <el-col :span="5">详细信息：</el-col>
             <el-col :span="18" >
-              <span class="detail">水电费健康和飞机晒覅U盾和数据库表查询即可部件汉化in的哈你好啊</span>
+              <span class="detail">{{lostlist.detail}}</span>
             </el-col>
           </el-row>
         </el-col>
@@ -40,13 +41,39 @@
 </template>
 
 <script>
+  import axios from 'axios'
     export default {
         name: "lostList",
       data(){
         return{
           visiblelost: false,
-          isshow:false
+          isshow:false,
+          userId:this.$store.state.userId,
+          mydata:[],
+          lostlists:[]
         }
+      },
+      created() {
+        axios.get(`http://localhost:3000/homeless/getlostdetails/${this.userId}`).then((result) => {
+          // console.log(result.data)
+          this.mydata = result.data.data;
+          // this.homeTime = result.data.data.homeTime
+          console.log(result)
+          console.log(result.data.data)
+          for (let i = 0; i < this.mydata.length; i++) {
+            this.lostlists.push(this.mydata[i]);
+            // console.log(this.publishdets[i])
+          }
+          if(result.data.data.length==0){
+            this.showPic()
+          }
+        })
+      },
+      methods:{
+        showPic:function () {
+          this.isshow=true
+        }
+
       }
     }
 </script>

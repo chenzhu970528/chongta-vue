@@ -8,7 +8,7 @@
         <el-col :span="15">
           <p class="title">标题：<span>{{adolist.adoTitle}}</span></p>
           <p>发布时间：<span>{{adolist.adoTime}}</span></p>
-          <p>发布类型：<span>{{adolist.adoType}}</span></p>
+          <p>发布类型：<span>{{adolist.adoType1}}</span></p>
           <p>宠物年龄：<span>{{adolist.age}}</span></p>
           <!--<p>申请人数：<span>4</span></p>-->
         </el-col>
@@ -53,8 +53,11 @@
         axios.get(`http://localhost:3000/adoptions/adodetails/${this.userId}`).then((result) => {
           // console.log(result.data)
           this.mydata = result.data.data;
+          // if(this.mydata.adoType ==0){
+          //   this.mydata.adoType='领养'
+          // }else this.mydata.adoType='寄养';
           // this.homeTime = result.data.data.homeTime
-          // console.log(result.data.data)
+          console.log(result.data.data)
           for (let i = 0; i < this.mydata.length; i++) {
             this.adolists.push(this.mydata[i]);
             console.log(this.adolists[i])
@@ -62,6 +65,7 @@
           if(result.data.data.length==0){
             this.showPic()
           }
+
         })
       },
       methods:{

@@ -160,6 +160,7 @@ export default new Router({
     //   name:'detailsmes',
     //   component: detailsmes,
     // },
+
     // 论坛
     {path: '/user/personal',
       name: 'personal',
