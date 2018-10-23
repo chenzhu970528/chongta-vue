@@ -113,7 +113,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-5 col-sm-7">
-          <button type="submit" @click="addmatch" class="btn btn-default">提交</button>
+          <button type="submit" @click="islogin" class="btn btn-default">提交</button>
         </div>
       </div>
     </form>
@@ -165,6 +165,15 @@
       },
 
       methods: {
+        // 登录验证
+        islogin(){
+          if(!this.$store.state.isLogin) {
+            alert("请登录后发布")
+            return false
+          }else {
+            this.addmatch()
+          }
+        },
               //发布
         addmatch(){
           let _this = this

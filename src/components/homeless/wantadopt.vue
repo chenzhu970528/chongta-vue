@@ -101,7 +101,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10" >
-          <button type="submit" @click="addlost" class="btn btn-default" style="font-size: 25px">提交</button>
+          <button type="submit" @click="islogin" class="btn btn-default" style="font-size: 25px">提交</button>
         </div>
       </div>
     </form>
@@ -143,6 +143,15 @@
     },
 
     methods: {
+      // 登录验证
+      islogin(){
+        if(!this.$store.state.isLogin) {
+          alert("请登录后发布")
+          return false
+        }else {
+          this.addlost()
+        }
+      },
       addlost(){
         let _this = this
         $.ajax({
