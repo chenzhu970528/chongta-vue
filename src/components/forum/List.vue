@@ -1,17 +1,16 @@
 <template>
   <div>
-
     <div class="con">
       <div style="width:768px;height: 35px; background:white;margin-top:-60px;margin-bottom:25px;">
         <span class="left">ps:领养日记要领养宠物后在我的领养那里发表哦~</span>
         <a class="btn btn-default right" href="#publish" role="button" @click="add()">发表</a>
 
 
-        </div>
+      </div>
       <ul>
-        <li :key="index" v-model="val.faId" v-for="(val,index) in value[count]">
-          <div class="head" >
-            <router-link tag="h1" active-class="active"  role="presentation" :to="`/forum/`+val.faId">
+        <li :key="index" v-model="val.faId" v-for="(val,index) in value1">
+          <div class="head">
+            <router-link tag="h1" active-class="active" role="presentation" :to="`/forum/`+val.faId">
               <h1 @click="see(val.faId)" class="title"><a>{{val.faTitle}}</a></h1>
             </router-link>
             <p class="name">
@@ -21,15 +20,15 @@
             </p>
           </div>
           <div class="photo">
-            <router-link tag="a" active-class="active"  role="presentation" :to="`/forum/`+val.faId">
-              <img  @click="see(val.faId)" :src='imgs[0].img' alt="图片">
+            <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
+              <img @click="see(val.faId)" :src='imgs[0].img' alt="图片">
             </router-link>
             <a></a>
           </div>
 
           <div class="value">
             <p class="val">{{val.faText}}</p>
-            <router-link  tag="a" active-class="active"  role="presentation" :to="`/forum/`+val.faId">
+            <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
               <button @click="see(val.faId)" type="button" class="btn btn-default">阅读全文</button>
             </router-link>
             <hr>
@@ -45,18 +44,24 @@
             :total="1000">
           </el-pagination>
         </div>
+        <button>上一页</button>
+        <button @click="next()">下一页</button>
+        一共{{cou}}页  当前第 {{a}}页
 
         <a name="publish"></a>
         <com_b></com_b>
       </ul>
     </div>
+    <p v-if="vv" class="cc">没有了哦</p>
+
   </div>
 </template>
 
 <script>
-  import  axios from 'axios'
+  import axios from 'axios'
   import store from './store.js'
   import Com_b from './Com_b.vue'
+
   export default {
     name: "List",
     components: {
@@ -65,91 +70,180 @@
     data() {
       return {
         imgs: [{img: require("../../assets/images/a.jpg")}],
-        value: [
-          {values0: []},
-          {values1: []},
-          {values2: []},
-          {values3: []},
-          {values4: []}],
-        Names: ['最新', '精品推荐', '宠物日记', '交流分享','搜索结果'],
+        value: [],//全部的帖子
+        value1: [],//单页的帖子
+        Names: ['最新', '精品推荐', '宠物日记', '交流分享', '搜索结果'],
         faId: '',
-        count: 0,
-
+        count: store.state.id,
+        a: 1,//翻页第几页
+        vv: false,
+        cou: 0,//一共多少页
+        q: 0,//当前页的第一个的下标
+        w: 6//当前页的最后一个的下标
       }
     },
-    methods:{
+    methods: {
       see(index) {
-        store.commit('addID',{
-          amount:index
+        store.commit('addID', {
+          amount: index
         })
-
       },
       add() {
-        store.commit('addName',{
-          amount:'交流分享',
-          am:'a'
+        store.commit('addName', {
+          amount: '交流分享',
+          am: 'a'
         })
 
       },
+      next() {
+        this.q = this.q + 6
+
+        if (this.a < this.cou-1) {
+          this.w = this.w + 6
+          this.value1 = []
+          this.a++  //记录当前页
+          for (let i = this.q; i < this.w; i++) {
+            this.value1.push(this.value[i])
+          }
+          // console.log(this.value)
+          // console.log(this.value1)
+        }
+        //最后一页的，要取出最后一页多少个帖子
+        else if (this.a == this.cou-1) {
+          this.value1 = []
+          this.a++  //记录当前页
+          this.w=this.value.length
+          for (let i = this.q; i <this.w ; i++) {
+            this.value1.push(this.value[i])
+          }
+          // console.log(this.value)
+          // console.log(this.value1)
+
+        }
+        else {
+          this.cc()
+        }
+
+      },
+      front() {
+
+        //当前页是最后一页的情况下
+        if(this.a==this.cou-1){
+          //用全部数量减去最后一页的数量，获取倒数第二个的最大长度
+         this.w=this.w-(this.w-(6*this.cou-1))
+          this.q=this.w-6
+          for (let i = this.q; i <this.w; i++) {
+            this.value1.push(this.value[i])
+          }
+          this.a--
+        }
+        else if(this.a==1){
+          this.cc()
+        }
+        else{
+          this.q=this.q-6
+          this.w=this.w-6
+          for (let i = this.q; i <this.w; i++) {
+            this.value1.push(this.value[i])
+          }
+          this.a--
+        }
+
+      },
+      cc() {
+        let _this = this
+        _this.vv = true
+        setTimeout(function () {
+          _this.vv = false
+        }, 3000)
+      }
     },
 
 
     mounted() {
-        this.count = store.state.id
-      if( this.count !=4) {
-        axios.get("http://localhost:3000/forumSee/time").then((result) => {
-          this.mydata = result.data.data;
-          for (let i = 0; i < this.mydata.length; i++) {
-            this.value[0].values0.push(this.mydata[i])
+      let _this = this
+      //只有四个模块 最大3
+      if (_this.count != 4) {
+        if (_this.count == 0) {
+          axios.get("http://localhost:3000/forumSee/time").then((result) => {
+            _this.value = result.data.data;
+            for (let i = 0; i < 6; i++) {
+              this.value1.push(this.value[i])
+            }
+            this.cou = Math.ceil(this.value.length / 6)
+          })
+
+        }
+        else if (_this.count == 1) {
+          axios.get("http://localhost:3000/forumSee/essence").then((result) => {
+            _this.value = result.data.data;
+            for (let i = 0; i < 6; i++) {
+              this.value1.push(this.value[i])
+            }
+            this.cou = Math.ceil(this.value.length / 6)
+          })
+        }
+        else if (_this.count == 2) {
+          axios.get("http://localhost:3000/forumSee/diary").then((result) => {
+            _this.value = result.data.data;
+            for (let i = 0; i < 6; i++) {
+              this.value1.push(this.value[i])
+            }
+            this.cou = Math.ceil(this.value.length / 6)
+          })
+        }
+        else {
+          axios.get("http://localhost:3000/forumSee/gossip").then((result) => {
+            _this.value = result.data.data;
+            for (let i = 0; i < 6; i++) {
+              this.value1.push(this.value[i])
+            }
+            this.cou = Math.ceil(this.value.length / 6)
+          })
+        }
+      }
+
+      else {
+        axios.get(`http://localhost:3000/forumSee/query?Keyword=${store.state.key}`).then((result) => {
+          _this.value = result.data.data;
+          for (let i = 0; i < 6; i++) {
+            this.value1.push(this.value[i])
           }
-          this.value[0] = this.value[0].values0
+          this.cou = Math.ceil(this.value.length / 6)
         })
 
-        axios.get("http://localhost:3000/forumSee/essence").then((result) => {
-          this.mydata1 = result.data.data;
-          for (let i = 0; i < this.mydata1.length; i++) {
-            this.value[1].values1.push(this.mydata1[i])
-          }
-          this.value[1] = this.value[1].values1
-        })
-
-        axios.get("http://localhost:3000/forumSee/diary").then((result) => {
-          this.mydata2 = result.data.data;
-          for (let i = 0; i < this.mydata2.length; i++) {
-            this.value[2].values2.push(this.mydata2[i])
-          }
-          this.value[2] = this.value[2].values2
-        })
-
-        axios.get("http://localhost:3000/forumSee/gossip").then((result) => {
-          this.mydata3 = result.data.data;
-          for (let i = 0; i < this.mydata3.length; i++) {
-            this.value[3].values3.push(this.mydata3[i])
-          }
-          this.value[3] = this.value[3].values3
-          console.log(this.value[3] )
-        })
-      }else{
-      axios.get(`http://localhost:3000/forumSee/query?Keyword=${store.state.key}`).then((result) => {
-    this.value[4].values4= result.data.data[0];
-        this.value[4]= this.value[4].values4
-    console.log(this.value[4] )
-      })
-
-  }}
+      }
+    }
   }
 </script>
 
 <style scoped>
-  button{
-    border-radius:3px;
+  .cc {
+    width: 180px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: rgba(60, 60, 60, 0.6);
+    border-radius: 3px;
+    position: fixed;
+    top: 50%;
+    left: 30%;
+    color: #fefefe;
+    font-size: 18px;
   }
-  .left{
+
+  button {
+    border-radius: 3px;
+  }
+
+  .left {
     color: #848484;
   }
-  .right{
-    float:right;
+
+  .right {
+    float: right;
   }
+
   .con {
     margin: 25px;
     width: 800px;
@@ -186,30 +280,33 @@
   }
 
   .photo {
-    margin-top:30px;
+    margin-top: 30px;
     text-align: center;
   }
 
   img {
     max-width: 698px;
   }
-  .value{
+
+  .value {
     margin: 30px 0;
   }
-  .page{
-    margin-top:70px;
+
+  .page {
+    margin-top: 70px;
     width: 800px;
     height: 150px;
     line-height: 150px;
-    text-align:center;
+    text-align: center;
   }
-  a{
+
+  a {
     text-decoration: none;
     color: #323232;
   }
 
-.c{
-  font-size:18px;
-  color: #939393;
-}
+  .c {
+    font-size: 18px;
+    color: #939393;
+  }
 </style>

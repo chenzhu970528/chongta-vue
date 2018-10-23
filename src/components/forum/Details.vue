@@ -26,8 +26,16 @@
 
         </div>
       </div>
-      <el-input v-model="input" style="width:755px;margin-top:50px;"></el-input>
-      <button type="button" @click="addCom" class="rbtn btn btn-primary btn-sm active">发表</button>
+
+
+
+      <div  class="test_box cominp0" contenteditable="true">
+        <br />
+      </div>
+      <input type="text" v-model="comm">
+      <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
+
+      <p>{{comm}}</p>
       <!--评论区域-->
       <div class="com">
         <ul>
@@ -49,10 +57,12 @@
                     <!--<a @click="aaaa(index)" class="rr">回复</a>-->
                     <a @click="aaaa" class="rr">回复</a>
                     <!--<div v-if="aaa(index)">-->
-                    <div v-if="aaa">
+                    <div v-if="aaa" class="h">
                       <!--<a class="rr">回复</a>-->
-                    <div class="h">
-                      <el-input v-model="rep" style="width:705px;"></el-input>
+                    <div >
+                      <div v-model="rep" class="test_box cominp1" contenteditable="true">
+                        <br />
+                      </div>
                       <button @click="addReply(index)" type="button" class="rbtn btn btn-primary btn-sm active">发表
                       </button>
                     </div>
@@ -76,12 +86,14 @@
                       <a @click="bb()" class="rr">回复</a>
                       <!--<p v-if="bbb[keys]">saaaaaaaaaaaaaaaaaaa</p>-->
                       <!--<div v-if="bbb[keys]">-->
-                      <div v-if="bbb">
-                      <div>
-                        <el-input v-model="rep" style="width:655px;"></el-input>
+                      <div v-if="bbb" class="h">
+
+                        <div v-model="rep" class="test_box cominp2" contenteditable="true">
+                          <br />
+                        </div>
                         <button @click="addReply(index)" type="button" class="rbtn btn btn-primary btn-sm active">发表
                         </button>
-                      </div>
+
 
                     </div>
                   </div>
@@ -103,7 +115,7 @@
     <div class="right">
       <ranking></ranking>
     </div>
-    <p v-if="vv" class="cc">发表成功~</p>
+    <p v-if="vv" class="cc">发表成功</p>
   </div>
 </template>
 
@@ -133,7 +145,7 @@
         imgs: [require("../../assets/mao1.jpg"), require("../../assets/images/a.jpg")],
         aa: 'glyphicon-heart-empty',
         as: true,
-        input: '',
+        comm: '',
         rep: '',
         count: 0,
         // aaa: [],
@@ -143,7 +155,9 @@
         vv:false,
       }
     },
+
     methods: {
+
       a() {
         this.as = !this.as;
         if (this.as) {
@@ -156,6 +170,8 @@
       },
       addCom() {
         if (this.input != '') {
+          console.log(this.input.length)
+          console.log(this.input)
           let dd = {
             faId: this.value.art[0].faId,
             faText: this.input,
@@ -257,19 +273,57 @@
 </script>
 
 <style scoped>
+
+  /*.edit-div {*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*overflow: auto;*/
+    /*word-break: break-all;*/
+    /*outline: none;*/
+    /*user-select: text;*/
+    /*white-space: pre-wrap;*/
+    /*text-align: left;*/
+  /*&[contenteditable=true]{*/
+     /*user-modify: read-write-plaintext-only;*/
+  /*&:empty:before {*/
+     /*content: attr(placeholder);*/
+     /*display: block;*/
+     /*color: #ccc;*/
+   /*}*/
+  /*}*/
+  /*}*/
+  .test_box {
+    width: 600px;
+    min-height: 10px;
+    /*设置最小高度*/
+    max-height: 1000px;
+    /*设置最大高度超过300px时出现滚动条*/
+    _height:10px;
+display: inline-block;
+    padding:5px 15px;
+    outline: 0;
+    border: 1px solid #dbdee5;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 24px;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
   .cc{
+    width: 180px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: rgba(60,60,60,0.6);
+    border-radius: 3px;
     position: fixed;
     top:50%;
-   left:30%;
-    color:#ccc;
+    left:30%;
+    color: #fefefe;
+    font-size:18px;
   }
-  /*.hhh{*/
-    /*height: auto;*/
-  /*}*/
-  /*.h{*/
-    /*height: 100px;*/
-    /*margin-bottom:180px;*/
-  /*}*/
+
   #content {
     box-shadow: -2px 2px 10px 2px #bcbcbc;
     background: rgba(255, 255, 255, 0.9);
@@ -353,10 +407,15 @@
     width: 360px;
   }
 
-  .rbtn {
+  .rbtn1,.rbtn {
     float: right;
     margin-top: 3px;
     margin-right: 3px;
+  }
+  .rbtn1{
+    margin-top:10px;
+    width: 50px;
+    height: 33px;
   }
 
   li {
@@ -398,19 +457,17 @@
   }
 
   .com1 {
-    margin-bottom: 10px;
-    margin-top: 50px;
+    margin-bottom: 0px;
+    margin-top: 20px;
   }
 
   .com11 {
-    height: 30px;
     margin-top: -10px;
     margin-bottom: 5px;
   }
 
   .rr {
     text-decoration: none;
-    float: right;
     margin-right: 15px;
     color: #888;
     font-size: 14px;
@@ -421,5 +478,22 @@
     border-bottom: 1px dotted #ccc;
     padding-bottom: 20px;
     margin-bottom: 20px;
+    margin-top:-35px;
+  }
+  .cominp0{
+    width: 700px;
+    margin-top:10px;
+  }
+  .cominp1{
+    width: 650px;
+  }
+  .cominp2{
+    width:600px;
+  }
+  .rbtn{
+    /*width: 60px;*/
+    /*height: 38px;*/
+    font-size:14px;
+    margin-top:-0px;
   }
 </style>

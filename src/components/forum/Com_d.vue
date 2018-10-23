@@ -13,7 +13,7 @@
     <!--</div>-->
     <div class="col-sm-4">
       <div class="input-group">
-        <input type="text" class="form-control" v-model="aa">
+        <input type="text" class="form-control" placeholder="请输入搜索内容" v-model="aa">
         <span class="input-group-btn">
           <router-link tag="a" active-class="active" role="presentation" to="forum/result">
         <button @click="ss" class="btn btn-default" type="button">
@@ -34,7 +34,7 @@
     data() {
       return {
         input10: '',
-        aa: '输入关键字搜索内容'
+        aa: ''
       }
     },
     methods: {
