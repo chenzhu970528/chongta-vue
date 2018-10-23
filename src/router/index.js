@@ -35,6 +35,7 @@ import myhomls from '../components/user/Publishing/myhomls.vue'
 
 import diary from '../components/user/Forum/adodiary.vue'
 import dailylife from '../components/user/Forum/dailylife.vue'
+import like from '../components/user/Forum/like.vue'
 
 
 import Homeless from '../components/homeless/Homeless.vue'
@@ -235,6 +236,7 @@ export default new Router({
         {path:'myhomls',component:myhomls},
 
         {path:'diary',component:diary},
+        {path:'like',component:like},
 
         {path:'dailylife',component:dailylife},
       ]
