@@ -1,7 +1,7 @@
 <template>
     <div class="right" >
       <div class="route">您的当前位置：<span>账号管理</span><span>/</span><span>个人资料</span></div>
-      <div class="inright" v-for="personal in personals">
+      <div class="inright">
         <h3>基本信息</h3>
         <el-row class="first">
           <el-col :span="7" :push="2"><span >登录名</span></el-col>
@@ -40,7 +40,7 @@
         return {
           userId:this.$route.params.userId,
           activeName: 'first',
-          personals:[],
+          personal:[],
         };
       },
       methods: {
@@ -52,7 +52,7 @@
         axios.get(`http://localhost:3000/user/showUser/${this.userId}`).then((result) => {
           console.log(result.data.data[0]);
           this.personal = result.data.data[0];
-          if(this.personal.sex =0){
+          if(this.personal.sex ==0){
             this.personal.sex='男'
           }else this.personal.sex='女';
           if(this.personal.userEmail ==null){
