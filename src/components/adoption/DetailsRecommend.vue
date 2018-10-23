@@ -4,7 +4,7 @@
         <el-col :span="7" v-for="(diary, index) in diarys"  :key="diarys.length" :offset="index > 0 ? 3 : 0">
           <router-link tag="div" :to="'/adoption/details/'+diary.adoId"><a>
             <el-card :body-style="{ padding: '0px' }">
-              <img src="../../assets/homeless/u=1177403016,309772193&fm=26&gp=0.jpg" class="image">
+              <img style="height: 250px" :src="douhao(diary.adoPic)" class="image">
               <div style="padding: 14px;">
                 <span>{{diary.adoTitle}}</span>
                 <div class="bottom clearfix">
@@ -27,6 +27,12 @@
           mydata: [],
           diarys: [],
         };
+      },
+      methods:{
+        douhao(str){
+          if(str!= null)
+            return str.toString().split(",")[0]
+        }
       },
       created(){
         axios.get("http://localhost:3000/adoptions").then((result) => {
