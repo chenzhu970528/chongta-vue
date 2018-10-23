@@ -7,12 +7,14 @@
         <li>追求者</li>
       </ul>
       <hr>
+
       <ul v-for="showList in showLists">
         <li class="firstli">tupian</li>
         <li>{{showList.userName}}</li>
         <li>{{showList.PetName}}</li>
         <li>{{showList.num}}</li>
       </ul>
+
     </div>
 </template>
 

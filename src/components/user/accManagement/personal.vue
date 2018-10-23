@@ -1,7 +1,7 @@
 <template>
     <div class="right" >
       <div class="route">您的当前位置：<span>账号管理</span><span>/</span><span>个人资料</span></div>
-      <div class="inright">
+      <div class="inright" v-for="personal in personals">
         <h3>基本信息</h3>
         <el-row class="first">
           <el-col :span="7" :push="2"><span >登录名</span></el-col>
@@ -44,7 +44,7 @@
         return {
           userId:this.$route.params.userId,
           activeName: 'first',
-          personal:[],
+          personals:[],
         };
       },
       methods: {

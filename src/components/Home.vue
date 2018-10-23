@@ -109,12 +109,12 @@
   .top span:first-child{
     position: relative;
     top:270px;
-    left: 50px;
+    left: 1%;
   }
   .top span:last-child{
-    position: relative;
+    position: absolute;
     top:270px;
-    right: -1000px;
+    right: 1%;
   }
   .bottom{
     min-height: 400px;
