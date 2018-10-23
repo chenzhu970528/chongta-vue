@@ -120,7 +120,8 @@
           address:'',
           birth:'2018-11-11',
           PetName:'',
-          userId:this.$store.state.userId,
+          aplyId:this.$store.state.userId,
+          // matId:this.$router.params.matId,
 
         },
         options2: [{
