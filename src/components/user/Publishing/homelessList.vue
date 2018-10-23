@@ -47,7 +47,7 @@
       data(){
         return{
           visible1: false,
-          userId:this.$route.params.userId,
+          userId:this.$store.state.userId,
           isshow:false,
           mydata: [],
           // mydata2:[],
