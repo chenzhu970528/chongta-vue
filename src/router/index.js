@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import Home from '@/components/Home'
 import Home from '../components/Home.vue'
+import axios from 'axios'
+
 
 import Adoption from '../components/adoption/Adoption.vue'
 import AdoDetails from '../components/adoption/AdoptDetails.vue'
@@ -14,7 +16,8 @@ import  mpublish from '../components/matchmaking/mpublish.vue'
 
 import User from '../components/user/User.vue'
 import UserDetails from '../components/user/UserDetails.vue'
-import forum from '../components/user/Forum/forum.vue'
+
+
 import message from '../components/user/message.vue'
 import mypublish from '../components/user/mypublish.vue'
 
@@ -29,6 +32,7 @@ import mylost from '../components/user/Publishing/mylost.vue'
 import mymatch from '../components/user/Publishing/mymatch.vue'
 import sys from '../components/user/mesCenter/sys.vue'
 import myhomls from '../components/user/Publishing/myhomls.vue'
+
 import diary from '../components/user/Forum/adodiary.vue'
 import dailylife from '../components/user/Forum/dailylife.vue'
 
@@ -56,6 +60,7 @@ import register from '../components/register.vue'
 // import Matchmaking from '../components/matchmaking/Matchmaking.vue'
 
 Vue.use(Router);
+Vue.prototype.$axios = axios
 
 
 export default new Router({
@@ -214,7 +219,6 @@ export default new Router({
       component: User,
       children:[
         {path:'personal',component:personal},
-        {path:'forum',component:forum},
         {path:'message',component:message},
         {path:'mypublish',component:mypublish},
 
@@ -229,7 +233,9 @@ export default new Router({
         {path:'mylost',component:mylost},
         {path:'sys',component:sys},
         {path:'myhomls',component:myhomls},
+
         {path:'diary',component:diary},
+
         {path:'dailylife',component:dailylife},
       ]
     },

@@ -83,7 +83,6 @@
         store.commit('increment', {
           amount: index
         })
-
       },
       see(index) {
         store.commit('addID', {
@@ -93,8 +92,6 @@
       },
     },
       mounted() {
-        console.log('gfsdfgdsgf')
-        console.log('gfsdfgdsgf')
         axios.get("http://localhost:3000/forumSee/time").then((result) => {
           this.mydata = result.data.data;
           for (let i = 0; i < 6; i++) {
@@ -125,7 +122,7 @@
           }
           this.value[3] = this.value[3].values3
         })
-        console.log(this.mydata)
+
       }
 
   }

@@ -1,7 +1,7 @@
 <template>
 <div>
   <div>
-  <div class="listbox clearfix" v-for="diary in diarys"  >
+  <div class="listbox clearfix" v-for="diary in diarys"style="margin-bottom: 10px"  >
       <div class="listimg img" style="float: left">
         <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>
         <img src="../../assets/homeless/1.jpg" alt="" style="width: 150px;height: 140px;">
@@ -45,17 +45,6 @@
       };
     },
     created() {
-      //     let _this = this;
-      //     this.$ajax.get(`http://localhost:3000/homeless/${this.id}`
-      //     ).then(function (result) {
-      //       // console.log(result.data.data.userHeadPic);
-      //       _this.mydata = result.data.data.mydata;
-      //       _this.diarys = result.data.data.diarys;
-      //       _this.homeTime = result.data.data.homeTime.substring(0, 10);
-      //     }, function (err) {
-      //       console.log(err);
-      //   })
-      // }
       axios.get("http://localhost:3000/homeless").then((result) => {
         // console.log(result.data)
         this.mydata = result.data.data;
@@ -127,7 +116,12 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-
+  .clearfix:hover{
+    position: relative;
+    left: -10px;
+    top:-10px;
+    box-shadow:2px 2px 5px 2px #a8a8a8;
+  }
 
 
 /*.left img{*/

@@ -1,6 +1,6 @@
 <template>
   <div class="right" >
-    <div class="route">您的当前位置：<span>论坛</span><span>/</span><span>小日常</span></div>
+    <div class="route">您的当前位置：<span>论坛</span><span>/</span><span>日常交流</span></div>
     <life-list></life-list>
     <div class="page">
       <change-page></change-page>
@@ -9,15 +9,33 @@
 </template>
 
 <script>
+  import  axios from 'axios'
+  import {mapGetters} from 'vuex';
   import  lifelist from './lifeList.vue'
   import changePage from '../../matchmaking/changepage.vue'
     export default {
       name: "dailylife",
-      components:{
-        'life-list':lifelist,
-        'change-page':changePage,
-       },
+      components: {
+        'life-list': lifelist,
+        'change-page': changePage,
+      },
+      data() {
+        return {
+          value: []
+        }
+      },
 
+      computed: mapGetters([
+        'UserId',
+        'UserName',
+      ]),
+      mounted() {
+        id = this.UserId.replace(/\"/g, "")
+        axios.get(`http://localhost:3000/forumSee/user/share?userId=${id}`).then((result) => {
+          this.value = result.data.data;
+
+        })
+      }
     }
 </script>
 
@@ -51,8 +69,11 @@
   }
   .page{
     width: 80%;
-    position: absolute;
+    position:relative;
     bottom: 20px;
-    left: 20%;
+    left: 18%;
+    margin-top:50px;
+    margin-bottom:-50px;
+
   }
 </style>

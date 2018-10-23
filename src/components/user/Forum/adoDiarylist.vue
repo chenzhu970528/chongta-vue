@@ -1,22 +1,16 @@
 <template>
   <div class="inner_ado">
-    <div class="tol">
+    <div class="tol" v-for="val in value">
       <el-row class="card">
         <el-col :span="7" class="petPic">
           <div class="pic"></div>
         </el-col>
         <el-col :span="15">
-          <p class="title">标题：<span>一个标题</span></p>
-          <!--自定义吧-->
-          <!--<p>发布时间：<span>2018/04/09</span></p>-->
-          <!--<p>地点：<span>北京</span></p>-->
-          <!--<p>申请人数：<span>1</span></p>-->
-          <el-row>
-            <!--<el-col :span="5">详细信息：</el-col>-->
-            <!--<el-col :span="18" >-->
-            <!--<span class="detail">{{showList.detail}}</span>-->
-            <!--</el-col>-->
-          </el-row>
+          <p class="title">标题：<span>{{val.faTitle}}</span></p>
+
+          <p>发布时间：<span>{{val.time.slice(5,16).replace('T',' ')}}</span></p>
+          <p>{{val.faText}}</p>
+
         </el-col>
         <div class="title del">
           <el-popover
@@ -41,16 +35,38 @@
   </div>
 </template>
 
+
 <script>
-    export default {
-      name: "adoDiarylist",
-      data(){
-        return{
-          visibleado: false,
-          isshow:false
-        }
+  import  axios from 'axios'
+  import {mapGetters} from 'vuex';
+  import  lifelist from './lifeList.vue'
+  import changePage from '../../matchmaking/changepage.vue'
+  export default {
+    name: "adoDiarylist",
+    components: {
+      'life-list': lifelist,
+      'change-page': changePage,
+    },
+    data() {
+      return {
+        visiblelife: false,
+        isshow:false,
+        value: [],
       }
+    },
+
+    computed: mapGetters([
+      'UserId',
+      'UserName',
+    ]),
+    mounted() {
+      let id = this.UserId.replace(/\"/g, "")
+      axios.get(`http://localhost:3000/forumSee/user/diary?userId=${id}`).then((result) => {
+        this.value = result.data.data;
+
+      })
     }
+  }
 </script>
 
 <style scoped>

@@ -1,10 +1,10 @@
 <template>
-    <div>
-      <el-row>
-        <el-col :span="7" v-for="(diary, index) in diarys"  :key="diarys.length" :offset="index > 0 ? 3 : 0">
-          <router-link tag="div" :to="'/adoption/details/'+diary.adoId"><a>
+  <div>
+    <el-row>
+      <el-col :span="7" v-for="(diary, index) in diarys"  :offset="index > 0 ? 3 : 0">
+        <router-link tag="div" :to="'/adoption/details/'+diary.adoId"><a>
           <el-card :body-style="{ padding: '0px' }">
-            <img src="../../assets/homeless/u=1177403016,309772193&fm=26&gp=0.jpg" class="image">
+            <img :src="douhao(diary.adoPic)" class="image">
             <div style="padding: 14px;">
               <span>{{diary.adoTitle}}</span>
               <div class="bottom clearfix">
@@ -12,63 +12,67 @@
               </div>
             </div>
           </el-card>
-          </a></router-link>
-        </el-col>
-      </el-row>
+        </a></router-link>
+      </el-col>
+    </el-row>
 
-      <button style="margin: 20px auto" type="button" @click="getMore" class="btn btn-default btn-lg btn-block">加载更多</button>
-    </div>
+    <button style="margin: 20px auto" type="button" @click="getMore" class="btn btn-default btn-lg btn-block">加载更多
+    </button>
+  </div>
 </template>
 
 <script>
   import axios from 'axios'
-    export default {
-        name: "AdoptionList",
-      data() {
-        return {
-          mydata: [],
-          diarys: [],
-          moren:6,
-          dalength:""
-        };
+
+  export default {
+    name: "AdoptionList",
+    data() {
+      return {
+        mydata: [],
+        diarys: [],
+        dalength:0,
+        moren:6,
+        nomas:false
+      };
+    },
+    methods: {
+      douhao(str){
+        if(str!= null)
+        return str.toString().split(",")[0]
       },
-      methods:{
-          getMore(){
-            console.log("delength"+this.dalength)
-            if(this.dalength<3){
-              this.diarys=[];
-              axios.get("http://localhost:3000/adoptions").then((result) => {
-                for (let i = 0; i < result.data.data.length ; i++) {
-                  this.diarys.push(result.data.data[i])
-                }
-                console.log('没数据了')
-              })
-            }else {
-              this.dalength-=3;
-              this.moren+=3;
-              this.diarys=[];
-              axios.get("http://localhost:3000/adoptions").then((result) => {
-                for (let i = 0; i < this.moren; i++) {
-                  this.diarys.push(result.data.data[i])
-                }
-              })
-              // console.log(this.moren)
+      getMore() {
+      if(this.nomas) alert('没有更多啦');
+        if (this.dalength < 3) {
+          this.nomas = true;
+          this.diarys = [];
+            for (let i = 0; i < this.mydata.length; i++) {
+              this.diarys.push(this.mydata[i])
             }
-          }
+        }else {
+          this.dalength -= 3;
+          this.moren += 3;
+          this.diarys = [];
+          this.handleInfo()
+        }
       },
-      mounted(){
-          let _this = this
-        axios.get("http://localhost:3000/adoptions").then((result) => {
-          // console.log(result.data)
-          this.mydata = result.data.data;
-          this.dalength=result.data.data.length-6
-          // console.log(result.data)
-          for (let i = 0; i < this.moren; i++) {
-            this.diarys.push(this.mydata[i])
-          }
+      handleInfo(){
+        for (let i = 0; i < this.moren; i++) {
+          this.diarys.push(this.mydata[i])
+        }
+      },
+    },
+    mounted() {
+      axios.get("http://localhost:3000/adoptions").then((result) => {
+        // console.log(result.data)
+        this.mydata = result.data.data;
+        this.dalength=result.data.data.length-6
+        this.handleInfo()
+      })
+        .catch((err) => {
+          console.log(err)
         })
-      }
     }
+  }
 </script>
 
 <style scoped>
@@ -76,8 +80,9 @@
     font-size: 13px;
     color: #999;
   }
-  .el-col{
-    margin-left:25px;
+
+  .el-col {
+    margin-left: 25px;
     margin-top: 25px;
   }
 
@@ -85,7 +90,6 @@
     margin-top: 13px;
     line-height: 12px;
   }
-
 
   .image {
     width: 100%;

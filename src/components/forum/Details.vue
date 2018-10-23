@@ -29,9 +29,6 @@
       <el-input v-model="input" style="width:755px;margin-top:50px;"></el-input>
       <button type="button" @click="addCom" class="rbtn btn btn-primary btn-sm active">发表</button>
       <!--评论区域-->
-
-      {{aaa}}
-      {{bbb}}
       <div class="com">
         <ul>
           <li v-for="(com,index) in value.comment">
@@ -49,8 +46,10 @@
                     <p>{{com.faText}}</p>
                   </div>
                   <div class="com11" :key="index">
-                    <a @click="aaaa(index)" class="rr">回复</a>
-                    <div v-if="aaa(index)">
+                    <!--<a @click="aaaa(index)" class="rr">回复</a>-->
+                    <!--<div v-if="aaa(index)">-->
+                      <a class="rr">回复</a>
+                    <div >
                       <el-input v-model="rep" style="width:705px;"></el-input>
                       <button @click="addReply(index)" type="button" class="rbtn btn btn-primary btn-sm active">发表
                       </button>
@@ -72,8 +71,9 @@
                     <p class="p">{{reply.frText}}</p>
                     <div class="com11" :key="keys">
                       <a @click="bb(keys)" class="rr">回复</a>
-                      <p v-if="bbb[keys]">saaaaaaaaaaaaaaaaaaa</p>
-                      <div v-if="bbb[keys]">
+                      <!--<p v-if="bbb[keys]">saaaaaaaaaaaaaaaaaaa</p>-->
+                      <!--<div v-if="bbb[keys]">-->
+                      <div>
                         <el-input v-model="rep" style="width:655px;"></el-input>
                         <button @click="addReply(index)" type="button" class="rbtn btn btn-primary btn-sm active">发表
                         </button>
@@ -190,17 +190,17 @@
           })
         }
       },
-      aaaa(index) {
-
-        this.aaa[index] =!this.aaa[index]
-        console.log( this.aaa[index])
-      },
-      bb(keys) {
-        console.log('sads ')
-        this.bbb[keys] =!this.bbb[keys]
-        console.log(this.bbb[keys])
-        console.log(this.bbb)
-      },
+      // aaaa(index) {
+      //
+      //   this.aaa[index] =!this.aaa[index]
+      //   console.log( this.aaa[index])
+      // },
+      // bb(keys) {
+      //   console.log('sads ')
+      //   this.bbb[keys] =!this.bbb[keys]
+      //   console.log(this.bbb[keys])
+      //   console.log(this.bbb)
+      // },
       cc(){
         let _this=this
         _this.vv=true
@@ -210,7 +210,7 @@
       }
     },
     mounted() {
-
+      console.log(store.state.faId)
       let get = this;
       get.count = store.state.faId
       axios.get(`http://localhost:3000/forumSee/all/?faId=${get.count}`).then((result) => {
@@ -252,6 +252,7 @@
     background: rgba(255, 255, 255, 0.9);
     width: 1240px;
     margin: auto;
+    margin-top:100px;
     position: relative;
     padding-bottom: 300px;
   }
