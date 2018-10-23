@@ -108,7 +108,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" @click="verify" class="btn btn-default">发布</button>
+          <button type="submit" @click="islogin" class="btn btn-default">发布</button>
         </div>
       </div>
     </form>
@@ -137,6 +137,15 @@
       };
     },
     methods: {
+      // 登录验证
+      islogin(){
+        if(!this.$store.state.isLogin) {
+          alert("请登录后发布")
+          return false
+          }else {
+          this.verify()
+        }
+        },
       // 验证
       verify(){
         let _this = this

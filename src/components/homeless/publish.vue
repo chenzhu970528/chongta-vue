@@ -98,7 +98,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10" >
-          <button type="submit" @click="addhomeless" class="btn btn-default" style="font-size: 25px">发布</button>
+          <button type="submit" @click="islogin" class="btn btn-default" style="font-size: 25px">发布</button>
 
         </div>
       </div>
@@ -139,6 +139,15 @@
     },
 
     methods: {
+      // 登录验证
+      islogin(){
+        if(!this.$store.state.isLogin) {
+          alert("请登录后发布")
+          return false
+        }else {
+          this.addhomeless()
+        }
+      },
       addhomeless(){
         let _this = this
         $.ajax({

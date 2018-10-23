@@ -46,7 +46,7 @@
         </span>
       </li>
     </ul>
-    <el-button type="primary" @click="centerDialogVisible = true">我想领养<i class="el-icon-success el-icon--right"></i></el-button>
+    <el-button type="primary" @click="islogin">我想领养<i class="el-icon-success el-icon--right"></i></el-button>
     <el-dialog
       title="提示"
       :visible.sync="centerDialogVisible"
@@ -79,6 +79,15 @@
           }
       },
       methods:{
+        // 登录验证
+        islogin(){
+          if(!this.$store.state.isLogin) {
+            alert("请登录后提交")
+            return false
+          }else {
+           this.centerDialogVisible = true
+          }
+        },
         wantAdo(){
           this.centerDialogVisible = false
           let _this = this
