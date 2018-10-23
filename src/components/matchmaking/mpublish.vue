@@ -140,7 +140,7 @@
               request:'',
               detail:'',
               sandword:'',
-              userId:this.$store.state.userId,
+              relId:this.$store.state.userId,
           },
           options2: [{
             label: '江苏',
