@@ -13,7 +13,7 @@
       <div class="form-group first">
         <label  class="col-sm-2 control-label col-sm-offset-2">用户名</label>
         <div class="col-sm-4">
-          <input @change="checkname" type="text" class="form-control" v-model="userName"  id="inputuser" placeholder="请输入用户名（1-9位中英文数字）">
+          <input @change="checkname" type="text" class="form-control" v-model="userName"  id="inputuser" placeholder="请输入用户名（2-10位中英文数字）">
         </div>
         <div class="col-sm-2 text-danger" v-if="nameflag">{{msgname}}</div>
       </div>
@@ -44,12 +44,13 @@
       </div>
       <div class="form-group">
         <label  class="col-sm-2 control-label col-sm-offset-2">短信验证码</label>
-        <div class="col-sm-4">
-          <div class="row">
-            <input type="text" class="col-sm-4 form-control formStyle3" placeholder="请输入验证码" v-model="vCode">
-            <button type="button" class="col-sm-4 btn btn-default formStyle3" @click="sendCode">获取短信验证码</button>
-          </div>
+        <div class="col-sm-2" style="padding-right: 0;width: 162px">
+            <input type="text" @change="checkCode" class=" form-control formStyle3" placeholder="请输入验证码" v-model="vCode">
         </div>
+        <div class="col-sm-1" style="padding:0">
+          <button type="button" class="btn btn-primary formStyle3" @click="sendCode">获取验证码</button>
+        </div>
+        <div style="margin-left: 42px" class=" col-sm-2 text-danger" v-if="codeflag">{{msgcode}}</div>
         <!--<span :vCode="vCode" class="spanW">{{tiShi3}}</span>-->
       </div>
       <!--<div class="form-group">-->
@@ -75,7 +76,7 @@
       <div class="form-group">
         <label class="col-sm-2 control-label col-sm-offset-2"></label>
         <div class="col-sm-4">
-          <input type="checkbox" v-model="checked"> 我已阅读并同意 <a href="">《宠它网注册协议》</a>
+          <input type="checkbox" v-model="checked"> 我已阅读并同意 <a style="color: #5bacfd" href="">《宠它网注册协议》</a>
         </div>
       </div>
       <div class="form-group">
@@ -108,11 +109,17 @@
           address:'',
           userEmail:'',
 
+
+
           checked:false,
           namecheck:false,
           pwdcheck:false,
           phonecheck:false,
           mailcheck:false,
+          codechecked:false,
+
+          msgcode:'',
+          codeflag:false,
           msgname:'',
           nameflag:false,
           msgPassword1:'',
@@ -139,22 +146,30 @@
             }
             self.Num = num;
             console.log(self.Num)
-            axios.get('/proxy?mobile=' + self.userPhone + '&tpl_id=109274&tpl_value=%23code%23%3D' +
-              self.Num + '&key=7de7348eb9dd99ab08bcc7e7063a53ad')
-              .then((res)=>{
-                console.log(res)
-              }).catch(err=>{console.log(err)})
+            // axios.get('/proxy?mobile=' + self.userPhone + '&tpl_id=109274&tpl_value=%23code%23%3D' +
+            //   self.Num + '&key=7de7348eb9dd99ab08bcc7e7063a53ad')
+            //   .then((res)=>{
+            //     console.log(res)
+            //   }).catch(err=>{console.log(err)})
           },
 
         checkCode:function(){
-
+          if(this.vCode==""){
+            this.msgcode="请输入短信验证码";
+          }else if(this.vCode!=this.Num){
+            this.codeflag =true;
+            this.msgcode="短信验证码不正确";
+          }else {
+            this.codeflag=false;
+            this.codechecked=true;
+          }
         },
         checkPwd:function () {
           var regPwd=/^[a-zA-Z0-9]{6,10}$/;
           if(this.userPwd1==''){
             this.msgPassword1="请输入密码";
           }else if(!regPwd.test(this.userPwd1)){
-            this.pwdflag1 =true
+            this.pwdflag1 =true;
             this.msgPassword1="密码格式不正确";
           }else this.pwdflag1=false
         },
@@ -204,7 +219,7 @@
           }
         },
         register:function(){
-          if(this.namecheck&&this.pwdcheck&&this.phonecheck&&this.mailcheck&&this.checked){
+          if(this.namecheck&&this.pwdcheck&&this.phonecheck&&this.mailcheck&&this.checked&&this.codechecked){
             // console.log('登录成功')
             let _this = this
             $.ajax({
@@ -223,7 +238,7 @@
                   alert("该用户已存在")
                 }else {
                   $.ajax({
-                    url: this.$store.state.url+"/user/login",
+                    url: _this.$store.state.url+"/user/login",
                     type: "post",
                     data:{
                       userPhone:_this.userPhone,
@@ -246,7 +261,7 @@
                     }
                   })
                   alert("注册成功")
-                  history.go(-1)
+                  history.go(-1);
                   location.reload()
                 }
               }
@@ -270,7 +285,7 @@
   top: 70px;
 }
 .bg{
-  height: 500px;
+  height: 600px;
   width: 800px;
   border-radius: 10px;
   background-color: rgba(255,255,255,0.2);
