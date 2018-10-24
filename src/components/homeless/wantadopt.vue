@@ -134,13 +134,14 @@
         zipFormData.append('reward',this.addlose.reward)
         zipFormData.append('userId',this.addlose.userId)
         let config = { headers: { 'Content-Type': 'multipart/form-data' } };
-        this.$axios.post('http://localhost:3000/homeless/addlost', zipFormData,config)
+        this.$axios.post(this.$store.state.url+'/homeless/addlost', zipFormData,config)
           .then(function (response) {
             console.log(response);
             console.log(response.data);
             console.log(response.bodyText);
             alert("发布成功！！！")
-            location.href = "http://localhost:8080/homeless";
+            history.go(-1);
+            location.reload()
           }).catch((err) => {
           console.log(err)
           alert(err)

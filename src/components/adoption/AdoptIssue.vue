@@ -188,7 +188,7 @@
         zipFormData.append('detail',this.adoForm.detail)
         zipFormData.append('adoAddress',this.adoForm.adoAddress)
         let config = { headers: { 'Content-Type': 'multipart/form-data' } };
-        this.$axios.post('http://localhost:3000/adoptions/adoAdd', zipFormData,config)
+        this.$axios.post(this.$store.state.url+'/adoptions/adoAdd', zipFormData,config)
           .then(function (response) {
             console.log(response);
             console.log(response.data);

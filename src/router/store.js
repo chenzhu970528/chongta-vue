@@ -17,6 +17,8 @@ function isLogin() {
 
 export default new Vuex.Store({
   state:{
+    // url:'http://127.0.0.1:3000',
+    url:'http://10.40.4.36:3000',
     userId: isLogin().userId,
     isLogin: isLogin().isLogin,
     userName:isLogin().userName,

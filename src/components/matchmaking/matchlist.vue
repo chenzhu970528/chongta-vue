@@ -85,7 +85,7 @@
     },
     mounted(){
       let _this=this;
-      axios.get("http://localhost:3000/matchmaking").then((result) => {
+      axios.get(this.$store.state.url+"/matchmaking").then((result) => {
         console.log(result.data.data[0]);
         _this.myActData = result.data.data[0];
         _this.pageCount=_this.myActData.length;

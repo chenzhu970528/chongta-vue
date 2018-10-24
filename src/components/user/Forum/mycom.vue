@@ -49,7 +49,7 @@
       ]),
       mounted() {
         let id = this.UserId.replace(/\"/g, "")
-        axios.get(`http://localhost:3000/forumSee/user/com?userId=${id}`).then((result) => {
+        axios.get(this.$store.state.url+`/forumSee/user/com?userId=${id}`).then((result) => {
           this.value = result.data.data;
         })
 

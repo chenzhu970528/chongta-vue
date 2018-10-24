@@ -73,7 +73,7 @@
         };
       },
       created(){
-        axios.get(`http://localhost:3000/matchmaking/matchdetail/${this.relId}`).then((result) => {
+        axios.get(this.$store.state.url+`/matchmaking/matchdetail/${this.relId}`).then((result) => {
           console.log(result.data.data[0])
           this.Mdeldata = result.data.data[0];
         })

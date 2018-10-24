@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="7" v-for="(diary, index) in diarys" :key="diarys.length"  :offset="index > 0 ? 3 : 0">
+      <el-col :span="7" v-for="(diary, index) in diarys" :offset="index > 0 ? 3 : 0">
         <router-link tag="div" :to="'/adoption/details/'+diary.adoId"><a>
           <el-card :body-style="{ padding: '0px' }">
             <img style="height: 180px" :src="douhao(diary.adoPic)" class="image">
@@ -62,7 +62,7 @@
       },
     },
     mounted() {
-      axios.get("http://localhost:3000/adoptions").then((result) => {
+      axios.get(this.$store.state.url+"/adoptions").then((result) => {
         // console.log(result.data)
         this.mydata = result.data.data;
         this.dalength=result.data.data.length-6

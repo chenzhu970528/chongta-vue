@@ -129,13 +129,14 @@
         zipFormData.append('getmes',this.hp.getmes)
         zipFormData.append('userId',this.hp.userId)
         let config = { headers: { 'Content-Type': 'multipart/form-data' } };
-        this.$axios.post('http://localhost:3000/homeless/Add', zipFormData,config)
+        this.$axios.post(this.$store.state.url+'/homeless/Add', zipFormData,config)
           .then(function (response) {
             console.log(response);
             console.log(response.data);
             console.log(response.bodyText);
             alert("发布成功！！！")
-            location.href = "http://localhost:8080/homeless"
+            history.go(-1);
+            location.reload()
           }).catch((err) => {
           console.log(err)
           alert(err)

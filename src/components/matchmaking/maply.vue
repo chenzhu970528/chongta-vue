@@ -144,13 +144,14 @@
       aply(){
         let _this = this
         $.ajax({
-          url: "http://localhost:3000/matchmaking/addaply",
+          url: this.$store.state.url+"/matchmaking/addaply",
           type: "post",
           data: _this.aplymatch,
           success: function (result) {
             console.log(result.data)
             alert("发布成功！！！")
-            location.href = "http://localhost:8080/matchmaking";
+            history.go(-1)
+            location.reload()
           }
         })
       },
