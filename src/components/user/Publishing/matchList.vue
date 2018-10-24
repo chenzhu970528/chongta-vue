@@ -57,6 +57,7 @@
         axios.get(`http://localhost:3000/matchmaking/matchdetail/${this.relId}`).then((result) => {
           this.matchlist = result.data.data;
           console.log(result.data.data.length);
+          console.log(result.data.data)
           for (let i = 0; i < this.matchlist.length; i++) {
             this.showLists.push(this.matchlist[i])
           }

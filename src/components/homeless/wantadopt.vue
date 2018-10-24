@@ -9,9 +9,9 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputkindtitle" class="col-sm-3 control-label">丢失信息：</label>
+        <label for="title" class="col-sm-3 control-label">丢失信息：</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control"  v-model="addlose.lpmes" id="inputkindtitle" placeholder="简述">
+          <input type="text" class="form-control"  v-model="addlose.lpmes" id="title" placeholder="简述">
         </div>
       </div>
       <div class="form-group">
@@ -56,22 +56,6 @@
                  multiple><br/>
         </div>
       </div>
-      <!--<div class="form-group">-->
-        <!--<label for="inputdetailpic" class="col-sm-3 control-label">宠物图片：</label>-->
-        <!--<div class="col-sm-6">-->
-          <!--<el-upload-->
-            <!--id="inputdetailpic"-->
-            <!--class="upload-demo"-->
-            <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-            <!--:on-preview="handlePreview"-->
-            <!--:on-remove="handleRemove"-->
-            <!--:file-list="fileList2"-->
-            <!--list-type="picture">-->
-            <!--&lt;!&ndash;<el-button size="small" type="primary">点击上传</el-button>&ndash;&gt;-->
-            <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
-          <!--</el-upload>-->
-        <!--</div>-->
-      <!--</div>-->
       <div class="form-group">
         <label for="inputman" class="col-sm-3 control-label">联系人:</label>
         <div class="col-sm-6">
@@ -85,9 +69,9 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputdetails" class="col-sm-3 control-label">详情描述：</label>
+        <label for="inputdetails1" class="col-sm-3 control-label">详情描述：</label>
         <div class="col-sm-6">
-          <textarea id="inputdetails"  v-model="addlose.detail" class="form-control" rows="5"></textarea>
+          <textarea id="inputdetails1"  v-model="addlose.detail" class="form-control" rows="5"></textarea>
         </div>
       </div>
       <div class="form-group">
@@ -145,7 +129,7 @@
         zipFormData.append('lostphone',this.addlose.lostphone)
         zipFormData.append('lpTime',this.addlose.lpTime)
         zipFormData.append('lpmes',this.addlose.lpmes)
-        zipFormData.append('detali',this.addlose.detail)
+        zipFormData.append('detail',this.addlose.detail)
         zipFormData.append('address',this.addlose.address)
         zipFormData.append('reward',this.addlose.reward)
         zipFormData.append('userId',this.addlose.userId)
