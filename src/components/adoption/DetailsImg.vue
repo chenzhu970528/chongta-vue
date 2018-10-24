@@ -4,7 +4,7 @@
 
       <el-carousel height="300px">
         <el-carousel-item v-for="(img,index) in imgList" :key="index">
-          <img :src="img.url">
+          <img :src="img">
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -18,10 +18,10 @@
           return{
             adoId:this.$route.params.adoId,
             imgList:[
-              {url:require("../../assets/adoption/dog1.jpg")} ,
-              {url:require("../../assets/adoption/dog2.jpg")} ,
-              {url:require("../../assets/adoption/dog3.jpg")} ,
-              {url:require("../../assets/adoption/dog4.jpg")} ,
+              // {url:require("../../assets/adoption/dog1.jpg")} ,
+              // {url:require("../../assets/adoption/dog2.jpg")} ,
+              // {url:require("../../assets/adoption/dog3.jpg")} ,
+              // {url:require("../../assets/adoption/dog4.jpg")} ,
             ],
             myImg:[],
           }
@@ -33,8 +33,11 @@
           ajax(){
             let _this=this
             axios.get(`http://localhost:3000/adoptions/details/${this.adoId}`).then((result) => {
-              _this.myImg = result.data.data.jsondata.adoPic.split(",")
-              console.log(_this.myImg[0])
+              _this.myImg = result.data.data.jsondata.adoPic.split(",");
+              for(let i=0;i<_this.myImg.length;i++){
+                _this.imgList.push(_this.myImg[i])
+              }
+              // console.log(_this.myImg[0])
             })
           },
       }

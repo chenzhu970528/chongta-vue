@@ -26,7 +26,6 @@
           <el-menu-item index="2-4"><router-link tag="li" active-class="active"  role="presentation" :to="'/user/'+UserId+'/mymatch'">相亲角</router-link></el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-
       <el-submenu index="3">
         <span slot="title">论坛</span>
         <el-menu-item-group>

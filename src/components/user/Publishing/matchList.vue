@@ -9,7 +9,6 @@
           <p class="title">标题：<span>{{showList.title}}</span></p>
           <p>发布时间：<span>{{showList.relTime}}</span></p>
           <p>地点：<span>{{showList.address}}</span></p>
-          <p>申请人数：<span>{{showList.num}}</span></p>
           <el-row>
             <el-col :span="5">详细信息：</el-col>
             <el-col :span="18" >
@@ -47,7 +46,7 @@
       data(){
         return{
           visiblematch: false,
-          relId:this.$route.params.userId,
+          relId:this.$store.state.userId,
           matchlist:[],
           showLists:[],
           isshow:false
@@ -58,6 +57,7 @@
         axios.get(`http://localhost:3000/matchmaking/matchdetail/${this.relId}`).then((result) => {
           this.matchlist = result.data.data;
           console.log(result.data.data.length);
+          console.log(result.data.data)
           for (let i = 0; i < this.matchlist.length; i++) {
             this.showLists.push(this.matchlist[i])
           }

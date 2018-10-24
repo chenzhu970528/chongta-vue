@@ -1,8 +1,16 @@
 <template>
   <div class="home">
     <div class="top">
+      <!--<div class="block">-->
+        <!--&lt;!&ndash;<span class="demonstration">Click 指示器触发</span>&ndash;&gt;-->
+        <!--<el-carousel trigger="click" height="640px">-->
+          <!--<el-carousel-item v-for="(mao,index) in imgList" :key="index">-->
+            <!--<img :src="mao.url">-->
+          <!--</el-carousel-item>-->
+        <!--</el-carousel>-->
+      <!--</div>-->
         <span>treat your </span><span>pet like royalty</span>
-      </div>
+    </div>
     <div class="bottom">
       <p>功能模块</p>
       <div class="bottom_list">
@@ -78,7 +86,17 @@
       components:{
           'show-num':showNum,
         'show-num1':showNum1
-      }
+      },
+      // data(){
+      //   return{
+      //     imgList:[
+      //       {url:require("../assets/HomePage/bg1.jpg")} ,
+      //       {url:require("../assets/HomePage/bg2.jpg")} ,
+      //       {url:require("../assets/HomePage/bg3.jpg")} ,
+      //       {url:require("../assets/HomePage/bg5.jpg")} ,
+      //     ]
+      //   }
+      // }
     }
 </script>
 
@@ -89,12 +107,12 @@
     position: relative;
     /*box-shadow:-2px 2px 10px 2px #bcbcbc;*/
     /*position: absolute;*/
-    margin-top: 20px;
+    margin-top: 70px;
   }
   .top{
     height: 640px;
-    background:0 0 url("../assets/HomePage/bg2.jpg") ;
-    background-size: 100% 100%;
+    background: url("../assets/HomePage/bg2.jpg") center;
+    background-size: 100% auto;
   }
   .top img{
     width: 100%;
@@ -196,4 +214,12 @@
     font-size: 30px;
     line-height: 50px;
   }
+  .el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+  }
+
 </style>

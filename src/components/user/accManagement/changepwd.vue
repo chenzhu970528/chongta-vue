@@ -60,7 +60,8 @@
           inputnew2:'',
           msgPassword:'',
           flag1:false,
-          className:'btn2'
+          className:'btn2',
+          userId:this.$store.state.userId
         }
       },
       methods:{

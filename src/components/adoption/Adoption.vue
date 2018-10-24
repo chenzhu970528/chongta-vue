@@ -1,6 +1,6 @@
 <template>
     <div style="margin-top: 70px">
-      <sildes-show></sildes-show>
+      <!--<sildes-show></sildes-show>-->
       <div class="cont container">
         <!--小喵-->
         <div class="main">
@@ -40,6 +40,7 @@
           </div>
         </div>
         <!--小喵-->
+        <div class="route">您的当前位置：<span>领养中心</span></div>
         <div class="title">
           <img src="../../assets/adoption/take.png" width="50" alt="">
           <span class="text-primary">萌宠分类</span>
@@ -100,11 +101,26 @@
   a{
     text-decoration: none;
   }
+  .route{
+    position: relative;
+    left: 1%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #747474;
+  }
+  .route span{
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  .route span:last-child{
+    color: #4e76ff;
+  }
   .cont{
     width: 1179px;
     position: relative;
     background:rgba(255,255,255,0.9);
-    margin-top:100px;
+    margin-top:150px;
     margin-bottom: 50px;
     box-shadow:-2px 2px 10px 2px #bcbcbc;
     min-height: 700px;

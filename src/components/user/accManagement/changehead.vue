@@ -15,6 +15,11 @@
 <script>
   export default {
     name: "changehead",
+    data(){
+      return{
+        userId:this.$store.state.userId
+      }
+    },
     mounted(){
       (function($){
         $('.heard').mouseover(function(){

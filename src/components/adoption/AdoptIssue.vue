@@ -85,16 +85,6 @@
                  accept="image/gif,image/jpeg,image/jpg,image/png"
                  ref="avatarInput"
                  multiple><br/>
-          <!--<el-upload-->
-            <!--class="upload-demo"-->
-            <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-            <!--:on-preview="handlePreview"-->
-            <!--:on-remove="handleRemove"-->
-            <!--:file-list="fileList2"-->
-            <!--list-type="picture">-->
-            <!--&lt;!&ndash;<el-button size="small" type="primary">点击上传</el-button>&ndash;&gt;-->
-            <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
-          <!--</el-upload>-->
         </div>
       </div>
       <div class="form-group">
@@ -108,7 +98,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" @click="verify" class="btn btn-default">发布</button>
+          <button type="submit" @click="islogin" class="btn btn-default">发布</button>
         </div>
       </div>
     </form>
@@ -137,6 +127,15 @@
       };
     },
     methods: {
+      // 登录验证
+      islogin(){
+        if(!this.$store.state.isLogin) {
+          alert("请登录后发布")
+          return false
+          }else {
+          this.verify()
+        }
+        },
       // 验证
       verify(){
         let _this = this
@@ -178,10 +177,11 @@
             console.log(response);
             console.log(response.data);
             console.log(response.bodyText);
-            alert("success")
+            alert("发布成功！！！")
+            location.href = "http://localhost:8080/adoption"
           }).catch((err) => {
           console.log(err)
-          alert("err")
+          alert(err)
         });
       },
       //选中文件后，将文件保存到实例的变量中
@@ -190,26 +190,6 @@
       },
       // 发布
 
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
-      handleItemChange(val) {
-        console.log('active item:', val);
-        setTimeout(_ => {
-          if (val.indexOf('江苏') > -1 && !this.options2[0].cities.length) {
-            this.options2[0].cities = [{
-              label: '南京'
-            }];
-          } else if (val.indexOf('浙江') > -1 && !this.options2[1].cities.length) {
-            this.options2[1].cities = [{
-              label: '杭州'
-            }];
-          }
-        }, 300);
-      }
     }
   };
 </script>

@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="7" v-for="(diary, index) in diarys"  :offset="index > 0 ? 3 : 0">
+      <el-col :span="7" v-for="(diary, index) in diarys" :key="diarys.length"  :offset="index > 0 ? 3 : 0">
         <router-link tag="div" :to="'/adoption/details/'+diary.adoId"><a>
           <el-card :body-style="{ padding: '0px' }">
-            <img :src="douhao(diary.adoPic)" class="image">
+            <img style="height: 180px" :src="douhao(diary.adoPic)" class="image">
             <div style="padding: 14px;">
               <span>{{diary.adoTitle}}</span>
               <div class="bottom clearfix">

@@ -19,7 +19,7 @@
           </div>
         </div>
       <div class="form-group">
-        <label for="inputdetail" class="col-sm-3 control-label">拾到时间：</label>
+        <label  class="col-sm-3 control-label">拾到时间：</label>
         <div class="col-sm-6">
           <el-date-picker
             v-model="hp.homeTime"
@@ -44,29 +44,13 @@
         </div>
       </div>
       <div class="form-group">
-        <label  class="col-sm-3 control-label">您所在地区：</label>
+        <label  class="col-sm-3 control-label">上传图片：</label>
         <div class="col-sm-6">
-          <el-cascader
-            :options="options2"
-            @active-item-change="handleItemChange"
-            :props="props"
-          ></el-cascader>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputdetail" class="col-sm-3 control-label">宠物图片：</label>
-        <div class="col-sm-6">
-          <el-upload
-            id="inputdetail"
-            class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :file-list="fileList2"
-            list-type="picture">
-            <!--<el-button size="small" type="primary">点击上传</el-button>-->
-            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-          </el-upload>
+          <input type="file" name="avatar"
+                 @change="changeImage($event)"
+                 accept="image/gif,image/jpeg,image/jpg,image/png"
+                 ref="avatarInput"
+                 multiple><br/>
         </div>
       </div>
       <div class="form-group">
@@ -98,8 +82,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10" >
-          <button type="submit" @click="addhomeless" class="btn btn-default" style="font-size: 25px">发布</button>
-
+          <button type="submit" @click="islogin" class="btn btn-default" style="font-size: 25px">发布</button>
         </div>
       </div>
     </form>
@@ -123,55 +106,67 @@
         getmes:'',
         userId:this.$store.state.userId,
       },
-        options2: [{
-          label: '江苏',
-          cities: []
-        }, {
-          label: '浙江',
-          cities: []
-        }],
-        props: {
-          value: 'label',
-          children: 'cities'
-        },
-        fileList2: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
-      };
+        upath:''
+      }
     },
 
     methods: {
-      addhomeless(){
-        let _this = this
-        $.ajax({
-          url: "http://localhost:3000/homeless/Add",
-          type: "post",
-          data: _this.hp,
-          success: function (result) {
-            console.log(result.data)
-            alert("注册成功")
-            location.href = "http://localhost:8080/homeless";
-          }
-        })
+      addhomeless() {
+        console.log(this.upath);
+        var zipFormData = new FormData();
+        //依次添加多个文件
+        for(var i = 0 ; i< this.upath.length ; i++){
+          zipFormData.append('filename', this.upath[i]);
+        }
+        //添加其他的表单元素
+        zipFormData.append('phone',this.hp.phone)
+        zipFormData.append('detail',this.hp.detail)
+        zipFormData.append('address',this.hp.address)
+        zipFormData.append('sex',this.hp.sex)
+        zipFormData.append('homeTime',this.hp.homeTime)
+        zipFormData.append('type',this.hp.type)
+        zipFormData.append('people',this.hp.people)
+        zipFormData.append('getmes',this.hp.getmes)
+        zipFormData.append('userId',this.hp.userId)
+        let config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        this.$axios.post('http://localhost:3000/homeless/Add', zipFormData,config)
+          .then(function (response) {
+            console.log(response);
+            console.log(response.data);
+            console.log(response.bodyText);
+            alert("发布成功！！！")
+            location.href = "http://localhost:8080/homeless"
+          }).catch((err) => {
+          console.log(err)
+          alert(err)
+        });
       },
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
+      //选中文件后，将文件保存到实例的变量中
+      changeImage(e) {
+        this.upath = e.target.files;
       },
-      handlePreview(file) {
-        console.log(file);
+      // 登录验证
+      islogin(){
+        if(!this.$store.state.isLogin) {
+          alert("请登录后发布")
+          return false
+        }else {
+          this.addhomeless()
+        }
       },
-      handleItemChange(val) {
-        console.log('active item:', val);
-        setTimeout(_ => {
-          if (val.indexOf('江苏') > -1 && !this.options2[0].cities.length) {
-            this.options2[0].cities = [{
-              label: '南京'
-            }];
-          } else if (val.indexOf('浙江') > -1 && !this.options2[1].cities.length) {
-            this.options2[1].cities = [{
-              label: '杭州'
-            }];
-          }
-        }, 300);
-      }
+      // addhomeless(){
+      //   let _this = this
+      //   $.ajax({
+      //     url: "http://localhost:3000/homeless/Add",
+      //     type: "post",
+      //     data: _this.hp,
+      //     success: function (result) {
+      //       console.log(result.data)
+      //       alert("发布成功！！！")
+      //       location.href = "http://localhost:8080/homeless";
+      //     }
+      //   })
+      // }
     }
   };
 </script>
