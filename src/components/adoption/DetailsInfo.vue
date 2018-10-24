@@ -14,7 +14,7 @@
         <span class="glyphicon glyphicon-map-marker" aria-hidden="true"> 地址：</span> {{jsondata1.adoAddress}}
       </li>
       <li class="list-group-item list-group-item-info">
-        <span class="glyphicon glyphicon-user" aria-hidden="true"> 联系人：</span> {{jsondata1.realName}}
+        <span class="glyphicon glyphicon-user" aria-hidden="true"> 联系人：</span> {{jsondata1.userName}}
       </li>
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-earphone" aria-hidden="true"> 联系电话：</span> {{jsondata1.userPhone}}

@@ -4,7 +4,7 @@
   <ul class="list-group" >
     <li class="list-group-item list-group-item-info" v-for="diary in diarys" style="margin-bottom: 10px" >
       <div><span>标题：{{diary.lpmes}}</span></div>
-      <div><span>地点：{{diary.detail}}</span></div>
+      <div><span>地点：{{diary.address}}</span></div>
       <div><span>奖赏：{{diary.reward}}</span></div>
     </li>
   </ul>

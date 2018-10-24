@@ -158,6 +158,7 @@ export default new Router({
     //   name:'detailsmes',
     //   component: detailsmes,
     // },
+
     // 论坛
     {path: '/user/personal',
       name: 'personal',
@@ -212,11 +213,11 @@ export default new Router({
     },
     // 个人中心
     {
-      path: '/user/:userId',
+      path: '/user',
       name: 'User',
       component: User,
       children:[
-        {path:'personal',component:personal},
+        {path:'',component:personal},
         {path:'message',component:message},
         {path:'mypublish',component:mypublish},
 
