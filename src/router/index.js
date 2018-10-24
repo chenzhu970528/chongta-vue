@@ -12,7 +12,6 @@ import AdoIssue from '../components/adoption/AdoptIssue.vue'
 import matchmain from '../components/matchmaking/matchmain'
 import matchDel from '../components/matchmaking/matchDel.vue'
 import  mpublish from '../components/matchmaking/mpublish.vue'
-// import Matchmaking from '../components/matchmaking/Matchmaking.vue'
 
 import User from '../components/user/User.vue'
 import UserDetails from '../components/user/UserDetails.vue'
@@ -27,7 +26,7 @@ import changepwd from '../components/user/accManagement/changepwd.vue'
 import comme from '../components/user/mesCenter/comme.vue'
 import myado from '../components/user/Publishing/myado.vue'
 import myaply from '../components/user/mesCenter/myaply.vue'
-import mycom from '../components/user/mesCenter/mycom.vue'
+import mycom from '../components/user/Forum/mycom.vue'
 import mylost from '../components/user/Publishing/mylost.vue'
 import mymatch from '../components/user/Publishing/mymatch.vue'
 import myhomls from '../components/user/Publishing/myhomls.vue'
@@ -35,6 +34,7 @@ import myhomls from '../components/user/Publishing/myhomls.vue'
 import diary from '../components/user/Forum/adodiary.vue'
 import dailylife from '../components/user/Forum/dailylife.vue'
 import like from '../components/user/Forum/like.vue'
+import com from '../components/user/Forum/mycom.vue'
 
 
 import Homeless from '../components/homeless/Homeless.vue'
@@ -57,10 +57,10 @@ import backstage from '../components/backstage'
 
 
 import register from '../components/register.vue'
-// import Matchmaking from '../components/matchmaking/Matchmaking.vue'
+
 
 Vue.use(Router);
-Vue.prototype.$axios = axios
+Vue.prototype.$axios = axios;
 
 
 export default new Router({
@@ -118,7 +118,6 @@ export default new Router({
       name:'mpublish',
       component:mpublish
     },
-
     //流浪精灵模块
     {
       path: '/adoption/details/:adoId',
@@ -236,6 +235,7 @@ export default new Router({
 
         {path:'diary',component:diary},
         {path:'like',component:like},
+        {path:'com',component:com},
 
         {path:'dailylife',component:dailylife},
       ]

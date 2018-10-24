@@ -130,6 +130,7 @@
   .img {
     width: 380px;
     height: 285px;
+    border-radius: 5px;
   }
 
   .p {

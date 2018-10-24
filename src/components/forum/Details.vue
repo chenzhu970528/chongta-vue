@@ -12,10 +12,10 @@
 
           <span>{{value.art[0].time.slice(0,16).replace('T',' ')}}</span>
           <span class="r">
-            <span class="s glyphicon" :class='aa' @click="a">{{value.like[0].like_sum}}</span>
+            <span class="glyphicon glyphicon-trash" @click="delart"></span>
+            <span class="s glyphicon" :class='aa' @click="a()">{{value.like[0].like_sum}}</span>
             <span>&nbsp{{value.sum[0][0].sum_count-1}}回复</span>
           </span>
-          <!--<span class="glyphicon glyphicon-edit"></span>-->
         </div>
         <!--帖子的内容-->
         <div class="img">
@@ -26,16 +26,14 @@
 
         </div>
       </div>
-
-
-
-      <div  class="test_box cominp0" contenteditable="true">
-        <br />
+      <div id="d1" class="test_box cominp0"
+           contenteditable="true"
+           v-html="myHtmlcode"
+           @input="onDivInput($event)">
+        <br/>
       </div>
-      <input type="text" v-model="comm">
       <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
 
-      <p>{{comm}}</p>
       <!--评论区域-->
       <div class="com">
         <ul>
@@ -45,7 +43,7 @@
                 <img :src='imgs[0]' alt="" class="img1">
                 <div class="headRight">
                   <p class="name1">{{com.userName}}</p>
-                  <p>{{com.time.slice(5,16).replace('T',' ')}}</p>
+                  <p>{{com.time.slice(0,16).replace('T',' ')}}</p>
                 </div>
               </div>
               <div class="val1">
@@ -54,60 +52,54 @@
                     <p>{{com.faText}}</p>
                   </div>
                   <div class="com11" :key="index">
-                    <!--<a @click="aaaa(index)" class="rr">回复</a>-->
-                    <a @click="aaaa" class="rr">回复</a>
-                    <!--<div v-if="aaa(index)">-->
-                    <div v-if="aaa" class="h">
-                      <!--<a class="rr">回复</a>-->
-                    <div >
-                      <div v-model="rep" class="test_box cominp1" contenteditable="true">
-                        <br />
-                      </div>
-                      <button @click="addReply(index)" type="button" class="rbtn btn btn-primary btn-sm active">发表
-                      </button>
-                    </div>
-
-                  </div>
-                </div>
-                <!--回复-->
-
-                <div class="com1 " v-for="(reply,keys) in  value.comment[index].replys">
-                  <div class="head">
-                    <img :src='imgs[1]' alt="" class="img1">
-                    <div class="headRight">
-                      <p><span class="name1">{{reply.frName}}</span> 回复<span class="name1">{{reply.fcName}}</span></p>
-                      <p>{{reply.time.slice(5,16).replace('T',' ')}}</p>
-                    </div>
-                  </div>
-                  <div class="val1 but">
-                    <p class="p">{{reply.frText}}</p>
-                    <div class="com11" :key="keys">
-                      <!--<a @click="bb(keys)" class="rr">回复</a>-->
-                      <a @click="bb()" class="rr">回复</a>
-                      <!--<p v-if="bbb[keys]">saaaaaaaaaaaaaaaaaaa</p>-->
-                      <!--<div v-if="bbb[keys]">-->
-                      <div v-if="bbb" class="h">
-
-                        <div v-model="rep" class="test_box cominp2" contenteditable="true">
-                          <br />
+                    <span @click.prevent="aaaa(index)" class="rr">回复</span>
+                    <div v-if="aaa[index]" class="h">
+                      <div>
+                        <div id="ddd" class="test_box cominp1" contenteditable="true"
+                             v-html="myHtmlcode1"
+                             @input="onDivInput1($event)">
                         </div>
                         <button @click="addReply(index)" type="button" class="rbtn btn btn-primary btn-sm active">发表
                         </button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--回复-->
+
+                  <div class="com1 " v-for="(reply,keys) in  value.comment[index].replys">
+                    <div class="head">
+                      <img :src='imgs[1]' alt="" class="img1">
+                      <div class="headRight">
+                        <p><span class="name1">{{reply.frName}}</span> 回复<span class="name1">{{reply.fcName}}</span></p>
+                        <p>{{reply.time.slice(0,16).replace('T',' ')}}</p>
+                      </div>
+                    </div>
+                    <div class="val1 but">
+                      <p class="p">{{reply.frText}}</p>
+                      <div class="com11" :key="keys">
+
+                        <a @click="bb(index,keys)" class="rr">回复</a>
+                        <div v-if="bbb[keys]" class="h">
+                          <div id="dd1" class="test_box cominp2" contenteditable="true"
+                               v-html="myHtmlcode1"
+                               @input="onDivInput1($event)">
+                          </div>
+                          <button @click="addReply(index)" type="button" class="rbtn btn btn-primary btn-sm active">发表
+                          </button>
 
 
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
-
-            </div>
-            </div>
-
-      </li>
+          </li>
         </ul>
         <br>
-        <button type="button" @click="cc" class="btn btn-primary btn-lg btn-block">加载更多</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block">加载更多</button>
 
       </div>
 
@@ -116,6 +108,7 @@
       <ranking></ranking>
     </div>
     <p v-if="vv" class="cc">发表成功</p>
+    <p v-if="v" class="cc">最少两个字哦</p>
   </div>
 </template>
 
@@ -143,126 +136,195 @@
         }],
         value: [],
         imgs: [require("../../assets/mao1.jpg"), require("../../assets/images/a.jpg")],
-        aa: 'glyphicon-heart-empty',
+        aa: 'glyphicon-heart-empty',//空心
         as: true,
         comm: '',
         rep: '',
         count: 0,
         aaa: [],
         bbb: [],
-        vv:false,
+        vv: false,
+        v: false,
+        myHtmlCode: '',
+        myHtmlCode1: '',
+        x: 0,//设置唯一评论框
+        y: 0
       }
     },
 
     methods: {
+      onDivInput: function (e) {
+        this.myHtmlCode = e.target.innerText;
 
+
+      },
+      onDivInput1: function (e) {
+        this.myHtmlCode1 = e.target.innerText;
+
+
+      },
+      //点赞
       a() {
+        let e = {
+          faId: this.value.art[0].faId,
+          userId: this.UserId.replace(/\"/g, ""),
+        }
         this.as = !this.as;
         if (this.as) {
           this.aa = 'glyphicon-heart-empty';
           this.value.like[0].like_sum--
+          $.ajax({
+            url: "http://localhost:3000/forumDel/like",
+            type: "post",
+            data: e,
+            success: function (result) {
+              // console.log(result.data)
+            }
+
+          })
         } else {
           this.aa = 'glyphicon-heart';
           this.value.like[0].like_sum++
+          $.ajax({
+            url: "http://localhost:3000/forumAdd/like",
+            type: "post",
+            data: e,
+            success: function (result) {
+              // console.log(result.data)
+            }
+
+          })
         }
       },
+      //添加评论
       addCom() {
-        if (this.input != '') {
-          console.log(this.input.length)
-          console.log(this.input)
+        // console.log(this.aaa)
+        document.getElementById('d1').innerText = ' '
+        if (this.myHtmlCode.length >= 2) {
           let dd = {
             faId: this.value.art[0].faId,
-            faText: this.input,
+            faText: this.myHtmlCode,
             userId: this.UserId.replace(/\"/g, ""),
             userName: this.UserName.replace(/\"/g, "")
           }
-          this.input = '';
-          let _this=this
+          let _this = this
           $.ajax({
             url: "http://localhost:3000/forumAdd/comment",
             type: "post",
             data: dd,
             success: function (result) {
-
-              console.log(result.data)
+              // console.log(result.data)
               _this.cc()
             }
 
           })
+        } else {
+          this.c()
         }
+        this.$forceUpdate()
       },
+      //添加回复
       addReply(index) {
-
-        if (this.rep != '') {
+        document.getElementById('dd1').innerText = ' '
+        document.getElementById('ddd').innerText = ' '
+        if (this.myHtmlCode1.length >= 2) {
           let rr = {
             fcId: this.value.comment[index].fcId,
             fcName: this.value.comment[index].userName,
             frman: this.UserId.replace(/\"/g, ""),
             frName: this.UserName.replace(/\"/g, ""),
-            frText: this.rep,
+            frText: this.myHtmlCode1,
           }
-          this.rep = '';
-          let _this=this
+          this.myHtmlCode1 = ' ';
+          let _this = this
           $.ajax({
             url: "http://localhost:3000/forumAdd/reply",
             type: "post",
             data: rr,
             success: function (result) {
-              console.log(result.data)
+              // console.log(result.data)
               _this.cc()
             }
           })
         }
+        else {
+          this.c()
+        }
+        this.$forceUpdate()
       },
-      aaaa() {
-        this.aaa =!this.aaa
+
+      aaaa(index) {
+        this.aaa[this.x] = false
+        this.bbb[this.y] = false
+        this.aaa[index] = !this.aaa[index]
+        this.x = index
+        this.$forceUpdate()
       },
-      bb() {
-        this.bbb =!this.bbb
+      bb(keys, index) {
+        this.aaa[this.x] = false
+        this.bbb[this.y] = false
+        this.bbb[index] = !this.bbb[index]
+        this.y = index
+        this.$forceUpdate()
       },
-      // aaaa(index) {
-      //
-      //   this.aaa[index] =!this.aaa[index]
-      //   console.log( this.aaa[index])
-      // },
-      // bb(keys) {
-      //   console.log('sads ')
-      //   this.bbb[keys] =!this.bbb[keys]
-      //   console.log(this.bbb[keys])
-      //   console.log(this.bbb)
-      // },
-      cc(){
-        let _this=this
-        _this.vv=true
+      delart(){
+
+
+      },
+      cc() {
+        let _this = this
+        _this.vv = true
         setTimeout(function () {
-          _this.vv=false
-        },3000)
+          _this.vv = false
+          _this.comf = 0
+        }, 3000)
+      },
+      c() {
+        let _this = this
+        _this.v = true
+        setTimeout(function () {
+          _this.v = false
+        }, 3000)
       }
     },
     mounted() {
-      console.log(store.state.faId)
+      // console.log(store.state.faId)
       let get = this;
       get.count = store.state.faId
       axios.get(`http://localhost:3000/forumSee/all/?faId=${get.count}`).then((result) => {
         get.value = result.data.data;
 
+        let faId = this.value.art[0].faId
+        let userId = this.UserId.replace(/\"/g, "")
+
+        axios.get(`http://localhost:3000/forumSee/selike?faId=${faId}&&userId=${userId}`).then((result) => {
+          if (result.data.data == 1) {
+            this.aa = 'glyphicon-heart';
+            this.as=!this.as
+          }
+
+
+        })
+
+
         if (get.value.comment) {
           for (let i = 0; i < get.value.comment.length; i++) {
             get.value.comment[i].replys = []
-            // get.aaa.push(false)
+            get.aaa.push(false)
 
             if (get.value.reply) {
 
               for (let j = 0; j < get.value.reply.length; j++) {
 
                 if (get.value.comment[i].fcId == get.value.reply[j].fcId) {
-                  // get.bbb.push(false)
+                  get.bbb.push(false)
                   get.value.comment[i].replys.push(get.value.reply[j])
                 }
               }
             }
           }
         }
+
       })
 
 
@@ -272,33 +334,19 @@
 
 <style scoped>
 
-  /*.edit-div {*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*overflow: auto;*/
-    /*word-break: break-all;*/
-    /*outline: none;*/
-    /*user-select: text;*/
-    /*white-space: pre-wrap;*/
-    /*text-align: left;*/
-  /*&[contenteditable=true]{*/
-     /*user-modify: read-write-plaintext-only;*/
-  /*&:empty:before {*/
-     /*content: attr(placeholder);*/
-     /*display: block;*/
-     /*color: #ccc;*/
-   /*}*/
-  /*}*/
-  /*}*/
+  input {
+    height: 60px;
+  }
+
   .test_box {
     width: 600px;
     min-height: 10px;
     /*设置最小高度*/
     max-height: 1000px;
     /*设置最大高度超过300px时出现滚动条*/
-    _height:10px;
-display: inline-block;
-    padding:5px 15px;
+    _height: 10px;
+    display: inline-block;
+    padding: 5px 15px;
     outline: 0;
     border: 1px solid #dbdee5;
     border-radius: 3px;
@@ -308,18 +356,19 @@ display: inline-block;
     overflow-x: hidden;
     overflow-y: auto;
   }
-  .cc{
+
+  .cc {
     width: 180px;
     height: 60px;
     line-height: 60px;
     text-align: center;
-    background: rgba(60,60,60,0.6);
+    background: rgba(60, 60, 60, 0.6);
     border-radius: 3px;
     position: fixed;
-    top:50%;
-    left:30%;
+    top: 50%;
+    left: 30%;
     color: #fefefe;
-    font-size:18px;
+    font-size: 18px;
   }
 
   #content {
@@ -327,7 +376,7 @@ display: inline-block;
     background: rgba(255, 255, 255, 0.9);
     width: 1240px;
     margin: auto;
-    margin-top:100px;
+    margin-top: 100px;
     position: relative;
     padding-bottom: 300px;
   }
@@ -390,7 +439,7 @@ display: inline-block;
   }
 
   .val {
-    border-bottom: 1px dotted #ddd;
+    /*border-bottom: 1px dotted #ddd;*/
     padding-bottom: 60px;
   }
 
@@ -405,13 +454,14 @@ display: inline-block;
     width: 360px;
   }
 
-  .rbtn1,.rbtn {
+  .rbtn1, .rbtn {
     float: right;
     margin-top: 3px;
     margin-right: 3px;
   }
-  .rbtn1{
-    margin-top:10px;
+
+  .rbtn1 {
+    margin-top: 10px;
     width: 50px;
     height: 33px;
   }
@@ -457,6 +507,7 @@ display: inline-block;
   .com1 {
     margin-bottom: 0px;
     margin-top: 20px;
+    border-bottom: 1px dotted #ccc;
   }
 
   .com11 {
@@ -473,25 +524,32 @@ display: inline-block;
   }
 
   .border1 {
-    border-bottom: 1px dotted #ccc;
+    border: 1px solid #ccc;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    margin-top:-35px;
+    margin-top: -35px;
   }
-  .cominp0{
+
+  .cominp0 {
     width: 700px;
-    margin-top:10px;
+    min-height: 35px;
+    margin-top: 10px;
   }
-  .cominp1{
+
+  .cominp1 {
+    min-height: 35px;
     width: 650px;
   }
-  .cominp2{
-    width:600px;
+
+  .cominp2 {
+    min-height: 35px;
+    width: 600px;
   }
-  .rbtn{
+
+  .rbtn {
     /*width: 60px;*/
     /*height: 38px;*/
-    font-size:14px;
-    margin-top:-0px;
+    font-size: 14px;
+    margin-top: -0px;
   }
 </style>
