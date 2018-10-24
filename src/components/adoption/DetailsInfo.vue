@@ -100,7 +100,8 @@
             },
             success: function (result) {
               // console.log(result)
-              alert('提交成功')
+              alert('申请成功')
+              location.reload()
             }
           })
         }

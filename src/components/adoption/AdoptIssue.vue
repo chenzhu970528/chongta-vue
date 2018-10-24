@@ -194,7 +194,7 @@
             console.log(response.data);
             console.log(response.bodyText);
             alert("发布成功！！！")
-            location.href = "http://localhost:8080/adoption"
+            history.go(-1);location.reload()
           }).catch((err) => {
           console.log(err)
           alert(err)

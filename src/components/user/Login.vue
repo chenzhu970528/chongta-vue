@@ -76,7 +76,7 @@
                 localStorage.setItem("userId", JSON.stringify(result.data.userId));
                 localStorage.setItem("userName", JSON.stringify(result.data.userName));
               }
-              location.href = "http://localhost:8080";
+              location.reload();
             }
           }
         })
