@@ -12,7 +12,6 @@ import AdoIssue from '../components/adoption/AdoptIssue.vue'
 import matchmain from '../components/matchmaking/matchmain'
 import matchDel from '../components/matchmaking/matchDel.vue'
 import  mpublish from '../components/matchmaking/mpublish.vue'
-// import Matchmaking from '../components/matchmaking/Matchmaking.vue'
 
 import User from '../components/user/User.vue'
 import UserDetails from '../components/user/UserDetails.vue'
@@ -58,10 +57,10 @@ import backstage from '../components/backstage'
 
 
 import register from '../components/register.vue'
-// import Matchmaking from '../components/matchmaking/Matchmaking.vue'
+
 
 Vue.use(Router);
-Vue.prototype.$axios = axios
+Vue.prototype.$axios = axios;
 
 
 export default new Router({
@@ -119,7 +118,6 @@ export default new Router({
       name:'mpublish',
       component:mpublish
     },
-
     //流浪精灵模块
     {
       path: '/adoption/details/:adoId',
