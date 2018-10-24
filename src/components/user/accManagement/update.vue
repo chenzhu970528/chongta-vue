@@ -143,14 +143,14 @@
     line-height: 50px;
     font-size: 16px;
     /*background-color: palevioletred;*/
-    color: #747474;
+    color: #e7e7e7;
   }
   .route span{
     margin-right: 10px;
     font-size: 14px;
   }
   .route span:last-child{
-    color: #4e76ff;
+    color: #b9ffff;
   }
   h3{
     text-align: left;
