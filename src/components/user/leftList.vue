@@ -34,7 +34,7 @@
         <el-menu-item-group>
           <el-menu-item index="3-2"><router-link tag="li" active-class="active"  role="presentation" to="/user/diary">领养日记</router-link></el-menu-item>
           <el-menu-item index="3-3"><router-link tag="li" active-class="active"  role="presentation" to="/user/dailylife">交流日常</router-link></el-menu-item>
-          <el-menu-item index="3-4"><router-link tag="li" active-class="active"  role="presentation" to="/userke">我的收藏</router-link></el-menu-item>
+          <el-menu-item index="3-4"><router-link tag="li" active-class="active"  role="presentation" to="/user/like">我的收藏</router-link></el-menu-item>
           <el-menu-item index="3-5"><router-link tag="li" active-class="active"  role="presentation" to="/user/mycom">我的评论</router-link></el-menu-item>
           <el-menu-item index="3-6"><router-link tag="li" active-class="active"  role="presentation" to="/user/comme">评论我的</router-link></el-menu-item>
         </el-menu-item-group>
