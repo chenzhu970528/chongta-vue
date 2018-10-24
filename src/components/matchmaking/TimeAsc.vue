@@ -1,19 +1,18 @@
-<!--婚介列表-->
 <template>
   <div>
     <div class="mainList">
-        <el-row>
-          <el-col :span="6" style="margin-left: 4%;margin-top: 20px" v-for="(activity,index) in myActData1"  :key="myActData1.length" :offset="index>0?3:0">
-            <div class="oneList">
-              <router-link :to="'/matchmaking/matchDel/'+activity.matId"><img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="..." style="height: 180px" class="img-rounded"></router-link>
-              <div>
-                <span>昵称: <span class="inner">{{activity.PetName}}</span></span>
-                <span>性别: <span class="inner">{{activity.sex}}</span></span>
-                <span>年龄: <span class="inner">{{activity.age}}个月</span></span>
-              </div>
+      <el-row>
+        <el-col :span="6" style="margin-left: 4%;margin-top: 20px" v-for="(activity,index) in myActData1"  :key="myActData1.length" :offset="index>0?3:0">
+          <div class="oneList">
+            <router-link :to="'/matchmaking/matchDel/'+activity.matId"><img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="..." style="height: 180px" class="img-rounded"></router-link>
+            <div>
+              <span>昵称: <span class="inner">{{activity.PetName}}</span></span>
+              <span>性别: <span class="inner">{{activity.sex}}</span></span>
+              <span>年龄: <span class="inner">{{activity.age}}个月</span></span>
             </div>
-          </el-col>
-        </el-row>
+          </div>
+        </el-col>
+      </el-row>
     </div>
     <!--分页-->
     <el-row>
@@ -29,17 +28,16 @@
         </el-pagination>
       </div>
       <!--<el-col :span="10" :push="7">-->
-        <!--<change-page></change-page>-->
+      <!--<change-page></change-page>-->
       <!--</el-col>-->
     </el-row>
   </div>
-
 </template>
 
 <script>
   import axios from 'axios'
   export default {
-    name: "matchlist",
+    name: "TimeAsc",
     data() {
       return {
         // matchdata: [],
@@ -85,7 +83,7 @@
     },
     mounted(){
       let _this=this;
-      axios.get("http://localhost:3000/matchmaking").then((result) => {
+      axios.get("http://localhost:3000/matchmaking/sortTimeASC").then((result) => {
         console.log(result.data.data[0]);
         _this.myActData = result.data.data[0];
         _this.pageCount=_this.myActData.length;
@@ -96,18 +94,18 @@
         // }
       })
     }
-  }
+    }
 </script>
 
 <style scoped>
   .msg div:last-child{
     margin-top: 5px;
   }
- .msg div span{
-   font-size: 14px;
-   color: #4e7dff;
-   margin-right: 15px;
- }
+  .msg div span{
+    font-size: 14px;
+    color: #4e7dff;
+    margin-right: 15px;
+  }
   .msg div h4{
     font-size: 15px;
     color: #c18ddb;
@@ -151,5 +149,4 @@
     margin-top: 30px;
     margin-bottom: 30px;
   }
-
 </style>
