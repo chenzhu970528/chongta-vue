@@ -2,7 +2,7 @@
 <template>
   <div class="right" >
     <div class="route">您的当前位置：<span>账号管理</span><span>/</span><span>我的评论</span></div>
-    <div class="main" id="scroll" >
+    <div class="main" id="scroll" v-for="val in value">
       <div class="comment" v-for="">
         <el-row>
           <el-col :span="7">
@@ -10,57 +10,18 @@
             <img src="../../../assets/user/default33.png" alt="">
           </el-col>
           <el-col :span="7">
-            <span>我的昵称</span>
-            <span class="time">我评论的时间</span>
+            <span>{{UserName.replace('"',' ').replace('"',' ')}}</span>
+            <span class="time">{{val.time}}</span>
           </el-col>
         </el-row>
-        <p>评论的内容</p>
+        <p>{{val.frText}}{{val.faText}}</p>
         <el-row style="margin-top: 10px" class="row2">
-          <el-col :span="9" class="release">别人的头像</el-col>
+          <el-col :span="9" class="release">
+            <img src="../../../assets/user/default11.png" alt="" style="width:80px;height:80px;">
+          </el-col>
           <el-col :span="12">
-            <h5>别人的用户名</h5>
-            <span>评论的帖子标题</span>
-          </el-col>
-        </el-row>
-      </div>
-      <!--加数据时删掉下面两个-->
-      <div class="comment" v-for="">
-        <el-row>
-          <el-col :span="7">
-            <!--我的用户头像-->
-            <img src="../../../assets/user/default33.png" alt="">
-          </el-col>
-          <el-col :span="7">
-            <span>我的昵称</span>
-            <span class="time">我评论的时间</span>
-          </el-col>
-        </el-row>
-        <p>评论的内容</p>
-        <el-row style="margin-top: 10px" class="row2">
-          <el-col :span="9" class="release">别人的头像</el-col>
-          <el-col :span="12">
-            <h5>别人的用户名</h5>
-            <span>评论的帖子标题</span>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="comment" v-for="">
-        <el-row>
-          <el-col :span="7">
-            <!--我的用户头像-->
-            <img src="../../../assets/user/default33.png" alt="">
-          </el-col>
-          <el-col :span="7">
-            <span>我的昵称</span>
-            <span class="time">我评论的时间</span>
-          </el-col>
-        </el-row>
-        <p>评论的内容</p>
-        <el-row style="margin-top: 10px" class="row2">
-          <el-col :span="9" class="release">别人的头像</el-col>
-          <el-col :span="12">
-            <h5>别人的用户名</h5>
-            <span>评论的帖子标题</span>
+            <h5>{{val.userName}}</h5>
+            <span>{{val.faTitle}}</span>
           </el-col>
         </el-row>
       </div>
@@ -70,14 +31,37 @@
 </template>
 
 <script>
+  import  axios from 'axios'
+  import {mapGetters} from 'vuex';
     export default {
-        name: "mycom"
+        name: "mycom",
+      data() {
+        return {
+          visiblelife: false,
+          isshow:false,
+          value: [],
+        }
+      },
+
+      computed: mapGetters([
+        'UserId',
+        'UserName',
+      ]),
+      mounted() {
+        let id = this.UserId.replace(/\"/g, "")
+        axios.get(`http://localhost:3000/forumSee/user/com?userId=${id}`).then((result) => {
+          this.value = result.data.data;
+        })
+
+
+      }
+
     }
 </script>
 
 <style scoped>
   #scroll{
-    padding: 35px;
+    padding: 0 35px ;
     width: 80%;
     margin-left: 10%;
     max-height: 600px;
@@ -152,7 +136,7 @@
   .release{
     width: 80px;
     height: 80px;
-    background-color: blue;
+    /*background-color: rgba(255,255,255,0.3);*/
   }
   .row2{
     width: 96%;
@@ -170,6 +154,7 @@
   }
   p{
     padding-left: 2%;
+    margin-bottom:-5px;
   }
 </style>
 

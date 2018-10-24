@@ -26,12 +26,14 @@
           <el-menu-item index="2-4"><router-link tag="li" active-class="active"  role="presentation" :to="'/user/'+UserId+'/mymatch'">相亲角</router-link></el-menu-item>
         </el-menu-item-group>
       </el-submenu>
+
       <el-submenu index="3">
         <span slot="title">论坛</span>
         <el-menu-item-group>
           <el-menu-item index="3-2"><router-link tag="li" active-class="active"  role="presentation" :to="'/user/'+UserId+'/diary'">领养日记</router-link></el-menu-item>
           <el-menu-item index="3-3"><router-link tag="li" active-class="active"  role="presentation" :to="'/user/'+UserId+'/dailylife'">交流日常</router-link></el-menu-item>
           <el-menu-item index="3-4"><router-link tag="li" active-class="active"  role="presentation" :to="'/user/'+UserId+'/like'">我的收藏</router-link></el-menu-item>
+          <el-menu-item index="3-5"><router-link tag="li" active-class="active"  role="presentation" :to="'/user/'+UserId+'/com'">我的评论回复</router-link></el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="4">
