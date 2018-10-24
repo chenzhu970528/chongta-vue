@@ -52,7 +52,7 @@
         axios.get(`http://localhost:3000/user/showUser/${this.userId}`).then((result) => {
           console.log(result.data.data[0]);
           this.personal = result.data.data[0];
-          if(this.personal.sex =0){
+          if(this.personal.sex == 0){
             this.personal.sex='男'
           }else this.personal.sex='女';
           if(this.personal.userEmail ==null){

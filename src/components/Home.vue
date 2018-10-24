@@ -87,16 +87,16 @@
           'show-num':showNum,
         'show-num1':showNum1
       },
-      data(){
-        return{
-          imgList:[
-            {url:require("../assets/HomePage/bg1.jpg")} ,
-            {url:require("../assets/HomePage/bg2.jpg")} ,
-            {url:require("../assets/HomePage/bg3.jpg")} ,
-            {url:require("../assets/HomePage/bg5.jpg")} ,
-          ]
-        }
-      }
+      // data(){
+      //   return{
+      //     imgList:[
+      //       {url:require("../assets/HomePage/bg1.jpg")} ,
+      //       {url:require("../assets/HomePage/bg2.jpg")} ,
+      //       {url:require("../assets/HomePage/bg3.jpg")} ,
+      //       {url:require("../assets/HomePage/bg5.jpg")} ,
+      //     ]
+      //   }
+      // }
     }
 </script>
 
