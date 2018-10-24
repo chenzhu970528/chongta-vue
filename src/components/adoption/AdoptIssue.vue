@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    图片：{{upath.length}}
     <ol class="breadcrumb">
       您当前位置为：
       <li><a href="/adoption">领养中心</a></li>
@@ -91,7 +92,7 @@
         <div class="col-sm-offset-2 col-sm-10">
           <div class="checkbox">
             <label>
-              <input type="checkbox"> 已阅读并同意宠它领养协议
+              <input v-model="checked" type="checkbox"> 已阅读并同意宠它领养协议
             </label>
           </div>
         </div>
@@ -123,6 +124,7 @@
           adoAddress:'',
           userId:this.$store.state.userId,
         },
+        checked:false,
         upath:'',  //保存选中的文件
       };
     },
@@ -141,15 +143,29 @@
         let _this = this
         if(_this.adoForm.petType==""){
           alert("请填写宠物类别")
+          return false
         }else if(_this.adoForm.age==""){
           alert("请填写宠物年龄(几个月)")
+          return false
         }else if(_this.adoForm.adoTitle==""){
           alert("请填写领养标题")
+          return false
         }else if(_this.adoForm.detail==""){
           alert("请填写详情描述")
+          return false
         }else if(_this.adoForm.adoAddress==""){
           alert("请填写联系地址")
-        }else {
+          return false
+        }else if(_this.upath.length<2){
+          alert("请上传至少2张图片")
+          return false
+        }else if(_this.upath.length<2){
+          alert("请上传至少2张图片")
+          return false
+        }else if(!_this.checked){
+          alert("请同意")
+          return false
+        } else{
           this.edit()
         }
       },
