@@ -17,6 +17,9 @@
         </div>
         <div class="col-sm-2 text-danger" v-if="nameflag">{{msgname}}</div>
       </div>
+
+
+
       <div class="form-group">
         <label  class="col-sm-2 control-label col-sm-offset-2">密码</label>
         <div class="col-sm-4">
@@ -39,6 +42,16 @@
         </div>
         <div class="col-sm-2 text-danger" v-if="phoneflag">{{msgphone}}</div>
       </div>
+      <div class="form-group">
+        <label  class="col-sm-2 control-label col-sm-offset-2">短信验证码</label>
+        <div class="col-sm-4">
+          <div class="row">
+            <input type="text" class="col-sm-4 form-control formStyle3" placeholder="请输入验证码" v-model="vCode">
+            <button type="button" class="col-sm-4 btn btn-default formStyle3" @click="sendCode">获取短信验证码</button>
+          </div>
+        </div>
+        <!--<span :vCode="vCode" class="spanW">{{tiShi3}}</span>-->
+      </div>
       <!--<div class="form-group">-->
         <!--<label class="col-sm-2 control-label col-sm-offset-2">短信验证码</label>-->
         <!--<div class="col-sm-4">-->
@@ -46,9 +59,9 @@
         <!--</div>-->
       <!--</div>-->
       <div class="form-group">
-        <label  class="col-sm-2 control-label col-sm-offset-2">微信号:</label>
+        <label  class="col-sm-2 control-label col-sm-offset-2">所在地:</label>
         <div class="col-sm-4">
-          <input type="text" v-model="wechat" class="form-control"  placeholder="请输入有效微信号">
+          <input type="text" v-model="address" class="form-control"  placeholder="请输入有效地址">
         </div>
       </div>
       <div class="form-group">
@@ -58,6 +71,7 @@
         </div>
         <div class="col-sm-2 text-danger" v-if="mailflag">{{msgmail}}</div>
       </div>
+
       <div class="form-group">
         <label class="col-sm-2 control-label col-sm-offset-2"></label>
         <div class="col-sm-4">
@@ -76,6 +90,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import Login from '../components/user/Login.vue'
     export default {
       name: "register",
@@ -84,11 +99,13 @@
       },
       data(){
         return{
+          vCode:'',
+          Num:'',
           userName:'',
           userPhone:'',
           userPwd1:'',
           userPwd2:'',
-          wechat:'',
+          address:'',
           userEmail:'',
 
           checked:false,
@@ -109,6 +126,29 @@
         }
       },
       methods:{
+        sendCode(){
+          const self = this;
+          // const reg = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+          // if(!(reg.test(self.mobile))){
+          //   self.tiShi1 = '请输入正确的手机号！'
+          // }else{
+            self.Num = '';
+            let num = self.Num;      //容器
+            for(let i =0;i<6;i++){   //循环六次
+              num += Math.floor(Math.random()*10);
+            }
+            self.Num = num;
+            console.log(self.Num)
+            axios.get('/proxy?mobile=' + self.userPhone + '&tpl_id=109274&tpl_value=%23code%23%3D' +
+              self.Num + '&key=7de7348eb9dd99ab08bcc7e7063a53ad')
+              .then((res)=>{
+                console.log(res)
+              }).catch(err=>{console.log(err)})
+          },
+
+        checkCode:function(){
+
+        },
         checkPwd:function () {
           var regPwd=/^[a-zA-Z0-9]{6,10}$/;
           if(this.userPwd1==''){
@@ -168,14 +208,14 @@
             // console.log('登录成功')
             let _this = this
             $.ajax({
-              url: "http://localhost:3000/user/add",
+              url: this.$store.state.url+"/user/add",
               type: "post",
               data: {
                 userName: _this.userName,
                 userPwd:_this.userPwd2,
                 userPhone:_this.userPhone,
                 userEmail:_this.userEmail,
-                wechat: _this.wechat,
+                address: _this.address,
               },
               success: function (result) {
                 console.log(result.data)
@@ -183,7 +223,7 @@
                   alert("该用户已存在")
                 }else {
                   $.ajax({
-                    url: "http://localhost:3000/user/login",
+                    url: this.$store.state.url+"/user/login",
                     type: "post",
                     data:{
                       userPhone:_this.userPhone,
@@ -198,8 +238,6 @@
                       } else if (result.data == 3) {
                         alert("服务器错误");
                       } else {
-                        alert("登录成功");
-                        console.log(result.data)
                         if (localStorage) {
                           localStorage.setItem("userId", JSON.stringify(result.data.userId));
                           localStorage.setItem("userName", JSON.stringify(result.data.userName));
@@ -208,7 +246,8 @@
                     }
                   })
                   alert("注册成功")
-                  location.href = "http://localhost:8080";
+                  history.go(-1)
+                  location.reload()
                 }
               }
             })
@@ -216,7 +255,7 @@
             alert('请完善个人信息并同意《宠它网注册协议》')
           }
         }
-      },
+      }
     }
 
 </script>

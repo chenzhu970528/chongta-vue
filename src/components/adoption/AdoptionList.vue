@@ -62,7 +62,7 @@
       },
     },
     mounted() {
-      axios.get("http://localhost:3000/adoptions").then((result) => {
+      axios.get(this.$store.state.url+"/adoptions").then((result) => {
         // console.log(result.data)
         this.mydata = result.data.data;
         this.dalength=result.data.data.length-6

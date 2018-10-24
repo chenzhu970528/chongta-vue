@@ -29,7 +29,7 @@
       }
     },
     created(){
-      axios.get(`http://localhost:3000/matchmaking/num`).then((result) => {
+      axios.get(this.$store.state.url+`/matchmaking/num`).then((result) => {
         // let _this=this;
         this.num = result.data.data;
         this.num1=parseInt(this.num)

@@ -72,7 +72,7 @@
           }
       },
       created(){
-        axios.get(`http://localhost:3000/matchmaking/${this.userId}/showaply`).then((result) => {
+        axios.get(this.$store.state.url+`/matchmaking/${this.userId}/showaply`).then((result) => {
           this.aplyMatch = result.data.data[0];
           console.log(result.data.data[0]);
           for (let i = 0; i < this.aplyMatch.length; i++) {

@@ -32,7 +32,7 @@
       methods:{
           ajax(){
             let _this=this
-            axios.get(`http://localhost:3000/adoptions/details/${this.adoId}`).then((result) => {
+            axios.get(this.$store.state.url+`/adoptions/details/${this.adoId}`).then((result) => {
               _this.myImg = result.data.data.jsondata.adoPic.split(",");
               for(let i=0;i<_this.myImg.length;i++){
                 _this.imgList.push(_this.myImg[i])

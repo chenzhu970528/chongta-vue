@@ -58,7 +58,7 @@
       login() {
         let _this = this
         $.ajax({
-          url: "http://localhost:3000/user/login",
+          url: this.$store.state.url+"/user/login",
           type: "post",
           data: _this.userForm,
           success: function (result) {

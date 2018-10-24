@@ -55,7 +55,7 @@
       }
     },
     created(){
-      axios.get(`http://localhost:3000/homeless/details/${this.homeId}`).then((result) => {
+      axios.get(this.$store.state.url+`/homeless/details/${this.homeId}`).then((result) => {
         console.log(result.data.data);
         this.jsondata1 = result.data.data;
       })

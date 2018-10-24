@@ -191,13 +191,14 @@
           zipFormData.append('age',this.value1.age)
           zipFormData.append('relId',this.value1.relId)
           let config = { headers: { 'Content-Type': 'multipart/form-data' } };
-          this.$axios.post('http://localhost:3000/matchmaking/addMatch', zipFormData,config)
+          this.$axios.post(this.$store.state.url+'/matchmaking/addMatch', zipFormData,config)
             .then(function (response) {
               console.log(response);
               console.log(response.data);
               console.log(response.bodyText);
               alert("发布成功！！！")
-              location.href = "http://localhost:8080/matchmaking";
+              history.go(-1);
+              location.reload()
             }).catch((err) => {
             console.log(err)
             alert(err)

@@ -31,7 +31,7 @@
           }
       },
       created(){
-        axios.get("http://localhost:3000/matchmaking/countAply").then((result) => {
+        axios.get(this.$store.state.url+"/matchmaking/countAply").then((result) => {
           console.log(result.data)
           this.hotdata = result.data.data;
           for (let i = 0; i < this.hotdata.length; i++) {

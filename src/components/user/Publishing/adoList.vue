@@ -50,7 +50,7 @@
           };
       },
       created() {
-        axios.get(`http://localhost:3000/adoptions/adodetails/${this.userId}`).then((result) => {
+        axios.get(this.$store.state.url+`/adoptions/adodetails/${this.userId}`).then((result) => {
           // console.log(result.data)
           this.mydata = result.data.data;
           // if(this.mydata.adoType ==0){
