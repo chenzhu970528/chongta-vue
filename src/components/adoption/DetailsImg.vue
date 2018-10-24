@@ -24,6 +24,7 @@
               // {url:require("../../assets/adoption/dog4.jpg")} ,
             ],
             myImg:[],
+            url:this.$store.state.url
           }
       },
       created() {
@@ -34,8 +35,8 @@
             let _this=this
             axios.get(this.$store.state.url+`/adoptions/details/${this.adoId}`).then((result) => {
               _this.myImg = result.data.data.jsondata.adoPic.split(",");
-              for(let i=0;i<_this.myImg.length;i++){
-                _this.imgList.push(_this.myImg[i])
+              for(let i=0;i<_this.myImg.length-1;i++){
+                _this.imgList.push(_this.url+_this.myImg[i])
               }
               // console.log(_this.myImg[0])
             })
