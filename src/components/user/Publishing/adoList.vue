@@ -10,6 +10,7 @@
           <p>发布时间：<span>{{adolist.adoTime}}</span></p>
           <p>发布类型：<span>{{adolist.adoType1}}</span></p>
           <p>宠物年龄：<span>{{adolist.age}}</span></p>
+          <p>有意领养者：<span><ado-user :adoid="adolist.adoId"></ado-user></span></p>
           <!--<p>申请人数：<span>4</span></p>-->
         </el-col>
           <div class="title del">
@@ -37,9 +38,13 @@
 </template>
 
 <script>
+  import adoUser from '../../user/Publishing/adoListUser'
   import axios from 'axios'
     export default {
         name: "adoList",
+      components:{
+        'ado-user':adoUser,
+      },
       data(){
           return{
             visible2:[],
@@ -47,12 +52,14 @@
             adolists:[],
             mydata:[],
             userId:this.$store.state.userId,
+            centerDialogVisible:false,
           };
       },
       created() {
         this.ajax()
       },
       methods:{
+
           ajax() {
             axios.get(this.$store.state.url + `/adoptions/adodetails/${this.userId}`).then((result) => {
               // console.log(result.data)
@@ -61,7 +68,7 @@
               //   this.mydata.adoType='领养'
               // }else this.mydata.adoType='寄养';
               // this.homeTime = result.data.data.homeTime
-              // console.log(result.data.data)
+              // console.log(result.data)
               for (let i = 0; i < this.mydata.length; i++) {
                 this.adolists.push(this.mydata[i]);
                 this.visible2.push(false)
