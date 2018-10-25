@@ -14,8 +14,14 @@
           <textarea class="form-control" v-model="text"></textarea>
         </div>
         <div class="form-group">
-          <label>上传图片</label>
-          <input type="file">
+          <label  class="col-sm-3 control-label">上传图片：</label>
+          <div class="col-sm-6">
+            <input type="file" name="avatar"
+                   @change="changeImage($event)"
+                   accept="image/gif,image/jpeg,image/jpg,image/png"
+                   ref="avatarInput"
+                   multiple><br/>
+          </div>
         </div>
         <input class="btn btn-default" type="submit" @click="addForum" value="发表">
       </form>
@@ -38,6 +44,7 @@
     ]),
     data() {
       return {
+        upath:'',  //保存选中的文件
         name: store.state.name,
         title: '',
         text: '',
@@ -48,6 +55,46 @@
       }
     },
     methods: {
+      //选中文件后，将文件保存到实例的变量中
+      changeImage(e) {
+        this.upath = e.target.files;
+      },
+      addImg(){
+        let _this = this;
+        let aa = {
+          faTitle: this.title,
+          faText: this.text,
+          userId: this.UserId.replace(/\"/g, ""),
+          userName: this.UserName.replace(/\"/g, ""),
+          faType: this.type,
+        }
+        this.title = '';
+        this.text = '';
+        console.log(this.upath);
+        var zipFormData = new FormData();
+        //依次添加多个文件
+        for(var i = 0 ; i< this.upath.length ; i++){
+          zipFormData.append('filename', this.upath[i]);
+        }
+        //添加其他的表单元素
+        zipFormData.append('faTitle',aa.faTitle)
+        zipFormData.append('faText',aa.faText)
+        zipFormData.append('userId',aa.userId)
+        zipFormData.append('userName',aa.userName)
+        zipFormData.append('faType',aa.type)
+        let config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        this.$axios.post(this.$store.state.url+'/forumAdd/art', zipFormData,config)
+          .then(function (response) {
+            console.log(response);
+            console.log(response.data);
+            console.log(response.bodyText);
+            _this.cc()
+          }).catch((err) => {
+          console.log(err)
+          alert(err)
+        });
+
+      },
       addForum() {
         let _this = this;
 
@@ -60,30 +107,8 @@
             _this.c()
           }
           else {
-
-            let aa = {
-              faTitle: this.title,
-              faText: this.text,
-              userId: this.UserId.replace(/\"/g, ""),
-              userName: this.UserName.replace(/\"/g, ""),
-              faType: this.type,
-            }
-            this.title = '';
-            this.text = '';
-
-            $.ajax({
-              url: "http://localhost:3000/forumAdd/art",
-              type: "post",
-              data: aa,
-              success: function (result) {
-                console.log(result.data)
-                _this.cc()
-              }
-            })
+              _this.addImg()
           }
-        }
-        else {
-
         }
       },
 

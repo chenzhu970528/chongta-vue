@@ -16,6 +16,7 @@
           <p>发布时间：<span>{{activity.adoTime}}</span></p>
           <p>发布类型：<span>{{activity.adoType1}}</span></p>
           <p>宠物年龄：<span>{{activity.age}}</span></p>
+          <p>有意领养者：<span><ado-user :adoid="activity.adoId"></ado-user></span></p>
           <!--<p>申请人数：<span>4</span></p>-->
         </el-col>
           <div class="title del">
@@ -36,7 +37,7 @@
     </div>
     <div v-if="isshow" class="noList">
       <img src="../../../assets/user/default8.png" alt="">
-      <p>还没有任何发布哦，快去<router-link   to="/adoption/issue" style="list-style: none;text-decoration: none" exact>发布吧!</router-link></p>
+      <p>还没有任何发布哦，快去发布吧</p>
     </div>
   </div>
     <!--分页-->
@@ -60,9 +61,13 @@
 </template>
 
 <script>
+  import adoUser from '../../user/Publishing/adoListUser'
   import axios from 'axios'
     export default {
         name: "adoList",
+      components:{
+        'ado-user':adoUser,
+      },
       data(){
           return{
             visible2:[],
@@ -70,6 +75,7 @@
             // adolists:[],
             mydata:[],
             userId:this.$store.state.userId,
+            centerDialogVisible:false,
             pageIndex: 1,
             pagesize: 3,  //每页条数
             pageCount:0,
@@ -86,6 +92,7 @@
         this.ajax()
       },
       methods:{
+
         loadData() {
           this.activitys = [];
           // console.log('this.pageInedx:' + this.pageIndex)
@@ -145,6 +152,7 @@
 
             }
           })
+
         },
 
          showPic:function () {

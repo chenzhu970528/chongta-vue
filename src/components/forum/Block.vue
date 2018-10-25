@@ -80,15 +80,16 @@
     },
     methods: {
       but(index) {
+        let storage=window.localStorage;
+        storage.id=index
+        console.log(storage.id)
         store.commit('increment', {
           amount: index
         })
       },
       see(index) {
-        store.commit('addID', {
-          amount: index
-        })
-
+        let storage=window.localStorage;
+        storage.id=index
       },
     },
       mounted() {

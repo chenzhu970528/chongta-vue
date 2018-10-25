@@ -179,10 +179,10 @@
 
         <span v-if="value.comment">
         <button v-if="(value.comment.length)>6&&(value1.length<value.comment.length)" type="button"
-        @click="next" class="blue btn btn-primary btn-lg btn-block">加载更多
+                @click="next" class="blue btn btn-primary btn-lg btn-block">加载更多
         </button>
         <button v-if="value1.length===value.comment.length&&value1.length>6" type="button" @click="one"
-        class="blue btn btn-primary btn-lg btn-block">收起
+                class="blue btn btn-primary btn-lg btn-block">收起
         </button>
         </span>
 
@@ -381,7 +381,7 @@
                     }
                   }
                   // 当前评论数
-                  get.value1=[]//先清空
+                  get.value1 = []//先清空
                   if (get.value.comment.length > 6) {
                     for (let i = 0; i < 6; i++) {
                       get.value1.push(get.value.comment[i])
@@ -464,7 +464,7 @@
                     }
                   }
                   //当前评论数
-                  get.value1=[]//先清空
+                  get.value1 = []//先清空
 
                   if (get.value.comment.length > 6) {
                     for (let i = 0; i < 6; i++) {
@@ -643,13 +643,13 @@
     },
     mounted() {
       // console.log(store.state.faId)
-      let get = this;
-      get.count = store.state.faId
+      let storage = window.localStorage;
+      let get = this
 
-      axios.get(`http://localhost:3000/forumSee/all/?faId=${get.count}`).then((result) => {
+      axios.get(`http://localhost:3000/forumSee/all/?faId=${storage.id}`).then((result) => {
 
         get.value = result.data.data;
-        console.log(this.value)
+        // console.log(this.value)
         // 用户是否登录 是否判定点赞
         if (this.UserId) {
           let faId = this.value.art[0].faId
