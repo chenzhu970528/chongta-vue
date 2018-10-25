@@ -9,11 +9,12 @@
       @close="handleClose">
       <el-submenu index="1">
         <template slot="title">
+          <a href="" name="top"></a>
           <span>账号管理</span>
         </template>
         <!--更新-->
         <el-menu-item-group>
-          <el-menu-item index="1-1"><router-link tag="li" active-class="active"  role="presentation" to="/user"exact>个人资料</router-link></el-menu-item>
+          <el-menu-item index="1-1"><router-link tag="li" active-class="active"  role="presentation" to="/user" exact>个人资料</router-link></el-menu-item>
           <el-menu-item index="1-2"><router-link tag="li" active-class="active"  role="presentation" to="/user/update">编辑个人资料</router-link></el-menu-item>
           <el-menu-item index="1-3"><router-link tag="li" active-class="active"  role="presentation" to="/user/changepwd">修改密码</router-link></el-menu-item>
         </el-menu-item-group>

@@ -10,7 +10,7 @@
 
       <ul v-for="showList in showLists">
         <router-link :to="'/matchmaking/matchDel/'+showList.relId">
-        <li class="firstli">tupian</li>
+        <li class="firstli"><img class="petImg" :src="urlImg(showList.petPic.split(',')[0])" alt=""></li>
         <li>{{showList.userName}}</li>
         <li>{{showList.PetName}}</li>
         <li>{{showList.num}}</li>
@@ -28,8 +28,15 @@
           return{
             hotdata:[],
             showLists:[],
+            url:this.$store.state.url
           }
       },
+    methods:{
+      urlImg(str){
+        // console.log(this.url+str)
+        return this.url+str
+      }
+    },
       created(){
         axios.get(this.$store.state.url+"/matchmaking/countAply").then((result) => {
           console.log(result.data)
@@ -67,5 +74,9 @@
   }
   .firstli{
     margin-left: -20px;
+  }
+  .petImg{
+    width: 50px;
+    height: 50px;
   }
 </style>
