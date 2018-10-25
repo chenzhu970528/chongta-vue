@@ -1,6 +1,6 @@
 <template>
   <div class="inner_ado">
-    <div class="tol" v-for="adolist in adolists">
+    <div class="tol" v-for="(adolist,index) in adolists">
       <el-row class="card">
         <el-col :span="7" class="petPic">
           <div class="pic"></div>
@@ -16,11 +16,11 @@
             <el-popover
               placement="top"
               width="160"
-              v-model="visible2">
+              v-model="visible2[index]">
               <p>确定删除吗？</p>
               <div style="text-align: right; margin: 0">
-                <el-button size="mini" type="text" @click="visible2 = false">取消</el-button>
-                <el-button type="primary" size="mini" @click="visible2 = false">确定</el-button>
+                <el-button size="mini" type="text" @click="visible2[index] = false">取消</el-button>
+                <el-button type="primary" size="mini" @click="delAdoptions(adolist.adoId)">确定</el-button>
               </div>
               <el-button slot="reference" icon="el-icon-delete" circle></el-button>
               <!--<el-button slot="reference">删除</el-button>-->
@@ -42,7 +42,7 @@
         name: "adoList",
       data(){
           return{
-            visible2: false,
+            visible2:[],
             isshow:false,
             adolists:[],
             mydata:[],
@@ -50,26 +50,48 @@
           };
       },
       created() {
-        axios.get(this.$store.state.url+`/adoptions/adodetails/${this.userId}`).then((result) => {
-          // console.log(result.data)
-          this.mydata = result.data.data;
-          // if(this.mydata.adoType ==0){
-          //   this.mydata.adoType='领养'
-          // }else this.mydata.adoType='寄养';
-          // this.homeTime = result.data.data.homeTime
-          console.log(result.data.data)
-          for (let i = 0; i < this.mydata.length; i++) {
-            this.adolists.push(this.mydata[i]);
-            console.log(this.adolists[i])
-          }
-          if(result.data.data.length==0){
-            this.showPic()
-          }
-
-        })
+        this.ajax()
       },
       methods:{
-        showPic:function () {
+          ajax() {
+            axios.get(this.$store.state.url + `/adoptions/adodetails/${this.userId}`).then((result) => {
+              // console.log(result.data)
+              this.mydata = result.data.data;
+              // if(this.mydata.adoType ==0){
+              //   this.mydata.adoType='领养'
+              // }else this.mydata.adoType='寄养';
+              // this.homeTime = result.data.data.homeTime
+              // console.log(result.data.data)
+              for (let i = 0; i < this.mydata.length; i++) {
+                this.adolists.push(this.mydata[i]);
+                this.visible2.push(false)
+                // console.log(this.adolists[i])
+              }
+              if (result.data.data.length == 0) {
+                this.showPic()
+              }
+            })
+          },
+        delAdoptions(adoId){
+            let _this=this
+          $.ajax({
+            url: _this.$store.state.url+"/adoptions/adoDel/" + adoId,
+            type: "get",
+            // data: homeId,
+            success: function (result) {
+
+              // alert("删除成功！！！")
+              _this.mydata=[],
+                _this.visible2=[],
+                _this.adolists=[],
+                _this.ajax()
+
+            }
+          })
+
+        },
+
+         showPic:function () {
           this.isshow=true
         }
       }

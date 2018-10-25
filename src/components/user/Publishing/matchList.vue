@@ -1,6 +1,6 @@
 <template>
   <div class="inner_ado">
-    <div class="tol" v-for="showList in showLists">
+    <div class="tol" v-for="(showList,index) in showLists">
       <el-row class="card">
         <el-col :span="7" class="petPic">
           <div class="pic"></div>
@@ -20,11 +20,11 @@
           <el-popover
             placement="top"
             width="160"
-            v-model="visiblematch">
+            v-model="visiblematch[index]">
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="visiblematch = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="visiblematch = false">确定</el-button>
+              <el-button size="mini" type="text" @click="visiblematch[index]">取消</el-button>
+              <el-button type="primary" size="mini" @click="delMatch(showList.matId)" >确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>
             <!--<el-button slot="reference">删除</el-button>-->
@@ -45,29 +45,51 @@
       name: "matchList",
       data(){
         return{
-          visiblematch: false,
+          visiblematch: [],
           relId:this.$store.state.userId,
           matchlist:[],
           showLists:[],
-          isshow:false
+          isshow:false,
         }
       },
       created(){
-          // let _this=this
-        axios.get(this.$store.state.url+`/matchmaking/matchdetail/${this.relId}`).then((result) => {
-          this.matchlist = result.data.data;
-          console.log(result.data.data.length);
-          console.log(result.data.data)
-          for (let i = 0; i < this.matchlist.length; i++) {
-            this.showLists.push(this.matchlist[i])
-          }
-          if(result.data.data.length==0){
-            this.showPic()
-          // _this.isshow=true
-          }
-        })
+        this.ajax()
       },
       methods:{
+        ajax(){
+          axios.get(this.$store.state.url+`/matchmaking/matchdetail/${this.relId}`).then((result) => {
+            this.matchlist = result.data.data;
+            // console.log(result.data.data.length);
+            // console.log(result.data.data)
+            for (let i = 0; i < this.matchlist.length; i++) {
+              this.showLists.push(this.matchlist[i])
+              this.visiblematch.push(false);
+            }
+            if(result.data.data.length==0){
+              this.showPic()
+              // _this.isshow=true
+            }
+          })
+        },
+        delMatch(matId){
+          let _this=this
+          $.ajax({
+            url: _this.$store.state.url+"/matchmaking/delMatchAll/"+matId,
+            type: "get",
+            // data: homeId,
+            success: function (result) {
+              console.log("success:" + matId);
+              console.log(result.data)
+              // alert("删除成功！！！")
+              _this.matchlist=[],
+                _this.visiblematch=[],
+                _this.showLists=[],
+                _this.ajax()
+              // this.$router.go(0)
+            }
+          })
+          // this.visible2 = false
+        },
           showPic:function () {
             // if(this.matchlist.length=0){
               this.isshow=true
