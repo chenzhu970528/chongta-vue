@@ -2,24 +2,41 @@
   <div class="block">
     <el-carousel height="300px">
       <el-carousel-item v-for="(img,index) in imgList" :key="index">
-        <img :src="img.url">
+        <img :src="img">
       </el-carousel-item>
     </el-carousel>
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     name: "DetailsImg",
     data(){
       return{
+        homeId:this.$route.params.homeId,
         imgList:[
-          {url:require("../../assets/homeless/2.jpg")} ,
-          {url:require("../../assets/homeless/4 (1).jpg")} ,
-          {url:require("../../assets/homeless/4 (2).jpg")} ,
-          {url:require("../../assets/homeless/homeless.jpg")} ,
+
         ],
+        myImg:[],
+        url:this.$store.state.url
       }
+    },
+    created() {
+      this.ajax()
+    },
+    methods:{
+      ajax(){
+        let _this=this
+        axios.get(this.$store.state.url+`/homeless/details/${this.homeId}`).then((result) => {
+          // console.log(result.data)
+          _this.myImg = result.data.data.homePic.split(",")
+          for(let i=0;i<_this.myImg.length-1;i++){
+            _this.imgList.push(_this.url+_this.myImg[i])
+          }
+        })
+
+      },
     }
   }
 </script>

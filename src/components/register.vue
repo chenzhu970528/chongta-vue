@@ -13,10 +13,13 @@
       <div class="form-group first">
         <label  class="col-sm-2 control-label col-sm-offset-2">用户名</label>
         <div class="col-sm-4">
-          <input @change="checkname" type="text" class="form-control" v-model="userName"  id="inputuser" placeholder="请输入用户名（1-9位中英文数字）">
+          <input @change="checkname" type="text" class="form-control" v-model="userName"  id="inputuser" placeholder="请输入用户名（2-10位中英文数字）">
         </div>
         <div class="col-sm-2 text-danger" v-if="nameflag">{{msgname}}</div>
       </div>
+
+
+
       <div class="form-group">
         <label  class="col-sm-2 control-label col-sm-offset-2">密码</label>
         <div class="col-sm-4">
@@ -39,6 +42,17 @@
         </div>
         <div class="col-sm-2 text-danger" v-if="phoneflag">{{msgphone}}</div>
       </div>
+      <div class="form-group">
+        <label  class="col-sm-2 control-label col-sm-offset-2">短信验证码</label>
+        <div class="col-sm-2" style="padding-right: 0;width: 162px">
+            <input type="text" @change="checkCode" class=" form-control formStyle3" placeholder="请输入验证码" v-model="vCode">
+        </div>
+        <div class="col-sm-1" style="padding:0">
+          <button type="button" class="btn btn-primary formStyle3" @click="sendCode">获取验证码</button>
+        </div>
+        <div style="margin-left: 42px" class=" col-sm-2 text-danger" v-if="codeflag">{{msgcode}}</div>
+        <!--<span :vCode="vCode" class="spanW">{{tiShi3}}</span>-->
+      </div>
       <!--<div class="form-group">-->
         <!--<label class="col-sm-2 control-label col-sm-offset-2">短信验证码</label>-->
         <!--<div class="col-sm-4">-->
@@ -46,9 +60,9 @@
         <!--</div>-->
       <!--</div>-->
       <div class="form-group">
-        <label  class="col-sm-2 control-label col-sm-offset-2">微信号:</label>
+        <label  class="col-sm-2 control-label col-sm-offset-2">所在地:</label>
         <div class="col-sm-4">
-          <input type="text" v-model="wechat" class="form-control"  placeholder="请输入有效微信号">
+          <input type="text" v-model="address" class="form-control"  placeholder="请输入有效地址">
         </div>
       </div>
       <div class="form-group">
@@ -58,10 +72,11 @@
         </div>
         <div class="col-sm-2 text-danger" v-if="mailflag">{{msgmail}}</div>
       </div>
+
       <div class="form-group">
         <label class="col-sm-2 control-label col-sm-offset-2"></label>
         <div class="col-sm-4">
-          <input type="checkbox" v-model="checked"> 我已阅读并同意 <a href="">《宠它网注册协议》</a>
+          <input type="checkbox" v-model="checked"> 我已阅读并同意 <a style="color: #5bacfd" href="">《宠它网注册协议》</a>
         </div>
       </div>
       <div class="form-group">
@@ -76,6 +91,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import Login from '../components/user/Login.vue'
     export default {
       name: "register",
@@ -84,18 +100,26 @@
       },
       data(){
         return{
+          vCode:'',
+          Num:'',
           userName:'',
           userPhone:'',
           userPwd1:'',
           userPwd2:'',
-          wechat:'',
+          address:'',
           userEmail:'',
+
+
 
           checked:false,
           namecheck:false,
           pwdcheck:false,
           phonecheck:false,
           mailcheck:false,
+          codechecked:false,
+
+          msgcode:'',
+          codeflag:false,
           msgname:'',
           nameflag:false,
           msgPassword1:'',
@@ -109,12 +133,43 @@
         }
       },
       methods:{
+        sendCode(){
+          const self = this;
+          // const reg = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+          // if(!(reg.test(self.mobile))){
+          //   self.tiShi1 = '请输入正确的手机号！'
+          // }else{
+            self.Num = '';
+            let num = self.Num;      //容器
+            for(let i =0;i<6;i++){   //循环六次
+              num += Math.floor(Math.random()*10);
+            }
+            self.Num = num;
+            console.log(self.Num)
+            // axios.get('/proxy?mobile=' + self.userPhone + '&tpl_id=109274&tpl_value=%23code%23%3D' +
+            //   self.Num + '&key=7de7348eb9dd99ab08bcc7e7063a53ad')
+            //   .then((res)=>{
+            //     console.log(res)
+            //   }).catch(err=>{console.log(err)})
+          },
+
+        checkCode:function(){
+          if(this.vCode==""){
+            this.msgcode="请输入短信验证码";
+          }else if(this.vCode!=this.Num){
+            this.codeflag =true;
+            this.msgcode="短信验证码不正确";
+          }else {
+            this.codeflag=false;
+            this.codechecked=true;
+          }
+        },
         checkPwd:function () {
           var regPwd=/^[a-zA-Z0-9]{6,10}$/;
           if(this.userPwd1==''){
             this.msgPassword1="请输入密码";
           }else if(!regPwd.test(this.userPwd1)){
-            this.pwdflag1 =true
+            this.pwdflag1 =true;
             this.msgPassword1="密码格式不正确";
           }else this.pwdflag1=false
         },
@@ -164,18 +219,18 @@
           }
         },
         register:function(){
-          if(this.namecheck&&this.pwdcheck&&this.phonecheck&&this.mailcheck&&this.checked){
+          if(this.namecheck&&this.pwdcheck&&this.phonecheck&&this.mailcheck&&this.checked&&this.codechecked){
             // console.log('登录成功')
             let _this = this
             $.ajax({
-              url: "http://localhost:3000/user/add",
+              url: this.$store.state.url+"/user/add",
               type: "post",
               data: {
                 userName: _this.userName,
                 userPwd:_this.userPwd2,
                 userPhone:_this.userPhone,
                 userEmail:_this.userEmail,
-                wechat: _this.wechat,
+                address: _this.address,
               },
               success: function (result) {
                 console.log(result.data)
@@ -183,7 +238,7 @@
                   alert("该用户已存在")
                 }else {
                   $.ajax({
-                    url: "http://localhost:3000/user/login",
+                    url: _this.$store.state.url+"/user/login",
                     type: "post",
                     data:{
                       userPhone:_this.userPhone,
@@ -198,8 +253,6 @@
                       } else if (result.data == 3) {
                         alert("服务器错误");
                       } else {
-                        alert("登录成功");
-                        console.log(result.data)
                         if (localStorage) {
                           localStorage.setItem("userId", JSON.stringify(result.data.userId));
                           localStorage.setItem("userName", JSON.stringify(result.data.userName));
@@ -208,7 +261,8 @@
                     }
                   })
                   alert("注册成功")
-                  location.href = "http://localhost:8080";
+                  history.go(-1);
+                  location.reload()
                 }
               }
             })
@@ -216,7 +270,7 @@
             alert('请完善个人信息并同意《宠它网注册协议》')
           }
         }
-      },
+      }
     }
 
 </script>
@@ -231,7 +285,7 @@
   top: 70px;
 }
 .bg{
-  height: 500px;
+  height: 600px;
   width: 800px;
   border-radius: 10px;
   background-color: rgba(255,255,255,0.2);

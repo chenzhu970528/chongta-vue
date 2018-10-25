@@ -85,7 +85,7 @@
         };
       },
       created(){
-        axios.get(`http://localhost:3000/user/showUser/${this.userId}`).then((result) => {
+        axios.get(this.$store.state.url+`/user/showUser/${this.userId}`).then((result) => {
           console.log(result.data.data[0]);
           this.personal = result.data.data[0];
           if(this.personal.sex =0){
@@ -143,14 +143,14 @@
     line-height: 50px;
     font-size: 16px;
     /*background-color: palevioletred;*/
-    color: #747474;
+    color: #e7e7e7;
   }
   .route span{
     margin-right: 10px;
     font-size: 14px;
   }
   .route span:last-child{
-    color: #4e76ff;
+    color: #b9ffff;
   }
   h3{
     text-align: left;

@@ -60,8 +60,8 @@
       }
     },
     created(){
-      axios.get(`http://localhost:3000/homeless/details/${this.homeId}`).then((result) => {
-        // console.log(result.data)
+      axios.get(this.$store.state.url+`/homeless/details/${this.homeId}`).then((result) => {
+        console.log(result.data)
         this.mydata = result.data.data
       })
     }

@@ -32,7 +32,7 @@
       },
       mounted () {
         this.numberGrow(this.$refs.numberGrow1)
-        axios.get(`http://localhost:3000/user/num`).then((result) => {
+        axios.get(this.$store.state.url+`/user/num`).then((result) => {
           // let _this=this;
           this.nums = result.data.data;
           this.num1=parseInt(this.nums)

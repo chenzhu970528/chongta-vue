@@ -1,5 +1,5 @@
 <template>
-    <div class="col-xs-6 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-1">
+    <div class="col-xs-6 col-md-6 col-md-offset-0 col-lg-6 ">
       <h3><span><img src="../../assets/match/love.png" alt=""></span>小宠信息</h3>
       <div class="Pet">
         <span>姓名：{{Mdeldata.PetName}}</span>
@@ -29,7 +29,7 @@
           }
     },
     created(){
-      axios.get(`http://localhost:3000/matchmaking/matchdetail/${this.relId}`).then((result) => {
+      axios.get(this.$store.state.url+`/matchmaking/matchdetail/${this.relId}`).then((result) => {
         console.log(result.data.data[0])
         this.Mdeldata = result.data.data[0];
         if(this.Mdeldata.medReport !=null){
@@ -42,8 +42,7 @@
 
 <style scoped>
   .col-xs-6{
-    /*background-color: yellow;*/
-    /*height: 100px;*/
+    margin-left: 30px;
   }
   h3 {
     font-size: 18px;

@@ -3,10 +3,10 @@
   <div>
     <div class="cont container">
       <div class="route">您的当前位置：<span><a href="/matchmaking">宠物婚介</a></span><span>/</span><span>详情</span></div>
-      <h2>{{Mdeldata.title}}</h2>
         <div class="row firstrow">
           <div class="col-xs-10 col-xs-offset-1 cent">
             <sowing-map></sowing-map>
+            <h2>{{Mdeldata.title}}</h2>
             <match-message></match-message>
             <div class="aply">
               <m-aply></m-aply>
@@ -73,7 +73,7 @@
         };
       },
       created(){
-        axios.get(`http://localhost:3000/matchmaking/matchdetail/${this.relId}`).then((result) => {
+        axios.get(this.$store.state.url+`/matchmaking/matchdetail/${this.relId}`).then((result) => {
           console.log(result.data.data[0])
           this.Mdeldata = result.data.data[0];
         })
@@ -125,7 +125,8 @@
   }
   h2{
     color: #6b6b6b;
-    margin-left: 18px;
+    /*margin-left: 18px;*/
+    margin-left: 25px;
   }
   .firstrow{
     margin-top: 30px;

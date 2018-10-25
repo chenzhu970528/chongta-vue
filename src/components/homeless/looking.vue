@@ -32,7 +32,7 @@
       };
     },
     created() {
-      axios.get("http://localhost:3000/homeless/lostpets").then((result) => {
+      axios.get(this.$store.state.url+"/homeless/lostpets").then((result) => {
         this.mydata = result.data.data;
         for (let i = 0; i < this.mydata.length; i++) {
           this.diarys.push(this.mydata[i])

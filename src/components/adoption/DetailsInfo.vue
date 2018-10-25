@@ -92,7 +92,7 @@
           this.centerDialogVisible = false
           let _this = this
           $.ajax({
-            url: "http://localhost:3000/adoptions/adoAddApply",
+            url: this.$store.state.url+"/adoptions/adoAddApply",
             type: "post",
             data: {
               userId: _this.userId,
@@ -100,13 +100,14 @@
             },
             success: function (result) {
               // console.log(result)
-              alert('提交成功')
+              alert('申请成功')
+              location.reload()
             }
           })
         }
       },
       created(){
-        axios.get(`http://localhost:3000/adoptions/details/${this.adoId}`).then((result) => {
+        axios.get(this.$store.state.url+`/adoptions/details/${this.adoId}`).then((result) => {
           // console.log(result.data)
           this.jsondata1 = result.data.data.jsondata;
           this.jsondata2 = result.data.data.jsondata2;

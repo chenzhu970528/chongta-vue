@@ -10,9 +10,18 @@
         <img src="../../assets/adoption/a051a6562121e26.png" alt="">
       </el-col>
     </el-row>
-    <router-link to="/matchmaking/mpublish"><button style="font-size: 22px">我要发布</button></router-link>
-    <match-list></match-list>
+    <router-link to="/matchmaking/mpublish"><button style="font-size: 22px" class="publish">我要发布</button></router-link>
+    <!--排序-->
+    <div class="listStyle">
+      <span>
+        <span><router-link  to="/matchmaking/TimeDesc" class="her style1">查看最新<span class="glyphicon glyphicon-arrow-up" ></span></router-link></span>
+        <span><router-link  to="/matchmaking/Timeasc" class="her style2">按时间<span class="glyphicon glyphicon-arrow-down"></span></router-link></span>
+        <span><router-link  to="/matchmaking/HotDesc" class="her style3">查看最热<span class="glyphicon glyphicon-fire" ></span></router-link></span>
+      </span>
+    </div>
+    <router-view></router-view>
     <match-hot></match-hot>
+
   </div>
 
 </template>
@@ -29,6 +38,11 @@
       'app-select':select,
       'match-hot':matchhot
     },
+    data(){
+      return{
+        show:false
+      }
+    }
   }
 </script>
 
@@ -40,7 +54,7 @@
     box-shadow:-2px 2px 10px 2px #bcbcbc;
     position: relative;
   }
-  button{
+  .publish{
     border: none;
     background-color: transparent;
     color: #7d94ff;
@@ -69,5 +83,24 @@
     width: 300px;
     position: relative;
     left: 20px;
+  }
+  .listStyle span span{
+    margin-right: 7px;
+  }
+  .listStyle span span:first-child{
+    margin-left: 5px;
+  }
+  .her{
+    text-decoration: none;
+    color: grey;
+  }
+  .style1:focus{
+    color: #c382ed
+  }
+  .style2:focus{
+    color: cornflowerblue
+  }
+  .style3:focus{
+    color: #ed5652
   }
 </style>

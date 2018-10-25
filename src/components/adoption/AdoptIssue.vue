@@ -91,7 +91,7 @@
         <div class="col-sm-offset-2 col-sm-10">
           <div class="checkbox">
             <label>
-              <input type="checkbox"> 已阅读并同意宠它领养协议
+              <input v-model="checked" type="checkbox"> 已阅读并同意宠它领养协议
             </label>
           </div>
         </div>
@@ -123,6 +123,7 @@
           adoAddress:'',
           userId:this.$store.state.userId,
         },
+        checked:false,
         upath:'',  //保存选中的文件
       };
     },
@@ -141,15 +142,26 @@
         let _this = this
         if(_this.adoForm.petType==""){
           alert("请填写宠物类别")
+          return false
         }else if(_this.adoForm.age==""){
           alert("请填写宠物年龄(几个月)")
+          return false
         }else if(_this.adoForm.adoTitle==""){
           alert("请填写领养标题")
+          return false
         }else if(_this.adoForm.detail==""){
           alert("请填写详情描述")
+          return false
         }else if(_this.adoForm.adoAddress==""){
           alert("请填写联系地址")
-        }else {
+          return false
+        }else if(_this.upath.length<2){
+          alert("请上传至少2张图片")
+          return false
+        }else if(!_this.checked){
+          alert("请同意")
+          return false
+        } else{
           this.edit()
         }
       },
@@ -172,13 +184,14 @@
         zipFormData.append('detail',this.adoForm.detail)
         zipFormData.append('adoAddress',this.adoForm.adoAddress)
         let config = { headers: { 'Content-Type': 'multipart/form-data' } };
-        this.$axios.post('http://localhost:3000/adoptions/adoAdd', zipFormData,config)
+        this.$axios.post(this.$store.state.url+'/adoptions/adoAdd', zipFormData,config)
           .then(function (response) {
             console.log(response);
             console.log(response.data);
             console.log(response.bodyText);
             alert("发布成功！！！")
-            location.href = "http://localhost:8080/adoption"
+            history.go(-1);
+            location.reload()
           }).catch((err) => {
           console.log(err)
           alert(err)

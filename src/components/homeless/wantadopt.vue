@@ -23,14 +23,9 @@
         </div>
       </div>
       <div class="form-group">
-        <label  class="col-sm-3 control-label">生日：</label>
+        <label for="inputTitle" class="col-sm-3 control-label">宠物年龄：</label>
         <div class="col-sm-6">
-          <el-date-picker
-            v-model="addlose.lpTime"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="选择日期">
-          </el-date-picker>
+          <input type="text" required="required" v-model="addlose.age" class="form-control" id="inputAge" placeholder="几个月">
         </div>
       </div>
       <div class="form-group">
@@ -134,13 +129,14 @@
         zipFormData.append('reward',this.addlose.reward)
         zipFormData.append('userId',this.addlose.userId)
         let config = { headers: { 'Content-Type': 'multipart/form-data' } };
-        this.$axios.post('http://localhost:3000/homeless/addlost', zipFormData,config)
+        this.$axios.post(this.$store.state.url+'/homeless/addlost', zipFormData,config)
           .then(function (response) {
             console.log(response);
             console.log(response.data);
             console.log(response.bodyText);
             alert("发布成功！！！")
-            location.href = "http://localhost:8080/homeless";
+            history.go(-1);
+            location.reload()
           }).catch((err) => {
           console.log(err)
           alert(err)

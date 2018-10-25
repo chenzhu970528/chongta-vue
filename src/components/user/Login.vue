@@ -58,7 +58,7 @@
       login() {
         let _this = this
         $.ajax({
-          url: "http://localhost:3000/user/login",
+          url: this.$store.state.url+"/user/login",
           type: "post",
           data: _this.userForm,
           success: function (result) {
@@ -76,7 +76,7 @@
                 localStorage.setItem("userId", JSON.stringify(result.data.userId));
                 localStorage.setItem("userName", JSON.stringify(result.data.userName));
               }
-              location.href = "http://localhost:8080";
+              location.reload();
             }
           }
         })

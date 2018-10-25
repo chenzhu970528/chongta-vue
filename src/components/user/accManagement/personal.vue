@@ -49,7 +49,7 @@
         }
       },
       created(){
-        axios.get(`http://localhost:3000/user/showUser/${this.userId}`).then((result) => {
+        axios.get(this.$store.state.url+`/user/showUser/${this.userId}`).then((result) => {
           console.log(result.data.data[0]);
           this.personal = result.data.data[0];
           if(this.personal.sex == 0){

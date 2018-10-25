@@ -49,7 +49,7 @@
         }
       },
       created(){
-        axios.get(`http://localhost:3000/matchmaking/${this.userId}/sendaply`).then((result) => {
+        axios.get(this.$store.state.url+`/matchmaking/${this.userId}/sendaply`).then((result) => {
           this.myAplydata = result.data.data[0];
           console.log(result.data.data[0]);
           for (let i = 0; i < this.myAplydata.length; i++) {

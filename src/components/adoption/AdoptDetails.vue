@@ -59,7 +59,7 @@
           }
       },
       created(){
-        axios.get(`http://localhost:3000/adoptions/details/${this.adoId}`).then((result) => {
+        axios.get(this.$store.state.url+`/adoptions/details/${this.adoId}`).then((result) => {
           // console.log(result.data)
           this.mydata = result.data.data.jsondata;
         })

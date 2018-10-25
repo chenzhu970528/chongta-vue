@@ -55,7 +55,8 @@
     ,methods:{
       cleanUser(){
         localStorage.clear();
-        location.href = "http://localhost:8080";
+        history.back(-1);
+        location.reload()
       }
     }
 
