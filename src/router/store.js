@@ -6,6 +6,7 @@ function isLogin() {
   var login = {};
   login.userId = localStorage.getItem("userId");
   login.userName =localStorage.getItem("userName");
+  login.headPic = localStorage.getItem("headPic")
   if (login.userId) {
     login.isLogin = true;
   } else {
@@ -22,6 +23,7 @@ export default new Vuex.Store({
     userId: isLogin().userId,
     isLogin: isLogin().isLogin,
     userName:isLogin().userName,
+    headPic:isLogin().headPic,
   },
   getters:{
     isLogin(state) {
@@ -32,7 +34,11 @@ export default new Vuex.Store({
     },
     UserName(state){
       return state.userName
+    },
+    HeadPic(state){
+      return (state.url+state.headPic).replace(/\"/g, "")
     }
+
   }
 })
 
