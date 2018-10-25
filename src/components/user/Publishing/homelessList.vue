@@ -1,15 +1,14 @@
 <template>
   <div class="inner_ado">
-    <div class="tol"  v-for="publishdet in publishdets">
+    <div class="tol"  v-for="(publishdet,index) in publishdets">
       <el-row class="card" >
         <el-col :span="7" class="petPic">
           <div class="pic"></div>
         </el-col>
         <el-col :span="15">
           <p class="title">标题：<span>{{publishdet.getmes}}</span></p>
-          <p>发布类型：流浪</p>
-          <p>发布时间：<span>{{publishdet.homeTime}}</span></p>
-          <p>申请人数：<span>4</span></p>
+          <p>发布时间：<span>{{publishdet.pTime}}</span></p>
+          <p>有意者：<span>4</span></p>
           <el-row>
             <el-col :span="5">详细信息：</el-col>
             <el-col :span="18" >
@@ -21,11 +20,11 @@
           <el-popover
             placement="top"
             width="160"
-            v-model="visible1">
+            v-model="visible1[index]">
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="visible1 = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="visible2 = false">确定</el-button>
+              <el-button size="mini" type="text" @click="visible1[index] = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="delhomeless(publishdet.homeId)">确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>
             <!--<el-button slot="reference">删除</el-button>-->
@@ -44,9 +43,10 @@
   import axios from 'axios'
     export default {
         name: "homelessList",
+
       data(){
         return{
-          visible1: false,
+          visible1:[],
           userId:this.$store.state.userId,
           isshow:false,
           mydata: [],
@@ -56,24 +56,43 @@
         };
       },
       created() {
-        axios.get(this.$store.state.url+`/homeless/details/${this.userId}`).then((result) => {
-          // console.log(result.data)
-          this.mydata = result.data.data;
-          // this.homeTime = result.data.data.homeTime
-          console.log(result)
-          console.log(result.data.data)
-          for (let i = 0; i < this.mydata.length; i++) {
-            this.publishdets.push(this.mydata[i]);
-            // console.log(this.publishdets[i])
-          }
-          if(result.data.data.length==0){
-            this.showPic()
-          }
-        })
+        this.ajax()
       },
       methods:{
+          ajax(){
+            axios.get(this.$store.state.url+`/homeless/details/${this.userId}`).then((result) => {
+              this.mydata = result.data.data;
+              // this.homeTime = result.data.data.homeTime
+              for (let i = 0; i < this.mydata.length; i++) {
+                this.publishdets.push(this.mydata[i]);
+                this.visible1.push(false)
+              }
+              if(result.data.data.length==0){
+                this.showPic()
+              }
+            })
+          },
+          delhomeless(homeId){
+            let _this=this
+              $.ajax({
+                url: _this.$store.state.url+"/homeless/delhomeless/" + homeId,
+                type: "get",
+                // data: homeId,
+                success: function (result) {
+                  console.log("success:" + homeId);
+                  console.log(result.data)
+                  // alert("删除成功！！！")
+                  _this.mydata=[],
+                  _this.visible1=[],
+                    _this.publishdets=[],
+                  _this.ajax()
+                  // this.$router.go(0)
+                }
+              })
+            // this.visible2 = false
+          },
           showPic:function () {
-            this.isshow=true
+            this.isshow = true
           }
 
       }
@@ -93,7 +112,8 @@
   }
   .card{
     width: 100%;
-    height: 200px;
+    min-height: 150px;
+    /*background-color: red;*/
   }
   .tol{
     border-radius: 20px;
@@ -109,7 +129,7 @@
     margin-left: 10px;
   }
   .petPic{
-    height: 200px;
+    /*height: 200px;*/
     /*background-color: red;*/
   }
 

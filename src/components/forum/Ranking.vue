@@ -32,7 +32,7 @@
       }
     },
     mounted() {
-      axios.get("http://localhost:3000/forumSee/time").then((result) => {
+      axios.get("http://localhost:3000/forumSee/likes").then((result) => {
         this.mydata = result.data.data;
         for (let i = 0; i < 10; i++) {
           this.list1.push(this.mydata[i])
