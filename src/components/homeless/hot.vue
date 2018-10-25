@@ -1,26 +1,29 @@
 <template>
   <div class="list-group col-xs-4" >
-    <h3>热门信息</h3>
-    <a href="#" class="list-group-item active">
-     丢丢丢丢丢丢丢丢丢丢
-    </a>
+    <div class="button">
+      <router-link to="/homeless/publish"><span>发布流浪</span></router-link>
+      <router-link to="/homeless/wantadopt"><span>发布寻宠</span></router-link>
+    </div>
+    <div class="list-group-item active">
+      热门信息
+    </div>
     <div v-for="diary in diarys">
       <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="list-style: none" exact>
-        <a href="#" class="list-group-item "><span>{{diary.getmes}}</span> </a>
+        <a href="#" class="list-group-item ">
+          <span>{{diary.getmes}}</span>
+        </a>
       </router-link>
     </div>
-    <div style="width: 1200px;margin-top: 30px"><reward></reward></div>
   </div>
 
 </template>
 
 <script>
   import axios from 'axios'
-  import reward from './reward'
   export default {
     name: "all",
     components:{
-      'reward':reward
+
     },
     data() {
       return {
@@ -57,6 +60,23 @@
 <style scoped>
   /*div{*/
     /*background-color: palevioletred;*/
+  .button{
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 40%;
+    /*background-color: yellow;*/
+  }
 
+.button span{
+  display: inline-block;
+  border: 1px solid cornflowerblue;
+  font-size: 17px;
+  width: 100px;
+  background-color: cornflowerblue;
+  color:white;
+  text-align: center;
+  margin-left: 10px;
+  border-radius: 5px;
+}
 
 </style>

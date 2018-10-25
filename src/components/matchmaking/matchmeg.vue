@@ -1,27 +1,37 @@
 <template>
-    <div class="col-xs-6 col-md-6 col-md-offset-0 col-lg-6 ">
-      <h3><span><img src="../../assets/match/love.png" alt=""></span>小宠信息</h3>
-      <div class="Pet">
-        <span>姓名：{{Mdeldata.PetName}}</span>
-        <span>性别：{{Mdeldata.sex}}</span>
-        <span>体检报告：{{Mdeldata.medReport}}</span>
-        <span>生日：{{Mdeldata.birth}}</span>
-        <span>配种史：{{Mdeldata.maHistory}}</span>
-        <span>详情：{{Mdeldata.detail}}</span>
+    <div class="col-xs-7 col-md-6 col-md-offset-0 col-lg-6 ">
+      <h2>{{Mdeldata.title}}</h2>
+      <span>{{Mdeldata.relTime}}</span>
+      <div class="col-xs-6">
+        <h3><span><img src="../../assets/match/love.png" alt=""></span>小宠信息</h3>
+        <div class="Pet">
+          <span>爱称：{{Mdeldata.PetName}}</span>
+          <span>性别：{{Mdeldata.sex}}</span>
+          <span>生日：{{Mdeldata.birth}}</span>
+          <span>年龄：{{Mdeldata.age}}个月</span>
+          <span>品种：{{Mdeldata.type}}</span>
+        </div>
       </div>
-      <h3><span><img src="../../assets/match/user.png" alt=""></span>主人信息</h3>
-      <div class="use">
-        <span>昵称：{{Mdeldata.userName}}</span><span>所在地：{{Mdeldata.address}}</span><span>电话：{{Mdeldata.userPhone}}</span>
+      <div class="col-xs-6">
+        <h3><span><img src="../../assets/match/user.png" alt=""></span>主人信息</h3>
+        <div class="use">
+          <span>昵称：{{Mdeldata.userName}}</span><span>所在地：{{Mdeldata.address}}</span><span>电话：{{Mdeldata.userPhone}}</span>
+          <div class="aply">
+            <m-aply></m-aply>
+          </div>
+        </div>
       </div>
-
     </div>
-    
 </template>
 
 <script>
   import axios from 'axios'
+  import maply from './maply.vue'
   export default {
         name: "matchmeg",
+    components:{
+      'm-aply': maply,
+    },
     data(){
           return{
             relId:this.$route.params.relId,
@@ -41,8 +51,20 @@
 </script>
 
 <style scoped>
-  .col-xs-6{
+  .col-xs-7{
     margin-left: 30px;
+    /*background-color: cornflowerblue;*/
+  }
+  .col-xs-7>span{
+    display: block;
+  }
+  .col-xs-6 {
+    position: relative;
+  }
+  .aply{
+    position: relative;
+    bottom: -10px;
+    right:-75px;
   }
   h3 {
     font-size: 18px;
@@ -61,13 +83,12 @@
     padding-left: 30px;
    }
   .use span{
+    display: block;
     padding-right: 20px;
     height: 30px;
     line-height: 30px;
     font-size: 14px;
     color: grey;
-  }
-  .use span:first-child{
     padding-left: 30px;
   }
 </style>

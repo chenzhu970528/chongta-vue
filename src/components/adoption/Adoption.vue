@@ -1,46 +1,86 @@
 <template>
-    <div style="margin-top: 70px">
+    <div class="tol">
+      <div class="top"></div>
       <!--<sildes-show></sildes-show>-->
       <div class="cont container">
+        <!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
+          <!--&lt;!&ndash; Indicators &ndash;&gt;-->
+          <!--<ol class="carousel-indicators">-->
+            <!--<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>-->
+            <!--<li data-target="#carousel-example-generic" data-slide-to="1"></li>-->
+            <!--<li data-target="#carousel-example-generic" data-slide-to="2"></li>-->
+          <!--</ol>-->
+
+          <!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
+          <!--<div class="carousel-inner" role="listbox">-->
+            <!--<div class="item active">-->
+              <!--<ul>-->
+                <!--<li>-->
+                  <!--<router-link tag="a" active-class="active" role="presentation" :to="">-->
+                    <!--<img  @click="see()"  class=img :src=values[0].img>-->
+                    <!--<p @click="see()" class="p"><span class="left0"></span><a @click="see()"  class="a title"></a></p>-->
+                  <!--</router-link>-->
+                <!--</li>-->
+              <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="item">-->
+              <!--<img src="" alt="...">-->
+              <!--<div class="carousel-caption">-->
+                <!--...-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--...-->
+          <!--</div>-->
+
+          <!--&lt;!&ndash; Controls &ndash;&gt;-->
+          <!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">-->
+            <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
+            <!--<span class="sr-only">Previous</span>-->
+          <!--</a>-->
+          <!--<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">-->
+            <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
+            <!--<span class="sr-only">Next</span>-->
+          <!--</a>-->
+        <!--</div>-->
         <!--小喵-->
-        <div class="main">
-          <span class="stand"></span>
-          <div class="cat">
-            <div class="body"></div>
-            <div class="head">
-              <div class="ear"></div>
-              <div class="ear"></div>
-            </div>
-            <div class="face">
-              <div class="nose"></div>
-              <div class="whisker-container">
-                <div class="whisker"></div>
-                <div class="whisker"></div>
-              </div>
-              <div class="whisker-container">
-                <div class="whisker"></div>
-                <div class="whisker"></div>
-              </div>
-            </div>
-            <div class="tail-container">
-              <div class="tail">
-                <div class="tail">
-                  <div class="tail">
-                    <div class="tail">
-                      <div class="tail">
-                        <div class="tail">
-                          <div class="tail"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--小喵-->
-        <div class="route">您的当前位置：<span>领养中心</span></div>
+        <!--<div class="main">-->
+          <!--<span class="stand"></span>-->
+          <!--<div class="cat">-->
+            <!--<div class="body"></div>-->
+            <!--<div class="head">-->
+              <!--<div class="ear"></div>-->
+              <!--<div class="ear"></div>-->
+            <!--</div>-->
+            <!--<div class="face">-->
+              <!--<div class="nose"></div>-->
+              <!--<div class="whisker-container">-->
+                <!--<div class="whisker"></div>-->
+                <!--<div class="whisker"></div>-->
+              <!--</div>-->
+              <!--<div class="whisker-container">-->
+                <!--<div class="whisker"></div>-->
+                <!--<div class="whisker"></div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="tail-container">-->
+              <!--<div class="tail">-->
+                <!--<div class="tail">-->
+                  <!--<div class="tail">-->
+                    <!--<div class="tail">-->
+                      <!--<div class="tail">-->
+                        <!--<div class="tail">-->
+                          <!--<div class="tail"></div>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--主体-->
+        <!--<div class="route">您的当前位置：<span>领养中心</span></div>-->
         <div class="title">
           <img src="../../assets/adoption/take.png" width="50" alt="">
           <span class="text-primary">萌宠分类</span>
@@ -61,9 +101,9 @@
             </div>
             <!--二维码-->
             <div class="qrCord">
-              <div class="erweima"><img src="../../assets/homeless/E997FFB8C02AEA4FDB1644CF03466ED5.png" alt=""></div>
+              <!--<div class="erweima"><img src="../../assets/homeless/E997FFB8C02AEA4FDB1644CF03466ED5.png" alt=""></div>-->
               <router-link tag="div" to="/adoption/issue"><a>求抱走</a></router-link>
-              <img src="../../assets/adoption/0974a659d83ad4c85bf93dd1c987cae2.png" alt="">
+              <!--<img src="../../assets/adoption/0974a659d83ad4c85bf93dd1c987cae2.png" alt="">-->
 
             </div>
           </div>
@@ -98,6 +138,9 @@
 </script>
 
 <style scoped>
+  .tol{
+    background-color: rgb(225,228,233);
+  }
   a{
     text-decoration: none;
   }
@@ -117,15 +160,22 @@
     color: #4e76ff;
   }
   .cont{
-    width: 1179px;
+    width: 1240px;
     position: relative;
-    background:rgba(255,255,255,0.9);
-    margin-top:150px;
+    /*background:rgba(255,255,255,0.9);*/
+    /*margin-top:150px;*/
     margin-bottom: 50px;
-    box-shadow:-2px 2px 10px 2px #bcbcbc;
+    /*box-shadow:-2px 2px 10px 2px #bcbcbc;*/
     min-height: 700px;
   }
-
+  .top{
+    width: 100%;
+    height: 420px;
+    background:url("../../assets/adoption/cat3.jpg") no-repeat left;
+    background-size: 90% auto;
+    /*min-height: 900px;*/
+    position: relative;
+  }
   .issue img{
     margin-left: 55px;
     width: 300px;

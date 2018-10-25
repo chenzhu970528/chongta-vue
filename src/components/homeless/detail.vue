@@ -1,43 +1,44 @@
 <template>
-  <div class="cont container">
-    <div class="route">您的当前位置：<span>流浪精灵/寻宠之家</span><span>/</span><span>详情</span></div>
-    <!--<ol class="breadcrumb">-->
-      <!--您当前位置为：-->
-      <!--<li><a href="/adoption">流浪精灵</a></li>-->
-      <!--&lt;!&ndash;<li><a href="#">详情</a></li>&ndash;&gt;-->
-      <!--<li class="active">流浪详情</li>-->
-    <!--</ol>-->
-    <div class="title">
-      <img src="../../assets/adoption/take.png" width="50" alt="">
-      <span class="text-primary">流浪详情</span>
-    </div>
-    <div class="adoTitle">
-      <h3 class="text-primary">{{mydata.getmes}}</h3>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-5" style="margin-top: 25px">
-          <detailsimg></detailsimg>
-        </div>
-        <div class="col-xs-7">
-          <detailsmes></detailsmes>
-        </div>
-      </div>
-      <div class="descript">
-        <div class="container text-muted">
-          {{mydata.detail}}
-          联系我时，请说明来自：宠它
+  <div class="all">
+    <div class="cont container">
 
-          <p class="text-danger" style="margin-top: 10px"><span class="glyphicon glyphicon-alert" aria-hidden="true"> </span> 安全提示：请不要相信任何需要金钱交易的无偿领养！例如宠物免费，骗取运费等常见骗术！</p>
-        </div>
-      </div>
-
-      <!--<div class="recommend">-->
-        <!--<h4 class="text-primary">你可能对以下内容感兴趣</h4>-->
-        <!--<ado-recommend></ado-recommend>-->
+      <!--<div class="container1"></div>-->
+      <!--<div class="container2">-->
+        <!--<detailsimg></detailsimg>-->
       <!--</div>-->
+      <div class="route">您的当前位置：<span><a href="/homeless">流浪精灵/寻宠之家</a></span><span>/</span><span>详情</span></div>
+      <div class="title">
+        <img src="../../assets/adoption/take.png" width="50" alt="">
+        <span class="text-primary">流浪详情</span>
+      </div>
+      <div class="adoTitle">
+        <h3 class="text-primary">{{mydata.getmes}}</h3>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-5" style="margin-top: 25px">
+            <detailsimg></detailsimg>
+          </div>
+          <div class="col-xs-7">
+            <detailsmes></detailsmes>
+          </div>
+        </div>
+        <div class="descript">
+          <div class="container text-muted">
+            {{mydata.detail}}
+            联系我时，请说明来自：宠它
+            <p class="text-danger" style="margin-top: 10px"><span class="glyphicon glyphicon-alert" aria-hidden="true"> </span> 安全提示：请不要相信任何需要金钱交易的无偿领养！例如宠物免费，骗取运费等常见骗术！</p>
+          </div>
+        </div>
+
+        <!--&lt;!&ndash;<div class="recommend">&ndash;&gt;-->
+        <!--&lt;!&ndash;<h4 class="text-primary">你可能对以下内容感兴趣</h4>&ndash;&gt;-->
+        <!--&lt;!&ndash;<ado-recommend></ado-recommend>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -69,13 +70,42 @@
 </script>
 
 <style scoped>
+  .all{
+    /*background-color: #f7f7f7;*/
+    padding-top: 150px;
+    padding-bottom: 30px;
+  }
+  a{
+    color: #747474;
+  }
+  a:hover{
+    text-decoration: none;
+    color: #4e76ff;
+  }
   .cont{
-    background:rgba(255,255,255,0.9);
-    margin-top:150px ;
+    background: rgba(247, 247, 247, 0.9);
+    /*margin-top:150px ;*/
     box-shadow:-2px 2px 10px 2px #bcbcbc;
     min-height: 500px;
     width: 1240px;
+    position: relative;
   }
+  /*.container1{*/
+    /*width: 90%;*/
+    /*height: 400px;*/
+    /*background-color: cornflowerblue;*/
+    /*position: absolute;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+  /*}*/
+  /*.container2{*/
+    /*width: 60%;*/
+    /*height: 300px;*/
+    /*background-color: yellow;*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top:0*/
+  /*}*/
   .adoTitle{
     width: 1136px;
     margin: 0  auto;

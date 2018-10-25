@@ -1,29 +1,25 @@
 <!--婚介详情-->
 <template>
-  <div>
     <div class="cont container">
       <div class="route">您的当前位置：<span><a href="/matchmaking">宠物婚介</a></span><span>/</span><span>详情</span></div>
         <div class="row firstrow">
           <div class="col-xs-10 col-xs-offset-1 cent">
             <sowing-map></sowing-map>
-            <h2>{{Mdeldata.title}}</h2>
             <match-message></match-message>
-            <div class="aply">
-              <m-aply></m-aply>
-            </div>
           </div>
         </div>
+      <!--<m-aply></m-aply>-->
         <div class="row">
-          <div class="col-xs-8 col-xs-offset-1 cent msg">
+          <div class="col-xs-9 col-xs-offset-1 cent msg">
             <h3><span><img src="../../assets/match/sand.png" alt=""></span>主人寄语</h3>
             <div>{{Mdeldata.sandword}}</div>
             <h3><span><img src="../../assets/match/request.png" alt=""></span>要求</h3>
             <div>{{Mdeldata.request}}</div>
+            <h3><span><img src="../../assets/match/detail.png" alt=""></span>详细信息</h3>
+            <div>{{Mdeldata.detail}}</div>
           </div>
         </div>
     </div>
-  </div>
-
 </template>
 
 <script>
@@ -85,7 +81,7 @@
   .cont{
     width: 1240px;
     background:rgba(255,255,255,0.9);
-    margin-top:100px ;
+    margin-top:150px ;
     box-shadow:-2px 2px 10px 2px #bcbcbc;
   }
   a{
@@ -101,7 +97,6 @@
     height: 50px;
     line-height: 50px;
     font-size: 14px;
-    /*background-color: palevioletred;*/
     color: #747474;
   }
   .route span{
@@ -118,25 +113,27 @@
   }
   .msg{
     margin-top: 10px;
-    /*background-color: yellow;*/
     border: 2px dotted #bd7dfb;
     border-radius: 10px;
     margin-bottom: 30px;
   }
   h2{
     color: #6b6b6b;
-    /*margin-left: 18px;*/
     margin-left: 25px;
   }
   .firstrow{
     margin-top: 30px;
   }
   .msg div{
-    /*height: 50px;*/
-    /*line-height: 50px;*/
     font-size: 15px;
     color: grey;
-    /*padding-left: 30px;*/
+    margin-left: 30px;
+  }
+  .msg div:last-child{
+    font-size: 15px;
+    color: grey;
+    margin-left: 30px;
+    padding-bottom: 10px;
   }
   h3 span{
     padding-right: 10px;
