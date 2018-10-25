@@ -179,8 +179,11 @@ export default new Router({
         {path:'recommend',component:Lists},
         {path:'diary',component:Lists},
         {path:'share',component:Lists},
-        {path:'result',component:Lists},
       ]
+    },
+    {path: '/forum/result',
+      name: 'Lists',
+      component: Lists,
     },
 
     {path: '/forum/:faId',

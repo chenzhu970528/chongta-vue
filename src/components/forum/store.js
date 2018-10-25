@@ -9,7 +9,7 @@ const store = new Vuex.Store({
     faId:18,
     key:'标题',
     name:'交流分享',
-    nametype:'a'
+    nametype:'b'
   },
   mutations: {
     increment (state,payload) {
