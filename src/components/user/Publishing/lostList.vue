@@ -1,4 +1,10 @@
 <template>
+  <div>
+    <div class="fabu">
+      <router-link  tag="button" class="btn btn-primary"  to="/adoption/issue" style="list-style: none;text-decoration: none" exact>
+        发布
+      </router-link>
+    </div>
   <div class="inner_ado">
     <div class="tol" v-for="(lostlist,index) in lostlists">
       <el-row class="card">
@@ -35,9 +41,10 @@
     </div>
     <div v-if="isshow" class="noList">
       <img src="../../../assets/user/default8.png" alt="">
-      <p>还没有任何发布哦，快去发布吧</p>
+      <p>还没有任何发布哦，快去<router-link   to="/homeless/wantadopt" style="list-style: none;text-decoration: none" exact>发布吧!</router-link></p>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -95,10 +102,26 @@
 </script>
 
 <style scoped>
+  .block{
+    width: 60%;
+    margin-left: 20%;
+    text-align: center;
+    margin-top: 90px;
+    margin-bottom: 30px;
+  }
+  .fabu{
+    /*background-color: red;*/
+    height: 25px;
+    width: 45px;
+    position: relative;
+    /*left: 542px;*/
+    right: -90%;
+    /*margin-bottom: 20px;*/
+  }
   .inner_ado{
     width: 80%;
     margin-left: 9%;
-    margin-top: 5%;
+    margin-top: 2%;
     position: relative;
     /*background-color: yellow;*/
     min-height: 500px;

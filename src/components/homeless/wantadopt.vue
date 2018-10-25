@@ -17,9 +17,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">宠物类别：</label>
         <div class="col-sm-6">
-          <el-radio v-model="addlose.type" label="1">猫</el-radio>
-          <el-radio v-model="addlose.type" label="2">狗</el-radio>
-          <el-radio v-model="addlose.type" label="3">其他</el-radio>
+          <input type="text" required="required" v-model="addlose.type" class="form-control" id="petType" placeholder="宠物类别(猫，狗，其他)">
         </div>
       </div>
       <div class="form-group">
@@ -33,6 +31,12 @@
         <div class="col-sm-6">
           <el-radio v-model="addlose.sex" label="1">公</el-radio>
           <el-radio v-model="addlose.sex" label="2">母</el-radio>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputTitle1" class="col-sm-3 control-label">丢失时间:<br>（文字描述)</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control"  v-model="addlose.lpTime" id="inputTitle1" placeholder="xxxx年-x月-x日 x时x分 尽量详细">
         </div>
       </div>
       <div class="form-group">
@@ -95,10 +99,10 @@
       return {
         addlose:{
           sex:'0',
-          type:'0',
+          type:'',
           lostpeople:'',
           lostphone:'',
-          lpTime:'2018-11-11',
+          lpTime:'',
           lpmes:'',
           detail:'',
           address:'',

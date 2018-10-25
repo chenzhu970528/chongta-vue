@@ -2,8 +2,8 @@
 <template>
   <div class="right" >
     <div class="route">您的当前位置：<span>账号管理</span><span>/</span><span>我的评论</span></div>
-    <div class="main" id="scroll" v-for="val in value">
-      <div class="comment" v-for="">
+    <div class="main" id="scroll" v-for="">
+      <div class="comment" v-for="val in value">
         <el-row>
           <el-col :span="7">
             <!--我的用户头像-->
@@ -64,7 +64,7 @@
     padding: 0 35px ;
     width: 80%;
     margin-left: 10%;
-    max-height: 600px;
+    max-height: 700px;
     /*background-color: rgba(237, 210, 234, 0.5);*/
     margin-top: 30px;
     overflow: auto;
@@ -94,7 +94,7 @@
   .right{
     position: relative;
     left: 40px;
-    min-height: 780px;
+    min-height: 800px;
     background-color: rgba(255,255,255,0.5);
   }
   .route{
