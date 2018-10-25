@@ -111,7 +111,8 @@
   }
   .card{
     width: 100%;
-    height: 200px;
+    min-height: 150px;
+    /*background-color: red;*/
   }
   .tol{
     border-radius: 20px;
@@ -125,10 +126,6 @@
     background: -10px -10px url("../../../assets/match/mao1.jpg");
     margin-top: 20px;
     margin-left: 10px;
-  }
-  .petPic{
-    height: 200px;
-    /*background-color: red;*/
   }
 
   p{

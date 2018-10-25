@@ -26,8 +26,8 @@
           <el-menu-item index="2-2"><router-link tag="li" active-class="active"  role="presentation" to="/user/mylost">寻宠启示</router-link></el-menu-item>
           <el-menu-item index="2-3"><router-link tag="li" active-class="active"  role="presentation" to="/user/myhomls">流浪小宠</router-link></el-menu-item>
           <el-menu-item index="2-4"><router-link tag="li" active-class="active"  role="presentation" to="/user/mymatch">相亲角</router-link></el-menu-item>
-          <el-menu-item index="2-5"><router-link tag="li" active-class="active"  role="presentation" to="/user/aplyme">申请我的</router-link></el-menu-item>
-          <el-menu-item index="2-6"><router-link tag="li" active-class="active"  role="presentation" to="/user/myaply">我的申请</router-link></el-menu-item>
+          <!--<el-menu-item index="2-5"><router-link tag="li" active-class="active"  role="presentation" to="/user/aplyme">申请我的</router-link></el-menu-item>-->
+          <!--<el-menu-item index="2-6"><router-link tag="li" active-class="active"  role="presentation" to="/user/myaply">我的申请</router-link></el-menu-item>-->
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="3">

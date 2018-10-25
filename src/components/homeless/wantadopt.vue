@@ -23,14 +23,9 @@
         </div>
       </div>
       <div class="form-group">
-        <label  class="col-sm-3 control-label">生日：</label>
+        <label for="inputTitle" class="col-sm-3 control-label">宠物年龄：</label>
         <div class="col-sm-6">
-          <el-date-picker
-            v-model="addlose.lpTime"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="选择日期">
-          </el-date-picker>
+          <input type="text" required="required" v-model="addlose.age" class="form-control" id="inputAge" placeholder="几个月">
         </div>
       </div>
       <div class="form-group">

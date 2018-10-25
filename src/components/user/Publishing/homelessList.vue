@@ -7,9 +7,8 @@
         </el-col>
         <el-col :span="15">
           <p class="title">标题：<span>{{publishdet.getmes}}</span></p>
-          <p>发布类型：流浪</p>
-          <p>发布时间：<span>{{publishdet.homeTime}}</span></p>
-          <p>申请人数：<span>4</span></p>
+          <p>发布时间：<span>{{publishdet.pTime}}</span></p>
+          <p>有意者：<span>4</span></p>
           <el-row>
             <el-col :span="5">详细信息：</el-col>
             <el-col :span="18" >
@@ -113,7 +112,8 @@
   }
   .card{
     width: 100%;
-    height: 200px;
+    min-height: 150px;
+    /*background-color: red;*/
   }
   .tol{
     border-radius: 20px;
@@ -129,7 +129,7 @@
     margin-left: 10px;
   }
   .petPic{
-    height: 200px;
+    /*height: 200px;*/
     /*background-color: red;*/
   }
 
