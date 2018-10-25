@@ -82,7 +82,8 @@
   }
   .card{
     width: 100%;
-    height: 200px;
+    min-height: 150px;
+    /*background-color: red;*/
   }
   .tol{
     border-radius: 20px;
@@ -97,10 +98,7 @@
     margin-top: 20px;
     margin-left: 10px;
   }
-  .petPic{
-    height: 200px;
-    /*background-color: red;*/
-  }
+
 
   p{
     padding-top: 7px;

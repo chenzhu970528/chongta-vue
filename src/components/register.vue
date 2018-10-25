@@ -256,6 +256,7 @@
                         if (localStorage) {
                           localStorage.setItem("userId", JSON.stringify(result.data.userId));
                           localStorage.setItem("userName", JSON.stringify(result.data.userName));
+                          localStorage.setItem("userPic", JSON.stringify(result.data.headPic));
                         }
                       }
                     }

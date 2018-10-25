@@ -3,9 +3,9 @@
   <div>
     <div class="mainList">
         <el-row>
-          <el-col :span="6" style="margin-left: 4%;margin-top: 20px" v-for="(activity,index) in myActData1"  :key="myActData1.length" :offset="index>0?3:0">
+          <el-col :span="6" style="margin-left: 4%;margin-top: 20px" v-for="(activity,index) in myActData1"  :offset="index>0?3:0">
             <div class="oneList">
-              <router-link :to="'/matchmaking/matchDel/'+activity.matId"><img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="..." style="height: 180px" class="img-rounded"></router-link>
+              <router-link :to="'/matchmaking/matchDel/'+activity.relId"><img :src="urlImg(activity.petPic.split(',')[0])" alt="..." style="height: 180px" class="img-rounded"></router-link>
               <div>
                 <span>昵称: <span class="inner">{{activity.PetName}}</span></span>
                 <span>性别: <span class="inner">{{activity.sex}}</span></span>
@@ -38,8 +38,14 @@
 
 <script>
   import axios from 'axios'
+  import  matchhot from './match-hot.vue'
+  // import changepage from './changepage.vue'
   export default {
     name: "matchlist",
+    components:{
+      'match-hot':matchhot,
+      // 'change-page':changepage,
+    },
     data() {
       return {
         // matchdata: [],
@@ -48,8 +54,8 @@
         pagesize: 6,  //每页条数
         pageCount:0,
         myActData:[],  //放数据库取得数据
-        activitys:[]   //方循环的数据
-
+        activitys:[],   //方循环的数据
+        url:this.$store.state.url
       };
     },
     computed:{
@@ -58,6 +64,10 @@
       }
     },
     methods:{
+      urlImg(str){
+        // console.log(this.url+str)
+        return this.url+str
+      },
       loadData() {
         this.activitys = [];
         // console.log('this.pageInedx:' + this.pageIndex)
@@ -151,5 +161,4 @@
     margin-top: 30px;
     margin-bottom: 30px;
   }
-
 </style>

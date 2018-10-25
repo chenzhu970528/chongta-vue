@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="tol" >
+    <div class="tol" v-for="(aplyme,index) in aplymes">
       <el-row class="card">
         <el-col :span="6" class="petPic">
           <div class="pic"></div>
@@ -24,9 +24,9 @@
           <!--</el-popover>-->
         </el-col>
         <el-col :span="15" :push="2">
-          <p class="title">宠物头像<span>宠物信息</span></p>
-          <p>性别：<span>zdgfzd</span></p>
-          <p>年龄：<span>zfgdzfg</span></p>
+          <p class="title"><span>宠物信息</span></p>
+          <p>性别：<span>{{aplyme.sex}}</span></p>
+          <p>年龄：<span>{{aplyme.sex}}</span></p>
           <p>有无配种史：<span>fzdgdzgzd</span></p>
           <el-row>
             <el-col :span="5">详细信息：</el-col>

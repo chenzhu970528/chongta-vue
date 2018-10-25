@@ -26,6 +26,8 @@
           >
           </el-input>
         </el-col>
+
+
       </el-row>
       <el-row>
         <el-col :span="8" :push="2"><span>请再次输入新密码</span></el-col>

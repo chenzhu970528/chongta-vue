@@ -23,6 +23,9 @@
           <user-login></user-login>
         </li>
         <!--登录成功-->
+        <li v-if="isLogin">
+            <img class="headimg"  :src="HeadPic" alt="">
+        </li>
         <li class="dropdown" v-if="isLogin">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
              aria-expanded="false">{{UserName.replace(/\"/g, "")}}<span class="caret"></span></a>
@@ -44,18 +47,23 @@
   import {mapGetters} from 'vuex';
   export default {
     name: "Header",
+    data(){
+      return{
+      }
+    },
     components:{
       'user-login':Login,
     },
     computed: mapGetters([
       'UserId',
       'UserName',
-      'isLogin'
+      'isLogin',
+      'HeadPic'
     ])
     ,methods:{
       cleanUser(){
         localStorage.clear();
-        history.back(-1);
+        history.go(-2);
         location.reload()
       }
     }
@@ -90,6 +98,13 @@
   .bgsty{
     /*background-color: rgba(255, 255, 255,0.4);*/
     /*border: 1px solid cornflowerblue;*/
+  }
+  .headimg{
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #23527c;
+    border-radius: 50px;
   }
 
 </style>

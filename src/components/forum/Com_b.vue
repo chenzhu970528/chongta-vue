@@ -1,105 +1,169 @@
 <template>
-   <div> <!--发帖-->
+  <div> <!--发帖-->
 
-     <div class="con">
+    <div class="con">
       #{{name}}
-       <br>
-       <br>
-       <form >
-         <div class="form-group">
-           <label >请输入标题</label>
-           <input  class="form-control" v-model="title">
-         </div>
-         <div class="form-group">
-           <label>请输入内容</label>
-           <textarea class="form-control" v-model="text"></textarea>
-         </div>
-         <div class="form-group">
-           <label>上传图片</label>
-           <input type="file" >
-         </div>
-         <input class="btn btn-default" type="submit"  @click="addForum" value="发表">
-       </form>
+      <br>
+      <br>
+      <form>
+        <div class="form-group">
+          <input class="form-control" v-model="title" placeholder="请输入标题，最多15字">
+        </div>
+        <div class="form-group">
+          <br>
+          <textarea class="form-control" v-model="text"></textarea>
+        </div>
+        <div class="form-group">
+          <label  class="col-sm-3 control-label">上传图片：</label>
+          <div class="col-sm-6">
+            <input type="file" name="avatar"
+                   @change="changeImage($event)"
+                   accept="image/gif,image/jpeg,image/jpg,image/png"
+                   ref="avatarInput"
+                   multiple><br/>
+          </div>
+        </div>
+        <input class="btn btn-default" type="submit" @click="addForum" value="发表">
+      </form>
 
-     </div>
-     <p v-if="vv" class="cc">发表成功~</p>
+    </div>
+    <p v-if="vv" class="cc">发表成功</p>
+    <p v-if="v" class="cc">字数超出限制</p>
+    <p v-if="v2" class="cc">先去登录吧</p>
   </div>
 </template>
 <script>
-  import  axios from 'axios'
   import store from './store.js'
   import {mapGetters} from 'vuex';
+
   export default {
-    name:  "Com_b",
+    name: "Com_b",
     computed: mapGetters([
       'UserId',
       'UserName',
     ]),
-    data () {
+    data() {
       return {
-        name:store.state.name,
-        title:'',
-        text:'',
-        type:store.state.nametype,
-        vv:false
+        upath:'',  //保存选中的文件
+        name: store.state.name,
+        title: '',
+        text: '',
+        type: store.state.nametype,
+        vv: false,
+        v: false,
+        v2: false
       }
     },
     methods: {
-      addForum() {
-        if (this.text != ''&&this.title!='') {
-          if(this.title.length>20){
-            alert('最多输入20个字哦')
-          }else{
-
-
-          let aa = {
-            faTitle: this.title,
-            faText: this.text,
-            userId: this.UserId.replace(/\"/g, ""),
-            userName: this.UserName.replace(/\"/g, ""),
-            faType: this.type,
-          }
-          this.title='';
-          this.text = '';
-          let _this=this;
-          $.ajax({
-            url: "http://localhost:3000/forumAdd/art",
-            type: "post",
-            data: aa,
-            success: function (result) {
-              console.log(result.data)
-              _this.cc()
-            }
-          })
+      //选中文件后，将文件保存到实例的变量中
+      changeImage(e) {
+        this.upath = e.target.files;
+      },
+      addImg(){
+        let _this = this;
+        let aa = {
+          faTitle: this.title,
+          faText: this.text,
+          userId: this.UserId.replace(/\"/g, ""),
+          userName: this.UserName.replace(/\"/g, ""),
+          faType: this.type,
         }
+        this.title = '';
+        this.text = '';
+        console.log(this.upath);
+        var zipFormData = new FormData();
+        //依次添加多个文件
+        for(var i = 0 ; i< this.upath.length ; i++){
+          zipFormData.append('filename', this.upath[i]);
+        }
+        //添加其他的表单元素
+        zipFormData.append('faTitle',aa.faTitle)
+        zipFormData.append('faText',aa.faText)
+        zipFormData.append('userId',aa.userId)
+        zipFormData.append('userName',aa.userName)
+        zipFormData.append('faType',aa.type)
+        let config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        this.$axios.post(this.$store.state.url+'/forumAdd/art', zipFormData,config)
+          .then(function (response) {
+            console.log(response);
+            console.log(response.data);
+            console.log(response.bodyText);
+            _this.cc()
+          }).catch((err) => {
+          console.log(err)
+          alert(err)
+        });
+
+      },
+      addForum() {
+        let _this = this;
+
+        if (!_this.UserId) {
+          _this.c2()
+        }
+
+        else if (_this.text != '' && _this.title != '') {
+          if (_this.title.length > 15) {
+            _this.c()
+          }
+          else {
+              _this.addImg()
+          }
         }
       },
-      cc(){
-        let _this=this
-        _this.vv=true
+
+      //发表提示
+      cc() {
+        let _this = this
+        _this.vv = true
         setTimeout(function () {
-          _this.vv=false
-        },3000)
-      }
-    },
+          _this.vv = false
+        }, 3000)
+      },
+      //字数限制
+      c() {
+        let _this = this
+        _this.v = true
+        setTimeout(function () {
+          _this.v = false
+        }, 3000)
+      },
+      //登录提示
+      c2() {
+        let _this = this
+        _this.v2 = true
+        setTimeout(function () {
+          _this.v2 = false
+        }, 3000)
+      },
+    }
   }
 </script>
 
 <style scoped>
-  .cc{
+  .cc {
+    width: 180px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: rgba(60, 60, 60, 0.6);
+    border-radius: 3px;
     position: fixed;
-    top:50%;
-    left:30%;
-    color:#ccc;
+    top: 50%;
+    left: 30%;
+    color: #fefefe;
+    font-size: 18px;
   }
-.con{
-  width: 768px;
-  background: white;
-  padding:50px;
-  padding-top:20px;
-}
-textarea{
-    resize:none;
+
+  .con {
+    width: 768px;
+    background: white;
+    padding: 50px;
+    padding-top: 20px;
+  }
+
+  textarea {
+    resize: none;
     height: 200px;
   }
 </style>

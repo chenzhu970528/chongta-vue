@@ -8,7 +8,7 @@
 
       </div>
       <ul>
-        <li :key="index" v-model="val.faId" v-for="(val,index) in value1">
+        <li :key="index" v-model="val.faId" v-for="(val,index) in activitys">
           <div class="head">
             <router-link tag="h1" active-class="active" role="presentation" :to="`/forum/`+val.faId">
               <h1 @click="see(val.faId)" class="title"><a>{{val.faTitle}}</a></h1>
@@ -37,22 +37,22 @@
 
         </li>
 
-        <div class="page">
-          <el-pagination
-            background
-            layout="prev, pager, next"
-            :total="1000">
+        <div class="block">
+          <span class="demonstration"></span>
+          <el-pagination ref="elpage"
+                         @current-change="change()"
+                         :current-page.sync="pageIndex"
+                         layout="prev, pager, next"
+                         :total="pageCount"
+                         :page-size = "pagesize">
           </el-pagination>
-        </div>
-        <button>上一页</button>
-        <button @click="next()">下一页</button>
-        一共{{cou}}页  当前第 {{a}}页
 
-        <a name="publish"></a>
+        </div>
+        <a name="publish" style="margin-bottom:100px;"></a>
         <com_b></com_b>
       </ul>
     </div>
-    <p v-if="vv" class="cc">没有了哦</p>
+    <!--<p v-if="vv" class="cc">没有了哦</p>-->
 
   </div>
 </template>
@@ -70,20 +70,55 @@
     data() {
       return {
         imgs: [{img: require("../../assets/images/a.jpg")}],
-        value: [],//全部的帖子
-        value1: [],//单页的帖子
+
         Names: ['最新', '精品推荐', '宠物日记', '交流分享', '搜索结果'],
         faId: '',
         count: store.state.id,
-        a: 1,//翻页第几页
+        // a: 1,//翻页第几页
         vv: false,
-        cou: 0,//一共多少页
-        q: 0,//当前页的第一个的下标
-        w: 6//当前页的最后一个的下标
+        pageIndex: 1,
+        pagesize: 6,  //每页条数
+        pageCount:0,//总数量
+
+        myActData: [],//全部的帖子
+        activitys: [],//单页的帖子
+
       }
     },
+    computed:{
+      myActData1(){
+        return this.activitys;
+      }
+    },
+
     methods: {
-      see(index) {
+      loadData() {
+        this.activitys = [];
+        // console.log('this.pageInedx:' + this.pageIndex)
+        // console.log('this.pageCount:' + this.pageCount)
+        let start = (this.pageIndex-1) * this.pagesize;
+        let end = start + this.pagesize;
+        //pageindex:0 , start:0 ; end:4
+        //pageindex:1 , start: 4; end:8
+        //pageindex:2 , start:8 ; end:12
+        //pageindex:3 , start:6 ; end:8
+        // console.log('-----------------')
+        // console.log('start:' + start)
+        // console.log('end:' + end)
+        // console.log(this.myActData[1]);
+        if(end>=this.pageCount){
+          end=this.pageCount
+        }
+        for (var i = start; i < end; i++) {
+          this.activitys.push(this.myActData[i])
+        }
+      },
+      change(){
+        return this.loadData();
+      }
+    },
+
+    see(index) {
         store.commit('addID', {
           amount: index
         })
@@ -95,70 +130,69 @@
         })
 
       },
-      next() {
-        this.q = this.q + 6
+      // next() {
+      //   this.q = this.q + 6
+      //
+      //   if (this.a < this.cou-1) {
+      //     this.w = this.w + 6
+      //     this.value1 = []
+      //     this.a++  //记录当前页
+      //     for (let i = this.q; i < this.w; i++) {
+      //       this.value1.push(this.value[i])
+      //     }
+      //     // console.log(this.value)
+      //     // console.log(this.value1)
+      //   }
+      //   //最后一页的，要取出最后一页多少个帖子
+      //   else if (this.a == this.cou-1) {
+      //     this.value1 = []
+      //     this.a++  //记录当前页
+      //     this.w=this.value.length
+      //     for (let i = this.q; i <this.w ; i++) {
+      //       this.value1.push(this.value[i])
+      //     }
+      //     // console.log(this.value)
+      //     // console.log(this.value1)
+      //
+      //   }
+      //   else {
+      //     this.cc()
+      //   }
+      //
+      // },
 
-        if (this.a < this.cou-1) {
-          this.w = this.w + 6
-          this.value1 = []
-          this.a++  //记录当前页
-          for (let i = this.q; i < this.w; i++) {
-            this.value1.push(this.value[i])
-          }
-          // console.log(this.value)
-          // console.log(this.value1)
-        }
-        //最后一页的，要取出最后一页多少个帖子
-        else if (this.a == this.cou-1) {
-          this.value1 = []
-          this.a++  //记录当前页
-          this.w=this.value.length
-          for (let i = this.q; i <this.w ; i++) {
-            this.value1.push(this.value[i])
-          }
-          // console.log(this.value)
-          // console.log(this.value1)
-
-        }
-        else {
-          this.cc()
-        }
-
-      },
-      front() {
-
-        //当前页是最后一页的情况下
-        if(this.a==this.cou-1){
-          //用全部数量减去最后一页的数量，获取倒数第二个的最大长度
-         this.w=this.w-(this.w-(6*this.cou-1))
-          this.q=this.w-6
-          for (let i = this.q; i <this.w; i++) {
-            this.value1.push(this.value[i])
-          }
-          this.a--
-        }
-        else if(this.a==1){
-          this.cc()
-        }
-        else{
-          this.q=this.q-6
-          this.w=this.w-6
-          for (let i = this.q; i <this.w; i++) {
-            this.value1.push(this.value[i])
-          }
-          this.a--
-        }
-
-      },
+      // front() {
+      //
+      //   //当前页是最后一页的情况下
+      //   if(this.a==this.cou-1){
+      //     //用全部数量减去最后一页的数量，获取倒数第二个的最大长度
+      //    this.w=this.w-(this.w-(6*this.cou-1))
+      //     this.q=this.w-6
+      //     for (let i = this.q; i <this.w; i++) {
+      //       this.value1.push(this.value[i])
+      //     }
+      //     this.a--
+      //   }
+      //   else if(this.a==1){
+      //     this.cc()
+      //   }
+      //   else{
+      //     this.q=this.q-6
+      //     this.w=this.w-6
+      //     for (let i = this.q; i <this.w; i++) {
+      //       this.value1.push(this.value[i])
+      //     }
+      //     this.a--
+      //   }
+      //
+      // },
       cc() {
         let _this = this
         _this.vv = true
         setTimeout(function () {
           _this.vv = false
         }, 3000)
-      }
-    },
-
+      },
 
     mounted() {
       let _this = this
@@ -166,50 +200,64 @@
       if (_this.count != 4) {
         if (_this.count == 0) {
           axios.get("http://localhost:3000/forumSee/time").then((result) => {
-            _this.value = result.data.data;
-            for (let i = 0; i < 6; i++) {
-              this.value1.push(this.value[i])
-            }
-            this.cou = Math.ceil(this.value.length / 6)
+            _this.myActData  = result.data.data;
+            _this.pageCount=_this.myActData.length;
+            console.log(_this.pageCount)
+            _this.loadData()
+          //   for (let i = 0; i < 6; i++) {
+          //     this.value1.push(this.value[i])
+          //   }
+          //   this.cou = Math.ceil(this.value.length / 6)
           })
 
         }
         else if (_this.count == 1) {
           axios.get("http://localhost:3000/forumSee/essence").then((result) => {
-            _this.value = result.data.data;
-            for (let i = 0; i < 6; i++) {
-              this.value1.push(this.value[i])
-            }
-            this.cou = Math.ceil(this.value.length / 6)
+            _this.myActData = result.data.data;
+            _this.pageCount=_this.myActData.length;
+            console.log(_this.pageCount)
+            _this.loadData()
+            // for (let i = 0; i < 6; i++) {
+            //   this.value1.push(this.value[i])
+            // }
+            // this.cou = Math.ceil(this.value.length / 6)
           })
         }
         else if (_this.count == 2) {
           axios.get("http://localhost:3000/forumSee/diary").then((result) => {
-            _this.value = result.data.data;
-            for (let i = 0; i < 6; i++) {
-              this.value1.push(this.value[i])
-            }
-            this.cou = Math.ceil(this.value.length / 6)
+            _this.myActData = result.data.data;
+            _this.pageCount=_this.myActData.length;
+            console.log(_this.pageCount)
+            _this.loadData()
+            // for (let i = 0; i < 6; i++) {
+            //   this.value1.push(this.value[i])
+            // }
+            // this.cou = Math.ceil(this.value.length / 6)
           })
         }
         else {
           axios.get("http://localhost:3000/forumSee/gossip").then((result) => {
-            _this.value = result.data.data;
-            for (let i = 0; i < 6; i++) {
-              this.value1.push(this.value[i])
-            }
-            this.cou = Math.ceil(this.value.length / 6)
+            _this.myActData = result.data.data;
+            _this.pageCount=_this.myActData.length;
+            // console.log(_this.pageCount)
+            _this.loadData()
+            // for (let i = 0; i < 6; i++) {
+            //   this.value1.push(this.value[i])
+            // }
+            // this.cou = Math.ceil(this.value.length / 6)
           })
         }
       }
-
+//搜索结果
       else {
         axios.get(`http://localhost:3000/forumSee/query?Keyword=${store.state.key}`).then((result) => {
-          _this.value = result.data.data;
-          for (let i = 0; i < 6; i++) {
-            this.value1.push(this.value[i])
-          }
-          this.cou = Math.ceil(this.value.length / 6)
+          _this.myActData = result.data.data[0];
+          _this.pageCount=_this.myActData.length;
+          _this.loadData()
+          // for (let i = 0; i < 6; i++) {
+          //   this.value1.push(this.value[i])
+          // }
+          // this.cou = Math.ceil(this.value.length / 6)
         })
 
       }
@@ -292,7 +340,7 @@
     margin: 30px 0;
   }
 
-  .page {
+  .block {
     margin-top: 70px;
     width: 800px;
     height: 150px;

@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    图片：{{upath.length}}
     <ol class="breadcrumb">
       您当前位置为：
       <li><a href="/adoption">领养中心</a></li>
@@ -159,9 +158,6 @@
         }else if(_this.upath.length<2){
           alert("请上传至少2张图片")
           return false
-        }else if(_this.upath.length<2){
-          alert("请上传至少2张图片")
-          return false
         }else if(!_this.checked){
           alert("请同意")
           return false
@@ -194,7 +190,8 @@
             console.log(response.data);
             console.log(response.bodyText);
             alert("发布成功！！！")
-            history.go(-1);location.reload()
+            history.go(-1);
+            location.reload()
           }).catch((err) => {
           console.log(err)
           alert(err)

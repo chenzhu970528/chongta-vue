@@ -3,10 +3,13 @@
   <div class="song">
   <div class="listbox clearfix" v-for="(activity,index) in myActData1" :key="myActData1.length"  style="margin-bottom: 10px"  >
       <div class="listimg img" style="float: left">
+        <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
+        <img :src="urlImg(diary.homePic.split(',')[0])" alt="" style="width: 150px;height: 140px;">
         <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>
-        <img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="" style="width: 150px;height: 140px;">
+        <!--<img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="" style="width: 150px;height: 140px;">-->
         </router-link>
       </div>
+
       <div class="listInfo"   >
         <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>
         <h4>{{activity.getmes}}</h4>
@@ -56,12 +59,12 @@
       return {
         mydata: [],
         diarys: [],
-        homeTime:[],
         pageIndex: 1,
         pagesize: 6,  //每页条数
         pageCount:0,
         myActData:[],  //放数据库取得数据
-        activitys:[]   //方循环的数据
+        activitys:[],   //方循环的数据
+        url:this.$store.state.url
       };
     },
     computed:{
@@ -93,7 +96,11 @@
       },
       change(){
         return this.loadData();
-      }
+      },
+      urlImg(str){
+        // console.log(this.url+str)
+        return this.url+str
+      },
     },
     mounted() {
       axios.get(this.$store.state.url+"/homeless").then((result) => {
@@ -172,13 +179,35 @@
     text-overflow: ellipsis;
   }
   .clearfix:hover{
-    border: 1px solid #909ee1;
+    position: relative;
+    left: -10px;
+    top:-10px;
+    box-shadow:2px 2px 5px 2px #a8a8a8;
   }
-img{
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-}
-  .block{
-    margin-top: 20px;
-  }
+
+
+/*.left img{*/
+  /*height: 300px;*/
+  /*width: 250px;*/
+  /*cursor: pointer;*/
+/*}*/
+/*.title{*/
+  /*margin-left: 80px;*/
+  /*width: 450px;height: 30px;*/
+  /*border: 1px solid gray;*/
+  /*margin-bottom: 5px;*/
+/*}*/
+/*.address{*/
+  /*margin-left: 80px;*/
+  /*width: 450px;height: 30px;*/
+  /*border: 1px solid gray;*/
+  /*margin-bottom: 5px;*/
+/*}*/
+
+  /*.comment{*/
+    /*width: 50px;*/
+    /*height: 50px;*/
+    /*border: 2px solid red;*/
+    /*margin-left: 150px;*/
+  /*}*/
 </style>
