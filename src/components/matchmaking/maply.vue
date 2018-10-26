@@ -1,15 +1,14 @@
 <template>
   <div>
-    <!--<el-button type="text" @click="open3">点击打开 Message Box</el-button>-->
-    <el-button type="primary" @click="islogin">申请</el-button>
+    <el-button type="primary" @click="islogin" class="btn">申请</el-button>
     <el-dialog
-      title="提示"
+      title="婚配申请表"
       :visible.sync="centerDialogVisible"
       width="50%"
       center>
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" >婚配申请表</h4>
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+        <!--<h4 class="modal-title" >婚配申请表</h4>-->
       </div>
       <div class="modal-body">
         <form action="">
@@ -88,7 +87,6 @@
     <el-button type="primary" @click="aply">提交</el-button>
   </span>
     </el-dialog>
-
   </div>
 </template>
 
@@ -208,5 +206,10 @@
   form div p{
     display: inline-block;
     width: 300px;
+  }
+  .btn{
+    width: 80px;
+    height: 40px;
+    text-align: center;
   }
 </style>

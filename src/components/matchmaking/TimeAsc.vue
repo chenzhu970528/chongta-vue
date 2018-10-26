@@ -83,7 +83,7 @@
     },
     mounted(){
       let _this=this;
-      axios.get("http://localhost:3000/matchmaking/sortTimeASC").then((result) => {
+      axios.get(this.$store.state.url+"/matchmaking/sortTimeASC").then((result) => {
         console.log(result.data.data[0]);
         _this.myActData = result.data.data[0];
         _this.pageCount=_this.myActData.length;

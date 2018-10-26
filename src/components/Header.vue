@@ -96,7 +96,7 @@
     line-height: 30px;
   }
   .bgsty{
-    background-color: rgb(255, 255, 255);
+    /*background-color: rgba(255, 255, 255,0.4);*/
     /*border: 1px solid cornflowerblue;*/
   }
   .headimg{

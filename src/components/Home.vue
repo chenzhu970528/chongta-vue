@@ -107,7 +107,7 @@
     position: relative;
     /*box-shadow:-2px 2px 10px 2px #bcbcbc;*/
     /*position: absolute;*/
-    margin-top: 70px;
+    /*margin-top: 70px;*/
   }
   .top{
     height: 640px;
