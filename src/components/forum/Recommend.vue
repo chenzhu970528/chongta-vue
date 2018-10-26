@@ -74,15 +74,13 @@
     },
     methods:{
       see(index){
-        store.commit('addID',{
-          amount:index
-        })
-        console.log(index)
+        let storage=window.localStorage;
+        storage.faId=index
+        }
+
       },
-    }
-    ,
     mounted() {
-      axios.get("http://localhost:3000/forumSee/essence").then((result) => {
+      axios.get(this.$store.state.url+"/forumSee/essence").then((result) => {
         this.mydata = result.data.data;
         for (let i = 0; i < 3; i++) {
           this.value.push(this.mydata[i])

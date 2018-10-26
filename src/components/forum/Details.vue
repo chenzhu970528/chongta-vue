@@ -11,31 +11,44 @@
           <span class="name">{{value.art[0].userName}}</span>
 
           <span>{{value.art[0].time.slice(0,16).replace('T',' ')}}</span>
+
           <span class="r">
-    <!--删除文章-->
-    <span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#delcomm"></span>
+            <!--管理员推荐,判断管理员帐号-->
+            <span v-if="admin">
 
-    <div id="delcomm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h5 class="modal-title">删除提示</h5>
-    </div>
-    <div class="modal-body" style="font-size:16px;">
-    确定删除这篇文章吗
-    </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-    <button type="button" class="btn btn-primary" data-dismiss="modal"
-            @click="delart(value.art[0].faId)">确定</button>
-    </div>
-    </div>
-    </div>
-    </div>
+              <span @click="addRec(value.art[0].faId)" class="glyphicon glyphicon-arrow-up"
+                    v-if="rec===0"
+                    style="color: #ccc">
+             </span>
+            <span class="glyphicon glyphicon-arrow-up"
+                  v-if="rec===1"
+                  @click="delRec(value.art[0].faId)">
 
+            </span>
+            </span>
 
+&nbsp
+            <!--删除文章-->
+               <span v-if="admin ||value.art[0].userId==userId ">
+
+            <el-popover
+              placement="top"
+              width="160">
+              <!--v-model="visible2[index]"-->
+              <p>确定删除吗？</p>
+              <div style="text-align: right; margin: 0">
+                <el-button size="mini" type="text">取消</el-button>
+                <el-button type="primary" size="mini" @click="delart(value.art[0].faId)">确定</el-button>
+              </div>
+              <el-button slot="reference" icon="el-icon-delete" circle></el-button>
+
+            </el-popover>
+
+               </span>
+
+&nbsp
     <span class="s glyphicon" :class='aa' @click="a()">{{value.like[0].like_sum}}</span>
+
     <span>&nbsp{{value.sum[0][0].sum_count-1}}回复</span>
     </span>
         </div>
@@ -77,29 +90,20 @@
                   <div class="com11" :key="index">
                     <span @click.prevent="aaaa(index)" class="rr">回复</span>
                     <!--删除评论-->
-                    <span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#delcom"></span>
-
-                    <div id="delcom" class="modal fade" tabindex="-1" role="dialog"
-                         aria-labelledby="gridSystemModalLabel">
-                      <div class="modal-dialog modal-sm" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                              aria-hidden="true">&times;</span></button>
-                            <h5 class="modal-title" id="gridSystemModalLabel9">删除提示</h5>
-                          </div>
-                          <div class="modal-body" style="font-size:16px;">
-                            确定删除这条评论吗{{com.fcId}}
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                    @click="delcom(com.fcId)">确定
-                            </button>
-                          </div>
-                        </div>
+                    <span v-if="admin ||com.userId==userId ">
+                       <el-popover
+                         placement="top"
+                         width="160">
+                      <!--v-model="visible2[index]"-->
+                      <p>确定删除吗？</p>
+                      <div style="text-align: right; margin: 0">
+                        <el-button size="mini" type="text">取消</el-button>
+                        <el-button type="primary" size="mini" @click="delcom(com.fcId)">确定</el-button>
                       </div>
-                    </div>
+                      <el-button slot="reference" icon="el-icon-delete" circle></el-button>
+
+                    </el-popover>
+                    </span>
 
 
                     <div v-if="aaa[index]" class="h">
@@ -128,29 +132,21 @@
                     <div class="val1 but">
                       <p class="p">{{reply.frText}}</p>
                       <!--删除回复-->
-                      <span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#delrep"></span>
-
-                      <div id="delrep" class="modal fade" tabindex="-1" role="dialog"
-                           aria-labelledby="gridSystemModalLabel">
-                        <div class="modal-dialog modal-sm" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                              <h5 class="modal-title" id="gridSystemModalLabel">删除提示</h5>
-                            </div>
-                            <div class="modal-body" style="font-size:16px;">
-                              确定删除这条回复吗{{reply.frId}}
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                              <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                      @click="delcom(reply.frId)">确定
-                              </button>
-                            </div>
-                          </div>
+                      <span v-if="admin ||reply.frman==userId ">
+         <el-popover
+           placement="top"
+           width="160">
+                        <!--v-model="visible2[index]"-->
+                        <p>确定删除吗？</p>
+                        <div style="text-align: right; margin: 0">
+                          <el-button size="mini" type="text">取消</el-button>
+                          delrep(frId)
+                          <el-button type="primary" size="mini" @click="delrep(reply.frId)">确定</el-button>
                         </div>
-                      </div>
+                        <el-button slot="reference" icon="el-icon-delete" circle></el-button>
+
+                      </el-popover>
+</span>
 
 
                       <div class="com11" :key="keys">
@@ -228,8 +224,8 @@
         comm: '',
         rep: '',
         count: 0,//文章的id
-        userId: 0,
-        userName: '',
+        userId: 0,//登录用户id
+        userName: '',//登录用户名字
         aaa: [],//评论框开启关闭
         bbb: [],//回复框开启关闭
         hide: false,//提示状态
@@ -243,11 +239,64 @@
         q: 0,//加载更多需要的范围值
         w: 6,
         page: 1,//当前页数
-        cou: 0//总页数
+        cou: 0,//总页数,
+        rec: 0,//推荐显示，
+        admin: false,
       }
     },
 
     methods: {
+      //重新渲染数据
+      ajax() {
+        //重新渲染数据用
+        let get = this;
+        let faId = window.localStorage.faId;
+        axios.get(this.$store.state.url+`/forumSee/all/?faId=${faId}`).then((result) => {
+          // console.log(result.data.data)
+          get.value = result.data.data;
+          get.q = 0//加载更多需要的范围值
+          get.w = 6
+          get.page = 1
+          get.aaa = []
+          get.bbb = []
+          if (get.value.comment) {
+            get.cou = Math.ceil(get.value.comment.length / 6)
+            for (let i = 0; i < get.value.comment.length; i++) {
+              //添加个放评论的数组
+              get.value.comment[i].replys = []
+
+              get.aaa.push(false)
+              get.bbb.push([])
+              if (get.value.reply) {
+
+                for (let j = 0; j < get.value.reply.length; j++) {
+
+                  if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
+                    get.bbb[i].push(false)
+                    get.value.comment[i].replys.push(get.value.reply[j])
+                  }
+                }
+              }
+            }
+          }
+          //当前评论数
+          get.value1 = []//先清空
+
+          if (get.value.comment.length > 6) {
+            for (let i = 0; i < 6; i++) {
+              get.value1.push(get.value.comment[i])
+            }
+          } else {
+            for (let i = 0; i < get.value.comment.length; i++) {
+              get.value1.push(get.value.comment[i])
+            }
+            //
+            // console.log( '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+            // console.log( get.value1 )
+          }
+        })
+
+      },
       //加载更多
       next() {
         this.q = this.q + 6
@@ -307,7 +356,7 @@
             this.aa = 'glyphicon-heart-empty';
             this.value.like[0].like_sum--
             $.ajax({
-              url: "http://localhost:3000/forumDel/like",
+              url: this.$store.state.url+"/forumDel/like",
               type: "post",
               data: e,
               success: function (result) {
@@ -319,7 +368,7 @@
             this.aa = 'glyphicon-heart';
             this.value.like[0].like_sum++
             $.ajax({
-              url: "http://localhost:3000/forumAdd/like",
+              url: this.$store.state.url+"/forumAdd/like",
               type: "post",
               data: e,
               success: function (result) {
@@ -348,7 +397,7 @@
             let _this = this
             console.log(dd)
             $.ajax({
-              url: "http://localhost:3000/forumAdd/comment",
+              url: this.$store.state.url+"/forumAdd/comment",
               type: "post",
               data: dd,
               success: function (result) {
@@ -356,47 +405,13 @@
                 _this.tips = '评论成功'
                 _this.show()
                 //重新渲染数据用
-                let get = _this;
-                get.count = store.state.faId
-                axios.get(`http://localhost:3000/forumSee/all/?faId=${get.count}`).then((result) => {
-                  get.value = result.data.data;
-
-                  if (get.value.comment) {
-                    get.cou = Math.ceil(get.value.comment.length / 6)
-                    for (let i = 0; i < get.value.comment.length; i++) {
-                      get.value.comment[i].replys = []
-                      //添加弹框状态
-                      get.aaa.push(false)
-                      get.bbb.push([])
-                      if (get.value.reply) {
-
-                        for (let j = 0; j < get.value.reply.length; j++) {
-
-                          if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
-                            get.bbb[i].push(false)
-                            get.value.comment[i].replys.push(get.value.reply[j])
-                          }
-                        }
-                      }
-                    }
-                  }
-                  // 当前评论数
-                  get.value1 = []//先清空
-                  if (get.value.comment.length > 6) {
-                    for (let i = 0; i < 6; i++) {
-                      get.value1.push(get.value.comment[i])
-                    }
-                  } else {
-                    for (let i = 0; i < get.value.comment.length; i++) {
-                      get.value1.push(get.value.comment[i])
-                    }
-                  }
-                })
+                _this.ajax()
               }
 
             })
           } else {
-            this.c()
+            this.tips = '最少两个字哦'
+            this.show()
           }
         }
         this.$forceUpdate()
@@ -431,62 +446,27 @@
             this.myHtmlCode1 = ' ';
             let _this = this
             $.ajax({
-              url: "http://localhost:3000/forumAdd/reply",
+              url: this.$store.state.url+"/forumAdd/reply",
               type: "post",
               data: rr,
               success: function (result) {
                 console.log(result.data)
                 _this.tips = '回复成功'
                 _this.show()
-
                 //重新渲染数据用
-                let get = _this;
-                get.count = store.state.faId
-                axios.get(`http://localhost:3000/forumSee/all/?faId=${get.count}`).then((result) => {
-                  get.value = result.data.data;
-
-                  if (get.value.comment) {
-                    get.cou = Math.ceil(get.value.comment.length / 6)
-                    for (let i = 0; i < get.value.comment.length; i++) {
-                      get.value.comment[i].replys = []
-                      get.aaa.push(false)
-                      get.bbb.push([])
-                      if (get.value.reply) {
-
-                        for (let j = 0; j < get.value.reply.length; j++) {
-
-                          if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
-                            get.bbb[i].push(false)
-                            get.value.comment[i].replys.push(get.value.reply[j])
-                          }
-                        }
-                      }
-                    }
-                  }
-                  //当前评论数
-                  get.value1 = []//先清空
-
-                  if (get.value.comment.length > 6) {
-                    for (let i = 0; i < 6; i++) {
-                      get.value1.push(get.value.comment[i])
-                    }
-                  } else {
-                    for (let i = 0; i < get.value.comment.length; i++) {
-                      get.value1.push(get.value.comment[i])
-                    }
-                  }
-                })
+                _this.ajax()
 
               }
             })
           }
           else {
-            this.c()
+            this.tips = '最少两个字哦'
+            this.show()
           }
         }
         this.$forceUpdate()
       },
-//评论点击弹框
+      //评论点击弹框
       aaaa(index) {
         //点击当前，其他框框关闭
 
@@ -527,110 +507,72 @@
       //删除帖子
       delart(faId) {
         let _this = this
-        $.ajax({
-          url: "http://localhost:3000/forumDel/art",
-          type: "post",
-          data: faId,
-          success: function (result) {
+        axios.get(this.$store.state.url+`/forumDel/art/?faId=${faId}`).then((result) => {
+          _this.tips = '删除成功'
+          _this.show()
 
-            console.log(result.data)
-            console.log(faId)
-            _this.tips = '删除成功'
-            _this.show()
-
-          }
         })
-
       },
       //删除评论
       delcom(fcId) {
+        console.log(fcId)
         let _this = this
         $.ajax({
-          url: "http://localhost:3000/forumDel/comment",
-          type: "post",
-          data: fcId,
+          url: this.$store.state.url+"/forumDel/comment?fcId=" + fcId,
+          type: "get",
           success: function (result) {
-            console.log(result.data)
-            console.log(fcId)
+
             _this.tips = '删除成功'
             _this.show()
             //重新渲染数据用
-            let get = _this;
-            get.count = store.state.faId
-            axios.get(`http://localhost:3000/forumSee/all/?faId=${get.count}`).then((result) => {
-              get.value = result.data.data;
-
-              if (get.value.comment) {
-                for (let i = 0; i < get.value.comment.length; i++) {
-                  get.value.comment[i].replys = []
-                  get.aaa.push(false)
-                  get.bbb.push([])
-                  if (get.value.reply) {
-
-                    for (let j = 0; j < get.value.reply.length; j++) {
-
-                      if (get.value.comment[i].fcId == get.value.reply[j].fcId) {
-                        get.bbb[i].push(false)
-                        get.value.comment[i].replys.push(get.value.reply[j])
-                      }
-                    }
-                  }
-                }
-              }
-
-            })
-
-
+            _this.ajax()
+            console.log(_this.value1)
           }
         })
-
       },
       //删除回复
       delrep(frId) {
+        console.log(frId)
+        let _this = this
+        axios.get(this.$store.state.url+`/forumDel/reply?frId=${frId}`).then((result) => {
+          _this.tips = '删除成功'
+          _this.show()
+          //重新渲染数据用
+          _this.ajax()
+        })
+      },
+      addRe() {
+        console.log('00000000')
+      },
+      //管理员添加推荐
+      addRec(faId) {
         let _this = this
         $.ajax({
-          url: "http://localhost:3000/forumDel/reply",
+          url: this.$store.state.url+"/forumAdd/Recommend",
           type: "post",
-          data: frId,
+          data: faId,
           success: function (result) {
-            console.log(result.data)
-            console.log(frId)
-            _this.tips = '删除成功'
+            _this.rec = 1
+            _this.tips = '已推荐'
             _this.show()
-
-            //重新渲染数据用
-            let get = _this;
-            get.count = store.state.faId
-            axios.get(`http://localhost:3000/forumSee/all/?faId=${get.count}`).then((result) => {
-              get.value = result.data.data;
-
-              if (get.value.comment) {
-                for (let i = 0; i < get.value.comment.length; i++) {
-                  get.value.comment[i].replys = []
-                  get.aaa.push(false)
-                  get.bbb.push([])
-
-                  if (get.value.reply) {
-
-                    for (let j = 0; j < get.value.reply.length; j++) {
-
-                      if (get.value.comment[i].fcId == get.value.reply[j].fcId) {
-                        get.bbb[i].push(false)
-                        get.value.comment[i].replys.push(get.value.reply[j])
-                      }
-                    }
-                  }
-                }
-              }
-
-            })
-
 
           }
         })
-
       },
-
+      //管理员取消推荐
+      delRec(faId) {
+        let _this = this
+        $.ajax({
+          url: this.$store.state.url+"/forumDel/ess",
+          type: "get",
+          data: faId,
+          success: function (result) {
+            _this.rec = 0
+            _this.tips = '已取消推荐'
+            _this.show()
+          }
+        })
+      },
       //发表成功提示框
       show() {
         let _this = this
@@ -640,66 +582,84 @@
           // _this.comf = 0
         }, 3000)
       },
-    },
-    mounted() {
-      // console.log(store.state.faId)
-      let storage = window.localStorage;
-      let get = this
 
-      axios.get(`http://localhost:3000/forumSee/all/?faId=${storage.id}`).then((result) => {
+      require(){
+        let faId = window.localStorage.faId;
+        let get = this
+        axios.get(get.$store.state.url+`/forumSee/all?faId=${faId}`).then((result) => {
 
-        get.value = result.data.data;
-        // console.log(this.value)
-        // 用户是否登录 是否判定点赞
-        if (this.UserId) {
-          let faId = this.value.art[0].faId
-          let userId = this.UserId.replace(/\"/g, "")
-          axios.get(`http://localhost:3000/forumSee/selike?faId=${faId}&&userId=${userId}`).then((result) => {
-            if (result.data.data === 1) {
-              this.aa = 'glyphicon-heart';
-              this.as = !this.as
+          get.value = result.data.data;
+          if (this.UserId) {
+            //查看用户是否点赞
+            let faId = this.value.art[0].faId
+            get.userId = this.UserId.replace(/\"/g, "")
+            axios.get(this.$store.state.url+`/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
+              if (result.data.data === 1) {
+                get.aa = 'glyphicon-heart';
+                get.as = !get.as
+              }
+            });
+            console.log(get.userId)
+            console.log(get.admin)
+            //判断是不是管理员
+            if (get.userId === 33) {
+              get.admin = true
             }
-          })
-        }
-        //评论
-        if (get.value.comment) {
-          get.cou = Math.ceil(this.value.comment.length / 6)
-          for (let i = 0; i < get.value.comment.length; i++) {
-            //定义评论数组
-            get.value.comment[i].replys = []
-            this.aaa.push(false)
-            this.bbb.push([])
+            //查看是否是精品推荐
+            axios.get(this.$store.state.url+`/forumSee/seeEss?faId=${faId}`).then((result) => {
+              if (result.data.data === 1) {
+                this.rec = 1;
+              }
+            })
+          }
+          //评论
+          if (get.value.comment) {
+            get.cou = Math.ceil(this.value.comment.length / 6)
+            for (let i = 0; i < get.value.comment.length; i++) {
+              //定义评论数组
+              get.value.comment[i].replys = []
+              this.aaa.push(false)
+              this.bbb.push([])
 
-            //添加回复到对应的评论里
-            if (get.value.reply) {
+              //添加回复到对应的评论里
+              if (get.value.reply) {
 
-              for (let j = 0; j < get.value.reply.length; j++) {
+                for (let j = 0; j < get.value.reply.length; j++) {
 
-                if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
-                  get.bbb[i].push(false)
-                  get.value.comment[i].replys.push(get.value.reply[j])
+                  if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
+                    get.bbb[i].push(false)
+                    get.value.comment[i].replys.push(get.value.reply[j])
+                  }
                 }
+              }
+
+            }
+            //当前评论数
+            if (this.value.comment.length > 6) {
+              for (let i = 0; i < 6; i++) {
+                this.value1.push(this.value.comment[i])
+              }
+            } else {
+              for (let i = 0; i < this.value.comment.length; i++) {
+                this.value1.push(this.value.comment[i])
               }
             }
 
           }
-          //当前评论数
-          if (this.value.comment.length > 6) {
-            for (let i = 0; i < 6; i++) {
-              this.value1.push(this.value.comment[i])
-            }
-          } else {
-            for (let i = 0; i < this.value.comment.length; i++) {
-              this.value1.push(this.value.comment[i])
-            }
-          }
-
-        }
 
 
-      })
+        })
 
+      },
 
+    },
+    //监听路由
+    watch:{
+      '$route':'require'
+    },
+
+    mounted() {
+     this.require()
     },
   }
 </script>
@@ -927,5 +887,9 @@
     /*height: 38px;*/
     font-size: 14px;
     margin-top: -0px;
+  }
+
+  .glyphicon-arrow-up {
+    cursor: pointer;
   }
 </style>

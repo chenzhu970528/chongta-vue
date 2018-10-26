@@ -81,26 +81,23 @@
     methods: {
       but(index) {
         let storage=window.localStorage;
-        storage.id=index
-        console.log(storage.id)
-        store.commit('increment', {
-          amount: index
-        })
+        storage.plate=index
+console.log(storage.plate)
       },
       see(index) {
         let storage=window.localStorage;
-        storage.id=index
+        storage.faId=index
       },
     },
       mounted() {
-        axios.get("http://localhost:3000/forumSee/time").then((result) => {
+        axios.get(this.$store.state.url+"/forumSee/time").then((result) => {
           this.mydata = result.data.data;
           for (let i = 0; i < 6; i++) {
             this.value[0].values0.push(this.mydata[i])
           }
           this.value[0] = this.value[0].values0
         })
-        axios.get("http://localhost:3000/forumSee/essence").then((result) => {
+        axios.get(this.$store.state.url+"/forumSee/essence").then((result) => {
           this.mydata1 = result.data.data;
           for (let i = 0; i < 6; i++) {
             this.value[1].values1.push(this.mydata1[i])
@@ -108,7 +105,7 @@
           this.value[1] = this.value[1].values1
         })
 
-        axios.get("http://localhost:3000/forumSee/diary").then((result) => {
+        axios.get(this.$store.state.url+"/forumSee/diary").then((result) => {
           this.mydata2 = result.data.data;
           for (let i = 0; i < 6; i++) {
             this.value[2].values2.push(this.mydata2[i])
@@ -116,7 +113,7 @@
           this.value[2] = this.value[2].values2
         })
 
-        axios.get("http://localhost:3000/forumSee/gossip").then((result) => {
+        axios.get(this.$store.state.url+"/forumSee/gossip").then((result) => {
           this.mydata3 = result.data.data;
           for (let i = 0; i < 6; i++) {
             this.value[3].values3.push(this.mydata3[i])

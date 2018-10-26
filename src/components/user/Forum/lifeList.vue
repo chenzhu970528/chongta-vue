@@ -1,6 +1,6 @@
 <template>
   <div class="inner_ado">
-    <div class="tol" v-for="val in value">
+    <div class="tol" v-for="(val,index) in value">
       <el-row class="card">
         <el-col :span="7" class="petPic">
           <div class="pic"></div>
@@ -11,21 +11,18 @@
           <!--自定义吧-->
           <p>发布时间：<span>{{val.time.slice(5,16).replace('T',' ')}}</span></p>
           <p>{{val.faText}}</p>
-          <!--<p>地点：<span>北京</span></p>-->
-          <!--<p>申请人数：<span>1</span></p>-->
         </el-col>
         <div class="title del">
           <el-popover
             placement="top"
             width="160"
-            v-model="visiblelife">
+            v-model="visible1[index]">
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="visiblelife = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="visiblelife = false">确定</el-button>
+              <el-button size="mini" type="text" @click="visible1[index] = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="delart(val.faId)">确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>
-            <!--<el-button slot="reference">删除</el-button>-->
           </el-popover>
         </div>
       </el-row>
@@ -34,6 +31,8 @@
       <img src="../../../assets/user/default8.png" alt="">
       <p>还没有任何发布哦，快去发布吧</p>
     </div>
+    <p v-if="hide" class="cc">删除成功</p>
+
   </div>
 </template>
 
@@ -53,6 +52,8 @@
         visiblelife: false,
         isshow:false,
         value: [],
+        visible1:[],
+        hide:false
       }
     },
 
@@ -60,6 +61,37 @@
       'UserId',
       'UserName',
     ]),
+    methods:{
+      //删除帖子
+      methods:{
+        delart(faId){
+          let _this=this
+          $.ajax({
+            url: _this.$store.state.url+"/forumDel/art/?faId=" + faId,
+            type: "get",
+            success: function (result) {
+
+                _this.visible1=[]
+                _this.publishdets=[]
+                let userId = this.UserId.replace(/\"/g, "")
+              axios.get(_this.$store.state.url+`/forumSee/user/share?userId=${userId}`).then((result) => {
+                _this.value = result.data.data;
+              })
+            }
+          })
+          // this.visible2 = false
+        },
+
+      }
+      },
+      show() {
+        let _this = this
+        _this.hide = true
+        setTimeout(function () {
+          _this.hide = false
+          // _this.comf = 0
+        }, 3000)
+      },
     mounted() {
       let id = this.UserId.replace(/\"/g, "")
       axios.get(this.$store.state.url+`/forumSee/user/share?userId=${id}`).then((result) => {
@@ -72,6 +104,20 @@
 
 
 <style scoped>
+  .cc {
+    width: 180px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: rgba(60, 60, 60, 0.6);
+    border-radius: 3px;
+    position: fixed;
+    top: 50%;
+    left: 70%;
+    color: #fefefe;
+    font-size: 18px;
+  }
+
   .inner_ado{
     width: 80%;
     margin-left: 9%;

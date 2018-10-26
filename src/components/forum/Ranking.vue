@@ -28,13 +28,13 @@
     methods: {
       see(index) {
         let storage=window.localStorage;
-        storage.id=index
-        console.log(storage.id)
-        this.$router.go(0)
+        storage.faId=index
+        // this.$router.go(0)
+
       }
     },
     mounted() {
-      axios.get("http://localhost:3000/forumSee/likes").then((result) => {
+      axios.get(this.$store.state.url+"/forumSee/likes").then((result) => {
         this.mydata = result.data.data[0];
         // console.log(result.data.data[0])
         for (let i = 0; i < 10; i++) {

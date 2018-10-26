@@ -72,7 +72,7 @@
             this.text = '';
 
             $.ajax({
-              url: "http://localhost:3000/forumAdd/art",
+              url: this.$store.state.url+"/forumAdd/art",
               type: "post",
               data: aa,
               success: function (result) {

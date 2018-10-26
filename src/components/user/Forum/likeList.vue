@@ -1,6 +1,6 @@
 <template>
   <div class="inner_ado">
-    <div class="tol" v-for="val in value">
+    <div class="tol" v-for="(val,index) in value">
       <el-row class="card">
         <el-col :span="7" class="petPic">
           <div class="pic"></div>
@@ -13,6 +13,20 @@
           <p>{{val.faText}}</p>
 
         </el-col>
+        <div class="title del">
+          <el-popover
+            placement="top"
+            width="160"
+            v-model="visible1[index]">
+            <p>确定删除吗？</p>
+            <div style="text-align: right; margin: 0">
+              <el-button size="mini" type="text" @click="visible1[index] = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="dellike(val.faId)">确定</el-button>
+            </div>
+            <el-button slot="reference" icon="el-icon-delete" circle></el-button>
+            <!--<el-button slot="reference">删除</el-button>-->
+          </el-popover>
+        </div>
       </el-row>
     </div>
     <div v-if="isshow" class="noList">
@@ -39,6 +53,8 @@
         visiblelife: false,
         isshow:false,
         value: [],
+        visible1:[],
+        hide:false
       }
     },
 
@@ -46,6 +62,29 @@
       'UserId',
       'UserName',
     ]),
+    methods:{
+      dellike(homeId){
+        let _this=this
+        $.ajax({
+          url: _this.$store.state.url+"/homeless/delhomeless/" + homeId,
+          type: "get",
+          // data: homeId,
+          success: function (result) {
+            console.log("success:" + homeId);
+            console.log(result.data)
+            // alert("删除成功！！！")
+            _this.mydata=[],
+              _this.visible1=[],
+              _this.publishdets=[],
+              _this.ajax()
+            // this.$router.go(0)
+          }
+        })
+        // this.visible2 = false
+      },
+
+    }
+    ,
     mounted() {
       let id = this.UserId.replace(/\"/g, "")
       axios.get(this.$store.state.url+`/forumSee/user/like?userId=${id}`).then((result) => {
@@ -57,6 +96,20 @@
 </script>
 
 <style scoped>
+  .cc {
+    width: 180px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: rgba(60, 60, 60, 0.6);
+    border-radius: 3px;
+    position: fixed;
+    top: 50%;
+    left: 70%;
+    color: #fefefe;
+    font-size: 18px;
+  }
+
   .inner_ado{
     width: 80%;
     margin-left: 9%;
