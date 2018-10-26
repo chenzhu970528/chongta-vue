@@ -59,12 +59,12 @@
           <!--<input type="text" class="form-control" placeholder="短信请输入验证码">-->
         <!--</div>-->
       <!--</div>-->
-      <div class="form-group">
-        <label  class="col-sm-2 control-label col-sm-offset-2">所在地:</label>
-        <div class="col-sm-4">
-          <input type="text" v-model="address" class="form-control"  placeholder="请输入有效地址">
-        </div>
-      </div>
+      <!--<div class="form-group">-->
+        <!--<label  class="col-sm-2 control-label col-sm-offset-2">所在地:</label>-->
+        <!--<div class="col-sm-4">-->
+          <!--<input type="text" v-model="address" class="form-control"  placeholder="请输入有效地址">-->
+        <!--</div>-->
+      <!--</div>-->
       <div class="form-group">
         <label  class="col-sm-2 control-label col-sm-offset-2">电子邮箱</label>
         <div class="col-sm-4">
@@ -106,7 +106,7 @@
           userPhone:'',
           userPwd1:'',
           userPwd2:'',
-          address:'',
+          // address:'',
           userEmail:'',
 
 
@@ -230,7 +230,7 @@
                 userPwd:_this.userPwd2,
                 userPhone:_this.userPhone,
                 userEmail:_this.userEmail,
-                address: _this.address,
+                // address: _this.address,
               },
               success: function (result) {
                 console.log(result.data)
@@ -257,6 +257,7 @@
                           localStorage.setItem("userId", JSON.stringify(result.data.userId));
                           localStorage.setItem("userName", JSON.stringify(result.data.userName));
                           localStorage.setItem("userPic", JSON.stringify(result.data.headPic));
+                          localStorage.setItem("userPhone", JSON.stringify(result.data.userPhone));
                         }
                       }
                     }

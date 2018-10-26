@@ -1,10 +1,10 @@
 <template>
 <div>
   <div class="song">
-  <div class="listbox clearfix" v-for="(activity,index) in myActData1" :key="myActData1.length"  style="margin-bottom: 10px"  >
+  <div class="listbox clearfix" v-for="(activity,index) in myActData1" :key="index"  style="margin-bottom: 10px"  >
       <div class="listimg img" style="float: left">
         <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
-        <img :src="urlImg(diary.homePic.split(',')[0])" alt="" style="width: 150px;height: 140px;">
+        <img :src="urlImg(activity.homePic.split(',')[0])" alt="" style="width: 150px;height: 140px;">
         <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>
         <!--<img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="" style="width: 150px;height: 140px;">-->
         </router-link>
@@ -58,7 +58,6 @@
     data() {
       return {
         mydata: [],
-        diarys: [],
         pageIndex: 1,
         pagesize: 6,  //每页条数
         pageCount:0,

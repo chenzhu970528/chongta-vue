@@ -24,7 +24,9 @@
         </li>
         <!--登录成功-->
         <li v-if="isLogin">
-            <img class="headimg"  :src="HeadPic" alt="">
+          <div class="headimg">
+            <img :src="HeadPic" alt="">
+          </div>
         </li>
         <li class="dropdown" v-if="isLogin">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -99,12 +101,21 @@
     /*background-color: rgba(255, 255, 255,0.4);*/
     /*border: 1px solid cornflowerblue;*/
   }
-  .headimg{
+  .headimg img{
+    margin-left: -1px;
+    margin-top: -1px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+  }
+  .headimg {
     margin-top: 10px;
     width: 50px;
     height: 50px;
     border: 1px solid #23527c;
     border-radius: 50px;
+    background: url("../assets/HomePage/right3.jpg")  no-repeat ;
+    background-size: 100% 100%;
   }
 
 </style>

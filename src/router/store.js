@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 function isLogin() {
   var login = {};
+  login.userPhone = localStorage.getItem('userPhone');
   login.userId = localStorage.getItem("userId");
   login.userName =localStorage.getItem("userName");
   login.headPic = localStorage.getItem("headPic")
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     isLogin: isLogin().isLogin,
     userName:isLogin().userName,
     headPic:isLogin().headPic,
+    userPhone:isLogin().userPhone,
   },
   getters:{
     isLogin(state) {

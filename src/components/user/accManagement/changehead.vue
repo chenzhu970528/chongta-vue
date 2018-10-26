@@ -104,6 +104,8 @@
     border: 1px solid #ccc;
     border-radius: 150px;
     margin: 0 auto;
+    background: url("../../../assets/HomePage/right3.jpg")  no-repeat ;
+    background-size: 100% 100%;
   }
 
   #myFile {

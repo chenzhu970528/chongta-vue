@@ -127,7 +127,7 @@
               // this.homeTime = result.data.data.homeTime
               // console.log(result.data.data)
               for (let i = 0; i < this.mydata.length; i++) {
-                this.activity.push(this.mydata[i]);
+                this.activitys.push(this.mydata[i]);
                 this.visible2.push(false)
                 // console.log(this.adolists[i])
               }
