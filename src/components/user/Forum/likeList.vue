@@ -6,11 +6,15 @@
           <div class="pic"></div>
         </el-col>
         <el-col :span="15">
+             <span   @click="see(val.faId)">
+              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
           <p class="title">标题：<span>{{val.faTitle}}</span></p>
+          </router-link>
+          </span>
           <p >发帖人：<span>{{val.userName}}</span></p>
 
           <p>发布时间：<span>{{val.time.slice(5,16).replace('T',' ')}}</span></p>
-          <p>{{val.faText}}</p>
+          <p class="text">{{val.faText}}</p>
 
         </el-col>
         <div class="title del">
@@ -21,7 +25,7 @@
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">
               <el-button size="mini" type="text" @click="visible1[index] = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="dellike(val.faId)">确定</el-button>
+              <el-button type="primary" size="mini" @click="delLike(val.faId)">确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>
             <!--<el-button slot="reference">删除</el-button>-->
@@ -63,21 +67,34 @@
       'UserName',
     ]),
     methods:{
-      dellike(homeId){
+      ajax(){
+        let id = this.UserId.replace(/\"/g, "")
+        axios.get(this.$store.state.url+`/forumSee/user/like?userId=${id}`).then((result) => {
+          this.value=[]
+          this.value = result.data.data;
+
+        })
+      },
+      see(index) {
+        let storage = window.localStorage;
+        storage.faId = index
+
+      },
+      delLike(faId){
         let _this=this
+        let like= {
+          faId:faId,
+          userId:this.UserId.replace(/\"/g, "")
+        }
         $.ajax({
-          url: _this.$store.state.url+"/homeless/delhomeless/" + homeId,
-          type: "get",
-          // data: homeId,
+          url: this.$store.state.url+"/forumDel/like/",
+          type: "post",
+          data: like,
           success: function (result) {
-            console.log("success:" + homeId);
             console.log(result.data)
-            // alert("删除成功！！！")
-            _this.mydata=[],
               _this.visible1=[],
-              _this.publishdets=[],
+              // _this.publishdets=[],
               _this.ajax()
-            // this.$router.go(0)
           }
         })
         // this.visible2 = false
@@ -86,11 +103,7 @@
     }
     ,
     mounted() {
-      let id = this.UserId.replace(/\"/g, "")
-      axios.get(this.$store.state.url+`/forumSee/user/like?userId=${id}`).then((result) => {
-        this.value = result.data.data;
-
-      })
+     this.ajax()
     }
   }
 </script>
@@ -123,6 +136,9 @@
   .card{
     width: 100%;
     height: 200px;
+
+
+    word-wrap:break-word;
   }
   .tol{
     border-radius: 20px;
@@ -144,6 +160,18 @@
 
   p{
     padding-top: 7px;
+
+    word-wrap:break-word;
+
+
+  }
+  .text{
+    word-wrap:break-word;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
   .detail{
     display: inline-block;
@@ -163,5 +191,9 @@
     color: #575757;
     position: relative;
     top:-500px;
+  }
+  a{
+    text-decoration: none;
+    color: #575757;
   }
 </style>

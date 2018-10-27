@@ -80,7 +80,7 @@
         pageIndex: 1,
         pagesize: 6,  //每页条数
         pageCount: 0,//总数量
-
+        url:this.$store.state.url,
         myActData: [],//全部的帖子
         activitys: [],//单页的帖子
 
@@ -305,6 +305,8 @@
     height: 1650px;
     padding: 0px 20px 20px 20px;
     /*border: 1px solid #989898;*/
+
+    word-wrap:break-word;
   }
 
   ul {
@@ -323,6 +325,16 @@
 
   .val {
     font-size: 20px;
+
+    word-wrap:break-word;
+
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    /*white-space:nowrap;*/
+
   }
 
   .head {
@@ -345,6 +357,9 @@
 
   .value {
     margin: 30px 0;
+
+
+    word-wrap:break-word;
   }
 
   .block {

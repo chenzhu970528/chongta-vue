@@ -6,11 +6,14 @@
           <div class="pic"></div>
         </el-col>
         <el-col :span="15">
+          <span   @click="see(val.faId)">
+              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
           <p class="title">标题：<span>{{val.faTitle}}</span></p>
+          </router-link>
+          </span>
 
           <p>发布时间：<span>{{val.time.slice(5,16).replace('T',' ')}}</span></p>
-          <p>{{val.faText}}</p>
-
+          <p class="text">{{val.faText}}</p>
         </el-col>
         <div class="title del">
           <el-popover
@@ -51,7 +54,6 @@
     },
     data() {
       return {
-        visiblelife: false,
         isshow:false,
         value: [],
         visible1:[],
@@ -63,15 +65,34 @@
       'UserId',
       'UserName',
     ]),
-    methods:{
-      //删除帖子
-      delart(faId) {
-        let _this = this
-        axios.get(this.$store.state.url+`/forumDel/art/?faId=${faId}`).then((result) => {
-          _this.show()
 
-        })
-      },
+      //删除帖子
+      methods: {
+        delart(faId) {
+          let _this = this
+          $.ajax({
+            url: this.$store.state.url + "/forumDel/art/?faId=" + faId,
+            type: "get",
+            success: function (result) {
+              _this.show()
+              _this.visible1 = []
+              // _this.publishdets = []
+              //重新渲染数据
+              let userId = _this.UserId.replace(/\"/g, "")
+              axios.get(_this.$store.state.url + `/forumSee/user/diary?userId=${userId}`).then((result) => {
+                // console.log('测试测试')
+                _this.value = []
+                _this.value = result.data.data;
+              })
+            }
+          })
+          // this.visible2 = false
+        },
+        see(index) {
+          let storage = window.localStorage;
+          storage.faId = index
+
+        },
       show() {
         let _this = this
         _this.hide = true
@@ -80,8 +101,7 @@
           // _this.comf = 0
         }, 3000)
       },
-    }
-    ,
+    },
     mounted() {
       let id = this.UserId.replace(/\"/g, "")
       axios.get(this.$store.state.url+`/forumSee/user/diary?userId=${id}`).then((result) => {
@@ -121,6 +141,8 @@
     width: 100%;
     min-height: 150px;
     /*background-color: red;*/
+
+    word-wrap:break-word;
   }
   .tol{
     border-radius: 20px;
@@ -139,6 +161,18 @@
 
   p{
     padding-top: 7px;
+
+    word-wrap:break-word;
+
+
+  }
+  .text{
+    word-wrap:break-word;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
   .detail{
     display: inline-block;
@@ -158,5 +192,9 @@
     color: #575757;
     position: relative;
     top:-500px;
+  }
+  a{
+    text-decoration: none;
+    color: #575757;
   }
 </style>

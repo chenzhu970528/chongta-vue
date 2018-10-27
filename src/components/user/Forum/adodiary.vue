@@ -1,6 +1,6 @@
 <template>
   <div class="right" >
-    <div class="route">您的当前位置：<span>论坛</span><span>/</span><span>领养日记</span></div>
+    <div class="route">您的当前位置：<span>论坛</span><span>/</span><span>宠物日记</span></div>
       <adoDiarylist></adoDiarylist>
 
     <div class="page">

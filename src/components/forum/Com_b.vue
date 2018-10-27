@@ -28,7 +28,7 @@
 
     </div>
     <p v-if="vv" class="cc">发表成功</p>
-    <p v-if="v" class="cc">字数超出限制</p>
+    <p v-if="v" class="cc">标题字数超出</p>
     <p v-if="v2" class="cc">先去登录吧</p>
   </div>
 </template>
@@ -48,7 +48,7 @@
         name: store.state.name,
         title: '',
         text: '',
-        type: store.state.nametype,
+        type: 'a',
         vv: false,
         v: false,
         v2: false
@@ -57,6 +57,7 @@
     methods: {
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
+        console.log(e.target.files)
         this.upath = e.target.files;
       },
       addImg(){
@@ -81,16 +82,15 @@
         zipFormData.append('faText',aa.faText)
         zipFormData.append('userId',aa.userId)
         zipFormData.append('userName',aa.userName)
-        zipFormData.append('faType',aa.type)
+        zipFormData.append('faType',aa.faType)
         let config = { headers: { 'Content-Type': 'multipart/form-data' } };
         this.$axios.post(this.$store.state.url+'/forumAdd/art', zipFormData,config)
           .then(function (response) {
-            console.log(response);
-            console.log(response.data);
-            console.log(response.bodyText);
+            // console.log(response);
+            // console.log(response.data);
+            // console.log(response.bodyText);
             _this.cc()
           }).catch((err) => {
-          console.log(err)
           alert(err)
         });
 

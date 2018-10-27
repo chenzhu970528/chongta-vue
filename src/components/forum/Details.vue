@@ -1,6 +1,5 @@
 <template>
   <div id="content">
-
     <div class="left">
       <!--详细内容     -->
       <div class="val">
@@ -18,11 +17,11 @@
 
               <span @click="addRec(value.art[0].faId)" class="glyphicon glyphicon-arrow-up"
                     v-if="rec===0"
-                    style="color: #ccc">
+                    style="color: #ccc" title="推荐">
              </span>
             <span class="glyphicon glyphicon-arrow-up"
                   v-if="rec===1"
-                  @click="delRec(value.art[0].faId)">
+                  @click="delRec(value.art[0].faId)" title="取消推荐">
 
             </span>
             </span>
@@ -47,7 +46,10 @@
                </span>
 
 &nbsp
-    <span class="s glyphicon" :class='aa' @click="a()">{{value.like[0].like_sum}}</span>
+            <!--增加收藏-->
+    <span v-if="addlike" class="s glyphicon glyphicon-heart-empty" @click="addLike()" title="收藏">{{value.like[0].like_sum}}</span>
+            <!--取消收藏-->
+    <span v-if="dellike" class="s glyphicon glyphicon-heart" @click="delLike()" title="取消收藏">{{value.like[0].like_sum}}</span>
 
     <span>&nbsp{{value.sum[0][0].sum_count-1}}回复</span>
     </span>
@@ -55,8 +57,8 @@
         <!--帖子的内容-->
         <div class="img">
           <p>{{value.art[0].faText}}</p>
-          <div v-for="img in imgs" class="center">
-            <img :src='img' alt="">
+          <div  class="center">
+            <img :src='url+value.art[0].faImg' alt="">
           </div>
 
         </div>
@@ -72,6 +74,7 @@
 
       <!--评论区域-->
       <div class="com">
+
         <ul>
           <li class="hhh" v-for="(com,index) in value1">
             <div class="border1">
@@ -219,8 +222,9 @@
         value: [],//文章和全部评论回复
         value1: [],//存放显示的评论
         imgs: [require("../../assets/mao1.jpg"), require("../../assets/images/a.jpg")],
-        aa: 'glyphicon-heart-empty',//空心
-        as: true,// 心的状态
+        url:this.$store.state.url,
+        addlike: true,// 增加心的状态
+        dellike: false,// 删除心的状态
         comm: '',
         rep: '',
         count: 0,//文章的id
@@ -251,7 +255,7 @@
         //重新渲染数据用
         let get = this;
         let faId = window.localStorage.faId;
-        axios.get(this.$store.state.url+`/forumSee/all/?faId=${faId}`).then((result) => {
+        axios.get(this.$store.state.url + `/forumSee/all/?faId=${faId}`).then((result) => {
           // console.log(result.data.data)
           get.value = result.data.data;
           get.q = 0//加载更多需要的范围值
@@ -259,6 +263,28 @@
           get.page = 1
           get.aaa = []
           get.bbb = []
+          if (this.UserId) {
+            //查看用户是否点赞
+            let faId = this.value.art[0].faId
+            get.userId = this.UserId.replace(/\"/g, "")
+            axios.get(this.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
+              if (result.data.data == 1) {
+                this.addlike=false
+                this.dellike=true
+              }
+            });
+            //判断是不是管理员
+            if (get.userId == 33) {
+              get.admin = true
+            }
+            //查看是否是精品推荐
+            axios.get(this.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
+              if (result.data.data == 1) {
+                this.rec = 1;
+              }
+            })
+          }
+
           if (get.value.comment) {
             get.cou = Math.ceil(get.value.comment.length / 6)
             for (let i = 0; i < get.value.comment.length; i++) {
@@ -339,328 +365,325 @@
 
       },
       //点赞
-      a() {
+      addLike() {
         if (!this.UserId) {
           this.tips = '先去登录吧'
           this.show()
         }
-
         else {
           let e = {
             faId: this.value.art[0].faId,
             userId: this.UserId.replace(/\"/g, ""),
           }
-          this.as = !this.as;
-          if (this.as) {
+          this.dellike = true;
+          this.addlike = false;
+          this.value.like[0].like_sum++
+          $.ajax({
+            url: this.$store.state.url + "/forumAdd/like",
+            type: "post",
+            data: e,
+            success: function (result) {
+              // console.log(result.data)
+            }
 
-            this.aa = 'glyphicon-heart-empty';
-            this.value.like[0].like_sum--
-            $.ajax({
-              url: this.$store.state.url+"/forumDel/like",
-              type: "post",
-              data: e,
-              success: function (result) {
-                // console.log(result.data)
-              }
-
-            })
-          } else {
-            this.aa = 'glyphicon-heart';
-            this.value.like[0].like_sum++
-            $.ajax({
-              url: this.$store.state.url+"/forumAdd/like",
-              type: "post",
-              data: e,
-              success: function (result) {
-                // console.log(result.data)
-              }
-
-            })
-          }
+          })
         }
       },
-      //添加评论
-      addCom() {
-        if (!this.UserId) {
-          this.tips = '先去登录吧'
+
+    delLike() {
+      let e = {
+        faId: this.value.art[0].faId,
+        userId: this.UserId.replace(/\"/g, ""),
+      }
+      this.dellike = false;
+      this.addlike = true;
+      this.value.like[0].like_sum--
+      $.ajax({
+        url: this.$store.state.url + "/forumDel/like",
+        type: "post",
+        data: e,
+        success: function (result) {
+          // console.log(result.data)
+        }
+
+      })
+    },
+    //添加评论
+    addCom() {
+      if (!this.UserId) {
+        this.tips = '先去登录吧'
+        this.show()
+      }
+      else {
+        if (this.myHtmlCode.length >= 2) {
+          let dd = {
+            faId: this.value.art[0].faId,
+            faText: this.myHtmlCode,
+            userId: this.UserId.replace(/\"/g, ""),
+            userName: this.UserName.replace(/\"/g, ""),
+          }
+          document.getElementById('dd0').innerText = ''
+          let _this = this
+          console.log(dd)
+          $.ajax({
+            url: this.$store.state.url + "/forumAdd/comment",
+            type: "post",
+            data: dd,
+            success: function (result) {
+              console.log(result.data)
+              _this.tips = '评论成功'
+              _this.show()
+              //重新渲染数据用
+              _this.ajax()
+            }
+
+          })
+        } else {
+          this.tips = '最少两个字哦'
           this.show()
+        }
+      }
+      this.$forceUpdate()
+    },
+    //添加回复
+    addReply(index, key) {
+      if (!this.UserId) {
+
+        this.tips = '先去登录吧'
+        this.show()
+      } else {
+        if (this.myHtmlCode1.length >= 2) {
+          if (key === 1) {
+            let a = document.getElementsByClassName('dd1')
+            for (let i = 0; i < a.length; i++) {
+              a[i].innerText = ' '
+            }
+          }
+          else if (key === 2) {
+            let b = document.getElementsByClassName('dd2')
+            for (let i = 0; i < b.length; i++) {
+              b[i].innerText = ' '
+            }
+          }
+          let rr = {
+            fcId: this.value.comment[index].fcId,
+            fcName: this.value.comment[index].userName,
+            frman: this.UserId.replace(/\"/g, ""),
+            frName: this.UserName.replace(/\"/g, ""),
+            frText: this.myHtmlCode1,
+          }
+          this.myHtmlCode1 = ' ';
+          let _this = this
+          $.ajax({
+            url: this.$store.state.url + "/forumAdd/reply",
+            type: "post",
+            data: rr,
+            success: function (result) {
+              console.log(result.data)
+              _this.tips = '回复成功'
+              _this.show()
+              //重新渲染数据用
+              _this.ajax()
+
+            }
+          })
         }
         else {
-          if (this.myHtmlCode.length >= 2) {
-            let dd = {
-              faId: this.value.art[0].faId,
-              faText: this.myHtmlCode,
-              userId: this.UserId.replace(/\"/g, ""),
-              userName: this.UserName.replace(/\"/g, ""),
-            }
-            document.getElementById('dd0').innerText = ''
-            let _this = this
-            console.log(dd)
-            $.ajax({
-              url: this.$store.state.url+"/forumAdd/comment",
-              type: "post",
-              data: dd,
-              success: function (result) {
-                console.log(result.data)
-                _this.tips = '评论成功'
-                _this.show()
-                //重新渲染数据用
-                _this.ajax()
-              }
-
-            })
-          } else {
-            this.tips = '最少两个字哦'
-            this.show()
-          }
-        }
-        this.$forceUpdate()
-      },
-      //添加回复
-      addReply(index, key) {
-        if (!this.UserId) {
-
-          this.tips = '先去登录吧'
+          this.tips = '最少两个字哦'
           this.show()
-        } else {
-          if (this.myHtmlCode1.length >= 2) {
-            if (key === 1) {
-              let a = document.getElementsByClassName('dd1')
-              for (let i = 0; i < a.length; i++) {
-                a[i].innerText = ' '
-              }
-            }
-            else if (key === 2) {
-              let b = document.getElementsByClassName('dd2')
-              for (let i = 0; i < b.length; i++) {
-                b[i].innerText = ' '
-              }
-            }
-            let rr = {
-              fcId: this.value.comment[index].fcId,
-              fcName: this.value.comment[index].userName,
-              frman: this.UserId.replace(/\"/g, ""),
-              frName: this.UserName.replace(/\"/g, ""),
-              frText: this.myHtmlCode1,
-            }
-            this.myHtmlCode1 = ' ';
-            let _this = this
-            $.ajax({
-              url: this.$store.state.url+"/forumAdd/reply",
-              type: "post",
-              data: rr,
-              success: function (result) {
-                console.log(result.data)
-                _this.tips = '回复成功'
-                _this.show()
-                //重新渲染数据用
-                _this.ajax()
+        }
+      }
+      this.$forceUpdate()
+    },
+    //评论点击弹框
+    aaaa(index) {
+      //点击当前，其他框框关闭
 
-              }
-            })
-          }
-          else {
-            this.tips = '最少两个字哦'
-            this.show()
-          }
-        }
-        this.$forceUpdate()
-      },
-      //评论点击弹框
-      aaaa(index) {
-        //点击当前，其他框框关闭
-
-        this.bbb[this.y[0]][this.y[1]] = false
-        if (this.aaa[this.x] == this.aaa[index]) {
-          this.k++
-        } else {
-          this.k = 0
-        }
-        //k是偶数
-        if (this.k % 2 == 0) {
-          this.aaa[this.x] = false
-        }
-        this.aaa[index] = !this.aaa[index]
-        this.x = index
-        this.$forceUpdate()
-      },
-      bb(keys, index) {
-        //点击当前，其他框框关闭
+      this.bbb[this.y[0]][this.y[1]] = false
+      if (this.aaa[this.x] == this.aaa[index]) {
+        this.k++
+      } else {
+        this.k = 0
+      }
+      //k是偶数
+      if (this.k % 2 == 0) {
         this.aaa[this.x] = false
-        //添加z点击同一个z+1
-        if (this.bbb[this.y[0]][this.y[1]] == this.bbb[keys][index]) {
-          this.z++
-        } else {
-          this.z = 0
-        }
-        //z是偶数
-        if (this.z % 2 == 0) {
-          this.bbb[this.y[0]][this.y[1]] = false
-        }
+      }
+      this.aaa[index] = !this.aaa[index]
+      this.x = index
+      this.$forceUpdate()
+    },
+    bb(keys, index) {
+      //点击当前，其他框框关闭
+      this.aaa[this.x] = false
+      //添加z点击同一个z+1
+      if (this.bbb[this.y[0]][this.y[1]] == this.bbb[keys][index]) {
+        this.z++
+      } else {
+        this.z = 0
+      }
+      //z是偶数
+      if (this.z % 2 == 0) {
+        this.bbb[this.y[0]][this.y[1]] = false
+      }
 
 
-        this.bbb[keys][index] = !this.bbb[keys][index]
+      this.bbb[keys][index] = !this.bbb[keys][index]
 
-        this.y = [keys, index]
-        this.$forceUpdate()
-      },
-      //删除帖子
-      delart(faId) {
-        let _this = this
-        axios.get(this.$store.state.url+`/forumDel/art/?faId=${faId}`).then((result) => {
-          _this.tips = '删除成功'
-          _this.show()
+      this.y = [keys, index]
+      this.$forceUpdate()
+    },
+    //删除帖子
+    delart(faId) {
+      let _this = this
+      axios.get(this.$store.state.url + `/forumDel/art/?faId=${faId}`).then((result) => {
+        _this.tips = '删除成功'
+        _this.show()
 
-        })
-      },
-      //删除评论
-      delcom(fcId) {
-        console.log(fcId)
-        let _this = this
-        $.ajax({
-          url: this.$store.state.url+"/forumDel/comment?fcId=" + fcId,
-          type: "get",
-          success: function (result) {
+      })
+    },
+    //删除评论
+    delcom(fcId) {
+      console.log(fcId)
+      let _this = this
+      $.ajax({
+        url: this.$store.state.url + "/forumDel/comment?fcId=" + fcId,
+        type: "get",
+        success: function (result) {
 
-            _this.tips = '删除成功'
-            _this.show()
-            //重新渲染数据用
-            _this.ajax()
-            console.log(_this.value1)
-          }
-        })
-      },
-      //删除回复
-      delrep(frId) {
-        console.log(frId)
-        let _this = this
-        axios.get(this.$store.state.url+`/forumDel/reply?frId=${frId}`).then((result) => {
           _this.tips = '删除成功'
           _this.show()
           //重新渲染数据用
           _this.ajax()
-        })
-      },
-      addRe() {
-        console.log('00000000')
-      },
-      //管理员添加推荐
-      addRec(faId) {
-        let _this = this
-        $.ajax({
-          url: this.$store.state.url+"/forumAdd/Recommend",
-          type: "post",
-          data: faId,
-          success: function (result) {
-            _this.rec = 1
-            _this.tips = '已推荐'
-            _this.show()
+          console.log(_this.value1)
+        }
+      })
+    },
+    //删除回复
+    delrep(frId) {
+      console.log(frId)
+      let _this = this
+      axios.get(this.$store.state.url + `/forumDel/reply?frId=${frId}`).then((result) => {
+        _this.tips = '删除成功'
+        _this.show()
+        //重新渲染数据用
+        _this.ajax()
+      })
+    },
+    //管理员添加推荐
+    addRec(faId) {
+      let _this = this
+      $.ajax({
+        url: this.$store.state.url + "/forumAdd/Recommend",
+        type: "post",
+        data: faId,
+        success: function (result) {
+          _this.rec = 1
+          _this.tips = '已推荐'
+          _this.show()
 
-          }
-        })
-      },
-      //管理员取消推荐
-      delRec(faId) {
-        let _this = this
-        $.ajax({
-          url: this.$store.state.url+"/forumDel/ess",
-          type: "get",
-          data: faId,
-          success: function (result) {
-            _this.rec = 0
-            _this.tips = '已取消推荐'
-            _this.show()
-          }
-        })
-      },
-      //发表成功提示框
-      show() {
-        let _this = this
-        _this.hide = true
-        setTimeout(function () {
-          _this.hide = false
-          // _this.comf = 0
-        }, 3000)
-      },
+        }
+      })
+    },
+    //管理员取消推荐
+    delRec(faId) {
+      let _this = this
+      $.ajax({
+        url: this.$store.state.url + "/forumDel/ess",
+        type: "get",
+        data: faId,
+        success: function (result) {
+          _this.rec = 0
+          _this.tips = '已取消推荐'
+          _this.show()
+        }
+      })
+    },
+    //发表成功提示框
+    show() {
+      let _this = this
+      _this.hide = true
+      setTimeout(function () {
+        _this.hide = false
+        // _this.comf = 0
+      }, 3000)
+    },
 
-      require(){
-        let faId = window.localStorage.faId;
-        let get = this
-        axios.get(get.$store.state.url+`/forumSee/all?faId=${faId}`).then((result) => {
+    require() {
+      let faId = window.localStorage.faId;
+      let get = this
+      axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
 
-          get.value = result.data.data;
-          if (this.UserId) {
-            //查看用户是否点赞
-            let faId = this.value.art[0].faId
-            get.userId = this.UserId.replace(/\"/g, "")
-            axios.get(this.$store.state.url+`/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
-              if (result.data.data === 1) {
-                get.aa = 'glyphicon-heart';
-                get.as = !get.as
-              }
-            });
-            console.log(get.userId)
-            console.log(get.admin)
-            //判断是不是管理员
-            if (get.userId === 33) {
-              get.admin = true
+        get.value = result.data.data;
+        this.addlike= true
+         this.dellike= false
+        if (this.UserId) {
+          //查看用户是否点赞
+          let faId = this.value.art[0].faId
+          get.userId = this.UserId.replace(/\"/g, "")
+          axios.get(this.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
+            if (result.data.data == 1) {
+              this.addlike=false
+              this.dellike=true
             }
-            //查看是否是精品推荐
-            axios.get(this.$store.state.url+`/forumSee/seeEss?faId=${faId}`).then((result) => {
-              if (result.data.data === 1) {
-                this.rec = 1;
-              }
-            })
+          });
+          //判断是不是管理员
+          if (get.userId == 33) {
+            get.admin = true
           }
-          //评论
-          if (get.value.comment) {
-            get.cou = Math.ceil(this.value.comment.length / 6)
-            for (let i = 0; i < get.value.comment.length; i++) {
-              //定义评论数组
-              get.value.comment[i].replys = []
-              this.aaa.push(false)
-              this.bbb.push([])
+          //查看是否是精品推荐
+          axios.get(this.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
+            if (result.data.data == 1) {
+              this.rec = 1;
+            }
+          })
+        }
 
-              //添加回复到对应的评论里
-              if (get.value.reply) {
 
-                for (let j = 0; j < get.value.reply.length; j++) {
+        //评论
+        if (get.value.comment) {
+          get.cou = Math.ceil(this.value.comment.length / 6)
+          for (let i = 0; i < get.value.comment.length; i++) {
+            //定义评论数组
+            get.value.comment[i].replys = []
+            this.aaa.push(false)
+            this.bbb.push([])
 
-                  if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
-                    get.bbb[i].push(false)
-                    get.value.comment[i].replys.push(get.value.reply[j])
-                  }
+            //添加回复到对应的评论里
+            if (get.value.reply) {
+
+              for (let j = 0; j < get.value.reply.length; j++) {
+
+                if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
+                  get.bbb[i].push(false)
+                  get.value.comment[i].replys.push(get.value.reply[j])
                 }
               }
-
-            }
-            //当前评论数
-            if (this.value.comment.length > 6) {
-              for (let i = 0; i < 6; i++) {
-                this.value1.push(this.value.comment[i])
-              }
-            } else {
-              for (let i = 0; i < this.value.comment.length; i++) {
-                this.value1.push(this.value.comment[i])
-              }
             }
 
           }
-
-
-        })
-
-      },
-
+          //当前评论数
+          if (this.value.comment.length > 6) {
+            for (let i = 0; i < 6; i++) {
+              this.value1.push(this.value.comment[i])
+            }
+          } else {
+            for (let i = 0; i < this.value.comment.length; i++) {
+              this.value1.push(this.value.comment[i])
+            }
+          }
+        }
+      })
     },
-    //监听路由
-    watch:{
-      '$route':'require'
     },
+  //监听路由
+  watch:{
+    '$route':'require'
+  },
 
-    mounted() {
-     this.require()
-    },
+  mounted(){
+    this.require()
+  }
   }
 </script>
 
@@ -729,6 +752,8 @@
     /*border:1px solid #989898;*/
     margin: 25px 0 0 25px;
     padding: 22px;
+
+    word-wrap: break-word;
   }
 
   .headpic {
@@ -767,11 +792,15 @@
   .center {
     width: 754px;
     text-align: center;
+
+    word-wrap: break-word;
   }
 
   .center > img {
     margin: auto;
     max-width: 754px;
+
+    word-wrap: break-word;
   }
 
   .val {
@@ -821,6 +850,8 @@
 
   .headRight > p {
     height: 15px;
+
+    word-wrap: break-word;
   }
 
   .name1 {
@@ -838,17 +869,23 @@
   .val1 {
     margin-left: 50px;
     font-size: 15px;
+
+    word-wrap: break-word;
   }
 
   .com1 {
     margin-bottom: 0px;
     margin-top: 20px;
+
+    word-wrap: break-word;
     /*border-bottom: 1px dotted #ccc;*/
   }
 
   .com11 {
     margin-top: -10px;
     margin-bottom: 5px;
+
+    word-wrap: break-word;
   }
 
   .rr {
@@ -875,11 +912,15 @@
   .cominp1 {
     min-height: 35px;
     width: 650px;
+
+    word-wrap: break-word;
   }
 
   .cominp2 {
     min-height: 35px;
     width: 600px;
+
+    word-wrap: break-word;
   }
 
   .rbtn {

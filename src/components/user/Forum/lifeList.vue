@@ -1,16 +1,21 @@
 <template>
   <div class="inner_ado">
+    <audio src=""></audio>
     <div class="tol" v-for="(val,index) in value">
       <el-row class="card">
         <el-col :span="7" class="petPic">
           <div class="pic"></div>
         </el-col>
         <el-col :span="15">
-          <p class="title">标题：<span>{{val.faTitle}}</span></p>
+          <span @click="see(val.faId)">
+             <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
+            <p class="title">标题：<span>{{val.faTitle}}</span></p>
+          </router-link>
+          </span>
 
           <!--自定义吧-->
           <p>发布时间：<span>{{val.time.slice(5,16).replace('T',' ')}}</span></p>
-          <p>{{val.faText}}</p>
+          <p class="text">{{val.faText}}</p>
         </el-col>
         <div class="title del">
           <el-popover
@@ -37,10 +42,11 @@
 </template>
 
 <script>
-  import  axios from 'axios'
+  import axios from 'axios'
   import {mapGetters} from 'vuex';
-  import  lifelist from './lifeList.vue'
+  import lifelist from './lifeList.vue'
   import changePage from '../../matchmaking/changepage.vue'
+
   export default {
     name: "lifeList",
     components: {
@@ -49,11 +55,10 @@
     },
     data() {
       return {
-        visiblelife: false,
-        isshow:false,
+        isshow: false,
         value: [],
-        visible1:[],
-        hide:false
+        visible1: [],
+        hide: false
       }
     },
 
@@ -61,28 +66,32 @@
       'UserId',
       'UserName',
     ]),
-    methods:{
-      //删除帖子
-      methods:{
-        delart(faId){
-          let _this=this
-          $.ajax({
-            url: _this.$store.state.url+"/forumDel/art/?faId=" + faId,
-            type: "get",
-            success: function (result) {
+    //删除帖子
+    methods: {
+      delart(faId) {
+        let _this = this
+        $.ajax({
+          url: this.$store.state.url + "/forumDel/art/?faId=" + faId,
+          type: "get",
+          success: function (result) {
+            _this.show()
+            _this.visible1 = []
+            // _this.publishdets = []
+            //重新渲染数据
+            let userId = _this.UserId.replace(/\"/g, "")
+            axios.get(_this.$store.state.url + `/forumSee/user/share?userId=${userId}`).then((result) => {
+             // console.log('测试测试')
+              _this.value = []
+              _this.value = result.data.data;
+            })
+          }
+        })
+        // this.visible2 = false
+      },
+      see(index) {
+        let storage = window.localStorage;
+        storage.faId = index
 
-                _this.visible1=[]
-                _this.publishdets=[]
-                let userId = this.UserId.replace(/\"/g, "")
-              axios.get(_this.$store.state.url+`/forumSee/user/share?userId=${userId}`).then((result) => {
-                _this.value = result.data.data;
-              })
-            }
-          })
-          // this.visible2 = false
-        },
-
-      }
       },
       show() {
         let _this = this
@@ -92,9 +101,11 @@
           // _this.comf = 0
         }, 3000)
       },
+    },
+
     mounted() {
       let id = this.UserId.replace(/\"/g, "")
-      axios.get(this.$store.state.url+`/forumSee/user/share?userId=${id}`).then((result) => {
+      axios.get(this.$store.state.url + `/forumSee/user/share?userId=${id}`).then((result) => {
         this.value = result.data.data;
 
       })
@@ -113,12 +124,12 @@
     border-radius: 3px;
     position: fixed;
     top: 50%;
-    left: 70%;
+    left: 60%;
     color: #fefefe;
     font-size: 18px;
   }
 
-  .inner_ado{
+  .inner_ado {
     width: 80%;
     margin-left: 9%;
     margin-top: 5%;
@@ -128,16 +139,21 @@
     font-size: 13px;
     color: #737373;
   }
-  .card{
+
+  .card {
     width: 100%;
     height: 200px;
+
+    word-wrap:break-word;
   }
-  .tol{
+
+  .tol {
     border-radius: 20px;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     margin-bottom: 25px;
   }
-  .pic{
+
+  .pic {
     width: 110px;
     height: 110px;
     border-radius: 110px;
@@ -145,31 +161,49 @@
     margin-top: 20px;
     margin-left: 10px;
   }
-  .petPic{
+
+  .petPic {
     height: 200px;
     /*background-color: red;*/
   }
 
-  p{
+  p {
     padding-top: 7px;
+
+    word-wrap:break-word;
   }
-  .detail{
+  .text{
+    word-wrap:break-word;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .detail {
     display: inline-block;
     /*height: 70px;*/
     overflow: hidden;
     /*background-color: plum;*/
     text-overflow: ellipsis;
   }
-  .noList{
+
+  .noList {
     text-align: center;
     color: #575757;
     /*position: relative;*/
     /*top:-500px;*/
   }
-  .showList{
+
+  .showList {
     text-align: center;
     color: #575757;
     position: relative;
-    top:-500px;
+    top: -500px;
+  }
+  a{
+    text-decoration: none;
+    color: #575757;
   }
 </style>
