@@ -8,9 +8,11 @@
   <div class="inner_ado">
     <div class="tol" v-for="(showList,index) in showLists">
       <el-row class="card">
+        <router-link  tag="li" active-class="active" role="presentation" :to="'/matchmaking/matchDel/'+showList.matId" style="list-style: none;cursor: pointer" exact>
         <el-col :span="7" class="petPic">
-          <div class="pic"></div>
+          <div class="pic"><img :src="urlImg(showList.petPic)"></div>
         </el-col>
+        </router-link>
         <el-col :span="15">
           <p class="title">标题：<span>{{showList.title}}</span></p>
           <p>发布时间：<span>{{showList.relTime}}</span></p>
@@ -79,6 +81,7 @@
           pagesize: 3,  //每页条数
           pageCount:0,
           myActData:[],  //放数据库取得数据
+          url:this.$store.state.url
         };
       },
       computed:{
@@ -93,6 +96,11 @@
       //   this.ajax()
       // },
       methods:{
+        urlImg(str){
+          let strs=str.split(',')[0]
+          // console.log(this.url+str)
+          return this.url+strs
+        },
         loadData() {
           this.showLists = [];
           let start = (this.pageIndex-1) * this.pagesize;
@@ -208,7 +216,11 @@
     margin-left: 10px;
   }
 
-
+  .pic img{
+    width: 110px;
+    height: 110px;
+    border-radius: 110px;
+  }
   p{
     padding-top: 7px;
   }

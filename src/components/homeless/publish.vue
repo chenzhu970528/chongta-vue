@@ -23,6 +23,7 @@
         <div class="col-sm-6">
           <el-date-picker
             v-model="hp.homeTime"
+            value-format="yyyy-MM-dd"
             type="date"
             placeholder="拾到日期">
           </el-date-picker>
