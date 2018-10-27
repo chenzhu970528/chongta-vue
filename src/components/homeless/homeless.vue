@@ -1,16 +1,18 @@
 <template>
   <div class="tol">
-    <div class="top"></div>
+    <div class="top">
+      <div class="top1"></div>
+      <div class="col-xs-8 col-xs-offset-2 text" style="">
+        <h1 style="">“</h1>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;救助和领养，不仅仅是一时的不忍和爱心，真的是一件需要我们花时<br>
+          间，花精力、花金钱的事情。同时，它们的命运也在您的一念之间。如 <br>
+          果您现在还没有能力做救助人，那么从宣传“领养代替购买、文明养宠，不 <br>
+          遗弃、不伤害”开始，让周围的人正确的对待身边的动物。
+        </p>
+      </div>
+    </div>
     <div class="container">
-    <div class="col-xs-8 col-xs-offset-2 text" style="">
-     <h1 style="">“</h1>
-     <p>
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;救助和领养，不仅仅是一时的不忍和爱心，真的是一件需要我们花时<br>
-     间，花精力、花金钱的事情。同时，它们的命运也在您的一念之间。如 <br>
-     果您现在还没有能力做救助人，那么从宣传“领养代替购买、文明养宠，不 <br>
-     遗弃、不伤害”开始，让周围的人正确的对待身边的动物。
-     </p>
-   </div>
       <div class="row">
         <fenlei></fenlei>
       </div>
@@ -44,6 +46,7 @@
   }
   .container{
     width: 1240px;
+    margin-top: 30px;
     /*width: 100%;*/
     /*background: rgba(255, 84, 89, 0.9);*/
     /*background-color: white;*/
@@ -53,8 +56,11 @@
   }
   .top{
     width: 100%;
-    height: 420px;
-    background:0 -500px url("../../assets/homeless/homeless7.jpg") no-repeat;
+    height: 700px;}
+  .top1{
+    width: 100%;
+    height: 60%;
+    background:0 33% url("../../assets/homeless/homeless7.jpg") no-repeat;
     background-size: 100% auto;
     /*min-height: 900px;*/
     position: relative;

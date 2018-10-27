@@ -8,9 +8,11 @@
   <div class="inner_ado">
     <div class="tol" v-for="(activity,index) in activitys">
       <el-row class="card">
-        <el-col :span="7" class="petPic">
-          <div class="pic"></div>
+        <router-link  tag="li" active-class="active" role="presentation" :to="'/adoption/details/'+activity.homeId" style="list-style: none;cursor: pointer" exact>
+          <el-col :span="7" class="petPic">
+          <div class="pic"><img :src="urlImg(activity.adoPic)"></div>
         </el-col>
+        </router-link>
         <el-col :span="15">
           <p class="title">标题：<span>{{activity.adoTitle}}</span></p>
           <p>发布时间：<span>{{activity.adoTime}}</span></p>
@@ -77,7 +79,8 @@
           pagesize: 3,  //每页条数
           pageCount: 0,
           myActData: [],  //放数据库取得数据
-          activitys: []   //方循环的数据
+          activitys: []  , //方循环的数据
+          url:this.$store.state.url
         };
       },
       computed: {
@@ -89,6 +92,11 @@
         this.ajax()
       },
       methods: {
+        urlImg(str){
+          let strs=str.split(',')[0]
+          // console.log(this.url+str)
+          return this.url+strs
+        },
         loadData() {
           this.activitys = [];
           let start = (this.pageIndex - 1) * this.pagesize;
@@ -201,7 +209,11 @@
     margin-top: 20px;
     margin-left: 10px;
   }
-
+  .pic img{
+    width: 110px;
+    height: 110px;
+    border-radius: 110px;
+  }
   p{
     padding-top: 7px;
   }
