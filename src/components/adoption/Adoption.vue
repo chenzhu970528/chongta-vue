@@ -145,7 +145,7 @@
 <style scoped>
   .tol{
     /*margin-top: 70px;*/
-    background-color: #f6f6f6;
+    background-color: whitesmoke;
   }
   /*a{*/
     /*text-decoration: none;*/

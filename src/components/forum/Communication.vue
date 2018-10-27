@@ -53,7 +53,7 @@
 <style scoped>
   .tol{
     /*margin-top: 70px;*/
-    background-color: #f6f6f6;
+    background-color: whitesmoke;
   }
   .top{
     width: 100%;

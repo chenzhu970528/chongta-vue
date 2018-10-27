@@ -42,7 +42,7 @@
 
 <style scoped>
   .tol{
-    background-color: #f6f6f6;
+    background-color: whitesmoke;
   }
   .container{
     width: 1240px;
