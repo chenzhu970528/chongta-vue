@@ -1,6 +1,5 @@
 <template>
   <div> <!--发帖-->
-
     <div class="con">
       #{{name}}
       <br>
@@ -157,9 +156,10 @@
 
   .con {
     width: 768px;
-    background: white;
+    background:rgba(255, 255, 255, 0.6);
     padding: 50px;
     padding-top: 20px;
+    border-radius: 10px;
   }
 
   textarea {

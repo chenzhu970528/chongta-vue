@@ -47,7 +47,7 @@
 
         <!--小喵-->
         <div class="main">
-          <span class="stand"></span>
+          <!--<span class="stand"></span>-->
           <div class="cat">
             <div class="body"></div>
             <div class="head">
@@ -81,7 +81,14 @@
               </div>
             </div>
           </div>
+          <div class="qrCord">
+            <!--<div class="erweima"><img src="../../assets/homeless/E997FFB8C02AEA4FDB1644CF03466ED5.png" alt=""></div>-->
+            <router-link  to="/adoption/issue" class="btn"><span>求抱走</span></router-link>
+            <!--<img src="../../assets/adoption/0974a659d83ad4c85bf93dd1c987cae2.png" alt="">-->
+
+          </div>
         </div>
+
         <!--主体-->
         <!--<div class="route">您的当前位置：<span>领养中心</span></div>-->
         <div class="title">
@@ -89,7 +96,7 @@
           <span class="text-primary">萌宠分类</span>
         </div>
         <div class="row">
-          <div class="col-sm-8" >
+          <div class="col-sm-12" >
             <ado-sizer></ado-sizer>
             <div class="title">
               <img src="../../assets/adoption/iconHome.png" width="50" alt="">
@@ -103,13 +110,7 @@
               <!--<img src="../../assets/adoption/a051a6562121e26.png" alt="">-->
             <!--</div>-->
             <!--二维码-->
-            <div class="qrCord">
-              <!--<div class="erweima"><img src="../../assets/homeless/E997FFB8C02AEA4FDB1644CF03466ED5.png" alt=""></div>-->
-              <hr>
-              <router-link tag="div" to="/adoption/issue"><a>求抱走</a></router-link>
-              <!--<img src="../../assets/adoption/0974a659d83ad4c85bf93dd1c987cae2.png" alt="">-->
 
-            </div>
           </div>
         </div>
       </div>
@@ -146,17 +147,9 @@
     /*margin-top: 70px;*/
     background-color: #f6f6f6;
   }
-  a{
-    text-decoration: none;
-  }
-  .route{
-    position: relative;
-    left: 1%;
-    height: 50px;
-    line-height: 50px;
-    font-size: 14px;
-    color: #747474;
-  }
+  /*a{*/
+    /*text-decoration: none;*/
+  /*}*/
   .route span{
     margin-right: 10px;
     font-size: 13px;
@@ -195,13 +188,18 @@
     width: 300px;
     position: relative;
   }
-  .qrCord div{
+  .qrCord span{
     position: absolute;
     font-size: 30px;
-    left: 140px;
-    top:181px;
-    z-index:1
+    left: 96px;
+    top:194px;
+    z-index:1;
+    width: 200px;
+    background-color: cornflowerblue;
+    color: whitesmoke;
+    border-radius: 5px;
   }
+
   .qrCord img{
     width: 400px;
     position: relative;
@@ -456,8 +454,8 @@
     height: 400px;
     width: 400px;
     position: absolute;
-    top: -230px;
-    left: 70%;
+    top: 20px;
+    left: 66%;
   }
   .main .stand {
     position: absolute;

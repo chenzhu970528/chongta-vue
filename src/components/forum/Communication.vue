@@ -1,8 +1,15 @@
 <template>
-  <div>
+  <div class="tol">
+    <div class="top"></div>
     <div id="content">
-      <div class="route">您的当前位置：<span>宠物交流</span></div>
-      <p>&nbsp</p>
+      <div class="leftnav">
+        <span>交流社区</span>
+        <span>养宠日记</span>
+      </div>
+      <div class="publish">
+        <com_b></com_b>
+      </div>
+
       <div>
         <recommend>精品推荐</recommend>
       </div>
@@ -44,19 +51,55 @@
 </script>
 
 <style scoped>
+  .tol{
+    /*margin-top: 70px;*/
+    background-color: #f6f6f6;
+  }
+  .top{
+    width: 100%;
+    height: 420px;
+    background:0 70% url("../../assets/forum/1-15052G61341.jpg") no-repeat;
+    /*background-size: 100% auto;*/
+    /*min-height: 900px;*/
+    position: relative;
+  }
+  .leftnav{
+    position: absolute;
+    width: 150px;
+    height: 500px;
+    top:-100px;
+    background-color: rgba(144, 161, 237, 0.6);
+    text-align: center;
+  }
+  .leftnav span{
+    display: block;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding-top: 60px;
+    /*border: 2px solid whitesmoke;*/
+  }
+  .leftnav span:first-child{
+    margin-top: 90%;
+  }
+  .publish{
+    /*position: relative;*/
+    /*top:-100px;*/
+    margin-left: 20%;
+  }
   body {
     margin: 0;
     padding: 0
   }
 
   #content {
-    box-shadow: -2px 2px 10px 2px #bcbcbc;
-    background: rgba(255, 255, 255, 0.9);
+    /*box-shadow: -2px 2px 10px 2px #bcbcbc;*/
+    /*background: rgba(255, 255, 255, 0.9);*/
     width: 1240px;
     margin: auto;
     position: relative;
     padding-bottom: 200px;
-    margin-top:150px;
+    margin-top:30px;
   }
 
   .body {
