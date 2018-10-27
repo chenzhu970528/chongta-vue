@@ -3,7 +3,7 @@
   <div>
     <div class="mainList">
         <el-row>
-          <el-col :span="6" style="margin-left: 4%;margin-top: 20px" v-for="(activity,index) in myActData1"  :offset="index>0?3:0">
+          <el-col :span="6" style="margin-left: 4%;margin-top: 20px" v-for="(activity,index) in myActData1"  :key="myActData1.length" :offset="index>0?3:0">
             <div class="oneList">
               <router-link :to="'/matchmaking/matchDel/'+activity.relId"><img :src="urlImg(activity.petPic.split(',')[0])" alt="..." style="height: 180px" class="img-rounded"></router-link>
               <div>

@@ -13,7 +13,7 @@
         <router-link tag="li" active-class="active" role="presentation" to="/" exact><a>首页</a></router-link>
         <router-link tag="li" active-class="active" role="presentation" to="/adoption"><a>领养中心</a></router-link>
         <router-link tag="li" active-class="active" role="presentation" to="/homeless"><a>流浪精灵/寻宠之家</a></router-link>
-        <router-link tag="li" active-class="active" role="presentation" to="/matchmaking"><a>宠物婚介</a></router-link>
+        <router-link tag="li" active-class="active" role="presentation" to="/matchmaking/TimeDesc"><a>宠物婚介</a></router-link>
         <router-link tag="li" active-class="active" role="presentation" to="/forum"><a>宠宠交流</a></router-link>
       </ul>
 
@@ -98,7 +98,7 @@
     line-height: 30px;
   }
   .bgsty{
-    /*background-color: rgba(255, 255, 255,0.4);*/
+    /*background-color: rgba(255, 255, 255,0.9);*/
     /*border: 1px solid cornflowerblue;*/
   }
   .headimg img{

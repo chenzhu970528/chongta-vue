@@ -1,6 +1,8 @@
 <template>
     <div class="tol">
-      <div class="top"></div>
+      <div class="top">
+        <div class="topText"></div>
+      </div>
       <!--<sildes-show></sildes-show>-->
       <div class="cont container">
         <!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
@@ -42,43 +44,44 @@
             <!--<span class="sr-only">Next</span>-->
           <!--</a>-->
         <!--</div>-->
+
         <!--小喵-->
-        <!--<div class="main">-->
-          <!--<span class="stand"></span>-->
-          <!--<div class="cat">-->
-            <!--<div class="body"></div>-->
-            <!--<div class="head">-->
-              <!--<div class="ear"></div>-->
-              <!--<div class="ear"></div>-->
-            <!--</div>-->
-            <!--<div class="face">-->
-              <!--<div class="nose"></div>-->
-              <!--<div class="whisker-container">-->
-                <!--<div class="whisker"></div>-->
-                <!--<div class="whisker"></div>-->
-              <!--</div>-->
-              <!--<div class="whisker-container">-->
-                <!--<div class="whisker"></div>-->
-                <!--<div class="whisker"></div>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="tail-container">-->
-              <!--<div class="tail">-->
-                <!--<div class="tail">-->
-                  <!--<div class="tail">-->
-                    <!--<div class="tail">-->
-                      <!--<div class="tail">-->
-                        <!--<div class="tail">-->
-                          <!--<div class="tail"></div>-->
-                        <!--</div>-->
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
+        <div class="main">
+          <span class="stand"></span>
+          <div class="cat">
+            <div class="body"></div>
+            <div class="head">
+              <div class="ear"></div>
+              <div class="ear"></div>
+            </div>
+            <div class="face">
+              <div class="nose"></div>
+              <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+              </div>
+              <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+              </div>
+            </div>
+            <div class="tail-container">
+              <div class="tail">
+                <div class="tail">
+                  <div class="tail">
+                    <div class="tail">
+                      <div class="tail">
+                        <div class="tail">
+                          <div class="tail"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <!--主体-->
         <!--<div class="route">您的当前位置：<span>领养中心</span></div>-->
         <div class="title">
@@ -96,12 +99,13 @@
           </div>
           <div class="col-sm-4">
             <!--求抱走-->
-            <div class="issue">
-              <img src="../../assets/adoption/a051a6562121e26.png" alt="">
-            </div>
+            <!--<div class="issue">-->
+              <!--<img src="../../assets/adoption/a051a6562121e26.png" alt="">-->
+            <!--</div>-->
             <!--二维码-->
             <div class="qrCord">
               <!--<div class="erweima"><img src="../../assets/homeless/E997FFB8C02AEA4FDB1644CF03466ED5.png" alt=""></div>-->
+              <hr>
               <router-link tag="div" to="/adoption/issue"><a>求抱走</a></router-link>
               <!--<img src="../../assets/adoption/0974a659d83ad4c85bf93dd1c987cae2.png" alt="">-->
 
@@ -139,7 +143,8 @@
 
 <style scoped>
   .tol{
-    background-color: rgb(225,228,233);
+    /*margin-top: 70px;*/
+    background-color: #f6f6f6;
   }
   a{
     text-decoration: none;
@@ -171,10 +176,19 @@
   .top{
     width: 100%;
     height: 420px;
-    background:url("../../assets/adoption/cat3.jpg") no-repeat left;
-    background-size: 90% auto;
+    background: 0 50% url("../../assets/adoption/homeless8.jpg") no-repeat;
+    background-size: 100% auto;
     /*min-height: 900px;*/
     position: relative;
+  }
+  .topText{
+    width: 200px;
+    height: 300px;
+    border: 3px solid whitesmoke;
+    border-bottom: none;
+    position: absolute;
+    right: 12%;
+    bottom: 0;
   }
   .issue img{
     margin-left: 55px;
@@ -183,15 +197,22 @@
   }
   .qrCord div{
     position: absolute;
-    font-size: 38px;
+    font-size: 30px;
     left: 140px;
-    top:141px;
+    top:181px;
     z-index:1
   }
   .qrCord img{
     width: 400px;
     position: relative;
     top:-150px;
+  }
+  .qrCord hr{
+    position: absolute;
+    top:141px;
+    left: 135px;
+    width: 100px;
+    border: 2px solid #909ee1;
   }
   .title{
     margin-top: 20px;
