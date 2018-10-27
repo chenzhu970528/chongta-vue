@@ -22,7 +22,6 @@
           <el-date-picker
             value-format="yyyy-MM-dd"
             v-model="hp.homeTime"
-            value-format="yyyy-MM-dd"
             type="date"
             placeholder="拾到日期">
           </el-date-picker>
