@@ -13,16 +13,20 @@
           >
           </el-input>
         </el-col>
+        <button style="margin-left:100px;width: 60px;height: 30px"  @click="originalPwd" class="btn btn-primary">验证</button>
       </el-row>
       <h4 class="sech3">修改密码</h4>
       <el-row class="first">
         <el-col :span="8" :push="2"><span>请输入新密码</span></el-col>
         <el-col :span="12" :push="3" class="inp">
           <el-input
-            placeholder="请输入内容"
+            id="pwd1"
+            placeholder="密码(6-10位字母和数字)"
+            :disabled="edit"
             v-model="inputnew"
             type="password"
             size="small"
+            @change="checkFormatPwd"
           >
           </el-input>
         </el-col>
@@ -33,7 +37,9 @@
         <el-col :span="8" :push="2"><span>请再次输入新密码</span></el-col>
         <el-col :span="12" :push="3" class="inp">
           <el-input
-            placeholder="请输入内容"
+            placeholder="再次输入密码"
+            id="pwd2"
+            :disabled="edit"
             v-model="inputnew2"
             type="password"
             size="small"
@@ -45,7 +51,7 @@
       </el-row>
       <el-row>
         <el-col :span="10" :push="8">
-          <input type="button" value="保存" disabled="disabled" id="item" v-bind:class="className">
+          <input type="button" value="保存" @click="modPwd" disabled="disabled" id="item" v-bind:class="className">
         </el-col>
       </el-row>
     </div>
@@ -57,16 +63,57 @@
         name: "changepwd",
       data(){
         return{
+          edit: true,
           inputold:'',
           inputnew:'',
           inputnew2:'',
           msgPassword:'',
           flag1:false,
           className:'btn2',
-          userId:this.$store.state.userId
+          userId:this.$store.state.userId,
         }
       },
       methods:{
+          // 验证原密码
+          originalPwd(){
+            let _this = this
+            $.ajax({
+              url: this.$store.state.url+"/user/login",
+              type: "post",
+              data: {
+                userPwd:_this.inputold,
+                userPhone:(_this.$store.state.userPhone).replace(/\"/g, "")
+              },
+              success: function (result) {
+
+                if (result.data == 1) {
+                  alert("手机号不能为空");
+                } else if (result.data == 2) {
+                  alert("密码错误");
+                } else if (result.data == 3) {
+                  alert("服务器错误");
+                } else {
+                  alert("密码正确");
+                 _this.edit=false
+                }
+              }
+            })
+          },
+        //修改密码
+        modPwd(){
+          let _this = this
+          $.ajax({
+            url: this.$store.state.url+"/user/modPwd",
+            type: "post",
+            data: {
+              userPwd:_this.inputnew2,
+              userId:_this.$store.state.userId,
+            },
+            success: function (result) {
+              alert("修改成功")
+            }
+          })
+        },
           checkPwd:function () {
             if(this.inputnew!==this.inputnew2){
               this.flag1=true;
@@ -77,7 +124,16 @@
               $("#item").removeAttr("disabled");
               this.className='btn1'
             }
-          }
+          },
+        checkFormatPwd(){
+          var regPwd=/^[a-zA-Z0-9]{6,10}$/;
+          if(this.inputnew==''){
+            this.msgPassword="请输入密码";
+          }else if(!regPwd.test(this.inputnew)){
+            this.flag1 =true;
+            this.msgPassword="密码格式不正确";
+          }else this.flag1=false
+        }
       }
     }
 </script>

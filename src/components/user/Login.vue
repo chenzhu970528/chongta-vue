@@ -44,7 +44,6 @@
       }
     },
     methods: {
-
       login() {
         let _this = this
         $.ajax({
@@ -66,6 +65,7 @@
                 localStorage.setItem("userId", JSON.stringify(result.data.userId));
                 localStorage.setItem("userName", JSON.stringify(result.data.userName));
                 localStorage.setItem("headPic", JSON.stringify(result.data.headPic));
+                localStorage.setItem("userPhone", JSON.stringify(result.data.userPhone));
               }
               location.reload();
             }

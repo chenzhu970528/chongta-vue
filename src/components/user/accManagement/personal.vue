@@ -4,10 +4,6 @@
       <div class="inright">
         <h3>基本信息</h3>
         <el-row class="first">
-          <el-col :span="7" :push="2"><span >登录名</span></el-col>
-          <el-col :span="12" :push="2"><span class="det">{{personal.userPhone}}</span></el-col>
-        </el-row>
-        <el-row>
           <el-col :span="7" :push="2"><span>昵称</span></el-col>
           <el-col :span="12" :push="2"><span class="det">{{personal.userName}}</span></el-col>
         </el-row>
@@ -27,6 +23,10 @@
         <el-row>
           <el-col :span="7" :push="2"><span>手机</span></el-col>
           <el-col :span="12" :push="2"><span class="det">{{personal.userPhone}}</span></el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="7" :push="2"><span>微信</span></el-col>
+          <el-col :span="12" :push="2"><span class="det">{{personal.wechat}}</span></el-col>
         </el-row>
       </div>
     </div>
