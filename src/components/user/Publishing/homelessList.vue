@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="fabu">
+    <div class="fabu" v-if="!isshow">
       <router-link  tag="button" class="btn btn-primary"  to="/homeless/publish" style="list-style: none;text-decoration: none" exact>
         发布
       </router-link>
@@ -77,9 +77,6 @@
           userId:this.$store.state.userId,
           isshow:false,
           mydata: [],
-          // mydata2:[],
-          // activitys: [],
-          // diary2s:[],
           pageIndex: 1,
           pagesize: 3,  //每页条数
           pageCount:0,
@@ -190,7 +187,7 @@
     width: 60%;
     margin-left: 20%;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 90px;
     margin-bottom: 30px;
   }
   .fabu{
