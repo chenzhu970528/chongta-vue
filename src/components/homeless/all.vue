@@ -134,6 +134,13 @@
     border: 1px solid #becee1;
     border-radius: 10px;
   }
+  .listbox:hover{
+    border: 1px solid #6d9eff;
+  }
+  .listbox img{
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+  }
   .clearfix {
     display: block;
   }
@@ -177,12 +184,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-  .clearfix:hover{
-    position: relative;
-    left: -10px;
-    top:-10px;
-    box-shadow:2px 2px 5px 2px #a8a8a8;
-  }
+
 
 
 /*.left img{*/

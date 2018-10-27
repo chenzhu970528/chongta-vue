@@ -12,7 +12,7 @@ import AdoIssue from '../components/adoption/AdoptIssue.vue'
 import matchmain from '../components/matchmaking/matchmain'
 import matchDel from '../components/matchmaking/matchDel.vue'
 import  mpublish from '../components/matchmaking/mpublish.vue'
-import matchList1 from '../components/matchmaking/matchlist.vue'
+import matchList from '../components/matchmaking/matchlist.vue'
 import TimeDesc from '../components/matchmaking/TimeDesc.vue'
 import TimeAsc from '../components/matchmaking/TimeAsc.vue'
 import HotDesc from '../components/matchmaking/HotDesc.vue'
@@ -113,11 +113,11 @@ export default new Router({
       name : 'matchmain',
       component : matchmain,
       children:[
-        {path:'',name:'matchList1',component:matchList1},
-        {path:'TimeDesc',name:'TimeDesc',component:TimeDesc},
-        {path:'TimeAsc',name:'TimeAsc',component:TimeAsc},
-        {path:'HotDesc',name:'HotDesc',component:HotDesc},
-        {path:'HotAsc',name:'HotAsc',component:HotAsc},
+        {path:'',component:matchList},
+        {path:'TimeDesc',component:TimeDesc},
+        {path:'TimeAsc',component:TimeAsc},
+        {path:'HotDesc',component:HotDesc},
+        {path:'HotAsc',component:HotAsc},
       ]
     },
     {
