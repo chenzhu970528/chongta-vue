@@ -1,41 +1,64 @@
 <template>
   <div>
+    <span class="no">{{value}}</span>
     <!--图片 内容，小版块-->
-      <div class="con" v-for="(val,index) in value">
-       <p v-show="false">{{val.faImg}}</p>
-      <!--{{val}}-->
-          <div class="top">
-            <div><span class="left">{{Names[index]}}</span>
-              <router-link   tag="span" active-class="active" role="presentation" :to="`/forum/`+url[index]">
-                <span class="right" @click="but(index)"><a>>>更多</a></span>
-              </router-link>
-              <audio src=""></audio>
-            </div>
-          </div>
-          <div>
-            <ul class="body">
-              <li class="li1">
-                <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val.faId">
-                  <a href="" @click="see(val.faId)">
-                    <img :src='s+val.faImg' alt="">
-                    <p class="title">{{val.faTitle}}</p>
-                  </a>
-                </router-link>
-                <p class="val">{{val.faText}}</p>
-              </li>
-            </ul>
-
-            <ul class="foot">
-              <li v-for="val1 in value1[index]">
-                <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val1.faId">
-                  <a href="" @click="see(val1.faId)">{{val1.faTitle}}</a>
-                  <span class="span">{{val1.time.slice(5,10)}}</span>
-                </router-link>
-              </li>
-            </ul>
-          </div>
+    <div class="con"  :key='index' v-for="(val,index) in value">
+      <div class="top">
+        <div><span class="left">{{Names[index]}}</span>
+          <router-link   tag="span" active-class="active" role="presentation" :to="`/forum/`+url[index]">
+            <span class="right" @click="but(index)"><a>>>更多</a></span>
+          </router-link>
+          <audio src=""></audio>
         </div>
       </div>
+      <div>
+        <ul class="body">
+          <li class="li1">
+
+            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val.faId">
+              <a href="" @click="see(val[0].faId)">
+                <img :src='s+val[0].faImg' alt="">
+                <p class="title">{{val[0].faTitle}}</p>
+              </a>
+            </router-link>
+            <p class="val">{{val[0].faText}}</p>
+          </li>
+        </ul>
+        <ul class="foot">
+          <li>
+            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[1].faId">
+              <a href="" @click="see(val[1].faId)">{{val[1].faTitle}}</a>
+              <span class="span">{{val[1].time.slice(5,10)}}</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[2].faId">
+              <a href="" @click="see(val[2].faId)">{{val[2].faTitle}}</a>
+              <span class="span">{{val[2].time.slice(5,10)}}</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[3].faId">
+              <a href="" @click="see(val[3].faId)">{{val[3].faTitle}}</a>
+              <span class="span">{{val[3].time.slice(5,10)}}</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[4].faId">
+              <a href="" @click="see(val[4].faId)">{{val[4].faTitle}}</a>
+              <span class="span">{{val[4].time.slice(5,10)}}</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[5].faId">
+              <a href="" @click="see(val[5].faId)">{{val[5].faTitle}}</a>
+              <span class="span">{{val[5].time.slice(5,10)}}</span>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -45,70 +68,61 @@
     name: "Block",
     data() {
       return {
-        value: [],
-        value1: [],
-        val1:[],
-        val2:[],
-        val3:[],
-        val4:[],
-        s:this.$store.state.url,
-        Names: ['最新', '精品推荐', '宠物日记', '交流分享'],
+        value: [
+          {values0: []},
+          {values1: []},
+          {values2: []},
+          {values3: []}],
+        Names: ['最新', '精品推荐', '领养日记', '交流分享'],
         url: ['new', 'recommend', 'diary', 'share'],
-        imgs: [{img: require("../../assets/images/a.jpg")}]
+        s:this.$store.state.url,
+
       }
     },
     methods: {
       but(index) {
         let storage=window.localStorage;
         storage.plate=index
-console.log(storage.plate)
+        console.log(storage.plate)
       },
       see(index) {
         let storage=window.localStorage;
         storage.faId=index
       },
     },
-      created() {
-        axios.get(this.$store.state.url+"/forumSee/time").then((result) => {
-          this.mydata = result.data.data;
-          this.value[0]=(this.mydata[0])
-          for (let i = 1; i < 6; i++) {
-            this.val1.push(this.mydata[i])
-          }
-          this.value1.push([])
-          this.value1[0]= this.val1
-        })
-        axios.get(this.$store.state.url+"/forumSee/essence").then((result) => {
-          this.mydata = result.data.data;
-          this.value[1]=(this.mydata[0])
-          for (let i = 1; i < 6; i++) {
-            this.val2.push(this.mydata[i])
-          }
-          this.value1.push([])
-          this.value1[1]= this.val2
-        })
+    mounted() {
+      axios.get(this.$store.state.url+"/forumSee/time").then((result) => {
+        this.mydata = result.data.data;
+        for (let i = 0; i < 6; i++) {
+          this.value[0].values0.push(this.mydata[i])
+        }
+        this.value[0] = this.value[0].values0
+      })
+      axios.get(this.$store.state.url+"/forumSee/essence").then((result) => {
+        this.mydata1 = result.data.data;
+        for (let i = 0; i < 6; i++) {
+          this.value[1].values1.push(this.mydata1[i])
+        }
+        this.value[1] = this.value[1].values1
+      })
 
-        axios.get(this.$store.state.url+"/forumSee/diary").then((result) => {
-          this.mydata = result.data.data;
-          this.value[2]=(this.mydata[0])
-          for (let i = 1; i < 6; i++) {
-            this.val3.push(this.mydata[i])
-          }
-          this.value1.push([])
-          this.value1[2]= this.val3
-        })
+      axios.get(this.$store.state.url+"/forumSee/diary").then((result) => {
+        this.mydata2 = result.data.data;
+        for (let i = 0; i < 6; i++) {
+          this.value[2].values2.push(this.mydata2[i])
+        }
+        this.value[2] = this.value[2].values2
+      })
 
-        axios.get(this.$store.state.url+"/forumSee/gossip").then((result) => {
-          this.mydata = result.data.data;
-          this.value[3]=(this.mydata[0])
-          for (let i = 1; i < 6; i++) {
-            this.val4.push(this.mydata[i])
-          }
-          this.value1.push([])
-          this.value1[3]= this.val4
-        })
+      axios.get(this.$store.state.url+"/forumSee/gossip").then((result) => {
+        this.mydata3 = result.data.data;
+        for (let i = 0; i < 6; i++) {
+          this.value[3].values3.push(this.mydata3[i])
+        }
+        this.value[3] = this.value[3].values3
+      })
 
-      }
+    }
 
   }
 </script>
@@ -131,6 +145,9 @@ console.log(storage.plate)
     padding: 20px;
     display: inline-block;
     margin: 11px -8px 0px 25px;
+  }
+  .no{
+    display: none;
   }
   .top {
     width: 350px;
@@ -247,14 +264,4 @@ console.log(storage.plate)
   a:hover {
     color: #80c5da;
   }
-
-  .val{
-    word-wrap:break-word;
-    overflow : hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-
 </style>
