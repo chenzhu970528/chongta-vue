@@ -17,7 +17,7 @@
       </el-row>
       <el-row>
         <el-col :span="7" :push="2"><span>微信</span></el-col>
-        <el-col :span="12" :push="2" class="iptext"><input type="text" placeholder=" 请输入内容" form="update"></el-col>
+        <el-col :span="12" :push="2" class="iptext"><input type="text" v-model="wechat" placeholder=" 请输入内容" form="update"></el-col>
       </el-row>
       <div class="linkage">
         <el-row>
@@ -73,7 +73,7 @@
       </el-row>
       <el-row>
         <el-col :span="7" :push="2"><span>性别</span></el-col>
-        <el-col :span="12" :push="2" class="iptext"><input type="radio" value="男">男 <input type="radio" name="fem">女</el-col>
+        <el-col :span="12" :push="2" class="iptext"><input type="radio" v-model="sex" label="0" value="男">男 <input type="radio" v-model="sex" label="1" name="fem">女</el-col>
       </el-row>
       <h3 class="sech3">联系方式</h3>
       <el-row class="first">
@@ -92,7 +92,7 @@
         <el-col :span="12" :push="2"><span class="det">{{personal.userPhone}}</span></el-col>
       </el-row>
       <el-row>
-        <el-col :span="10" :push="8"><input type="button" value="保存"></el-col>
+        <el-col :span="10" :push="8"><input @click="update" type="button" value="保存"></el-col>
       </el-row>
     </div>
   </div>
@@ -129,8 +129,10 @@
           namecheck:true,
           userId:this.$store.state.userId,
           newName:'',
+          sex:'',
           address:'',
           email:'',
+          wechat:''
         };
       },
       created(){
