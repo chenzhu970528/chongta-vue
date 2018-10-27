@@ -230,7 +230,6 @@
                 userPwd:_this.userPwd2,
                 userPhone:_this.userPhone,
                 userEmail:_this.userEmail,
-                // address: _this.address,
               },
               success: function (result) {
                 console.log(result.data)
@@ -270,6 +269,7 @@
             })
           }else{
             alert('请完善个人信息并同意《宠它网注册协议》')
+            return false
           }
         }
       }

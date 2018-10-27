@@ -77,7 +77,7 @@
         <div class="col-sm-offset-2 col-sm-10">
           <div class="checkbox">
             <label>
-              <input type="checkbox"> 我同意全部事项
+              <input type="checkbox" v-model="check2"> 我同意全部事项
             </label>
           </div>
         </div>
@@ -109,11 +109,14 @@
           reward:'',
           userId:this.$store.state.userId,
         },
-        upath:''
+        upath:'',
+        check1:false,
+        check2:false,
       }
     },
 
     methods: {
+
       addlost() {
         console.log(this.upath);
         var zipFormData = new FormData();
@@ -149,14 +152,22 @@
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
         this.upath = e.target.files;
+        if(this.upath.length<2||this.upath.length>6){
+          alert("请上传2-6张图片")
+          this.check1=false
+        }else {
+          this.check1=true
+        }
       },
       // 登录验证
       islogin(){
         if(!this.$store.state.isLogin) {
           alert("请登录后发布")
           return false
-        }else {
+        }else if(this.check1&&this.check2){
           this.addlost()
+        }else {
+          alert('不符合上传要求，请重新输入并同意相关协议')
         }
       },
       // addlost(){
