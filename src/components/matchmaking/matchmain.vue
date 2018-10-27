@@ -50,7 +50,7 @@
 
 <style scoped>
   .tol{
-    background-color: whitesmoke;
+    background-color: white;
   }
   .top{
     width: 100%;
