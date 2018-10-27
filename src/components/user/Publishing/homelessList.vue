@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="fabu">
+    <div class="fabu" v-if="!isshow">
       <router-link  tag="button" class="btn btn-primary"  to="/homeless/publish" style="list-style: none;text-decoration: none" exact>
         发布
       </router-link>
@@ -8,20 +8,20 @@
   <div class="inner_ado">
     <div class="tol"  v-for="(activity,index) in activitys">
       <el-row class="card" >
+        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="list-style: none;cursor: pointer" exact>
         <el-col :span="7" class="petPic">
-          <div class="pic"></div>
+          <div class="pic"><img :src="urlImg(activity.homePic)"></div>
         </el-col>
+        </router-link>
         <el-col :span="15">
           <p class="title">标题：<span>{{activity.getmes}}</span></p>
           <p>发布时间：<span>{{activity.pTime}}</span></p>
           <p>有意者：<span>4</span></p>
           <el-row>
             <el-col :span="5">详细信息：</el-col>
-            <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="list-style: none;cursor: pointer" exact>
             <el-col :span="18" >
               <span class="detail">{{activity.detail}}</span>
             </el-col>
-            </router-link>
 
           </el-row>
         </el-col>
@@ -77,14 +77,12 @@
           userId:this.$store.state.userId,
           isshow:false,
           mydata: [],
-          // mydata2:[],
-          // activitys: [],
-          // diary2s:[],
           pageIndex: 1,
           pagesize: 3,  //每页条数
           pageCount:0,
           myActData:[],  //放数据库取得数据
-          activitys:[]   //方循环的数据
+          activitys:[]  , //方循环的数据
+          url:this.$store.state.url
         };
       },
       computed:{
@@ -96,6 +94,11 @@
           '$route':'mounted'
       },
       methods:{
+        urlImg(str){
+          let strs=str.split(',')[0]
+          // console.log(this.url+str)
+          return this.url+strs
+        },
         loadData() {
           this.activitys = [];
           // console.log('this.pageInedx:' + this.pageIndex)
@@ -190,7 +193,7 @@
     width: 60%;
     margin-left: 20%;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 90px;
     margin-bottom: 30px;
   }
   .fabu{
@@ -229,6 +232,11 @@
     background: -10px -10px url("../../../assets/match/mao1.jpg");
     margin-top: 20px;
     margin-left: 10px;
+  }
+  .pic img{
+    width: 110px;
+    height: 110px;
+    border-radius: 110px;
   }
   .petPic{
     /*height: 200px;*/

@@ -5,24 +5,24 @@
       <div class="form-group">
         <label for="inputTitletitle" class="col-sm-3 control-label" >自拟标题:</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="inputTitletitle"
+          <input type="text" required="required" class="form-control" id="inputTitletitle"
                  v-model="hp.getmes"
                  placeholder="简述">
         </div>
         </div>
       <div class="form-group">
           <label class="col-sm-3 control-label">拾到宠物类别：</label>
-          <div class="col-sm-6">
-            <el-radio  v-model="hp.type" label="1">猫</el-radio>
-            <el-radio  v-model="hp.type" label="2">狗</el-radio>
-            <el-radio  v-model="hp.type" label="3">其他</el-radio>
-          </div>
+        <div class="col-sm-6">
+          <input type="text" required="required" v-model="hp.type" class="form-control" id="petType" placeholder="宠物类别">
+        </div>
         </div>
       <div class="form-group">
-        <label  class="col-sm-3 control-label">拾到时间：</label>
+        <label  class="col-sm-3  control-label">拾到时间：</label>
         <div class="col-sm-6">
           <el-date-picker
+            value-format="yyyy-MM-dd"
             v-model="hp.homeTime"
+            value-format="yyyy-MM-dd"
             type="date"
             placeholder="拾到日期">
           </el-date-picker>
@@ -38,7 +38,7 @@
       <div class="form-group">
         <label for="inputTitle" class="col-sm-3 control-label" >拾到地址:<br>（文字描述)</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="inputTitle"
+          <input type="text" required="required"  class="form-control" id="inputTitle"
                  v-model="hp.address"
                  placeholder="xx市区xx地区附近 关键标志物">
         </div>
@@ -54,28 +54,28 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputman" class="col-sm-3 control-label">联系人:</label>
+        <label for="inputman"  class="col-sm-3 control-label">联系人:</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control"  v-model="hp.people" id="inputman" placeholder="可以是昵称" >
+          <input type="text" class="form-control" required="required"  v-model="hp.people" id="inputman" placeholder="可以是昵称" >
         </div>
       </div>
       <div class="form-group">
         <label for="inputphone" class="col-sm-3 control-label">联系人电话:</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="inputphone" v-model="hp.phone"  placeholder="必须是11位手机号">
+          <input type="text" class="form-control" required="required" id="inputphone" v-model="hp.phone"  placeholder="必须是11位手机号">
         </div>
       </div>
       <div class="form-group">
         <label for="inputdetails" class="col-sm-3 control-label">详情描述：</label>
         <div class="col-sm-6">
-          <textarea id="inputdetails" class="form-control" rows="5" v-model="hp.detail"></textarea>
+          <textarea id="inputdetails" required="required" class="form-control" rows="5" v-model="hp.detail"></textarea>
         </div>
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <div class="checkbox">
             <label>
-              <input type="checkbox"> 我同意全部事项
+              <input v-model="check2" type="checkbox"> 我同意全部事项
             </label>
           </div>
         </div>
@@ -106,7 +106,10 @@
         getmes:'',
         userId:this.$store.state.userId,
       },
-        upath:''
+        upath:'',
+        check1:false,
+        check2:false,
+
       }
     },
 
@@ -145,29 +148,24 @@
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
         this.upath = e.target.files;
+        if(this.upath.length<2||this.upath.length>6){
+          alert("请上传2-6张图片")
+          this.check1=false
+        }else {
+          this.check1=true
+        }
       },
       // 登录验证
       islogin(){
         if(!this.$store.state.isLogin) {
           alert("请登录后发布")
           return false
-        }else {
+        }else if(this.check1&&this.check2) {
           this.addhomeless()
+        }else {
+          alert('不符合上传要求，请重新输入并同意相关协议')
         }
       },
-      // addhomeless(){
-      //   let _this = this
-      //   $.ajax({
-      //     url: "http://localhost:3000/homeless/Add",
-      //     type: "post",
-      //     data: _this.hp,
-      //     success: function (result) {
-      //       console.log(result.data)
-      //       alert("发布成功！！！")
-      //       location.href = "http://localhost:8080/homeless";
-      //     }
-      //   })
-      // }
     }
   };
 </script>

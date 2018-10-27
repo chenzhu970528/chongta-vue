@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="fabu">
+    <div class="fabu" v-if="!isshow">
       <router-link  tag="button" class="btn btn-primary"  to="/homeless/publish" style="list-style: none;text-decoration: none" exact>
         发布
       </router-link>
@@ -8,9 +8,11 @@
   <div class="inner_ado">
     <div class="tol" v-for="(showList,index) in showLists">
       <el-row class="card">
+        <router-link  tag="li" active-class="active" role="presentation" :to="'/matchmaking/matchDel/'+showList.matId" style="list-style: none;cursor: pointer" exact>
         <el-col :span="7" class="petPic">
-          <div class="pic"></div>
+          <div class="pic"><img :src="urlImg(showList.petPic)"></div>
         </el-col>
+        </router-link>
         <el-col :span="15">
           <p class="title">标题：<span>{{showList.title}}</span></p>
           <p>发布时间：<span>{{showList.relTime}}</span></p>
@@ -41,9 +43,25 @@
     <div v-if="isshow" class="noList">
       <img src="../../../assets/user/default8.png" alt="">
       <p>还没有任何发布哦，快去<router-link   to="/matchmaking/mpublish" style="list-style: none;text-decoration: none" exact>发布吧!</router-link></p>
-
     </div>
   </div>
+    <!--分页-->
+    <el-row>
+      <div class="block">
+        <span class="demonstration"></span>
+        <el-pagination ref="elpage"
+                       @current-change="change()"
+                       :current-page.sync="pageIndex"
+                       layout="prev, pager, next"
+                       :total="pageCount"
+                       :page-size = "pagesize"
+        >
+        </el-pagination>
+      </div>
+      <!--<el-col :span="10" :push="7">-->
+      <!--<change-page></change-page>-->
+      <!--</el-col>-->
+    </el-row>
 </div>
 </template>
 
@@ -55,22 +73,54 @@
         return{
           visiblematch: [],
           relId:this.$store.state.userId,
-          matchlist:[],
+          mydata:[],
+          // matchlist:[],
           showLists:[],
           isshow:false,
+          pageIndex: 1,
+          pagesize: 3,  //每页条数
+          pageCount:0,
+          myActData:[],  //放数据库取得数据
+          url:this.$store.state.url
+        };
+      },
+      computed:{
+        myActData1(){
+          return this.showLists;
         }
       },
-      created(){
-        this.ajax()
+      watch:{
+        '$route':'mounted'
       },
+      // created(){
+      //   this.ajax()
+      // },
       methods:{
+        urlImg(str){
+          let strs=str.split(',')[0]
+          // console.log(this.url+str)
+          return this.url+strs
+        },
+        loadData() {
+          this.showLists = [];
+          let start = (this.pageIndex-1) * this.pagesize;
+          let end = start + this.pagesize;
+          console.log(this.myActData[1]);
+          if(end>=this.pageCount){
+            end=this.pageCount
+          }
+          for (var i = start; i < end; i++) {
+            this.showLists.push(this.myActData[i])
+          }
+        },
+        change(){
+          return this.loadData();
+        },
         ajax(){
-          axios.get(this.$store.state.url+`/matchmaking/matchdetail/${this.relId}`).then((result) => {
-            this.matchlist = result.data.data;
-            // console.log(result.data.data.length);
-            // console.log(result.data.data)
-            for (let i = 0; i < this.matchlist.length; i++) {
-              this.showLists.push(this.matchlist[i])
+          axios.get(this.$store.state.url+`/matchmaking/matchdetails/${this.relId}`).then((result) => {
+            this.mydata = result.data.data;
+            for (let i = 0; i < this.mydata.length; i++) {
+              this.showLists.push(this.mydata[i])
               this.visiblematch.push(false);
             }
             if(result.data.data.length==0){
@@ -84,30 +134,50 @@
           $.ajax({
             url: _this.$store.state.url+"/matchmaking/delMatchAll/"+matId,
             type: "get",
-            // data: homeId,
             success: function (result) {
-              console.log("success:" + matId);
-              console.log(result.data)
-              // alert("删除成功！！！")
-              _this.matchlist=[],
-                _this.visiblematch=[],
-                _this.showLists=[],
+              try{
+                _this.mydata=[]
+                  _this.visiblematch=[]
+                  _this.showLists=[]
+                  _this.myActData=[]
+                  _this.showLists=[]
                 _this.ajax()
-              // this.$router.go(0)
+                _this.ajaxall()
+                _this.loadData()
+              }catch(e){
+              }
             }
           })
-          // this.visible2 = false
         },
           showPic:function () {
-            // if(this.matchlist.length=0){
               this.isshow=true
-            // }
-          }
+          },
+        ajaxall(){
+          let _this=this;
+          axios.get(this.$store.state.url+`/matchmaking/matchdetails/${this.relId}`).then((result) => {
+            console.log(result.data.data);
+            _this.myActData = result.data.data;
+            _this.pageCount=_this.myActData.length;
+            console.log(_this.pageCount)
+            _this.loadData()
+          })
+        }
+      },
+      mounted(){
+        this.ajax()
+        this.ajaxall()
       }
     }
 </script>
 
 <style scoped>
+  .block{
+    width: 60%;
+    margin-left: 20%;
+    text-align: center;
+    margin-top: 90px;
+    margin-bottom: 30px;
+  }
   .fabu{
     /*background-color: red;*/
     height: 25px;
@@ -146,7 +216,11 @@
     margin-left: 10px;
   }
 
-
+  .pic img{
+    width: 110px;
+    height: 110px;
+    border-radius: 110px;
+  }
   p{
     padding-top: 7px;
   }

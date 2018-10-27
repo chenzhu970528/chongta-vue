@@ -125,7 +125,7 @@
           personal:[],
           resetUserName:true,
           resetEmail:true,
-          emailcheck:false,
+          emailcheck:true,
           namecheck:true,
           userId:this.$store.state.userId,
           newName:'',
@@ -150,7 +150,22 @@
       },
       methods: {
         updateAjax(){
-          alert('修改信息')
+          let _this = this
+          $.ajax({
+            url: this.$store.state.url+"/user/mod",
+            type: "post",
+            data: {
+              userId:_this.$store.state.userId,
+              userName: _this.newName,
+              wechat:_this.wechat,
+              address:_this.address,
+              userEmail:_this.email,
+              sex:_this.sex
+            },
+            success: function (result) {
+              alert('修改成功')
+            }
+          })
         },
         update(){
           this.huoqu()
@@ -249,6 +264,7 @@
           }else if(!regEmail.test(this.email)){
             this.flag =true
             this.msgmail="邮箱格式不正确";
+            this.emailcheck=false;
           }else{
             this.flag=false
             this.emailcheck=true;
@@ -262,6 +278,7 @@
           }else if(!regName.test(this.newName)){
             this.nameflag =true
             this.msgname="用户名格式不正确";
+            this.namecheck=false;
           }else{
             this.nameflag=false;
             this.namecheck=true;

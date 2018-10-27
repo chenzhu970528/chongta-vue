@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="fabu">
+    <div class="fabu" v-if="!isshow">
       <router-link  tag="button" class="btn btn-primary"  to="/adoption/issue" style="list-style: none;text-decoration: none" exact>
         发布
       </router-link>
@@ -9,7 +9,7 @@
     <div class="tol" v-for="(lostlist,index) in lostlists">
       <el-row class="card">
         <el-col :span="7" class="petPic">
-          <div class="pic"></div>
+          <div class="pic"><img :src="urlImg(lostlist.lppic)"></div>
         </el-col>
         <el-col :span="15">
           <p class="title">标题：<span>{{lostlist.lpmes}}</span></p>
@@ -30,7 +30,7 @@
             v-model="visiblelost[index]">
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="visiblelost[index] = false">取消</el-button>
+              <el-button size="mini" type="text" @click="visiblelost[index]">取消</el-button>
               <el-button type="primary" size="mini" @click="dellostpets(lostlist.lpId)">确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -44,6 +44,23 @@
       <p>还没有任何发布哦，快去<router-link   to="/homeless/wantadopt" style="list-style: none;text-decoration: none" exact>发布吧!</router-link></p>
     </div>
   </div>
+    <!--分页-->
+    <el-row>
+      <div class="block">
+        <span class="demonstration"></span>
+        <el-pagination ref="elpage"
+                       @current-change="change()"
+                       :current-page.sync="pageIndex"
+                       layout="prev, pager, next"
+                       :total="pageCount"
+                       :page-size = "pagesize"
+        >
+        </el-pagination>
+      </div>
+      <!--<el-col :span="10" :push="7">-->
+      <!--<change-page></change-page>-->
+      <!--</el-col>-->
+    </el-row>
 </div>
 </template>
 
@@ -58,12 +75,45 @@
           userId:this.$store.state.userId,
           mydata:[],
           lostlists:[],
+          pageIndex: 1,
+          pagesize: 3,  //每页条数
+          pageCount:0,
+          myActData:[],  //放数据库取得数据
+          url:this.$store.state.url
         };
       },
-      created() {
-          this.ajax()
-          },
+      computed:{
+          myActData1(){
+            return this.lostlists;
+          }
+      },
+      watch:{
+          '$route':'mounted'
+      },
+      // created() {
+      //     this.ajax()
+      //     },
       methods:{
+        urlImg(str){
+          let strs=str.split(',')[0]
+          // console.log(this.url+str)
+          return this.url+strs
+        },
+        loadData() {
+          this.lostlists = [];
+          let start = (this.pageIndex-1) * this.pagesize;
+          let end = start + this.pagesize;
+          console.log(this.myActData[1]);
+          if(end>=this.pageCount){
+            end=this.pageCount
+          }
+          for (var i = start; i < end; i++) {
+            this.lostlists.push(this.myActData[i])
+          }
+        },
+        change(){
+          return this.loadData();
+        },
           ajax() {
             axios.get(this.$store.state.url + `/homeless/getlostdetails/${this.userId}`).then((result) => {
               this.mydata = result.data.data;
@@ -82,23 +132,40 @@
           url:_this.$store.state.url+"/homeless/dellostpets/"+lpId,
           type:'get',
           success: function (result) {
-            console.log("success:" + lpId);
-            console.log(result.data)
-            // alert("删除成功！！！")
-            _this.mydata=[],
-              _this.visiblelost=[],
-              _this.lostlists=[],
-              _this.ajax()
-            // this.$router.go(0)
+            try{
+              _this.mydata=[]
+                _this.visiblelost=[]
+                _this.lostlists=[]
+                _this.myActData=[]
+                _this.lostlists=[]
+                _this.ajax()
+                _this.ajaxall()
+                _this.loadData()
+            }catch(e){
+            }
           }
         })
         // this.visible2 = false
       },
         showPic:function () {
           this.isshow=true
-        }
+      },
+      ajaxall(){
+        let _this=this;
+        axios.get(this.$store.state.url+`/homeless/getlostdetails/${this.userId}`).then((result) => {
+          console.log(result.data.data);
+          _this.myActData = result.data.data;
+          _this.pageCount=_this.myActData.length;
+          console.log(_this.pageCount)
+          _this.loadData()
+        })
       }
-    }
+    },
+    mounted(){
+    this.ajax()
+    this.ajaxall()
+  }
+  }
 </script>
 
 <style scoped>
@@ -146,7 +213,11 @@
     margin-top: 20px;
     margin-left: 10px;
   }
-
+  .pic img{
+    width: 110px;
+    height: 110px;
+    border-radius: 110px;
+  }
 
   p{
     padding-top: 7px;
