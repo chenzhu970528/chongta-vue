@@ -13,7 +13,7 @@
         </span>
 <!--</span>-->
         <span v-if="aa.length>0">
-          <router-link  tag="a" active-class="active" role="presentation" to="/forum/result">
+          <router-link  tag="a" active-class="active" role="presentation" :to="`/forum/result/`+aa">
         <button @click="ss" class="btn btn-default" type="button">
         <span class="glyphicon glyphicon-search"></span>
         </button>
@@ -40,15 +40,11 @@
     },
     methods: {
       ss() {
-          let val=this.aa
-          store.commit('addKey', {
-            amount:val
-          })
-          console.log(store.state.key)
-          store.commit('increment', {
-            amount:4
-          })
-        // this.$router.go(0)  点击刷新当前页面
+        let storage=window.localStorage;
+        let val=this.aa
+        storage.plate=4
+        storage.text=val
+        // this.$router.go(0)  //点击刷新当前页面
         }
 
       },

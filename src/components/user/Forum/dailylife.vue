@@ -24,17 +24,11 @@
           value: []
         }
       },
-
       computed: mapGetters([
         'UserId',
         'UserName',
       ]),
       mounted() {
-        id = this.UserId.replace(/\"/g, "")
-        axios.get(this.$store.state.url+`/forumSee/user/share?userId=${id}`).then((result) => {
-          this.value = result.data.data;
-
-        })
       }
     }
 </script>

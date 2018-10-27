@@ -172,11 +172,12 @@ export default new Router({
     //   component: detailsmes,
     // },
 
-    // 论坛
+
     {path: '/user/personal',
       name: 'personal',
       component: personal,
     },
+    // 论坛
     {path: '/forum',
       name: 'Communication',
       component: Communication,
@@ -193,7 +194,7 @@ export default new Router({
         {path:'share',component:Lists},
       ]
     },
-    {path: '/forum/result',
+    {path: '/forum/result/:aa',
       name: 'Lists',
       component: Lists,
     },

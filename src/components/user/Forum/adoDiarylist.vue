@@ -1,26 +1,29 @@
 <template>
   <div class="inner_ado">
-    <div class="tol" v-for="val in value">
+    <div class="tol" v-for="(val,index) in value">
       <el-row class="card">
         <el-col :span="7" class="petPic">
           <div class="pic"></div>
         </el-col>
         <el-col :span="15">
+          <span   @click="see(val.faId)">
+              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
           <p class="title">标题：<span>{{val.faTitle}}</span></p>
+          </router-link>
+          </span>
 
           <p>发布时间：<span>{{val.time.slice(5,16).replace('T',' ')}}</span></p>
-          <p>{{val.faText}}</p>
-
+          <p class="text">{{val.faText}}</p>
         </el-col>
         <div class="title del">
           <el-popover
             placement="top"
             width="160"
-            v-model="visibleado">
+            v-model="visible1[index]">
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="visibleado = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="visibleado = false">确定</el-button>
+              <el-button size="mini" type="text" @click="visible1[index] = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="delart(val.faId)">确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>
             <!--<el-button slot="reference">删除</el-button>-->
@@ -32,6 +35,8 @@
       <img src="../../../assets/user/default8.png" alt="">
       <p>还没有任何发布哦，快去发布吧</p>
     </div>
+    <p v-if="hide" class="cc">删除成功</p>
+
   </div>
 </template>
 
@@ -49,9 +54,10 @@
     },
     data() {
       return {
-        visiblelife: false,
         isshow:false,
         value: [],
+        visible1:[],
+        hide:false
       }
     },
 
@@ -59,6 +65,43 @@
       'UserId',
       'UserName',
     ]),
+
+      //删除帖子
+      methods: {
+        delart(faId) {
+          let _this = this
+          $.ajax({
+            url: this.$store.state.url + "/forumDel/art/?faId=" + faId,
+            type: "get",
+            success: function (result) {
+              _this.show()
+              _this.visible1 = []
+              // _this.publishdets = []
+              //重新渲染数据
+              let userId = _this.UserId.replace(/\"/g, "")
+              axios.get(_this.$store.state.url + `/forumSee/user/diary?userId=${userId}`).then((result) => {
+                // console.log('测试测试')
+                _this.value = []
+                _this.value = result.data.data;
+              })
+            }
+          })
+          // this.visible2 = false
+        },
+        see(index) {
+          let storage = window.localStorage;
+          storage.faId = index
+
+        },
+      show() {
+        let _this = this
+        _this.hide = true
+        setTimeout(function () {
+          _this.hide = false
+          // _this.comf = 0
+        }, 3000)
+      },
+    },
     mounted() {
       let id = this.UserId.replace(/\"/g, "")
       axios.get(this.$store.state.url+`/forumSee/user/diary?userId=${id}`).then((result) => {
@@ -70,6 +113,20 @@
 </script>
 
 <style scoped>
+  .cc {
+    width: 180px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: rgba(60, 60, 60, 0.6);
+    border-radius: 3px;
+    position: fixed;
+    top: 50%;
+    left: 70%;
+    color: #fefefe;
+    font-size: 18px;
+  }
+
   .inner_ado{
     width: 80%;
     margin-left: 9%;
@@ -84,6 +141,8 @@
     width: 100%;
     min-height: 150px;
     /*background-color: red;*/
+
+    word-wrap:break-word;
   }
   .tol{
     border-radius: 20px;
@@ -102,6 +161,18 @@
 
   p{
     padding-top: 7px;
+
+    word-wrap:break-word;
+
+
+  }
+  .text{
+    word-wrap:break-word;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
   .detail{
     display: inline-block;
@@ -121,5 +192,9 @@
     color: #575757;
     position: relative;
     top:-500px;
+  }
+  a{
+    text-decoration: none;
+    color: #575757;
   }
 </style>

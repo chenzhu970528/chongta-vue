@@ -3,9 +3,9 @@
     <div class="d1">
       <div class="top"><span class="left">收藏榜单</span></div>
       <div class="bot" v-for="(list,index) in list1">
-        <span @click="see(list.faId)">
-        <router-link tag="p" active-class="active"  role="presentation" :to="`/forum/`+list.faId">
-          <h4 ><span>{{index+1}}&nbsp </span><a>{{list.faTitle}}</a></h4>
+        <span @click="see(list[0].faId)">
+        <router-link tag="p" active-class="active"  role="presentation" :to="`/forum/`+list[0].faId">
+          <h4 ><span>{{index+1}}&nbsp </span><a>{{list[0].faTitle}}</a></h4>
         </router-link>
         </span>
       </div>
@@ -21,25 +21,20 @@
     name: "Ranking",
     data() {
       return {
-        mydata: [],
         list1: [],
       }
     },
     methods: {
       see(index) {
         let storage=window.localStorage;
-        storage.id=index
-        console.log(storage.id)
-        this.$router.go(0)
+        storage.faId=index
+        // this.$router.go(0)
+
       }
     },
     mounted() {
-      axios.get("http://localhost:3000/forumSee/likes").then((result) => {
-        this.mydata = result.data.data[0];
-        // console.log(result.data.data[0])
-        for (let i = 0; i < 10; i++) {
-          this.list1.push(this.mydata[i])
-        }
+      axios.get(this.$store.state.url+"/forumSee/likes").then((result) => {
+        this.list1 = result.data.data;
       })
 
     }

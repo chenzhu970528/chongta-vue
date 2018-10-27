@@ -1,6 +1,8 @@
 <template>
   <div>
 
+    <br>
+    <br>
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -14,10 +16,12 @@
         <div class="item active">
           <ul class="ul">
             <li class="li" v-for="val in value">
+
               <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-                <img  @click="see(val.faId)"  class=img :src=values[0].img>
-                <p @click="see(val.faId)" class="p"><span class="left0"></span><a @click="see(val.faId)"  class="a title">{{val.faTitle}}</a></p>
+                <img class=img  @click="see(val.faId)" :src='url+val.faImg'>
+                <p class="p"><span class="left0"></span><a @click="see(val.faId)" class="a title">{{val.faTitle}}</a></p>
               </router-link>
+
             </li>
           </ul>
         </div>
@@ -26,19 +30,21 @@
         <div class="item">
           <ul class="ul">
             <li class="li" v-for="val in value1">
-              <router-link @click="see(val.faId)" tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-                <img class=img :src=values[0].img>
-                <p class="p"><span class="left0"></span><a class="a title">{{val.faTitle}}</a></p>
+
+                <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
+                <img class=img  @click="see(val.faId)" :src='url+val.faImg'>
+                <p class="p" @click="see(val.faId)"><span class="left0"></span><a class="a title">{{val.faTitle}}</a></p>
               </router-link>
+
             </li>
           </ul>
         </div>
         <div class="item">
           <ul class="ul">
             <li class="li" v-for="val in value2">
-              <router-link @click="see(val.faId)" tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-                <img class=img :src=values[0].img>
-                <p class="p"><span class="left0"></span><a class="a title">{{val.faTitle}}</a></p>
+              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
+                <img class=img @click="see(val.faId)"  :src='url+val.faImg'>
+                <p class="p" @click="see(val.faId)" ><span class="left0"></span><a class="a title">{{val.faTitle}}</a></p>
               </router-link>
             </li>
           </ul>
@@ -58,32 +64,30 @@
 <script>
   import axios from 'axios'
   import store from './store.js'
+
   export default {
     name: "Recommend",
     data() {
       return {
-        values: [
-          {img: require("../../assets/images/a.jpg"), title: '标题'},
-          {img: require("../../assets/images/a.jpg"), title: '标题'},
-          {img: require("../../assets/images/a.jpg"), title: '标题'},
-        ],
+        url: this.$store.state.url,
+        mydata: [],
         value: [],
         value1: [],
         value2: [],
       }
     },
-    methods:{
-      see(index){
-        store.commit('addID',{
-          amount:index
-        })
+    methods: {
+      see(index) {
         console.log(index)
-      },
-    }
-    ,
+        window.localStorage.faId = index;
+      }
+
+    },
     mounted() {
-      axios.get("http://localhost:3000/forumSee/essence").then((result) => {
+      axios.get(this.$store.state.url + "/forumSee/essence").then((result) => {
+
         this.mydata = result.data.data;
+
         for (let i = 0; i < 3; i++) {
           this.value.push(this.mydata[i])
         }
