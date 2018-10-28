@@ -106,7 +106,7 @@
 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" @click="islogin" class="btn btn-default">发布</button>
+            <button type="button" @click="islogin" class="btn btn-default">发布</button>
           </div>
         </div>
       </form>

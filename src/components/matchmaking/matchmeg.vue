@@ -15,9 +15,11 @@
       <div class="col-xs-6">
         <h3><span><img src="../../assets/match/user.png" alt=""></span>主人信息</h3>
         <div class="use">
-          <span>昵称：{{Mdeldata.userName}}</span><span>所在地：{{Mdeldata.address}}</span><span>电话：{{Mdeldata.userPhone}}</span>
+          <span>昵称：{{Mdeldata.userName}}</span>
+          <span>所在地：{{Mdeldata.address}}</span>
+          <span>电话：{{Mdeldata.userPhone}}</span>
           <div class="aply">
-            <m-aply></m-aply>
+            <m-aply :matId="Mdeldata.matId"></m-aply>
           </div>
         </div>
       </div>
@@ -85,7 +87,7 @@
   .use span{
     display: block;
     padding-right: 20px;
-    height: 30px;
+    /*height: 30px;*/
     line-height: 30px;
     font-size: 14px;
     color: grey;

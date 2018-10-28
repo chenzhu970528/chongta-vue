@@ -59,7 +59,7 @@
     height: 700px;}
   .top1{
     width: 100%;
-    height: 60%;
+    height: 66%;
     background:0 33% url("../../assets/homeless/homeless7.jpg") no-repeat;
     background-size: 100% auto;
     /*min-height: 900px;*/

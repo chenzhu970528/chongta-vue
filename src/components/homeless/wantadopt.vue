@@ -86,7 +86,7 @@
         </div>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10" >
-            <button type="submit" @click="islogin" class="btn btn-default" style="font-size: 25px">提交</button>
+            <button type="button" @click="islogin" class="btn btn-default" style="font-size: 25px">提交</button>
           </div>
         </div>
       </form>

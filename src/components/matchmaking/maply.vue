@@ -63,24 +63,24 @@
               </el-input>
             </p>
           </div>
-          <div>
-            地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
-            <p>
-              <el-input
-                placeholder="请输入内容"
-                v-model="aplymatch.address"
-                clearable>
-              </el-input>
-            </p>
-          </div>
+          <!--<div>-->
+            <!--地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：-->
+            <!--<p>-->
+              <!--<el-input-->
+                <!--placeholder="请输入内容"-->
+                <!--v-model="aplymatch.address"-->
+                <!--clearable>-->
+              <!--</el-input>-->
+            <!--</p>-->
+          <!--</div>-->
           <div>性&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
             <el-radio   v-model="aplymatch.sex"label="1">公</el-radio>
             <el-radio   v-model="aplymatch.sex"label="2">母</el-radio>
           </div>
-          <div>交&nbsp;&nbsp;配&nbsp;&nbsp;史：
-            <el-radio  v-model="aplymatch.maHistory" label="1">有</el-radio>
-            <el-radio  v-model="aplymatch.maHistory" label="2">无</el-radio>
-          </div>
+          <!--<div>交&nbsp;&nbsp;配&nbsp;&nbsp;史：-->
+            <!--<el-radio  v-model="aplymatch.maHistory" label="1">有</el-radio>-->
+            <!--<el-radio  v-model="aplymatch.maHistory" label="2">无</el-radio>-->
+          <!--</div>-->
         </form>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -105,9 +105,8 @@
           address:'',
           birth:'2018-11-11',
           PetName:'',
-          aplyId:this.$store.state.userId,
+          aplyId:'',
           // matId:this.$router.params.matId,
-
         },
         options2: [{
           label: '江苏',
@@ -130,6 +129,9 @@
         radiosex:'1'
       };
     },
+    props:{
+      matId:Number,
+    },
     methods: {
       // 登录验证
       islogin(){
@@ -145,7 +147,15 @@
         $.ajax({
           url: this.$store.state.url+"/matchmaking/addaply",
           type: "post",
-          data: _this.aplymatch,
+          data: {
+            sex:this.aplymatch.sex,
+            detail:this.aplymatch.detail,
+            address:this.aplymatch.address,
+            birth:this.aplymatch.birth,
+            PetName:this.aplymatch.PetName,
+            aplyId:this.$store.state.userId,
+            matId:this.matId
+          },
           success: function (result) {
             console.log(result.data)
             alert("发布成功！！！")

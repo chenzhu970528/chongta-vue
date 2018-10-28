@@ -84,7 +84,7 @@
         </div>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10" >
-            <button type="submit" @click="islogin" class="btn btn-default" style="font-size: 25px">发布</button>
+            <button type="button" @click="islogin" class="btn btn-default" style="font-size: 25px">发布</button>
           </div>
         </div>
       </form>
@@ -119,6 +119,7 @@
 
     methods: {
       addhomeless() {
+        let _this=this
         console.log(this.upath);
         var zipFormData = new FormData();
         //依次添加多个文件
