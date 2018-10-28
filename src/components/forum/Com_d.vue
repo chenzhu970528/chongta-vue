@@ -44,7 +44,6 @@
         let val=this.aa
         storage.plate=4
         storage.text=val
-        // this.$router.go(0)  //点击刷新当前页面
         }
 
       },

@@ -68,7 +68,7 @@ h4  {
   .left {
     display: inline-block;
     height: 35px;
-    border-bottom: 3px solid rgba(129, 198, 218, 0.64);
+    border-bottom: 3px solid rgba(41, 70, 102, 0.64);
     font-size: 20px;
   }
 

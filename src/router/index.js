@@ -16,7 +16,6 @@ import matchList from '../components/matchmaking/matchlist.vue'
 import TimeDesc from '../components/matchmaking/TimeDesc.vue'
 import TimeAsc from '../components/matchmaking/TimeAsc.vue'
 import HotDesc from '../components/matchmaking/HotDesc.vue'
-import HotAsc from '../components/matchmaking/HotAsc.vue'
 
 import User from '../components/user/User.vue'
 import UserDetails from '../components/user/UserDetails.vue'
@@ -117,7 +116,6 @@ export default new Router({
         {path:'TimeDesc',component:TimeDesc},
         {path:'TimeAsc',component:TimeAsc},
         {path:'HotDesc',component:HotDesc},
-        {path:'HotAsc',component:HotAsc},
       ]
     },
     {

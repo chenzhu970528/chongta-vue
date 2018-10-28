@@ -7,7 +7,6 @@
         <li>追求者</li>
       </ul>
       <hr>
-
       <ul v-for="showList in showLists">
         <router-link :to="'/matchmaking/matchDel/'+showList.relId">
         <li class="firstli"><img class="petImg" :src="urlImg(showList.petPic.split(',')[0])" alt=""></li>
@@ -58,12 +57,16 @@
     line-height: 20px;
   }
   hr{
+    width: 100%;
     border: 1px solid palevioletred;
   }
   ul li{
     float: left;
     width: 26%;
     color: #7197ff;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 8px;
     /*padding-right: 5px;*/
   }
   ul li:last-child{
@@ -78,5 +81,6 @@
   .petImg{
     width: 50px;
     height: 50px;
+    /*border-radius: 50px;*/
   }
 </style>
