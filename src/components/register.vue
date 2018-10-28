@@ -1,13 +1,15 @@
 <template>
   <div class="container">
-    <el-alert
-      title=""
-      type="info" style="font-size: 20px;float: left">
-      欢迎来到宠它网，已有账号，去
-      <div style="display: inline-block">
-        <user-login></user-login>
-      </div>
-    </el-alert>
+    <div class="alrady">
+      <el-alert
+        title=""
+        type="info" style="font-size: 20px;float: left">
+        欢迎来到宠它网，已有账号，去
+        <div style="display: inline-block">
+          <user-login></user-login>
+        </div>
+      </el-alert>
+    </div>
     <div class="bg">
     <form class="form-horizontal" style="margin-top: 200px;margin-left: 10px">
       <div class="form-group first">
@@ -75,14 +77,14 @@
 
       <div class="form-group">
         <label class="col-sm-2 control-label col-sm-offset-2"></label>
-        <div class="col-sm-4">
-          <input type="checkbox" v-model="checked"> 我已阅读并同意 <a style="color: #5bacfd" href="">《宠它网注册协议》</a>
+        <div class="col-sm-5">
+          <input type="checkbox" v-model="checked"> 我已阅读并同意 <a style="color: #b3ccfd" href="">《宠它网注册协议》</a>
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label col-sm-offset-2"></label>
         <div class="col-sm-4">
-          <el-button @click="register" type="primary" style="font-size: 20px"><a>立即注册 完成绑定</a></el-button>
+          <el-button @click="register" type="primary" style="font-size: 20px;"><a>立即注册 完成绑定</a></el-button>
         </div>
       </div>
     </form>
@@ -282,9 +284,13 @@
   background: url('../assets/homeless/bg1.jpg');
   width: 100%;
   background-size: 100% 100%;
-  position: absolute;
-  left: 0px;
-  top: 70px;
+}
+.alrady{
+  margin-top: 70px;
+  /*height: 30px;*/
+}
+a{
+  text-decoration: none;
 }
 .bg{
   height: 600px;

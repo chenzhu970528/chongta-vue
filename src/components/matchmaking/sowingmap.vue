@@ -44,7 +44,7 @@
 <style scoped>
   .block{
     /*width: 310px;*/
-    background-color: #dbd4db;
+    background-color: #e2e2e2;
     padding: 0;
     margin-top: 20px;
   }
@@ -54,5 +54,8 @@
     opacity: 0.75;
     line-height: 150px;
     margin: 0;
+  }
+  img{
+    height: 260px;
   }
 </style>
