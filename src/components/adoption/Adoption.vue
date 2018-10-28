@@ -1,7 +1,7 @@
 <template>
     <div class="tol">
       <div class="top">
-        <div class="topText"></div>
+        <!--<div class="topText"></div>-->
       </div>
       <!--<sildes-show></sildes-show>-->
       <div class="cont container">
@@ -191,7 +191,7 @@
     position: absolute;
     font-size: 30px;
     left: 96px;
-    top:194px;
+    top:199px;
     z-index:1;
     width: 200px;
     background-color: cornflowerblue;

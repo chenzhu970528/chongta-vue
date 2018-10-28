@@ -101,7 +101,7 @@
             success: function (result) {
               // console.log(result)
               alert('申请成功')
-              location.reload()
+              location.href=this.$store.state.myurl+'/user'
             }
           })
         }

@@ -150,7 +150,7 @@
       islogin() {
         if (!this.$store.state.isLogin) {
           alert("请登录后发布")
-          return false
+          location.href=this.$store.state.myurl+'/adoption'
         } else {
           this.verify()
         }
@@ -219,6 +219,7 @@
       },
       edit() {
         // console.log(this.upath);
+        let _this=this
         var zipFormData = new FormData();
         //依次添加多个文件
         for (var i = 0; i < this.upath.length; i++) {
@@ -242,6 +243,7 @@
             console.log(response.data);
             console.log(response.bodyText);
             alert("发布成功！！！")
+            location.href=_this.$store.state.myurl+'/adoption'
           }).catch((err) => {
           console.log(err)
           alert(err)
