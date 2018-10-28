@@ -158,7 +158,7 @@
     width: 265px;
     height: 35px;
     border-bottom: 1px solid #a8a8a8;
-    color: #a8a8a8;
+    color: #69819f;
   }
 
   .left {
@@ -185,7 +185,7 @@
     margin-bottom: 25px;
     left: 15px;
     position: absolute;
-    border-bottom: 1px dotted #a8a8a8;
+    border-bottom: 1px solid #a8a8a8;
   }
 
   .li1 {

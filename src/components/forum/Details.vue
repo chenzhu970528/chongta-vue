@@ -8,7 +8,8 @@
         <!--详细内容     -->
         <div class="val"> <div class="headpic">
 
-          <img class='headimg' :src='values[0].headPic' alt="">
+          <!--<img class='headimg' :src='url+value.pic[0].headPic' alt="">-->
+          <img class='headimg' :src='imgs[0]' alt="">
           <span class="name">{{value.art[0].userName}}</span>
 
           <span>{{value.art[0].time.slice(0,16).replace('T',' ')}}</span>
@@ -79,7 +80,7 @@
         </div>
         <!--添加评论-->
         <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
-
+        <!--{{comhead[0][0].headPic}}-->
         <!--评论区域-->
         <div class="com">
 
@@ -87,7 +88,7 @@
             <li class="hhh" v-for="(com,index) in value1">
               <div class="border1">
                 <div class="head1">
-                  <img :src='imgs[0]' alt="" class="img1">
+                  <img :src='imgs[1]' alt="" class="img1">
                   <div class="headRight">
                     <p class="name1">{{com.userName}}</p>
                     <p>{{com.time.slice(0,16).replace('T',' ')}}</p>
@@ -225,9 +226,7 @@
     ]),
     data() {
       return {
-        values: [{
-          headPic: require("../../assets/images/a.jpg"),
-        }],
+        comhead: [],
         value: [],//文章和全部评论回复
         value1: [],//存放显示的评论
         imgs: [require("../../assets/mao1.jpg"), require("../../assets/images/a.jpg")],
@@ -264,8 +263,10 @@
         //重新渲染数据用
         let get = this;
         let faId = window.localStorage.faId;
+        get.value.comment=[]
+        get.comhead=[]
         axios.get(this.$store.state.url + `/forumSee/all/?faId=${faId}`).then((result) => {
-          // console.log(result.data.data)
+          get.comhead=result.data.data.comhead
           get.value = result.data.data;
           get.q = 0//加载更多需要的范围值
           get.w = 6
@@ -621,8 +622,11 @@
     require() {
       let faId = window.localStorage.faId;
       let get = this
+      get.value=[]
+      get.value1= [],
+      get.comhead= [],
       axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
-
+        get.comhead= result.data.data.comhead
         get.value = result.data.data;
         this.addlike= true
          this.dellike= false
@@ -650,6 +654,7 @@
 
 
         //评论
+
         if (get.value.comment) {
           get.cou = Math.ceil(this.value.comment.length / 6)
           for (let i = 0; i < get.value.comment.length; i++) {
@@ -671,6 +676,7 @@
             }
 
           }
+
           //当前评论数
           if (this.value.comment.length > 6) {
             for (let i = 0; i < 6; i++) {
