@@ -81,7 +81,7 @@
 
 <style scoped>
   .top-nav{
-    background-color: whitesmoke;
+    background-color: #fff;
   }
   a{
     text-decoration: none;
