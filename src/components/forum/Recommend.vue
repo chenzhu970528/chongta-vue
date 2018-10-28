@@ -145,7 +145,9 @@
     text-align: center;
 
   }
-
+.li:hover .p{
+  opacity: 0.5;
+}
   .left0 {
     position: absolute;
     left: 0px;

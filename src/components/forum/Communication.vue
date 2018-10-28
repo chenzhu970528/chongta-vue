@@ -2,10 +2,7 @@
   <div class="tol">
     <div class="top"></div>
     <div id="content">
-      <div class="leftnav">
-        <span>交流社区</span>
-        <span>养宠日记</span>
-      </div>
+
       <div class="publish">
         <com_b></com_b>
       </div>
@@ -66,28 +63,11 @@
     /*min-height: 900px;*/
     position: relative;
   }
-  .leftnav{
-    position: absolute;
-    width: 150px;
-    height: 500px;
-    top:-100px;
-    background-color: rgba(144, 161, 237, 0.6);
-    text-align: center;
-  }
-  .leftnav span{
-    display: block;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    padding-top: 60px;
-    /*border: 2px solid whitesmoke;*/
-  }
-  .leftnav span:first-child{
-    margin-top: 90%;
-  }
+
+
   .publish{
     /*position: relative;*/
-    /*top:-100px;*/
+    margin-bottom:40px;
     margin-left: 20%;
   }
   body {

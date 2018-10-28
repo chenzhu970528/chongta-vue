@@ -54,9 +54,9 @@
   @import "http://font-style: em;googleapis.com/css?family=Open+Sans)";
 .top{
   text-align: center;
-  font-size:20px;
+  font-size:22px;
   color: #294666;
-  margin:50px 0;
+  margin:40px 0;
 }
   .text{
     font-size:16px;
@@ -73,7 +73,7 @@
   }
   .con{
     text-align: center;
-    width: 1240px;
+    width: 1250px;
   }
   html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
@@ -210,11 +210,11 @@
   }
 
   .pic {
-    max-width: 350px;
-    max-height: 250px;
+    max-width: 360px;
+    max-height: 260px;
     position: relative;
     overflow: hidden;
-    margin: 20px;
+    margin: 25px;
     display: inline-block;
     -webkit-animation: anima 2s;
     -moz-animation: anima 2s;
