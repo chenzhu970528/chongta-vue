@@ -262,8 +262,7 @@
                     }
                   })
                   alert("注册成功")
-                  history.go(-1);
-                  location.reload()
+                  location.href=_this.$store.state.myurl
                 }
               }
             })

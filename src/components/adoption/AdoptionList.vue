@@ -31,7 +31,7 @@
         mydata: [],
         diarys: [],
         dalength:0,
-        moren:6,
+        moren:8,
         nomas:false,
         url:this.$store.state.url
       };
@@ -43,15 +43,15 @@
       },
       getMore() {
       if(this.nomas) alert('没有更多啦');
-        if (this.dalength < 3) {
+        if (this.dalength < 4) {
           this.nomas = true;
           this.diarys = [];
             for (let i = 0; i < this.mydata.length; i++) {
               this.diarys.push(this.mydata[i])
             }
         }else {
-          this.dalength -= 3;
-          this.moren += 3;
+          this.dalength -= 4;
+          this.moren += 4;
           this.diarys = [];
           this.handleInfo()
         }
