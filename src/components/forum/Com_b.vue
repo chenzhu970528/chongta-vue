@@ -51,7 +51,7 @@
         aa: '交流分享',
         title: '',
         text: '',
-        type: 'a',
+        type: 'b',
         vv: false,
         v: false,
         v2: false
@@ -191,7 +191,7 @@
     border-radius: 3px;
     position: fixed;
     top: 50%;
-    left: 30%;
+    left: 50%;
     color: #fefefe;
     font-size: 18px;
   }
