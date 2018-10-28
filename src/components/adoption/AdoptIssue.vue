@@ -1,115 +1,117 @@
 <template>
-  <div class="container">
-    <ol class="breadcrumb">
-      您当前位置为：
-      <li><a href="/adoption">领养中心</a></li>
-      <!--<li><a href="#">详情</a></li>-->
-      <li class="active">领养申请</li>
-    </ol>
-    <h3>领养发布</h3>
-    <form class="form-horizontal">
-      <div class="form-group">
-        <label class="col-sm-3 control-label">发布类型：</label>
-        <div class="col-sm-6">
-          <el-radio v-model="adoForm.adoType" label="0">领养</el-radio>
-          <el-radio v-model="adoForm.adoType" label="1">寄养</el-radio>
-        </div>
-      </div>
-      <div class="form-group" v-if="adoForm.adoType == 1">
-        <label for="inputdetail" class="col-sm-3 control-label">寄养日期到：</label>
-        <div class="col-sm-6">
-          <el-date-picker
-            v-model="adoForm.limitTime"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="选择日期">
-          </el-date-picker>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">宠物类别：</label>
-        <div class="col-sm-6">
-          <input type="text" @change="verify1" required="required" v-model="adoForm.petType" class="form-control" id="petType"
-                 placeholder="宠物类别(猫，狗，其他)">
-        </div>
-      </div>
-      <!--<div class="form-group">-->
-        <!--<label for="inputdetail" class="col-sm-3 control-label">生日：</label>-->
-        <!--<div class="col-sm-6">-->
-          <!--<el-date-picker-->
-            <!--v-model="adoForm.birth"-->
-            <!--value-format="yyyy-MM-dd"-->
-            <!--type="date"-->
-            <!--placeholder="选择日期">-->
-          <!--</el-date-picker>-->
-        <!--</div>-->
-      <!--</div>-->
-      <div class="form-group">
-        <label class="col-sm-3 control-label">性别：</label>
-        <div class="col-sm-6">
-          <el-radio v-model="adoForm.sex" label="0">公</el-radio>
-          <el-radio v-model="adoForm.sex" label="1">母</el-radio>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputTitle" class="col-sm-3 control-label">宠物年龄：</label>
-        <div class="col-sm-6">
-          <input type="text" required="required"  @change="verify2" v-model="adoForm.age" class="form-control" id="inputAge"
-                 placeholder="几个月">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputTitle"   class="col-sm-3 control-label">领养标题：</label>
-        <div class="col-sm-6">
-          <input type="text" required="required" @change="verify3" v-model="adoForm.adoTitle" class="form-control" id="inputTitle"
-                 placeholder="请输入标题">
-        </div>
-      </div>
-      <div class="row">
-        <div class="watch col-sm-6 col-sm-offset-3">注明宠物种类，例如‘哈士奇’</div>
-      </div>
-      <div class="form-group">
-        <label for="inputdetail"  class="col-sm-3 control-label">详情描述：</label>
-        <div class="col-sm-6">
-          <textarea id="inputdetail" @change="verify4" required="required" v-model="adoForm.detail" class="form-control"
-                    rows="5"></textarea>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3  control-label">您的地址：</label>
-        <div class="col-sm-6">
-          <input type="text" @change="verify5" required="required" v-model="adoForm.adoAddress" class="form-control" id="inputAdress"
-                 placeholder="请输入联系地址">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <div class="checkbox">
-            <label>
-              <input  v-model="checked" type="checkbox"> 已阅读并同意宠它领养协议
-            </label>
+  <div class="tol">
+    <div class="top"></div>
+    <div class="container">
+      <ol class="breadcrumb">
+        您当前位置为：
+        <li><a href="/adoption">领养中心</a></li>
+        <!--<li><a href="#">详情</a></li>-->
+        <li class="active">领养申请</li>
+      </ol>
+      <h3>领养发布</h3>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">发布类型：</label>
+          <div class="col-sm-6">
+            <el-radio v-model="adoForm.adoType" label="0">领养</el-radio>
+            <el-radio v-model="adoForm.adoType" label="1">寄养</el-radio>
           </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="inputdetail" class="col-sm-3 control-label">上传图片：</label>
-        <div class="col-sm-6">
-          <input type="file" name="avatar"
-                 @change="changeImage($event)"
-                 accept="image/gif,image/jpeg,image/jpg,image/png"
-                 ref="avatarInput"
-                 multiple><br/>
+        <div class="form-group" v-if="adoForm.adoType == 1">
+          <label for="inputdetail" class="col-sm-3 control-label">寄养日期到：</label>
+          <div class="col-sm-6">
+            <el-date-picker
+              v-model="adoForm.limitTime"
+              type="date"
+              value-format="yyyy-MM-dd"
+              placeholder="选择日期">
+            </el-date-picker>
+          </div>
         </div>
-      </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">宠物类别：</label>
+          <div class="col-sm-6">
+            <input type="text" @change="verify1" required="required" v-model="adoForm.petType" class="form-control" id="petType"
+                   placeholder="宠物类别(猫，狗，其他)">
+          </div>
+        </div>
+        <!--<div class="form-group">-->
+        <!--<label for="inputdetail" class="col-sm-3 control-label">生日：</label>-->
+        <!--<div class="col-sm-6">-->
+        <!--<el-date-picker-->
+        <!--v-model="adoForm.birth"-->
+        <!--value-format="yyyy-MM-dd"-->
+        <!--type="date"-->
+        <!--placeholder="选择日期">-->
+        <!--</el-date-picker>-->
+        <!--</div>-->
+        <!--</div>-->
+        <div class="form-group">
+          <label class="col-sm-3 control-label">性别：</label>
+          <div class="col-sm-6">
+            <el-radio v-model="adoForm.sex" label="0">公</el-radio>
+            <el-radio v-model="adoForm.sex" label="1">母</el-radio>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTitle" class="col-sm-3 control-label">宠物年龄：</label>
+          <div class="col-sm-6">
+            <input type="text" required="required"  @change="verify2" v-model="adoForm.age" class="form-control" id="inputAge"
+                   placeholder="几个月">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTitle"   class="col-sm-3 control-label">领养标题：</label>
+          <div class="col-sm-6">
+            <input type="text" required="required" @change="verify3" v-model="adoForm.adoTitle" class="form-control" id="inputTitle"
+                   placeholder="请输入标题">
+          </div>
+        </div>
+        <div class="row">
+          <div class="watch col-sm-6 col-sm-offset-3">注明宠物种类，例如‘哈士奇’</div>
+        </div>
+        <div class="form-group">
+          <label for="inputdetail"  class="col-sm-3 control-label">详情描述：</label>
+          <div class="col-sm-6">
+          <textarea id="inputdetail" @change="verify4" required="required" v-model="adoForm.detail" class="form-control"
+                    rows="5"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3  control-label">您的地址：</label>
+          <div class="col-sm-6">
+            <input type="text" @change="verify5" required="required" v-model="adoForm.adoAddress" class="form-control" id="inputAdress"
+                   placeholder="请输入联系地址">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+              <label>
+                <input  v-model="checked" type="checkbox"> 已阅读并同意宠它领养协议
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputdetail" class="col-sm-3 control-label">上传图片：</label>
+          <div class="col-sm-6">
+            <input type="file" name="avatar"
+                   @change="changeImage($event)"
+                   accept="image/gif,image/jpeg,image/jpg,image/png"
+                   ref="avatarInput"
+                   multiple><br/>
+          </div>
+        </div>
 
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" @click="islogin" class="btn btn-default">发布</button>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" @click="islogin" class="btn btn-default">发布</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-
 </template>
 
 <script>
@@ -259,11 +261,18 @@
 <style scoped>
   .container {
     background: rgba(255, 255, 255, 0.9);
-    margin-top: 100px;
+    margin-top: 150px;
     box-shadow: -2px 2px 10px 2px #bcbcbc;
     position: relative;
   }
-
+  .top{
+    width: 100%;
+    height: 70px;
+    background-color: whitesmoke;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+  }
   form {
     margin-top: 50px;
   }

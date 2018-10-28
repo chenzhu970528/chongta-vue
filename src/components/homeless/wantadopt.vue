@@ -1,94 +1,98 @@
 <template>
-  <div class="container">
-    <h3>我要寻找</h3>
-    <form class="form-horizontal">
-      <div class="form-group">
-        <label for="inputkindreward" class="col-sm-3 control-label">寻宠报酬：</label>
-        <div class="col-sm-3">
-          <input type="text" class="form-control"  v-model="addlose.reward" id="inputkindreward" placeholder="全凭个人自愿">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="title" class="col-sm-3 control-label">丢失信息：</label>
-        <div class="col-sm-3">
-          <input type="text" class="form-control"  v-model="addlose.lpmes" id="title" placeholder="简述">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">宠物类别：</label>
-        <div class="col-sm-6">
-          <input type="text" required="required" v-model="addlose.type" class="form-control" id="petType" placeholder="宠物类别(猫，狗，其他)">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputTitle" class="col-sm-3 control-label">宠物年龄：</label>
-        <div class="col-sm-6">
-          <input type="text" required="required" v-model="addlose.age" class="form-control" id="inputAge" placeholder="几个月">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">性别：</label>
-        <div class="col-sm-6">
-          <el-radio v-model="addlose.sex" label="1">公</el-radio>
-          <el-radio v-model="addlose.sex" label="2">母</el-radio>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputTitle1" class="col-sm-3 control-label">丢失时间:<br>（文字描述)</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control"  v-model="addlose.lpTime" id="inputTitle1" placeholder="xxxx年-x月-x日 x时x分 尽量详细">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputTitle" class="col-sm-3 control-label">丢失地址:<br>（文字描述)</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control"  v-model="addlose.address" id="inputTitle" placeholder="xx市区xx地区附近 关键标志物">
-        </div>
-      </div>
-      <div class="form-group">
-        <label  class="col-sm-3 control-label">宠物图片：</label>
-        <div class="col-sm-6">
-          <input type="file" name="avatar"
-                 @change="changeImage($event)"
-                 accept="image/gif,image/jpeg,image/jpg,image/png"
-                 ref="avatarInput"
-                 multiple><br/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputman" class="col-sm-3 control-label">联系人:</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="addlose.lostpeople" id="inputman" placeholder="可以是昵称">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputphone" class="col-sm-3 control-label">联系人电话:</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="addlose.lostphone" id="inputphone" placeholder="必须是11位手机号">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputdetails1" class="col-sm-3 control-label">详情描述：</label>
-        <div class="col-sm-6">
-          <textarea id="inputdetails1"  v-model="addlose.detail" class="form-control" rows="5"></textarea>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" v-model="check2"> 我同意全部事项
-            </label>
+  <div class="tol">
+    <div class="top"></div>
+    <div class="container">
+      <h3>我要寻找</h3>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="inputkindreward" class="col-sm-3 control-label">寻宠报酬：</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control"  v-model="addlose.reward" id="inputkindreward" placeholder="全凭个人自愿">
           </div>
         </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10" >
-          <button type="submit" @click="islogin" class="btn btn-default" style="font-size: 25px">提交</button>
+        <div class="form-group">
+          <label for="title" class="col-sm-3 control-label">丢失信息：</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control"  v-model="addlose.lpmes" id="title" placeholder="简述">
+          </div>
         </div>
-      </div>
-    </form>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">宠物类别：</label>
+          <div class="col-sm-6">
+            <input type="text" required="required" v-model="addlose.type" class="form-control" id="petType" placeholder="宠物类别(猫，狗，其他)">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTitle" class="col-sm-3 control-label">宠物年龄：</label>
+          <div class="col-sm-6">
+            <input type="text" required="required" v-model="addlose.age" class="form-control" id="inputAge" placeholder="几个月">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">性别：</label>
+          <div class="col-sm-6">
+            <el-radio v-model="addlose.sex" label="1">公</el-radio>
+            <el-radio v-model="addlose.sex" label="2">母</el-radio>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTitle1" class="col-sm-3 control-label">丢失时间:<br>（文字描述)</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control"  v-model="addlose.lpTime" id="inputTitle1" placeholder="xxxx年-x月-x日 x时x分 尽量详细">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTitle" class="col-sm-3 control-label">丢失地址:<br>（文字描述)</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control"  v-model="addlose.address" id="inputTitle" placeholder="xx市区xx地区附近 关键标志物">
+          </div>
+        </div>
+        <div class="form-group">
+          <label  class="col-sm-3 control-label">宠物图片：</label>
+          <div class="col-sm-6">
+            <input type="file" name="avatar"
+                   @change="changeImage($event)"
+                   accept="image/gif,image/jpeg,image/jpg,image/png"
+                   ref="avatarInput"
+                   multiple><br/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputman" class="col-sm-3 control-label">联系人:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" v-model="addlose.lostpeople" id="inputman" placeholder="可以是昵称">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputphone" class="col-sm-3 control-label">联系人电话:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" v-model="addlose.lostphone" id="inputphone" placeholder="必须是11位手机号">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputdetails1" class="col-sm-3 control-label">详情描述：</label>
+          <div class="col-sm-6">
+            <textarea id="inputdetails1"  v-model="addlose.detail" class="form-control" rows="5"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" v-model="check2"> 我同意全部事项
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10" >
+            <button type="submit" @click="islogin" class="btn btn-default" style="font-size: 25px">提交</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
+
 
 </template>
 
@@ -193,6 +197,14 @@
     margin-top:100px ;
     box-shadow:-2px 2px 10px 2px #bcbcbc;
     position: relative;
+  }
+  .top{
+    width: 100%;
+    height: 70px;
+    background-color: whitesmoke;
+    position: fixed;
+    top: 0;
+    z-index: 3;
   }
   form{
     margin-top: 50px;

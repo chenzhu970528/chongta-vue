@@ -1,92 +1,96 @@
 <template>
-  <div class="container">
-    <h3>我要发布</h3>
-    <form class="form-horizontal">
-      <div class="form-group">
-        <label for="inputTitletitle" class="col-sm-3 control-label" >自拟标题:</label>
-        <div class="col-sm-6">
-          <input type="text" required="required" class="form-control" id="inputTitletitle"
-                 v-model="hp.getmes"
-                 placeholder="简述">
-        </div>
-        </div>
-      <div class="form-group">
-          <label class="col-sm-3 control-label">拾到宠物类别：</label>
-        <div class="col-sm-6">
-          <input type="text" required="required" v-model="hp.type" class="form-control" id="petType" placeholder="宠物类别">
-        </div>
-        </div>
-      <div class="form-group">
-        <label  class="col-sm-3  control-label">拾到时间：</label>
-        <div class="col-sm-6">
-          <el-date-picker
-            value-format="yyyy-MM-dd"
-            v-model="hp.homeTime"
-
-            type="date"
-            placeholder="拾到日期">
-          </el-date-picker>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">性别：</label>
-        <div class="col-sm-6">
-          <el-radio v-model="hp.sex" label="0">公</el-radio>
-          <el-radio v-model="hp.sex" label="1">母</el-radio>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputTitle" class="col-sm-3 control-label" >拾到地址:<br>（文字描述)</label>
-        <div class="col-sm-6">
-          <input type="text" required="required"  class="form-control" id="inputTitle"
-                 v-model="hp.address"
-                 placeholder="xx市区xx地区附近 关键标志物">
-        </div>
-      </div>
-      <div class="form-group">
-        <label  class="col-sm-3 control-label">上传图片：</label>
-        <div class="col-sm-6">
-          <input type="file" name="avatar"
-                 @change="changeImage($event)"
-                 accept="image/gif,image/jpeg,image/jpg,image/png"
-                 ref="avatarInput"
-                 multiple><br/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputman"  class="col-sm-3 control-label">联系人:</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" required="required"  v-model="hp.people" id="inputman" placeholder="可以是昵称" >
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputphone" class="col-sm-3 control-label">联系人电话:</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" required="required" id="inputphone" v-model="hp.phone"  placeholder="必须是11位手机号">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputdetails" class="col-sm-3 control-label">详情描述：</label>
-        <div class="col-sm-6">
-          <textarea id="inputdetails" required="required" class="form-control" rows="5" v-model="hp.detail"></textarea>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <div class="checkbox">
-            <label>
-              <input v-model="check2" type="checkbox"> 我同意全部事项
-            </label>
+  <div class="tol">
+    <div class="top"></div>
+    <div class="container">
+      <h3>我要发布</h3>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="inputTitletitle" class="col-sm-3 control-label" >自拟标题:</label>
+          <div class="col-sm-6">
+            <input type="text" required="required" class="form-control" id="inputTitletitle"
+                   v-model="hp.getmes"
+                   placeholder="简述">
           </div>
         </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10" >
-          <button type="submit" @click="islogin" class="btn btn-default" style="font-size: 25px">发布</button>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">拾到宠物类别：</label>
+          <div class="col-sm-6">
+            <input type="text" required="required" v-model="hp.type" class="form-control" id="petType" placeholder="宠物类别">
+          </div>
         </div>
-      </div>
-    </form>
+        <div class="form-group">
+          <label  class="col-sm-3  control-label">拾到时间：</label>
+          <div class="col-sm-6">
+            <el-date-picker
+              value-format="yyyy-MM-dd"
+              v-model="hp.homeTime"
+
+              type="date"
+              placeholder="拾到日期">
+            </el-date-picker>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">性别：</label>
+          <div class="col-sm-6">
+            <el-radio v-model="hp.sex" label="0">公</el-radio>
+            <el-radio v-model="hp.sex" label="1">母</el-radio>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTitle" class="col-sm-3 control-label" >拾到地址:<br>（文字描述)</label>
+          <div class="col-sm-6">
+            <input type="text" required="required"  class="form-control" id="inputTitle"
+                   v-model="hp.address"
+                   placeholder="xx市区xx地区附近 关键标志物">
+          </div>
+        </div>
+        <div class="form-group">
+          <label  class="col-sm-3 control-label">上传图片：</label>
+          <div class="col-sm-6">
+            <input type="file" name="avatar"
+                   @change="changeImage($event)"
+                   accept="image/gif,image/jpeg,image/jpg,image/png"
+                   ref="avatarInput"
+                   multiple><br/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputman"  class="col-sm-3 control-label">联系人:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" required="required"  v-model="hp.people" id="inputman" placeholder="可以是昵称" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputphone" class="col-sm-3 control-label">联系人电话:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" required="required" id="inputphone" v-model="hp.phone"  placeholder="必须是11位手机号">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputdetails" class="col-sm-3 control-label">详情描述：</label>
+          <div class="col-sm-6">
+            <textarea id="inputdetails" required="required" class="form-control" rows="5" v-model="hp.detail"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+              <label>
+                <input v-model="check2" type="checkbox"> 我同意全部事项
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10" >
+            <button type="submit" @click="islogin" class="btn btn-default" style="font-size: 25px">发布</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
+
 
 </template>
 
@@ -173,9 +177,17 @@
 <style scoped>
   .container{
     background:rgba(255,255,255,0.9);
-    margin-top:100px ;
+    margin-top:150px ;
     box-shadow:-2px 2px 10px 2px #bcbcbc;
     position: relative;
+  }
+  .top{
+    width: 100%;
+    height: 70px;
+    background-color: whitesmoke;
+    position: fixed;
+    top: 0;
+    z-index: 3;
   }
   form{
     margin-top: 50px;
