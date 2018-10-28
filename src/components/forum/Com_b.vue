@@ -160,7 +160,7 @@
   float:right;
 }
   .con {
-    width: 768px;
+    width: 900px;
     background:rgba(255, 255, 255, 0.6);
     padding: 50px;
     padding-top: 20px;

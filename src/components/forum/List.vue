@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="con">
-      <div style="width:768px;height: 35px; background:white;margin-top:-60px;margin-bottom:25px;">
-        <!--<span class="left">ps:领养日记要领养宠物后在我的领养那里发表哦~</span>-->
-        <a class="btn btn-default right" href="#a" role="button" @click="add()">发表</a>
-      </div>
+      <!--<div style="width:768px;height: 35px; background:white;margin-top:-60px;margin-bottom:25px;">-->
+        <!--&lt;!&ndash;<span class="left">ps:领养日记要领养宠物后在我的领养那里发表哦~</span>&ndash;&gt;-->
+        <!--<a class="btn btn-default right" href="#a" role="button" @click="add()">发表</a>-->
+      <!--</div>-->
       <ul>
         <li :key="index" v-model="val.faId" v-for="(val,index) in activitys">
           <div class="head">
@@ -47,7 +47,7 @@
 
         </div>
         <a name="a" style="margin-bottom:100px;"></a>
-        <com_b></com_b>
+        <com_d></com_d>
       </ul>
     </div>
     <!--<p v-if="vv" class="cc">没有了哦</p>-->
@@ -58,12 +58,12 @@
 <script>
   import axios from 'axios'
   import store from './store.js'
-  import Com_b from './Com_b.vue'
+  import Com_d from './Com_d.vue'
 
   export default {
     name: "List",
     components: {
-      'com_b': Com_b,
+      'com_d': Com_d,
     },
     data() {
       return {
@@ -349,7 +349,7 @@
   }
 
   img {
-    max-width: 698px;
+    max-width: 658px;
   }
 
   .value {
