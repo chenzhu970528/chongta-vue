@@ -1,7 +1,6 @@
 <template>
   <div class="hot">
     <p> <span>|</span> 最受欢迎小可爱</p>
-    <!--<hr>-->
     <hot-list></hot-list>
   </div>
 </template>
@@ -22,8 +21,9 @@
     height: 500px;
     position: absolute;
     right: 10px;
-    top: 430px;
-    border: 2px dashed palevioletred;
+    top: 300px;
+    box-shadow: 2px 2px 2px 2px #c5c5c5;
+    /*border: 2px dashed palevioletred;*/
   }
   hr{
     border: 1px solid palevioletred;

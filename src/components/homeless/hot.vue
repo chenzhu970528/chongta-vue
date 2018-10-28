@@ -1,30 +1,28 @@
 <template>
   <div class="list-group col-xs-4" >
+    <img src="../../assets/homeless/211-bEkqqn_fw658.png" alt="" class="topPic">
     <div class="button">
       <router-link to="/homeless/publish"><span>发布流浪</span></router-link>
       <router-link to="/homeless/wantadopt"><span>发布寻宠</span></router-link>
     </div>
     <div class="right">
-      <div  class="title" >
-     <h3 class="line">最新内容</h3>
-     <ul class="lie" v-for="diary in diarys">
-       <li class="lie1">
-         <a href="">
-           <span>{{diary.getmes}}</span>
-         </a>
-       </li>
-     </ul>
-   </div>
-      <div  class="title2" >
-            <h3 class="line">推荐</h3>
-            <ul class="lie" v-for="diary in diarys">
-              <li class="lie1">
-                <a href="">
-                  <span>{{diary.getmes}}</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+      <div class="title2" >
+         <h3 class="line">最新寻宠</h3>
+        <el-row v-for="diary in diarys" class="ROW">
+          <el-col :span="7"><img alt="" :src="urlImg(diary.lppic.split(',')[0])"></el-col>
+          <el-col :span="16" :push="1">
+            <span>时间：{{diary.lpTime}}</span>
+            <span>丢失地点：{{diary.address}}</span>
+          </el-col>
+        </el-row>
+         <!--<ul class="lie" v-for="diary in diarys">-->
+           <!--<li>-->
+             <!--<a href="">-->
+               <!--<span>{{diary.getmes}}</span>-->
+             <!--</a>-->
+           <!--</li>-->
+         <!--</ul>-->
+      </div>
     </div>
   </div>
 </template>
@@ -33,13 +31,16 @@
   import axios from 'axios'
   export default {
     name: "all",
-    components:{
-
+    methods:{
+      urlImg(str){
+        return this.url+str
+      }
     },
     data() {
       return {
         mydata: [],
         diarys: [],
+        url:this.$store.state.url
       };
     },
 
@@ -55,7 +56,7 @@
       //       console.log(err);
       //   })
       // }
-      axios.get(this.$store.state.url+"/homeless").then((result) => {
+      axios.get(this.$store.state.url+"/homeless/getLatest").then((result) => {
         // console.log(result.data)
         this.mydata = result.data.data;
         // this.homeTime = result.data.data.homeTime
@@ -77,21 +78,25 @@
     padding-left: 40%;
     /*background-color: yellow;*/
   }
-.img img{
-  width: 300px;
-  height: 300px;
-}
-.button span{
-  display: inline-block;
-  border: 1px solid cornflowerblue;
-  font-size: 17px;
-  width: 100px;
-  background-color: cornflowerblue;
-  color:white;
-  text-align: center;
-  margin-left: 10px;
-  border-radius: 5px;
-}
+  .title2 span{
+    display: block;
+  }
+  .topPic{
+   width: 80%;
+    margin-left: 70px;
+    margin-top: -10px;
+  }
+  .button span{
+    display: inline-block;
+    border: 1px solid cornflowerblue;
+    font-size: 17px;
+    width: 100px;
+    background-color: cornflowerblue;
+    color:white;
+    text-align: center;
+    margin-left: 10px;
+    border-radius: 5px;
+  }
   .right{
     float: right;
     width: 350px;
@@ -101,42 +106,20 @@
     background-color: #FFFFFF;
     min-height: 500px;
   }
-  .title{
-    /*height: 50px;*/
-    /*line-height: 50px;*/
-    /*border-bottom: 1px solid #E8E8E8;*/
-    /*position: relative;*/
-  }
   .line{
     border-bottom: 1px solid #E8E8E8;
 
+  }
+  .ROW{
+    margin-bottom: 10px;
   }
   .title2{
     margin-top: 36px;
     /*border-bottom: 1px solid #E8E8E8;*/
 
   }
-  .lie{
-    padding: 15px 0 5px 0;
-    margin-bottom: -8px;
-
+  .title2 img{
+    height: 70px;
+    width: 70px;
   }
-  .lie1{
-    height: 20px;
-    line-height: 20px;
-    overflow: hidden;
-    list-style: none;
-  }
-.lie1 a{
-  display: inline-block;
-  width: 260px;
-  line-height: 20px;
-  height: 20px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #333333;
-  font-size: 15px;
-}
-
 </style>

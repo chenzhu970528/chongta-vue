@@ -151,6 +151,7 @@
         },
               //发布
         addmatch() {
+          let _this=this
           console.log(this.upath);
           var zipFormData = new FormData();
           //依次添加多个文件
@@ -171,11 +172,11 @@
           let config = { headers: { 'Content-Type': 'multipart/form-data' } };
           this.$axios.post(this.$store.state.url+'/matchmaking/addMatch', zipFormData,config)
             .then(function (response) {
-              console.log(response);
-              console.log(response.data);
-              console.log(response.bodyText);
+              // console.log(response);
+              // console.log(response.data);
+              // console.log(response.bodyText);
               alert("发布成功！！！")
-              location.href=_this.$store.state.myurl+'/matchmaking'
+              location.href=_this.$store.state.myurl+'/matchmaking/TimeDesc'
             }).catch((err) => {
             console.log(err)
             alert(err)

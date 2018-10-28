@@ -20,14 +20,12 @@
   #foot{
     height: 80px;
     width: 100%;
-    /*background-color: rgba(255,255,255,0.1);*/
     text-align: center;
     margin-top: 100px
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
   }
   ul{
+    position: relative;
+    bottom: 30px;
     list-style: none;
     padding: 0;
     color: white;
@@ -38,6 +36,8 @@
     display: inline-block;
   }
   p{
+    position: relative;
+    bottom: 30px;
     color: white;
     width: 300px;
     margin: 10px auto;
