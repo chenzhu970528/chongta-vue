@@ -183,7 +183,7 @@
   .top{
     width: 100%;
     height: 70px;
-    background-color: whitesmoke;
+    background-color: #fff;
     position: fixed;
     top: 0;
     z-index: 3;
