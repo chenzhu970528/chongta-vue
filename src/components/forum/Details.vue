@@ -1,10 +1,12 @@
 <template>
-  <div id="content">
-    <div class="left">
-      <!--详细内容     -->
-      <div class="val">
-        <div><h2>{{value.art[0].faTitle}}</h2></div>
-        <div class="headpic">
+  <div id="con">
+    <div id="content">
+<!--<div id="top">-->
+  <!--<img style="position: fixed;" src="../../assets/forum/6.jpg" alt="">-->
+<!--</div>-->
+      <div class="left">
+        <!--详细内容     -->
+        <div class="val"> <div class="headpic">
 
           <img class='headimg' :src='values[0].headPic' alt="">
           <span class="name">{{value.art[0].userName}}</span>
@@ -54,46 +56,52 @@
     <span>&nbsp{{value.sum[0][0].sum_count-1}}回复</span>
     </span>
         </div>
-        <!--帖子的内容-->
-        <div class="img">
-          <p>{{value.art[0].faText}}</p>
           <div  class="center">
             <img :src='url+value.art[0].faImg' alt="">
           </div>
 
+          <div>&nbsp &nbsp<h2>{{value.art[0].faTitle}}</h2></div>
+
+          <!--帖子的内容-->
+
+          <div class="img">
+
+            <p>{{value.art[0].faText}}</p>
+
+
+          </div>
         </div>
-      </div>
-      <div id="dd0" class="test_box cominp0"
-           contenteditable="true"
-           v-html="myHtmlcode"
-           @input="onDivInput($event)">
-        <br/>
-      </div>
-      <!--添加评论-->
-      <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
+        <div id="dd0" class="test_box cominp0"
+             contenteditable="true"
+             v-html="myHtmlcode"
+             @input="onDivInput($event)">
+          <br/>
+        </div>
+        <!--添加评论-->
+        <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
 
-      <!--评论区域-->
-      <div class="com">
+        <!--评论区域-->
+        <div class="com">
 
-        <ul>
-          <li class="hhh" v-for="(com,index) in value1">
-            <div class="border1">
-              <div class="head1">
-                <img :src='imgs[0]' alt="" class="img1">
-                <div class="headRight">
-                  <p class="name1">{{com.userName}}</p>
-                  <p>{{com.time.slice(0,16).replace('T',' ')}}</p>
-                </div>
-              </div>
-              <div class="val1">
-                <div class="but">
-                  <div class="">
-                    <p>{{com.faText}}</p>
+          <ul>
+            <li class="hhh" v-for="(com,index) in value1">
+              <div class="border1">
+                <div class="head1">
+                  <img :src='imgs[0]' alt="" class="img1">
+                  <div class="headRight">
+                    <p class="name1">{{com.userName}}</p>
+                    <p>{{com.time.slice(0,16).replace('T',' ')}}</p>
                   </div>
-                  <div class="com11" :key="index">
-                    <span @click.prevent="aaaa(index)" class="rr">回复</span>
-                    <!--删除评论-->
-                    <span v-if="admin ||com.userId==userId ">
+                </div>
+                <div class="val1">
+                  <div class="but">
+                    <div class="">
+                      <p>{{com.faText}}</p>
+                    </div>
+                    <div class="com11" :key="index">
+                      <span @click.prevent="aaaa(index)" class="rr">回复</span>
+                      <!--删除评论-->
+                      <span v-if="admin ||com.userId==userId ">
                        <el-popover
                          placement="top"
                          width="160">
@@ -109,74 +117,73 @@
                     </span>
 
 
-                    <div v-if="aaa[index]" class="h">
-                      <div>
-                        <!--添加表层回复-->
-                        <div class="dd1 test_box cominp1" contenteditable="true"
-                             v-html="myHtmlcode1"
-                             @input="onDivInput1($event)">
+                      <div v-if="aaa[index]" class="h">
+                        <div>
+                          <!--添加表层回复-->
+                          <div class="dd1 test_box cominp1" contenteditable="true"
+                               v-html="myHtmlcode1"
+                               @input="onDivInput1($event)">
 
+                          </div>
+                          <button @click="addReply(index,1)" type="button" class="rbtn btn btn-primary btn-sm active">发表
+                          </button>
                         </div>
-                        <button @click="addReply(index,1)" type="button" class="rbtn btn btn-primary btn-sm active">发表
-                        </button>
                       </div>
                     </div>
-                  </div>
-                  <!--回复-->
+                    <!--回复-->
 
-                  <div class="com1 " v-for="(reply,keys) in  value1[index].replys">
-                    <div class="head">
-                      <img :src='imgs[1]' alt="" class="img1">
-                      <div class="headRight">
-                        <p><span class="name1">{{reply.frName}}</span> 回复<span class="name1">{{reply.fcName}}</span></p>
-                        <p>{{reply.time.slice(0,16).replace('T',' ')}}</p>
+                    <div class="com1 " v-for="(reply,keys) in  value1[index].replys">
+                      <div class="head">
+                        <img :src='imgs[1]' alt="" class="img1">
+                        <div class="headRight">
+                          <p><span class="name1">{{reply.frName}}</span> 回复<span class="name1">{{reply.fcName}}</span></p>
+                          <p>{{reply.time.slice(0,16).replace('T',' ')}}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div class="val1 but">
-                      <p class="p">{{reply.frText}}</p>
-                      <!--删除回复-->
-                      <span v-if="admin ||reply.frman==userId ">
-         <el-popover
-           placement="top"
-           width="160">
+                      <div class="val1 but">
+                        <p class="p">{{reply.frText}}</p>
+
+
+                        <div class="com11" :key="keys">
+
+                          <a @click="bb(index,keys)" class="rr">回复</a>
+                          <!--删除回复-->
+                          <span v-if="admin ||reply.frman==userId ">
+                         <el-popover
+                           placement="top"
+                           width="160">
                         <!--v-model="visible2[index]"-->
                         <p>确定删除吗？</p>
                         <div style="text-align: right; margin: 0">
                           <el-button size="mini" type="text">取消</el-button>
-                          delrep(frId)
                           <el-button type="primary" size="mini" @click="delrep(reply.frId)">确定</el-button>
                         </div>
                         <el-button slot="reference" icon="el-icon-delete" circle></el-button>
 
                       </el-popover>
-</span>
+                        </span>
+                          <div v-if="bbb[index][keys]" class="h">
+                            <div class="dd2 test_box cominp2" contenteditable="true"
+                                 v-html="myHtmlcode1"
+                                 @input="onDivInput1($event)">
+                            </div>
+                            <button @click="addReply(index,2)" type="button" class="rbtn btn btn-primary btn-sm active">发表
+                            </button>
 
 
-                      <div class="com11" :key="keys">
-
-                        <a @click="bb(index,keys)" class="rr">回复</a>
-                        <div v-if="bbb[index][keys]" class="h">
-                          <div class="dd2 test_box cominp2" contenteditable="true"
-                               v-html="myHtmlcode1"
-                               @input="onDivInput1($event)">
                           </div>
-                          <button @click="addReply(index,2)" type="button" class="rbtn btn btn-primary btn-sm active">发表
-                          </button>
-
-
                         </div>
                       </div>
                     </div>
                   </div>
+
                 </div>
-
               </div>
-            </div>
-          </li>
-        </ul>
-        <br>
+            </li>
+          </ul>
+          <br>
 
-        <span v-if="value.comment">
+          <span v-if="value.comment">
         <button v-if="(value.comment.length)>6&&(value1.length<value.comment.length)" type="button"
                 @click="next" class="blue btn btn-primary btn-lg btn-block">加载更多
         </button>
@@ -185,13 +192,15 @@
         </button>
         </span>
 
+        </div>
+
       </div>
+      <div class="right">
+        <ranking></ranking>
+      </div>
+      <p v-if="hide" class="cc">{{tips}}</p>
 
     </div>
-    <div class="right">
-      <ranking></ranking>
-    </div>
-    <p v-if="hide" class="cc">{{tips}}</p>
 
 
   </div>
@@ -729,15 +738,30 @@
     color: #fefefe;
     font-size: 18px;
   }
-
+#con{
+  /*background: url("../../assets/forum/7.jpg");*/
+  background: #f5f5f5;
+  width:100%;
+  height: 100%;
+  margin-top:-110px
+}
+ #top{
+   width: 1366px;
+   height:1000px;
+   margin-top:-110px;
+   margin-left:-60px;
+ }
   #content {
-    box-shadow: -2px 2px 10px 2px #bcbcbc;
-    background: rgba(255, 255, 255, 0.9);
+    /*box-shadow: -2px 2px 10px 2px #bcbcbc;*/
+    /*background: #f5f5f5;*/
     width: 1240px;
+    /*width:100%;*/
+    /*height: 100%;*/
     margin: auto;
     margin-top: 100px;
     position: relative;
     padding-bottom: 300px;
+    padding-top:80px;
   }
 
   h2 {
@@ -804,8 +828,9 @@
   }
 
   .val {
-    /*border-bottom: 1px dotted #ddd;*/
+    border-bottom: 1px dotted #ddd;
     padding-bottom: 60px;
+    margin-bottom: 20px;
   }
 
   .com {
@@ -814,7 +839,8 @@
 
   .right {
     position: absolute;
-    top: 24px;
+    top: 104px;
+    /*top: 444px;*/
     right: 25px;
     width: 360px;
   }
@@ -828,7 +854,7 @@
   .rbtn1 {
     margin-top: 10px;
     width: 50px;
-    height: 33px;
+    height: 35px;
   }
 
   li {
@@ -856,7 +882,8 @@
 
   .name1 {
     font-size: 15px;
-    color: #285f8f;
+    /*color: #285f8f;*/
+    color: #0a498f;
   }
 
   .img1 {
@@ -897,7 +924,7 @@
   }
 
   .border1 {
-    border: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     padding-bottom: 20px;
     margin-bottom: 20px;
     margin-top: -35px;
@@ -925,7 +952,7 @@
 
   .rbtn {
     /*width: 60px;*/
-    /*height: 38px;*/
+    height: 35px;
     font-size: 14px;
     margin-top: -0px;
   }

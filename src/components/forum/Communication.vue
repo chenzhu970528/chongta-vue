@@ -2,10 +2,7 @@
   <div class="tol">
     <div class="top"></div>
     <div id="content">
-      <div class="leftnav">
-        <span>交流社区</span>
-        <span>养宠日记</span>
-      </div>
+
       <div class="publish">
         <com_b></com_b>
       </div>
@@ -18,9 +15,10 @@
         <div class="left">
           <block></block>
         </div>
-        <div class="right">
-          <ranking></ranking>
-        </div>
+        <!--<div class="right">-->
+          <!--<ranking></ranking>-->
+        <!--</div>-->
+        <hot></hot>
       </div>
     </div>
   </div>
@@ -32,6 +30,7 @@
   import Com_d from './Com_d.vue'
   import Ranking from './Ranking'
   import Recommend from './Recommend.vue'
+  import hot from './hot.vue'
   export default {
     name: "Communication",
     components: {
@@ -40,6 +39,7 @@
       'ranking':Ranking,
       'com_d': Com_d,
       'recommend': Recommend,
+      'hot': hot,
 
     },
     data :function (){
@@ -53,38 +53,21 @@
 <style scoped>
   .tol{
     /*margin-top: 70px;*/
-    background-color: white;
+    background-color: #f6f6f6;
   }
   .top{
     width: 100%;
     height: 420px;
     background:0 70% url("../../assets/forum/1-15052G61341.jpg") no-repeat;
-    background-size: 100% auto;
+    /*background-size: 100% auto;*/
     /*min-height: 900px;*/
     position: relative;
   }
-  .leftnav{
-    position: absolute;
-    width: 150px;
-    height: 500px;
-    top:-100px;
-    background-color: rgba(144, 161, 237, 0.6);
-    text-align: center;
-  }
-  .leftnav span{
-    display: block;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    padding-top: 60px;
-    /*border: 2px solid whitesmoke;*/
-  }
-  .leftnav span:first-child{
-    margin-top: 90%;
-  }
+
+
   .publish{
     /*position: relative;*/
-    /*top:-100px;*/
+    margin-bottom:40px;
     margin-left: 20%;
   }
   body {
@@ -115,6 +98,7 @@
   .left {
     display: inline-block;
     width: 830px;
+    margin-left:250px;
   }
 
   .right {

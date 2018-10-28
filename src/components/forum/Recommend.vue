@@ -25,8 +25,6 @@
             </li>
           </ul>
         </div>
-
-
         <div class="item">
           <ul class="ul">
             <li class="li" v-for="val in value1">
@@ -147,7 +145,9 @@
     text-align: center;
 
   }
-
+.li:hover .p{
+  opacity: 0.5;
+}
   .left0 {
     position: absolute;
     left: 0px;
@@ -169,3 +169,71 @@
     color: white;
   }
 </style>
+<!--<style scoped>-->
+  <!--#carousel-example-generic {-->
+    <!--width: 890px;-->
+    <!--/*padding-right:40px;*/-->
+    <!--margin: auto;-->
+  <!--}-->
+
+  <!--.carousel-control {-->
+    <!--width: 20px;-->
+    <!--margin: auto;-->
+  <!--}-->
+
+  <!--.ul {-->
+    <!--width: 1300px;-->
+    <!--margin-left: -40px;-->
+    <!--margin-right: -30px;-->
+  <!--}-->
+
+  <!--.li {-->
+    <!--display: inline-block;-->
+    <!--color: white;-->
+    <!--position: relative;-->
+    <!--list-style: none;-->
+    <!--width: 280px;-->
+    <!--margin-bottom: 40px;-->
+    <!--margin-right: 25px;-->
+
+  <!--}-->
+
+  <!--.img {-->
+    <!--width: 280px;-->
+    <!--height: 240px;-->
+    <!--border-radius: 5px;-->
+  <!--}-->
+
+  <!--.p {-->
+    <!--background: #000000;-->
+    <!--opacity: 0.4;-->
+    <!--position: absolute;-->
+    <!--bottom: -10px;-->
+    <!--height: 40px;-->
+    <!--width: 100%;-->
+    <!--text-align: center;-->
+
+  <!--}-->
+
+  <!--.left0 {-->
+    <!--position: absolute;-->
+    <!--left: 0px;-->
+    <!--color: #f1a234;-->
+    <!--font-weight: bold;-->
+    <!--line-height: 40px;-->
+  <!--}-->
+
+  <!--.a {-->
+    <!--text-align: center;-->
+    <!--height: 40px;-->
+    <!--line-height: 40px;-->
+    <!--width: 100%;-->
+    <!--text-decoration: none;-->
+  <!--}-->
+
+  <!--.title {-->
+    <!--font-size: 17px;-->
+    <!--color: white;-->
+  <!--}-->
+<!--</style>-->
+

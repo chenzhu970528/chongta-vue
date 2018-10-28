@@ -1,4 +1,5 @@
 <template>
+
   <div class="home">
     <div class="top">
       <!--<div class="block">-->
@@ -11,8 +12,9 @@
       <!--</div>-->
         <span>treat your </span><span>pet like royalty</span>
     </div>
+    <div class="q1"></div>
     <div class="bottom">
-      <p>功能模块</p>
+      <!--<p>功能模块</p>-->
       <div class="bottom_list">
         <el-row>
           <el-col :span="6">
@@ -46,6 +48,8 @@
         </el-row>
       </div>
     </div>
+    <div class="q2"></div>
+
     <div class="num">
       <el-row>
         <el-col :span="8" :push="4" style="text-align: center">
@@ -101,6 +105,25 @@
 </script>
 
 <style scoped>
+
+  .q1{
+    height: 400px;
+    background-image: url(../assets/forum/7.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
+    background-position: center;
+    background-blend-mode: darken
+  }
+  .q2{
+    height: 400px;
+    background-image: url(../assets/forum/1.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
+    background-position: center;
+    background-blend-mode: darken
+  }
   .home{
     width: 100%;
     background: rgb(242, 244,241);
@@ -136,9 +159,12 @@
   }
 
   .bottom{
+    margin-top:150px;
     min-height: 400px;
     text-align: center;
     /*background-color: palevioletred;*/
+    /*background-color: chocolate;*/
+
   }
   .bottom p{
     margin-top: 110px;

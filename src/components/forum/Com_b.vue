@@ -1,7 +1,11 @@
 <template>
   <div> <!--发帖-->
     <div class="con">
-      #{{name}}
+      <div class="leftnav">
+        <span class="one" @click="share()">交流社区</span>
+        <span @click="diary()">养宠日记</span>
+      </div>
+     <p class="p">发表{{aa}}</p>
       <br>
       <br>
       <form>
@@ -10,12 +14,12 @@
         </div>
         <div class="form-group">
           <br>
-          <textarea class="form-control" v-model="text"></textarea>
+          <textarea class="form-control" v-model="text" placeholder="分享你的趣事吧"></textarea>
         </div>
         <div class="form-group">
-          <label  class="col-sm-3 control-label">上传图片：</label>
+          <!--<label  class="col-sm-3 control-label">上传图片：</label>-->
           <div class="col-sm-6">
-            <input type="file" name="avatar"
+            <input class="left" type="file" name="avatar"
                    @change="changeImage($event)"
                    accept="image/gif,image/jpeg,image/jpg,image/png"
                    ref="avatarInput"
@@ -44,7 +48,7 @@
     data() {
       return {
         upath:'',  //保存选中的文件
-        name: store.state.name,
+        aa: '交流分享',
         title: '',
         text: '',
         type: 'a',
@@ -54,6 +58,14 @@
       }
     },
     methods: {
+      share(){
+        this.aa='交流分享'
+        this.type='b'
+      },
+      diary(){
+        this.aa='宠物日记'
+        this.type='a'
+      },
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
         console.log(e.target.files)
@@ -96,7 +108,6 @@
       },
       addForum() {
         let _this = this;
-
         if (!_this.UserId) {
           _this.c2()
         }
@@ -140,6 +151,37 @@
 </script>
 
 <style scoped>
+  .leftnav{
+    position: absolute;
+    width: 150px;
+    height:400px;
+    top:0px;
+    left:25px;
+    background-color: rgba(156, 173, 255, 0.2);
+    text-align: center;
+
+
+  }
+  .leftnav span{
+    display: block;
+    color: #69819f;
+    font-weight: bold;
+    font-size: 16px;
+    /*padding-top: 70px;*/
+    /*border: 2px solid whitesmoke;*/
+    cursor:pointer;
+  }
+
+  .one{
+    margin-bottom:90px;
+  }
+  .leftnav span:first-child{
+    margin-top: 90%;
+  }
+  .p{
+    margin-bottom:-30px;
+    color: #68809e;
+  }
   .cc {
     width: 180px;
     height: 60px;
@@ -154,12 +196,20 @@
     font-size: 18px;
   }
 
+  .left{
+  margin-left:-15px;
+
+  }
+.btn{
+  float:right;
+}
   .con {
-    width: 768px;
-    background:rgba(255, 255, 255, 0.6);
+    width: 1000px;
+    background:rgba(255, 255, 255, 0.99);
     padding: 50px;
     padding-top: 20px;
     border-radius: 10px;
+    margin-left:-60px;
   }
 
   textarea {

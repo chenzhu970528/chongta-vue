@@ -1,7 +1,6 @@
 <template>
   <div id="content">
     <div class="top">
-      <com_d></com_d>
     </div>
     <div>
         <div class="left">
@@ -9,9 +8,10 @@
         </div>
 
         <div class="right">
+
         <ranking></ranking>
 
-      </div>
+        </div>
 
     </div>
   </div>
@@ -21,7 +21,7 @@
   import List from './List'
   import Ranking from './Ranking'
   import Com_paging from './Com_paging'
-  import Com_d from './Com_d'
+  import Com_d from './Com_d.vue'
   export default {
     name: "Lists",
     components: {

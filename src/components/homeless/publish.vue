@@ -142,8 +142,7 @@
             console.log(response.data);
             console.log(response.bodyText);
             alert("发布成功！！！")
-            history.go(-1);
-            location.reload()
+            location.href= _this.$store.state.myurl+'/homeless'
           }).catch((err) => {
           console.log(err)
           alert(err)
@@ -163,7 +162,7 @@
       islogin(){
         if(!this.$store.state.isLogin) {
           alert("请登录后发布")
-          return false
+          location.href=this.$store.state.myurl+'/homeless'
         }else if(this.check1&&this.check2) {
           this.addhomeless()
         }else {
@@ -184,7 +183,7 @@
   .top{
     width: 100%;
     height: 70px;
-    background-color: whitesmoke;
+    background-color: #fff;
     position: fixed;
     top: 0;
     z-index: 3;
