@@ -65,8 +65,7 @@
     ,methods:{
       cleanUser(){
         localStorage.clear();
-        history.go(-2);
-        location.reload()
+        location.href=this.$store.state.myurl
       }
     },
     mounted(){
