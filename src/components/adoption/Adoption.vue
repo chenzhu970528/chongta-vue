@@ -1,7 +1,7 @@
 <template>
     <div class="tol">
       <div class="top">
-        <!--<div class="topText"></div>-->
+
       </div>
       <!--<sildes-show></sildes-show>-->
       <div class="cont container">
@@ -80,6 +80,11 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="topText">
+
+            <span style="color: #fff"><i style="color: #fff;font-size: 40px">“</i>我养你有什么用不过是漫长的人生里，你陪我走一程，却是拿性命相托<i style="color: #fff;font-size: 40px">”</i></span>
+
           </div>
           <div class="qrCord">
             <!--<div class="erweima"><img src="../../assets/homeless/E997FFB8C02AEA4FDB1644CF03466ED5.png" alt=""></div>-->
@@ -169,18 +174,27 @@
   .top{
     width: 100%;
     height: 420px;
-    background:url("../../assets/match/match2.png") no-repeat center;
+    background:url("../../assets/adoption/adoTop.jpg") no-repeat center;
+    background-size: 100%;
     /*min-height: 900px;*/
     position: relative;
   }
   .topText{
-    width: 200px;
-    height: 300px;
-    border: 3px solid #8ea6f5;
-    border-bottom: none;
+    background:url("../../assets/adoption/adoTop.jpg") no-repeat center;
+    background-size: 100%;
+    width: 500px;
+    height: 350px;
+    border: 30px solid #fff;
     position: absolute;
-    right: 12%;
-    bottom: 0;
+    right:-50px;
+    top: -220px;
+  }
+  .topText span{
+    display: inline-block;
+    font-size: 16px;
+    width: 280px;
+    margin: 0 80px
+
   }
   .issue img{
     margin-left: 55px;
