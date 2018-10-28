@@ -25,8 +25,6 @@
             </li>
           </ul>
         </div>
-
-
         <div class="item">
           <ul class="ul">
             <li class="li" v-for="val in value1">

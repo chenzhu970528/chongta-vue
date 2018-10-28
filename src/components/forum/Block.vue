@@ -12,8 +12,10 @@
         </div>
       </div>
       <div>
+
         <ul class="body">
           <li class="li1">
+
 
             <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val.faId">
               <a href="" @click="see(val[0].faId)">

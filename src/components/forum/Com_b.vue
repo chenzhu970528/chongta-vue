@@ -153,8 +153,10 @@
     color: #fefefe;
     font-size: 18px;
   }
+
   .left{
   margin-left:-15px;
+
   }
 .btn{
   float:right;
