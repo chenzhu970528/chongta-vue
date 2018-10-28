@@ -5,7 +5,7 @@
       <div class="listimg img" style="float: left">
         <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
         <img :src="urlImg(activity.homePic.split(',')[0])" alt="" style="width: 150px;height: 140px;">
-        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>
+        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/homelessdetails/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>
         <!--<img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="" style="width: 150px;height: 140px;">-->
         </router-link>
       </div>
@@ -29,6 +29,7 @@
     </div >
 
   </div>
+  <!--分页-->
   <el-row>
     <div class="block">
       <span class="demonstration"></span>
@@ -41,14 +42,9 @@
       >
       </el-pagination>
     </div>
-    <!--<el-col :span="10" :push="7">-->
-    <!--<change-page></change-page>-->
-    <!--</el-col>-->
   </el-row>
   <!--<button style="margin: 20px auto" type="button" class="btn btn-default btn-lg btn-block">加载更多</button>-->
 </div>
-<!--</div>-->
-
 </template>
 
 <script>
@@ -59,7 +55,7 @@
       return {
         mydata: [],
         pageIndex: 1,
-        pagesize: 6,  //每页条数
+        pagesize: 5,  //每页条数
         pageCount:0,
         myActData:[],  //放数据库取得数据
         activitys:[],   //方循环的数据
@@ -74,17 +70,8 @@
     methods:{
       loadData() {
         this.activitys = [];
-        // console.log('this.pageInedx:' + this.pageIndex)
-        // console.log('this.pageCount:' + this.pageCount)
         let start = (this.pageIndex-1) * this.pagesize;
         let end = start + this.pagesize;
-        //pageindex:0 , start:0 ; end:4
-        //pageindex:1 , start: 4; end:8
-        //pageindex:2 , start:8 ; end:12
-        //pageindex:3 , start:6 ; end:8
-        // console.log('-----------------')
-        // console.log('start:' + start)
-        // console.log('end:' + end)
         console.log(this.myActData[1]);
         if(end>=this.pageCount){
           end=this.pageCount
@@ -102,12 +89,13 @@
       },
     },
     mounted() {
+      let _this=this;
       axios.get(this.$store.state.url+"/homeless").then((result) => {
         // console.log(result.data)
-        this.myActData = result.data.data;
-        this.pageCount=this.myActData.length;
-        console.log(this.pageCount)
-        this.loadData()
+        _this.myActData = result.data.data;
+        _this.pageCount=_this.myActData.length;
+        console.log(_this.pageCount)
+        _this.loadData()
         // this.homeTime = result.data.data.homeTime
         // console.log(result.data)
         // for (let i = 0; i < this.mydata.length; i++) {

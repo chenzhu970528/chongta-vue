@@ -145,7 +145,7 @@
 <style scoped>
   .tol{
     /*margin-top: 70px;*/
-    background-color: #f6f6f6;
+    background-color: white;
   }
   /*a{*/
     /*text-decoration: none;*/
@@ -169,15 +169,14 @@
   .top{
     width: 100%;
     height: 420px;
-    background: 0 50% url("../../assets/adoption/homeless8.jpg") no-repeat;
-    background-size: 100% auto;
+    background:url("../../assets/match/match2.png") no-repeat center;
     /*min-height: 900px;*/
     position: relative;
   }
   .topText{
     width: 200px;
     height: 300px;
-    border: 3px solid whitesmoke;
+    border: 3px solid #8ea6f5;
     border-bottom: none;
     position: absolute;
     right: 12%;

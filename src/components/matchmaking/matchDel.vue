@@ -1,25 +1,29 @@
 <!--婚介详情-->
 <template>
+  <div class="tol">
+    <div class="top"></div>
     <div class="cont container">
       <div class="route">您的当前位置：<span><a href="/matchmaking">宠物婚介</a></span><span>/</span><span>详情</span></div>
-        <div class="row firstrow">
-          <div class="col-xs-10 col-xs-offset-1 cent">
-            <sowing-map></sowing-map>
-            <match-message></match-message>
-          </div>
+      <div class="row firstrow">
+        <div class="col-xs-10 col-xs-offset-1 cent">
+          <sowing-map></sowing-map>
+          <match-message></match-message>
         </div>
+      </div>
       <!--<m-aply></m-aply>-->
-        <div class="row">
-          <div class="col-xs-9 col-xs-offset-1 cent msg">
-            <h3><span><img src="../../assets/match/sand.png" alt=""></span>主人寄语</h3>
-            <div>{{Mdeldata.sandword}}</div>
-            <h3><span><img src="../../assets/match/request.png" alt=""></span>要求</h3>
-            <div>{{Mdeldata.request}}</div>
-            <h3><span><img src="../../assets/match/detail.png" alt=""></span>详细信息</h3>
-            <div>{{Mdeldata.detail}}</div>
-          </div>
+      <div class="row">
+        <div class="col-xs-9 col-xs-offset-1 cent msg">
+          <h3><span><img src="../../assets/match/sand.png" alt=""></span>主人寄语</h3>
+          <div>{{Mdeldata.sandword}}</div>
+          <h3><span><img src="../../assets/match/request.png" alt=""></span>要求</h3>
+          <div>{{Mdeldata.request}}</div>
+          <h3><span><img src="../../assets/match/detail.png" alt=""></span>详细信息</h3>
+          <div>{{Mdeldata.detail}}</div>
         </div>
+      </div>
     </div>
+  </div>
+
 </template>
 
 <script>
@@ -83,6 +87,14 @@
     background:rgba(255,255,255,0.9);
     margin-top:150px ;
     box-shadow:-2px 2px 10px 2px #bcbcbc;
+  }
+  .top{
+    width: 100%;
+    height: 70px;
+    background-color: whitesmoke;
+    position: fixed;
+    top: 0;
+    z-index: 3;
   }
   a{
     color: #747474;
