@@ -1,6 +1,7 @@
 <template>
   <div class="block">
-    <el-carousel height="400px">
+    <el-carousel height="
+    300px">
       <el-carousel-item v-for="(img,index) in imgList" :key="index">
         <img :src="img">
       </el-carousel-item>
@@ -28,7 +29,7 @@
     methods:{
       ajax(){
         let _this=this
-        axios.get(this.$store.state.url+`/homeless/details/${this.homeId}`).then((result) => {
+        axios.get(this.$store.state.url+`/homeless/homelessdetails/${this.homeId}`).then((result) => {
           // console.log(result.data)
           _this.myImg = result.data.data.homePic.split(",")
           for(let i=0;i<_this.myImg.length-1;i++){
