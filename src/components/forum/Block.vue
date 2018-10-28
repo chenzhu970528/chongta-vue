@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="no">{{value}}</span>
+    <span v-show="false">{{value}}</span>
     <!--图片 内容，小版块-->
     <div class="con"  :key='index' v-for="(val,index) in value">
       <div class="top">
@@ -146,9 +146,6 @@
     display: inline-block;
     margin: 11px -8px 0px 25px;
   }
-  .no{
-    display: none;
-  }
   .top {
     width: 350px;
     height: 35px;
@@ -264,4 +261,15 @@
   a:hover {
     color: #80c5da;
   }
+
+  .val{
+    word-wrap:break-word;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
 </style>
+

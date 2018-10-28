@@ -2,10 +2,8 @@
   <div>
     <div class="con">
       <div style="width:768px;height: 35px; background:white;margin-top:-60px;margin-bottom:25px;">
-        <span class="left">ps:领养日记要领养宠物后在我的领养那里发表哦~</span>
-        <a class="btn btn-default right" href="#publish" role="button" @click="add()">发表</a>
-
-
+        <!--<span class="left">ps:领养日记要领养宠物后在我的领养那里发表哦~</span>-->
+        <a class="btn btn-default right" href="#a" role="button" @click="add()">发表</a>
       </div>
       <ul>
         <li :key="index" v-model="val.faId" v-for="(val,index) in activitys">
@@ -21,7 +19,7 @@
           </div>
           <div class="photo">
             <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-              <img @click="see(val.faId)" :src='imgs[0].img' alt="图片">
+              <img @click="see(val.faId)" :src='url+val.faImg' alt="图片">
             </router-link>
             <a></a>
           </div>
@@ -48,7 +46,7 @@
           </el-pagination>
 
         </div>
-        <a name="publish" style="margin-bottom:100px;"></a>
+        <a name="a" style="margin-bottom:100px;"></a>
         <com_b></com_b>
       </ul>
     </div>
@@ -71,10 +69,9 @@
       return {
         imgs: [{img: require("../../assets/images/a.jpg")}],
 
-        Names: ['最新', '精品推荐', '宠物日记', '交流分享', '搜索结果'],
+        Names: ['最新', '精品推荐', '养宠日记', '交流分享', '搜索结果'],
         faId: '',
         name: 0,
-        // count: store.state.id,
         // a: 1,//翻页第几页
         vv: false,
         pageIndex: 1,
@@ -273,19 +270,19 @@
 </script>
 
 <style scoped>
-  .cc {
-    width: 180px;
-    height: 60px;
-    line-height: 60px;
-    text-align: center;
-    background: rgba(60, 60, 60, 0.6);
-    border-radius: 3px;
-    position: fixed;
-    top: 50%;
-    left: 30%;
-    color: #fefefe;
-    font-size: 18px;
-  }
+  /*.cc {*/
+    /*width: 180px;*/
+    /*height: 60px;*/
+    /*line-height: 60px;*/
+    /*text-align: center;*/
+    /*background: rgba(60, 60, 60, 0.6);*/
+    /*border-radius: 3px;*/
+    /*position: fixed;*/
+    /*top: 50%;*/
+    /*left: 30%;*/
+    /*color: #fefefe;*/
+    /*font-size: 18px;*/
+  /*}*/
 
   button {
     border-radius: 3px;
@@ -302,7 +299,7 @@
   .con {
     margin: 25px;
     width: 800px;
-    height: 1650px;
+    /*height: 1650px;*/
     padding: 0px 20px 20px 20px;
     /*border: 1px solid #989898;*/
 

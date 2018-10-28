@@ -1,7 +1,7 @@
 <template>
   <div> <!--发帖-->
     <div class="con">
-      #{{name}}
+      <!--#{{name}}-->
       <br>
       <br>
       <form>
@@ -10,12 +10,12 @@
         </div>
         <div class="form-group">
           <br>
-          <textarea class="form-control" v-model="text"></textarea>
+          <textarea class="form-control" v-model="text" placeholder="分享你的趣事吧"></textarea>
         </div>
         <div class="form-group">
-          <label  class="col-sm-3 control-label">上传图片：</label>
+          <!--<label  class="col-sm-3 control-label">上传图片：</label>-->
           <div class="col-sm-6">
-            <input type="file" name="avatar"
+            <input class="left" type="file" name="avatar"
                    @change="changeImage($event)"
                    accept="image/gif,image/jpeg,image/jpg,image/png"
                    ref="avatarInput"
@@ -153,7 +153,12 @@
     color: #fefefe;
     font-size: 18px;
   }
-
+  .left{
+  margin-left:-15px;
+  }
+.btn{
+  float:right;
+}
   .con {
     width: 768px;
     background:rgba(255, 255, 255, 0.6);
