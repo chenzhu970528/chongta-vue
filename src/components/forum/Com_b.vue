@@ -26,7 +26,7 @@
                    multiple><br/>
           </div>
         </div>
-        <input class="btn btn-default" type="submit" @click="addForum" value="发表">
+        <input class="btn btn-default" type="button" @click="addForum" value="发表">
       </form>
 
     </div>

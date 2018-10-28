@@ -8,9 +8,9 @@
     <div class="right">
       <div class="title2" >
          <h3 class="line">最新寻宠</h3>
-        <el-row v-for="diary in diarys">
-          <el-col :span="8"><img alt="" :src="urlImg(diary.lppic.split(',')[0])"></el-col>
-          <el-col :span="15" :push="1">
+        <el-row v-for="diary in diarys" class="ROW">
+          <el-col :span="7"><img alt="" :src="urlImg(diary.lppic.split(',')[0])"></el-col>
+          <el-col :span="16" :push="1">
             <span>时间：{{diary.lpTime}}</span>
             <span>丢失地点：{{diary.address}}</span>
           </el-col>
@@ -110,9 +110,16 @@
     border-bottom: 1px solid #E8E8E8;
 
   }
+  .ROW{
+    margin-bottom: 10px;
+  }
   .title2{
     margin-top: 36px;
     /*border-bottom: 1px solid #E8E8E8;*/
 
+  }
+  .title2 img{
+    height: 70px;
+    width: 70px;
   }
 </style>

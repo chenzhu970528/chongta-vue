@@ -38,6 +38,7 @@
               <el-date-picker
                 v-model="aplymatch.birth"
                 type="date"
+                value-format="yyyy-MM-dd"
                 placeholder="选择日期">
               </el-date-picker>
             </p>
