@@ -26,3 +26,8 @@ new Vue({
   template: '<App/>'
 });
 
+//跳转后回到顶部
+router.afterEach((to,from,next) => {
+  window.scrollTo(0,0);
+})
+
