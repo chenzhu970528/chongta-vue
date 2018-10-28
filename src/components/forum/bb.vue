@@ -1,12 +1,10 @@
 <template>
-  <div id="con">
-    <div id="content">
-<!--<div id="top">-->
-  <!--<img style="position: fixed;" src="../../assets/forum/6.jpg" alt="">-->
-<!--</div>-->
-      <div class="left">
-        <!--详细内容     -->
-        <div class="val"> <div class="headpic">
+  <div id="content">
+    <div class="left">
+      <!--详细内容     -->
+      <div class="val">
+        <div><h2>{{value.art[0].faTitle}}</h2></div>
+        <div class="headpic">
 
           <img class='headimg' :src='values[0].headPic' alt="">
           <span class="name">{{value.art[0].userName}}</span>
@@ -56,52 +54,46 @@
     <span>&nbsp{{value.sum[0][0].sum_count-1}}回复</span>
     </span>
         </div>
+        <!--帖子的内容-->
+        <div class="img">
+          <p>{{value.art[0].faText}}</p>
           <div  class="center">
             <img :src='url+value.art[0].faImg' alt="">
           </div>
 
-          <div>&nbsp &nbsp<h2>{{value.art[0].faTitle}}</h2></div>
-
-          <!--帖子的内容-->
-
-          <div class="img">
-
-            <p>{{value.art[0].faText}}</p>
-
-
-          </div>
         </div>
-        <div id="dd0" class="test_box cominp0"
-             contenteditable="true"
-             v-html="myHtmlcode"
-             @input="onDivInput($event)">
-          <br/>
-        </div>
-        <!--添加评论-->
-        <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
+      </div>
+      <div id="dd0" class="test_box cominp0"
+           contenteditable="true"
+           v-html="myHtmlcode"
+           @input="onDivInput($event)">
+        <br/>
+      </div>
+      <!--添加评论-->
+      <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
 
-        <!--评论区域-->
-        <div class="com">
+      <!--评论区域-->
+      <div class="com">
 
-          <ul>
-            <li class="hhh" v-for="(com,index) in value1">
-              <div class="border1">
-                <div class="head1">
-                  <img :src='imgs[0]' alt="" class="img1">
-                  <div class="headRight">
-                    <p class="name1">{{com.userName}}</p>
-                    <p>{{com.time.slice(0,16).replace('T',' ')}}</p>
-                  </div>
+        <ul>
+          <li class="hhh" v-for="(com,index) in value1">
+            <div class="border1">
+              <div class="head1">
+                <img :src='imgs[0]' alt="" class="img1">
+                <div class="headRight">
+                  <p class="name1">{{com.userName}}</p>
+                  <p>{{com.time.slice(0,16).replace('T',' ')}}</p>
                 </div>
-                <div class="val1">
-                  <div class="but">
-                    <div class="">
-                      <p>{{com.faText}}</p>
-                    </div>
-                    <div class="com11" :key="index">
-                      <span @click.prevent="aaaa(index)" class="rr">回复</span>
-                      <!--删除评论-->
-                      <span v-if="admin ||com.userId==userId ">
+              </div>
+              <div class="val1">
+                <div class="but">
+                  <div class="">
+                    <p>{{com.faText}}</p>
+                  </div>
+                  <div class="com11" :key="index">
+                    <span @click.prevent="aaaa(index)" class="rr">回复</span>
+                    <!--删除评论-->
+                    <span v-if="admin ||com.userId==userId ">
                        <el-popover
                          placement="top"
                          width="160">
@@ -117,73 +109,74 @@
                     </span>
 
 
-                      <div v-if="aaa[index]" class="h">
-                        <div>
-                          <!--添加表层回复-->
-                          <div class="dd1 test_box cominp1" contenteditable="true"
-                               v-html="myHtmlcode1"
-                               @input="onDivInput1($event)">
+                    <div v-if="aaa[index]" class="h">
+                      <div>
+                        <!--添加表层回复-->
+                        <div class="dd1 test_box cominp1" contenteditable="true"
+                             v-html="myHtmlcode1"
+                             @input="onDivInput1($event)">
 
-                          </div>
-                          <button @click="addReply(index,1)" type="button" class="rbtn btn btn-primary btn-sm active">发表
-                          </button>
                         </div>
+                        <button @click="addReply(index,1)" type="button" class="rbtn btn btn-primary btn-sm active">发表
+                        </button>
                       </div>
                     </div>
-                    <!--回复-->
+                  </div>
+                  <!--回复-->
 
-                    <div class="com1 " v-for="(reply,keys) in  value1[index].replys">
-                      <div class="head">
-                        <img :src='imgs[1]' alt="" class="img1">
-                        <div class="headRight">
-                          <p><span class="name1">{{reply.frName}}</span> 回复<span class="name1">{{reply.fcName}}</span></p>
-                          <p>{{reply.time.slice(0,16).replace('T',' ')}}</p>
-                        </div>
+                  <div class="com1 " v-for="(reply,keys) in  value1[index].replys">
+                    <div class="head">
+                      <img :src='imgs[1]' alt="" class="img1">
+                      <div class="headRight">
+                        <p><span class="name1">{{reply.frName}}</span> 回复<span class="name1">{{reply.fcName}}</span></p>
+                        <p>{{reply.time.slice(0,16).replace('T',' ')}}</p>
                       </div>
-                      <div class="val1 but">
-                        <p class="p">{{reply.frText}}</p>
-
-
-                        <div class="com11" :key="keys">
-
-                          <a @click="bb(index,keys)" class="rr">回复</a>
-                          <!--删除回复-->
-                          <span v-if="admin ||reply.frman==userId ">
-                         <el-popover
-                           placement="top"
-                           width="160">
+                    </div>
+                    <div class="val1 but">
+                      <p class="p">{{reply.frText}}</p>
+                      <!--删除回复-->
+                      <span v-if="admin ||reply.frman==userId ">
+         <el-popover
+           placement="top"
+           width="160">
                         <!--v-model="visible2[index]"-->
                         <p>确定删除吗？</p>
                         <div style="text-align: right; margin: 0">
                           <el-button size="mini" type="text">取消</el-button>
+                          delrep(frId)
                           <el-button type="primary" size="mini" @click="delrep(reply.frId)">确定</el-button>
                         </div>
                         <el-button slot="reference" icon="el-icon-delete" circle></el-button>
 
                       </el-popover>
-                        </span>
-                          <div v-if="bbb[index][keys]" class="h">
-                            <div class="dd2 test_box cominp2" contenteditable="true"
-                                 v-html="myHtmlcode1"
-                                 @input="onDivInput1($event)">
-                            </div>
-                            <button @click="addReply(index,2)" type="button" class="rbtn btn btn-primary btn-sm active">发表
-                            </button>
+</span>
 
 
+                      <div class="com11" :key="keys">
+
+                        <a @click="bb(index,keys)" class="rr">回复</a>
+                        <div v-if="bbb[index][keys]" class="h">
+                          <div class="dd2 test_box cominp2" contenteditable="true"
+                               v-html="myHtmlcode1"
+                               @input="onDivInput1($event)">
                           </div>
+                          <button @click="addReply(index,2)" type="button" class="rbtn btn btn-primary btn-sm active">发表
+                          </button>
+
+
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
-              </div>
-            </li>
-          </ul>
-          <br>
 
-          <span v-if="value.comment">
+              </div>
+            </div>
+          </li>
+        </ul>
+        <br>
+
+        <span v-if="value.comment">
         <button v-if="(value.comment.length)>6&&(value1.length<value.comment.length)" type="button"
                 @click="next" class="blue btn btn-primary btn-lg btn-block">加载更多
         </button>
@@ -192,15 +185,13 @@
         </button>
         </span>
 
-        </div>
-
       </div>
-      <div class="right">
-        <ranking></ranking>
-      </div>
-      <p v-if="hide" class="cc">{{tips}}</p>
 
     </div>
+    <div class="right">
+      <ranking></ranking>
+    </div>
+    <p v-if="hide" class="cc">{{tips}}</p>
 
 
   </div>
@@ -399,300 +390,300 @@
         }
       },
 
-    delLike() {
-      let e = {
-        faId: this.value.art[0].faId,
-        userId: this.UserId.replace(/\"/g, ""),
-      }
-      this.dellike = false;
-      this.addlike = true;
-      this.value.like[0].like_sum--
-      $.ajax({
-        url: this.$store.state.url + "/forumDel/like",
-        type: "post",
-        data: e,
-        success: function (result) {
-          // console.log(result.data)
+      delLike() {
+        let e = {
+          faId: this.value.art[0].faId,
+          userId: this.UserId.replace(/\"/g, ""),
         }
-
-      })
-    },
-    //添加评论
-    addCom() {
-      if (!this.UserId) {
-        this.tips = '先去登录吧'
-        this.show()
-      }
-      else {
-        if (this.myHtmlCode.length >= 2) {
-          let dd = {
-            faId: this.value.art[0].faId,
-            faText: this.myHtmlCode,
-            userId: this.UserId.replace(/\"/g, ""),
-            userName: this.UserName.replace(/\"/g, ""),
+        this.dellike = false;
+        this.addlike = true;
+        this.value.like[0].like_sum--
+        $.ajax({
+          url: this.$store.state.url + "/forumDel/like",
+          type: "post",
+          data: e,
+          success: function (result) {
+            // console.log(result.data)
           }
-          document.getElementById('dd0').innerText = ''
-          let _this = this
-          console.log(dd)
-          $.ajax({
-            url: this.$store.state.url + "/forumAdd/comment",
-            type: "post",
-            data: dd,
-            success: function (result) {
-              console.log(result.data)
-              _this.tips = '评论成功'
-              _this.show()
-              //重新渲染数据用
-              _this.ajax()
-            }
 
-          })
-        } else {
-          this.tips = '最少两个字哦'
+        })
+      },
+      //添加评论
+      addCom() {
+        if (!this.UserId) {
+          this.tips = '先去登录吧'
           this.show()
-        }
-      }
-      this.$forceUpdate()
-    },
-    //添加回复
-    addReply(index, key) {
-      if (!this.UserId) {
-
-        this.tips = '先去登录吧'
-        this.show()
-      } else {
-        if (this.myHtmlCode1.length >= 2) {
-          if (key === 1) {
-            let a = document.getElementsByClassName('dd1')
-            for (let i = 0; i < a.length; i++) {
-              a[i].innerText = ' '
-            }
-          }
-          else if (key === 2) {
-            let b = document.getElementsByClassName('dd2')
-            for (let i = 0; i < b.length; i++) {
-              b[i].innerText = ' '
-            }
-          }
-          let rr = {
-            fcId: this.value.comment[index].fcId,
-            fcName: this.value.comment[index].userName,
-            frman: this.UserId.replace(/\"/g, ""),
-            frName: this.UserName.replace(/\"/g, ""),
-            frText: this.myHtmlCode1,
-          }
-          this.myHtmlCode1 = ' ';
-          let _this = this
-          $.ajax({
-            url: this.$store.state.url + "/forumAdd/reply",
-            type: "post",
-            data: rr,
-            success: function (result) {
-              console.log(result.data)
-              _this.tips = '回复成功'
-              _this.show()
-              //重新渲染数据用
-              _this.ajax()
-
-            }
-          })
         }
         else {
-          this.tips = '最少两个字哦'
-          this.show()
+          if (this.myHtmlCode.length >= 2) {
+            let dd = {
+              faId: this.value.art[0].faId,
+              faText: this.myHtmlCode,
+              userId: this.UserId.replace(/\"/g, ""),
+              userName: this.UserName.replace(/\"/g, ""),
+            }
+            document.getElementById('dd0').innerText = ''
+            let _this = this
+            console.log(dd)
+            $.ajax({
+              url: this.$store.state.url + "/forumAdd/comment",
+              type: "post",
+              data: dd,
+              success: function (result) {
+                console.log(result.data)
+                _this.tips = '评论成功'
+                _this.show()
+                //重新渲染数据用
+                _this.ajax()
+              }
+
+            })
+          } else {
+            this.tips = '最少两个字哦'
+            this.show()
+          }
         }
-      }
-      this.$forceUpdate()
-    },
-    //评论点击弹框
-    aaaa(index) {
-      //点击当前，其他框框关闭
+        this.$forceUpdate()
+      },
+      //添加回复
+      addReply(index, key) {
+        if (!this.UserId) {
 
-      this.bbb[this.y[0]][this.y[1]] = false
-      if (this.aaa[this.x] == this.aaa[index]) {
-        this.k++
-      } else {
-        this.k = 0
-      }
-      //k是偶数
-      if (this.k % 2 == 0) {
-        this.aaa[this.x] = false
-      }
-      this.aaa[index] = !this.aaa[index]
-      this.x = index
-      this.$forceUpdate()
-    },
-    bb(keys, index) {
-      //点击当前，其他框框关闭
-      this.aaa[this.x] = false
-      //添加z点击同一个z+1
-      if (this.bbb[this.y[0]][this.y[1]] == this.bbb[keys][index]) {
-        this.z++
-      } else {
-        this.z = 0
-      }
-      //z是偶数
-      if (this.z % 2 == 0) {
+          this.tips = '先去登录吧'
+          this.show()
+        } else {
+          if (this.myHtmlCode1.length >= 2) {
+            if (key === 1) {
+              let a = document.getElementsByClassName('dd1')
+              for (let i = 0; i < a.length; i++) {
+                a[i].innerText = ' '
+              }
+            }
+            else if (key === 2) {
+              let b = document.getElementsByClassName('dd2')
+              for (let i = 0; i < b.length; i++) {
+                b[i].innerText = ' '
+              }
+            }
+            let rr = {
+              fcId: this.value.comment[index].fcId,
+              fcName: this.value.comment[index].userName,
+              frman: this.UserId.replace(/\"/g, ""),
+              frName: this.UserName.replace(/\"/g, ""),
+              frText: this.myHtmlCode1,
+            }
+            this.myHtmlCode1 = ' ';
+            let _this = this
+            $.ajax({
+              url: this.$store.state.url + "/forumAdd/reply",
+              type: "post",
+              data: rr,
+              success: function (result) {
+                console.log(result.data)
+                _this.tips = '回复成功'
+                _this.show()
+                //重新渲染数据用
+                _this.ajax()
+
+              }
+            })
+          }
+          else {
+            this.tips = '最少两个字哦'
+            this.show()
+          }
+        }
+        this.$forceUpdate()
+      },
+      //评论点击弹框
+      aaaa(index) {
+        //点击当前，其他框框关闭
+
         this.bbb[this.y[0]][this.y[1]] = false
-      }
+        if (this.aaa[this.x] == this.aaa[index]) {
+          this.k++
+        } else {
+          this.k = 0
+        }
+        //k是偶数
+        if (this.k % 2 == 0) {
+          this.aaa[this.x] = false
+        }
+        this.aaa[index] = !this.aaa[index]
+        this.x = index
+        this.$forceUpdate()
+      },
+      bb(keys, index) {
+        //点击当前，其他框框关闭
+        this.aaa[this.x] = false
+        //添加z点击同一个z+1
+        if (this.bbb[this.y[0]][this.y[1]] == this.bbb[keys][index]) {
+          this.z++
+        } else {
+          this.z = 0
+        }
+        //z是偶数
+        if (this.z % 2 == 0) {
+          this.bbb[this.y[0]][this.y[1]] = false
+        }
 
 
-      this.bbb[keys][index] = !this.bbb[keys][index]
+        this.bbb[keys][index] = !this.bbb[keys][index]
 
-      this.y = [keys, index]
-      this.$forceUpdate()
-    },
-    //删除帖子
-    delart(faId) {
-      let _this = this
-      axios.get(this.$store.state.url + `/forumDel/art/?faId=${faId}`).then((result) => {
-        _this.tips = '删除成功'
-        _this.show()
+        this.y = [keys, index]
+        this.$forceUpdate()
+      },
+      //删除帖子
+      delart(faId) {
+        let _this = this
+        axios.get(this.$store.state.url + `/forumDel/art/?faId=${faId}`).then((result) => {
+          _this.tips = '删除成功'
+          _this.show()
 
-      })
-    },
-    //删除评论
-    delcom(fcId) {
-      console.log(fcId)
-      let _this = this
-      $.ajax({
-        url: this.$store.state.url + "/forumDel/comment?fcId=" + fcId,
-        type: "get",
-        success: function (result) {
+        })
+      },
+      //删除评论
+      delcom(fcId) {
+        console.log(fcId)
+        let _this = this
+        $.ajax({
+          url: this.$store.state.url + "/forumDel/comment?fcId=" + fcId,
+          type: "get",
+          success: function (result) {
 
+            _this.tips = '删除成功'
+            _this.show()
+            //重新渲染数据用
+            _this.ajax()
+            console.log(_this.value1)
+          }
+        })
+      },
+      //删除回复
+      delrep(frId) {
+        console.log(frId)
+        let _this = this
+        axios.get(this.$store.state.url + `/forumDel/reply?frId=${frId}`).then((result) => {
           _this.tips = '删除成功'
           _this.show()
           //重新渲染数据用
           _this.ajax()
-          console.log(_this.value1)
-        }
-      })
-    },
-    //删除回复
-    delrep(frId) {
-      console.log(frId)
-      let _this = this
-      axios.get(this.$store.state.url + `/forumDel/reply?frId=${frId}`).then((result) => {
-        _this.tips = '删除成功'
-        _this.show()
-        //重新渲染数据用
-        _this.ajax()
-      })
-    },
-    //管理员添加推荐
-    addRec(faId) {
-      let _this = this
-      $.ajax({
-        url: this.$store.state.url + "/forumAdd/Recommend",
-        type: "post",
-        data: faId,
-        success: function (result) {
-          _this.rec = 1
-          _this.tips = '已推荐'
-          _this.show()
+        })
+      },
+      //管理员添加推荐
+      addRec(faId) {
+        let _this = this
+        $.ajax({
+          url: this.$store.state.url + "/forumAdd/Recommend",
+          type: "post",
+          data: faId,
+          success: function (result) {
+            _this.rec = 1
+            _this.tips = '已推荐'
+            _this.show()
 
-        }
-      })
-    },
-    //管理员取消推荐
-    delRec(faId) {
-      let _this = this
-      $.ajax({
-        url: this.$store.state.url + "/forumDel/ess",
-        type: "get",
-        data: faId,
-        success: function (result) {
-          _this.rec = 0
-          _this.tips = '已取消推荐'
-          _this.show()
-        }
-      })
-    },
-    //发表成功提示框
-    show() {
-      let _this = this
-      _this.hide = true
-      setTimeout(function () {
-        _this.hide = false
-        // _this.comf = 0
-      }, 3000)
-    },
-
-    require() {
-      let faId = window.localStorage.faId;
-      let get = this
-      axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
-
-        get.value = result.data.data;
-        this.addlike= true
-         this.dellike= false
-        if (this.UserId) {
-          //查看用户是否点赞
-          let faId = this.value.art[0].faId
-          get.userId = this.UserId.replace(/\"/g, "")
-          axios.get(this.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
-            if (result.data.data == 1) {
-              this.addlike=false
-              this.dellike=true
-            }
-          });
-          //判断是不是管理员
-          if (get.userId == 33) {
-            get.admin = true
           }
-          //查看是否是精品推荐
-          axios.get(this.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
-            if (result.data.data == 1) {
-              this.rec = 1;
+        })
+      },
+      //管理员取消推荐
+      delRec(faId) {
+        let _this = this
+        $.ajax({
+          url: this.$store.state.url + "/forumDel/ess",
+          type: "get",
+          data: faId,
+          success: function (result) {
+            _this.rec = 0
+            _this.tips = '已取消推荐'
+            _this.show()
+          }
+        })
+      },
+      //发表成功提示框
+      show() {
+        let _this = this
+        _this.hide = true
+        setTimeout(function () {
+          _this.hide = false
+          // _this.comf = 0
+        }, 3000)
+      },
+
+      require() {
+        let faId = window.localStorage.faId;
+        let get = this
+        axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
+
+          get.value = result.data.data;
+          this.addlike= true
+          this.dellike= false
+          if (this.UserId) {
+            //查看用户是否点赞
+            let faId = this.value.art[0].faId
+            get.userId = this.UserId.replace(/\"/g, "")
+            axios.get(this.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
+              if (result.data.data == 1) {
+                this.addlike=false
+                this.dellike=true
+              }
+            });
+            //判断是不是管理员
+            if (get.userId == 33) {
+              get.admin = true
             }
-          })
-        }
+            //查看是否是精品推荐
+            axios.get(this.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
+              if (result.data.data == 1) {
+                this.rec = 1;
+              }
+            })
+          }
 
 
-        //评论
-        if (get.value.comment) {
-          get.cou = Math.ceil(this.value.comment.length / 6)
-          for (let i = 0; i < get.value.comment.length; i++) {
-            //定义评论数组
-            get.value.comment[i].replys = []
-            this.aaa.push(false)
-            this.bbb.push([])
+          //评论
+          if (get.value.comment) {
+            get.cou = Math.ceil(this.value.comment.length / 6)
+            for (let i = 0; i < get.value.comment.length; i++) {
+              //定义评论数组
+              get.value.comment[i].replys = []
+              this.aaa.push(false)
+              this.bbb.push([])
 
-            //添加回复到对应的评论里
-            if (get.value.reply) {
+              //添加回复到对应的评论里
+              if (get.value.reply) {
 
-              for (let j = 0; j < get.value.reply.length; j++) {
+                for (let j = 0; j < get.value.reply.length; j++) {
 
-                if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
-                  get.bbb[i].push(false)
-                  get.value.comment[i].replys.push(get.value.reply[j])
+                  if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
+                    get.bbb[i].push(false)
+                    get.value.comment[i].replys.push(get.value.reply[j])
+                  }
                 }
               }
-            }
 
-          }
-          //当前评论数
-          if (this.value.comment.length > 6) {
-            for (let i = 0; i < 6; i++) {
-              this.value1.push(this.value.comment[i])
             }
-          } else {
-            for (let i = 0; i < this.value.comment.length; i++) {
-              this.value1.push(this.value.comment[i])
+            //当前评论数
+            if (this.value.comment.length > 6) {
+              for (let i = 0; i < 6; i++) {
+                this.value1.push(this.value.comment[i])
+              }
+            } else {
+              for (let i = 0; i < this.value.comment.length; i++) {
+                this.value1.push(this.value.comment[i])
+              }
             }
           }
-        }
-      })
+        })
+      },
     },
+    //监听路由
+    watch:{
+      '$route':'require'
     },
-  //监听路由
-  watch:{
-    '$route':'require'
-  },
 
-  mounted(){
-    this.require()
-  }
+    mounted(){
+      this.require()
+    }
   }
 </script>
 
@@ -738,30 +729,15 @@
     color: #fefefe;
     font-size: 18px;
   }
-#con{
-  /*background: url("../../assets/forum/7.jpg");*/
-  background: #f5f5f5;
-  width:100%;
-  height: 100%;
-  margin-top:-110px
-}
- #top{
-   width: 1366px;
-   height:1000px;
-   margin-top:-110px;
-   margin-left:-60px;
- }
+
   #content {
-    /*box-shadow: -2px 2px 10px 2px #bcbcbc;*/
-    /*background: #f5f5f5;*/
+    box-shadow: -2px 2px 10px 2px #bcbcbc;
+    background: rgba(255, 255, 255, 0.9);
     width: 1240px;
-    /*width:100%;*/
-    /*height: 100%;*/
     margin: auto;
     margin-top: 100px;
     position: relative;
     padding-bottom: 300px;
-    padding-top:80px;
   }
 
   h2 {
@@ -828,9 +804,8 @@
   }
 
   .val {
-    border-bottom: 1px dotted #ddd;
+    /*border-bottom: 1px dotted #ddd;*/
     padding-bottom: 60px;
-    margin-bottom: 20px;
   }
 
   .com {
@@ -839,8 +814,7 @@
 
   .right {
     position: absolute;
-    top: 104px;
-    /*top: 444px;*/
+    top: 24px;
     right: 25px;
     width: 360px;
   }
@@ -854,7 +828,7 @@
   .rbtn1 {
     margin-top: 10px;
     width: 50px;
-    height: 35px;
+    height: 33px;
   }
 
   li {
@@ -882,8 +856,7 @@
 
   .name1 {
     font-size: 15px;
-    /*color: #285f8f;*/
-    color: #0a498f;
+    color: #285f8f;
   }
 
   .img1 {
@@ -924,7 +897,7 @@
   }
 
   .border1 {
-    border-bottom: 1px solid #ccc;
+    border: 1px solid #ccc;
     padding-bottom: 20px;
     margin-bottom: 20px;
     margin-top: -35px;
@@ -952,7 +925,7 @@
 
   .rbtn {
     /*width: 60px;*/
-    height: 35px;
+    /*height: 38px;*/
     font-size: 14px;
     margin-top: -0px;
   }
@@ -961,3 +934,4 @@
     cursor: pointer;
   }
 </style>
+

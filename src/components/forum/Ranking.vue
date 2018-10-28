@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d1">
-      <div class="top"><span class="left">收藏榜单</span></div>
+      <div class="top"><span class="left">最多收藏</span></div>
       <div class="bot" v-for="(list,index) in list1">
         <span @click="see(list[0].faId)">
         <router-link tag="p" active-class="active"  role="presentation" :to="`/forum/`+list[0].faId">

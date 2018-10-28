@@ -18,9 +18,10 @@
         <div class="left">
           <block></block>
         </div>
-        <div class="right">
-          <ranking></ranking>
-        </div>
+        <!--<div class="right">-->
+          <!--<ranking></ranking>-->
+        <!--</div>-->
+        <hot></hot>
       </div>
     </div>
   </div>
@@ -32,6 +33,7 @@
   import Com_d from './Com_d.vue'
   import Ranking from './Ranking'
   import Recommend from './Recommend.vue'
+  import hot from './hot.vue'
   export default {
     name: "Communication",
     components: {
@@ -40,6 +42,7 @@
       'ranking':Ranking,
       'com_d': Com_d,
       'recommend': Recommend,
+      'hot': hot,
 
     },
     data :function (){
@@ -53,13 +56,13 @@
 <style scoped>
   .tol{
     /*margin-top: 70px;*/
-    background-color: white;
+    background-color: #f6f6f6;
   }
   .top{
     width: 100%;
     height: 420px;
     background:0 70% url("../../assets/forum/1-15052G61341.jpg") no-repeat;
-    background-size: 100% auto;
+    /*background-size: 100% auto;*/
     /*min-height: 900px;*/
     position: relative;
   }
@@ -115,6 +118,7 @@
   .left {
     display: inline-block;
     width: 830px;
+    margin-left:250px;
   }
 
   .right {
