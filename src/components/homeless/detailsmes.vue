@@ -2,7 +2,7 @@
   <div >
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"> 宠物类型：</span> {{jsondata1.type?'猫':'狗'}}
+        <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"> 宠物类型：</span> {{jsondata1.type}}
       </li>
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-glass" aria-hidden="true"> 宠物性别：</span> {{jsondata1.sex?'公':'母'}}

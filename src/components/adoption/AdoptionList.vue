@@ -66,7 +66,7 @@
       axios.get(this.$store.state.url+"/adoptions").then((result) => {
         // console.log(result.data)
         this.mydata = result.data.data;
-        this.dalength=result.data.data.length-6
+        this.dalength=result.data.data.length-8
         this.handleInfo()
       })
         .catch((err) => {

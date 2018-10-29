@@ -23,6 +23,10 @@
             </el-col>
           </el-row>
         </el-col>
+        <img src="../../../assets/homeless/764087968048435921.png" alt="" class="zhang"  id="f" v-if="lostlist.state==1">
+        <div >
+        <button type="button"  @click="founded(lostlist.lpId)" class="btn btn-primary founded" style="font-size: 15px;float: right"  v-if="lostlist.state==0">已经找到</button>
+        </div>
         <div class="title del">
           <el-popover
             placement="top"
@@ -34,6 +38,7 @@
               <el-button type="primary" size="mini" @click="dellostpets(lostlist.lpId)">确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>
+
             <!--<el-button slot="reference">删除</el-button>-->
           </el-popover>
         </div>
@@ -66,6 +71,7 @@
 
 <script>
   import axios from 'axios'
+  import  animate from 'animate.css'
     export default {
         name: "lostList",
       data(){
@@ -79,7 +85,8 @@
           pagesize: 3,  //每页条数
           pageCount:0,
           myActData:[],  //放数据库取得数据
-          url:this.$store.state.url
+          url:this.$store.state.url,
+          show:true
         };
       },
       computed:{
@@ -94,10 +101,33 @@
       //     this.ajax()
       //     },
       methods:{
+          // slideOutUp:function(){
+          //   $ ('#f1').addClass('animated rotateln')
+          // },
         urlImg(str){
           let strs=str.split(',')[0]
           // console.log(this.url+str)
           return this.url+strs
+        },
+        founded(lpId){
+              // this.show=false;
+          let _this=this
+            $.ajax({
+              url: this.$store.state.url+"/homeless/loststate",
+              type: "post",
+              data: {
+                lpId: lpId,
+              },
+              success: function (result) {
+                alert("寻找成功！！！");
+                _this.mydata=[],
+                  _this.lostlists=[],
+                _this.ajax()
+                // this.slideOutUp()
+
+              }
+            })
+            // this.swing()
         },
         loadData() {
           this.lostlists = [];
@@ -119,8 +149,13 @@
               this.mydata = result.data.data;
               for (let i = 0; i < this.mydata.length; i++) {
                 this.lostlists.push(this.mydata[i]);
-                this.visiblelost.push(false)
+                this.visiblelost.push(false);
+                // console.log(this.lostlists.state)
+                // if(this.lostlists.state==1){
+                //   this.show=false
+                // }
               }
+
               if (result.data.data.length == 0) {
                 this.showPic()
               }
@@ -132,6 +167,7 @@
           url:_this.$store.state.url+"/homeless/dellostpets/"+lpId,
           type:'get',
           success: function (result) {
+            // _this.show=false
             try{
               _this.mydata=[]
                 _this.visiblelost=[]
@@ -169,6 +205,17 @@
 </script>
 
 <style scoped>
+  .found{
+    position: relative;
+    left: 20px;
+  }
+  .zhang{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    right: 30px;
+    bottom: -50px;
+  }
   .block{
     width: 60%;
     margin-left: 20%;

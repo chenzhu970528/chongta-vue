@@ -13,7 +13,7 @@
         </el-row>
         <el-row>
           <el-col :span="7" :push="2"><span>性别</span></el-col>
-          <el-col :span="12" :push="2"><span class="det">{{personal.sex}}</span></el-col>
+          <el-col :span="12" :push="2"><span class="det">{{personal.sex?'男':'女'}}</span></el-col>
         </el-row>
         <h3 class="sech3">联系方式</h3>
         <el-row class="first">
@@ -52,12 +52,7 @@
         axios.get(this.$store.state.url+`/user/showUser/${this.userId}`).then((result) => {
           console.log(result.data.data[0]);
           this.personal = result.data.data[0];
-          if(this.personal.sex == 0){
-            this.personal.sex='男'
-          }else this.personal.sex='女';
-          if(this.personal.userEmail ==null){
-            this.personal.userEmail='暂无邮箱'
-          }
+
         })
       }
     };

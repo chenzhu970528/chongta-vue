@@ -142,7 +142,7 @@
     /*background-color: yellow;*/
     font-weight: bold;
     font-size: 50px;
-    color: #648eff;
+    color: #0369ba;
   }
   .top span:first-child{
     position: relative;
