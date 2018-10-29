@@ -6,15 +6,20 @@
         您当前位置为：
         <li><a href="/adoption">领养中心</a></li>
         <!--<li><a href="#">详情</a></li>-->
-        <li class="active">领养详情</li>
+        <li class="active">{{adoType}}详情</li>
       </ol>
       <div class="title">
         <img src="../../assets/adoption/take.png" width="50" alt="">
-        <span class="text-primary">领养详情</span>
+        <span class="text-primary">{{adoType}}详情</span>
       </div>
       <div class="adoTitle">
-        <h3 class="text-primary">{{mydata.adoTitle}}</h3>
+        <div class="row">
+          <h3 class="text-primary col-xs-5">{{mydata.adoTitle}}</h3>
+          <div class="col-xs-2 col-xs-offset-5 type"><span class="glyphicon glyphicon-stats"></span> 类型：{{adoType}}</div>
+        </div>
+
       </div>
+
       <div class="container">
         <div class="row">
           <div class="col-xs-5" style="margin-top: 25px">
@@ -61,6 +66,18 @@
             // 详细信息
             mydata:[],
           }
+      },
+      computed:{
+        adoType:{
+          get(){
+            let _this=this
+            if(_this.mydata.adoType==0){
+              return '领养'
+            }else {
+              return '寄养'
+            }
+          }
+        },
       },
       created(){
         axios.get(this.$store.state.url+`/adoptions/details/${this.adoId}`).then((result) => {
@@ -127,5 +144,14 @@
   .recommend h4{
     width: 200px;
     margin: 0 auto;
+  }
+  .type{
+    color: #fff;
+    background: cornflowerblue;
+    width: 150px;
+    height: 50px;
+    font-size: 18px;
+    line-height:50px;
+    border-radius: 7px;
   }
 </style>

@@ -5,6 +5,9 @@
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"> 宠物类型：</span> {{jsondata1.petType}}
       </li>
+      <li class="list-group-item list-group-item-info" v-if="adoLimit">
+        <span class="glyphicon glyphicon-hourglass" aria-hidden="true" value-format="yyyy-MM-dd HH:mm:ss"> 寄养时间到：</span> {{jsondata1.limitTime}}
+      </li>
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-glass" aria-hidden="true"> 宠物性别：</span> {{userPet}}
       </li>
@@ -68,6 +71,7 @@
         name: "DetailsInfo",
       data(){
           return{
+            adoLimit:false,
             checkAdo:false,
             centerDialogVisible: false,
             userId:this.$store.state.userId,
@@ -136,6 +140,9 @@
             this.jsondata1 = result.data.data.jsondata;
             this.jsondata2 = result.data.data.jsondata2;
             this.adostate = result.data.data.jsondata.adostate
+            if(result.data.data.jsondata.adoType==1){
+              this.adoLimit=true
+            }
             if(result.data.data.jsondata.adostate==1){
               this.checkAdo=true
             }

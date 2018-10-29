@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="5" v-for="(diary, index) in diarys" :key="diarys.length" :offset="index > 0 ? 4 : 0">
         <router-link class="list-group-item-info" tag="div" :to="'/adoption/details/'+diary.adoId"><a>
-          <el-card :body-style="{ padding: '0px' }">
+          <el-card  :body-style="{ padding: '0px' }">
             <div class="view">
               <img style="height: 180px" :src="urlImg(diary.adoPic.split(',')[0])" class="image">
               <div class="hover">
@@ -11,7 +11,8 @@
                 <p>{{ diary.adoAddress }}</p>
               </div>
             </div>
-            <div style="padding: 14px;">
+            <div style="padding: 14px">
+              <span v-if="diary.adostate==1" class="label">&nbsp;</span>
               <span>{{diary.adoTitle}}</span>
               <div class="bottom clearfix">
                 <time class="time">{{ diary.adoTime }}</time>
@@ -39,7 +40,7 @@
         dalength:0,
         moren:8,
         nomas:false,
-        url:this.$store.state.url
+        url:this.$store.state.url,
       };
     },
     methods: {
@@ -86,6 +87,17 @@
 </script>
 
 <style scoped>
+  .label{
+    position: absolute;
+    background: url("../../assets/adoption/ling.png")no-repeat;
+    background-size: 100%;
+    width: 120px;
+    height: 120px;
+    z-index: 10;
+    left: 12px;
+    top: 15px;
+    transform:rotate(-34deg);
+  }
   .time {
     font-size: 13px;
     color: #999;
