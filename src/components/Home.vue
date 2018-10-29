@@ -107,23 +107,20 @@
 <style scoped>
 
   .q1{
-    height: 400px;
-    background-image: url(../assets/forum/7.jpg);
-    background-repeat: no-repeat;
+    height: 450px;
+    background: url(../assets/forum/7.jpg) no-repeat center;
     background-attachment: fixed;
-    background-size: auto;
-    background-position: center;
+    background-size: 100% auto;
     background-blend-mode: darken
   }
   .q2{
-    height: 400px;
-    background-image: url(../assets/forum/1.jpg);
-    background-repeat: no-repeat;
+    height: 450px;
+    background: url(../assets/forum/1.jpg) no-repeat center;
     background-attachment: fixed;
-    background-size: auto;
-    background-position: center;
+    background-size: 100% auto;
     background-blend-mode: darken
   }
+
   .home{
     width: 100%;
     background: rgb(242, 244,241);
