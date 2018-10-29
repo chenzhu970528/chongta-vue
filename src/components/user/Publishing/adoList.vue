@@ -39,7 +39,7 @@
     </div>
     <div v-if="isshow" class="noList">
       <img src="../../../assets/user/default8.png" alt="">
-      <p>还没有任何发布哦，快去发布吧</p>
+      <p>还没有任何发布哦，快 <router-link to="/adoption/issue" style="text-decoration: none">去发布吧</router-link></p>
     </div>
   </div>
     <!--分页-->

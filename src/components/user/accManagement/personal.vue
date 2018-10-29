@@ -52,11 +52,16 @@
         axios.get(this.$store.state.url+`/user/showUser/${this.userId}`).then((result) => {
           console.log(result.data.data[0]);
           this.personal = result.data.data[0];
-          if(this.personal.sex == 0){
+          if(this.personal.sex=='0'){
             this.personal.sex='男'
-          }else this.personal.sex='女';
+          }else if(this.personal.sex=='1'){
+            this.personal.sex='女';
+          }else this.personal.sex='暂未完善个人资料';
           if(this.personal.userEmail ==null){
             this.personal.userEmail='暂无邮箱'
+          }
+          if(this.personal.wechat ==null){
+            this.personal.wechat='暂无'
           }
         })
       }
@@ -81,7 +86,6 @@
     height: 50px;
     line-height: 50px;
     font-size: 16px;
-    /*background-color: palevioletred;*/
     color: #e7e7e7;
   }
   .route span{

@@ -2,15 +2,7 @@
 
   <div class="home">
     <div class="top">
-      <!--<div class="block">-->
-        <!--&lt;!&ndash;<span class="demonstration">Click 指示器触发</span>&ndash;&gt;-->
-        <!--<el-carousel trigger="click" height="640px">-->
-          <!--<el-carousel-item v-for="(mao,index) in imgList" :key="index">-->
-            <!--<img :src="mao.url">-->
-          <!--</el-carousel-item>-->
-        <!--</el-carousel>-->
-      <!--</div>-->
-        <span></span><span>treat your pet like royalty</span>
+        <span>treat your pet like royalty</span>
     </div>
     <div class="q1"></div>
     <div class="bottom">
@@ -28,7 +20,7 @@
             <router-link to="/homeless">
               <img src="../assets/homeless.png" alt="">
             </router-link>
-            <span>流浪精灵/寻宠之家</span>
+            <span>寻宠之家</span>
             <span>给在流浪的小动物找一个温暖的家</span>
           </el-col>
           <el-col :span="6">
@@ -125,9 +117,6 @@
     width: 100%;
     background: rgb(242, 244,241);
     position: relative;
-    /*box-shadow:-2px 2px 10px 2px #bcbcbc;*/
-    /*position: absolute;*/
-    /*margin-top: 70px;*/
   }
   .top{
     height: 750px;
@@ -139,22 +128,13 @@
   }
   .top span{
     text-align: center;
-    /*background-color: yellow;*/
     font-weight: bold;
     font-size: 50px;
     color: #648eff;
-  }
-  .top span:first-child{
-    position: relative;
-    top:270px;
-    left: 1%;
-  }
-  .top span:last-child{
     position: absolute;
     top:270px;
     right: 1%;
   }
-
   .bottom{
     margin-top:150px;
     min-height: 400px;

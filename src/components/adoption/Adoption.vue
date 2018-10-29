@@ -1,8 +1,6 @@
 <template>
     <div class="tol">
-      <div class="top">
-
-      </div>
+      <div class="top"></div>
       <!--<sildes-show></sildes-show>-->
       <div class="cont container">
         <!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
@@ -82,9 +80,7 @@
             </div>
           </div>
           <div class="topText">
-
-            <span style="color: #fff"><i style="color: #fff;font-size: 40px">“</i>我养你有什么用不过是漫长的人生里，你陪我走一程，却是拿性命相托<i style="color: #fff;font-size: 40px">”</i></span>
-
+            <span style="color: #f6f6f6"><i style="color: #fff;font-size: 40px">“</i>我养你有什么用不过是漫长的人生里，你陪我走一程，却是拿性命相托<i style="color: #fff;font-size: 40px">”</i></span>
           </div>
           <div class="qrCord">
             <!--<div class="erweima"><img src="../../assets/homeless/E997FFB8C02AEA4FDB1644CF03466ED5.png" alt=""></div>-->

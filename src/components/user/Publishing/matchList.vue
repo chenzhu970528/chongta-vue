@@ -23,6 +23,7 @@
               <span class="detail">{{showList.detail}}</span>
             </el-col>
           </el-row>
+          <p>申请人：<span> <match-User :matId="showList.matId"></match-User></span></p>
         </el-col>
         <div>
           <el-popover
@@ -67,8 +68,12 @@
 
 <script>
   import axios from 'axios'
+  import matchUser from './matchUser.vue'
     export default {
       name: "matchList",
+      components:{
+        'match-User':matchUser
+      },
       data(){
         return{
           visiblematch: [],
@@ -155,17 +160,17 @@
         ajaxall(){
           let _this=this;
           axios.get(this.$store.state.url+`/matchmaking/matchdetails/${this.relId}`).then((result) => {
-            console.log(result.data.data);
+            // console.log(result.data.data);
             _this.myActData = result.data.data;
             _this.pageCount=_this.myActData.length;
-            console.log(_this.pageCount)
+            // console.log(_this.pageCount)
             _this.loadData()
           })
         }
       },
       mounted(){
-        this.ajax()
-        this.ajaxall()
+        this.ajax();
+        this.ajaxall();
       }
     }
 </script>

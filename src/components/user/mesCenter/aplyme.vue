@@ -1,14 +1,15 @@
 <template>
   <div class="right" >
     <div class="route">您的当前位置：<span>账号管理</span><span>/</span><span>申请我的</span></div>
-    <el-tabs v-model="activeName" @tab-click="handleClick" style="width: 90%;margin-left: 5%">
-      <el-tab-pane label="婚介申请" name="first">
-        <aplyme-Match></aplyme-Match>
-      </el-tab-pane>
-      <el-tab-pane label="领养申请" name="second">
-        <aplyme-Ado></aplyme-Ado>
-      </el-tab-pane>
-    </el-tabs>
+    <!--<el-tabs v-model="activeName" @tab-click="handleClick" style="width: 90%;margin-left: 5%">-->
+      <!--<el-tab-pane label="婚介申请" name="first">-->
+        <!--<aplyme-Match></aplyme-Match>-->
+      <!--</el-tab-pane>-->
+      <!--<el-tab-pane label="领养申请" name="second">-->
+        <!--<aplyme-Ado></aplyme-Ado>-->
+      <!--</el-tab-pane>-->
+    <!--</el-tabs>-->
+    <aplyme-Match></aplyme-Match>
   </div>
 </template>
 

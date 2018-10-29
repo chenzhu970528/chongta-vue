@@ -140,12 +140,6 @@
         axios.get(this.$store.state.url+`/user/showUser/${this.userId}`).then((result) => {
           console.log(result.data.data[0]);
           this.personal = result.data.data[0];
-          if(this.personal.sex =0){
-            this.personal.sex='男'
-          }else this.personal.sex='女';
-          if(this.personal.realName ==null){
-            this.personal.realName='尚未实名验证'
-          }
         })
       },
       methods: {
