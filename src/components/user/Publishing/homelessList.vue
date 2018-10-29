@@ -101,17 +101,8 @@
         },
         loadData() {
           this.activitys = [];
-          // console.log('this.pageInedx:' + this.pageIndex)
-          // console.log('this.pageCount:' + this.pageCount)
           let start = (this.pageIndex-1) * this.pagesize;
           let end = start + this.pagesize;
-          //pageindex:0 , start:0 ; end:4
-          //pageindex:1 , start: 4; end:8
-          //pageindex:2 , start:8 ; end:12
-          //pageindex:3 , start:6 ; end:8
-          // console.log('-----------------')
-          // console.log('start:' + start)
-          // console.log('end:' + end)
           console.log(this.myActData[1]);
           if(end>=this.pageCount){
             end=this.pageCount
