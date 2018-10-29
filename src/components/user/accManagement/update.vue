@@ -73,7 +73,10 @@
       </el-row>
       <el-row>
         <el-col :span="7" :push="2"><span>性别</span></el-col>
-        <el-col :span="12" :push="2" class="iptext"><input type="radio" v-model="sex" label="0" value="男">男 <input type="radio" v-model="sex" label="1" name="fem">女</el-col>
+        <el-col :span="12" :push="2" class="iptext">
+        <el-radio v-model="usersex" label="0">男</el-radio>
+        <el-radio v-model="usersex" label="1">女</el-radio>
+        </el-col>
       </el-row>
       <h3 class="sech3">联系方式</h3>
       <el-row class="first">
@@ -129,7 +132,7 @@
           namecheck:true,
           userId:this.$store.state.userId,
           newName:'',
-          sex:'',
+          usersex:'0',
           address:'',
           email:'',
           wechat:''
@@ -154,7 +157,7 @@
               wechat:_this.wechat,
               address:_this.address,
               userEmail:_this.email,
-              sex:_this.sex
+              sex:_this.usersex
             },
             success: function (result) {
               alert('修改成功')

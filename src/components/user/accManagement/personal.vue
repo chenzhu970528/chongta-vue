@@ -13,7 +13,7 @@
         </el-row>
         <el-row>
           <el-col :span="7" :push="2"><span>性别</span></el-col>
-          <el-col :span="12" :push="2"><span class="det">{{personal.sex?'男':'女'}}</span></el-col>
+          <el-col :span="12" :push="2"><span class="det">{{userSex}}</span></el-col>
         </el-row>
         <h3 class="sech3">联系方式</h3>
         <el-row class="first">
@@ -48,11 +48,22 @@
           console.log(tab, event);
         }
       },
-      created(){
+      computed:{
+          userSex:{
+            get(){
+              let _this=this
+              if(_this.personal.sex==0){
+                return '男'
+              }else {
+                return '女'
+              }
+            }
+          }
+      },
+      mounted(){
         axios.get(this.$store.state.url+`/user/showUser/${this.userId}`).then((result) => {
           console.log(result.data.data[0]);
           this.personal = result.data.data[0];
-
         })
       }
     };

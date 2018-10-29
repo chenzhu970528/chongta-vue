@@ -44,6 +44,7 @@
         data(){
           return{
             jsondata2:[],
+            adoId:'',
             // 遍历出的有意领养者
             diarys:[],
             centerDialogVisible:false
@@ -58,9 +59,10 @@
       methods:{
         ajaxuser(){
           axios.get(this.$store.state.url+`/adoptions/details/`+this.adoid).then((result) => {
-            console.log(result.data)
+            // console.log(result.data)
             this.jsondata2 = result.data.data.jsondata2;
-            // console.log(result.data.data.jsondata)
+            this.adoId = result.data.data.jsondata.adoId;
+            // console.log(result.data.data.jsondata.adoId)
             // console.log(result.data.data.jsondata2)
             for (let i = 0; i < this.jsondata2.length; i++) {
               this.diarys.push(this.jsondata2[i])
@@ -75,6 +77,7 @@
             type: "post",
             data: {
               addId: addId,
+              adoId:_this.adoId
             },
             success: function (result) {
               // console.log(result)

@@ -32,6 +32,7 @@
     </div>
     <p v-if="vv" class="cc">发表成功</p>
     <p v-if="v" class="cc">标题字数超出</p>
+    <p v-if="v1" class="cc">最少两个字哦</p>
     <p v-if="v2" class="cc">先去登录吧</p>
   </div>
 </template>
@@ -54,6 +55,7 @@
         type: 'b',
         vv: false,
         v: false,
+        v1: false,
         v2: false
       }
     },
@@ -116,6 +118,9 @@
           if (_this.title.length > 15) {
             _this.c()
           }
+          else if(_this.title.length < 2){
+            _this.c1()
+          }
           else {
               _this.addImg()
           }
@@ -130,12 +135,20 @@
           _this.vv = false
         }, 3000)
       },
-      //字数限制
+      //15字数限制
       c() {
         let _this = this
         _this.v = true
         setTimeout(function () {
           _this.v = false
+        }, 3000)
+      },
+      //2字数限制
+      c1() {
+        let _this = this
+        _this.v1 = true
+        setTimeout(function () {
+          _this.v1 = false
         }, 3000)
       },
       //登录提示
