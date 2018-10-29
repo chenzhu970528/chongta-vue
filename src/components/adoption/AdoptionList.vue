@@ -4,11 +4,17 @@
       <el-col :span="5" v-for="(diary, index) in diarys" :key="diarys.length" :offset="index > 0 ? 4 : 0">
         <router-link class="list-group-item-info" tag="div" :to="'/adoption/details/'+diary.adoId"><a>
           <el-card :body-style="{ padding: '0px' }">
-            <img style="height: 180px" :src="urlImg(diary.adoPic.split(',')[0])" class="image">
+            <div class="view">
+              <img style="height: 180px" :src="urlImg(diary.adoPic.split(',')[0])" class="image">
+              <div class="hover">
+                <h3>{{ diary.petType }}</h3>
+                <p>{{ diary.adoAddress }}</p>
+              </div>
+            </div>
             <div style="padding: 14px;">
               <span>{{diary.adoTitle}}</span>
               <div class="bottom clearfix">
-                <time class="time">{{ diary.adoAddress }}</time>
+                <time class="time">{{ diary.adoTime }}</time>
               </div>
             </div>
           </el-card>
@@ -37,6 +43,17 @@
       };
     },
     methods: {
+      ajaxall(){
+        axios.get(this.$store.state.url+"/adoptions").then((result) => {
+          console.log(result.data.data)
+          this.mydata = result.data.data;
+          this.dalength=result.data.data.length-8
+          this.handleInfo()
+        })
+          .catch((err) => {
+            console.log(err)
+          })
+      },
       urlImg(str){
         // console.log(this.url+str)
         return this.url+str
@@ -63,15 +80,7 @@
       },
     },
     mounted() {
-      axios.get(this.$store.state.url+"/adoptions").then((result) => {
-        // console.log(result.data)
-        this.mydata = result.data.data;
-        this.dalength=result.data.data.length-6
-        this.handleInfo()
-      })
-        .catch((err) => {
-          console.log(err)
-        })
+      this.ajaxall()
     }
   }
 </script>
@@ -115,4 +124,62 @@
   a{
     text-decoration:none;
   }
+
+  .view{ width:200px; height:200px; overflow:hidden; position:relative; margin:10px; float:left;}
+  .hover{
+    width:200px; background:rgba(0, 0 ,0 ,0.5); position:absolute; top:40px; left:0; text-align:center; color:#fff;
+
+    transform:rotate(55deg);
+    -moz-transform:rotate(55deg);
+    -webkit-transform:rotate(55deg);
+
+    transition:all 0.5s;
+    -moz-transition:all 0.5s;
+    -webkit-transition:all 0.5s;
+
+    overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写好样式，进行隐藏，用overflow:hidden; height:0;*/
+  .hover h3{color:#fff; border-bottom:2px solid rgba(255, 255 ,255, 0.5); padding-bottom:10px;}
+  .view:hover .hover{
+    height:120px;
+
+    transform:rotate(0deg);
+    -moz-transform:rotate(0deg);
+    -webkit-transform:rotate(0deg);
+  }
+  /*before   after为选择器，一般给选择器加动画背景，设置动画样式*/
+  .view:before{
+    content:""; position:absolute; top:-240px; right:0;width:360px; height:360px; background: rgba(217, 237, 247, 0.5);
+
+    transform:rotate(55deg) translateX(60px);
+    -moz-transform:rotate(55deg) translateX(60px);
+    -webkit-transform:rotate(55deg) translateX(60px);
+
+    transform-origin:100% 0%;
+    -moz-transform-origin:100% 0%;
+    -webkit-transform-origin:100% 0%;
+
+    transition:all 0.5s ease 0.3s;
+    -moz-transition:all 0.5s ease 0.3s;
+    -webkit-transition:all 0.5s ease 0.3s;
+
+  }/*写好样式，进行隐藏，用top:-240px;*/
+  .view:hover:before{ top:0;}
+  .view:after{
+    content:""; position:absolute;bottom:-240px; left:0;width:360px; height:360px; background: rgba(217, 237, 247, 0.5);
+
+    transform:rotate(55deg) translateX(-60px);
+    -moz-transform:rotate(55deg) translateX(-60px);
+    -webkit-transform:rotate(55deg) translateX(-60px);
+
+    transform-origin:0% 100%;
+    -moz-transform-origin:0% 100%;
+    -webkit-transform-origin:0% 100%;
+
+    transition:all 0.5s ease 0.3s;
+    -moz-transition:all 0.5s ease 0.3s;
+    -webkit-transition:all 0.5s ease 0.3s;
+  }
+  .view:hover:after{ bottom:0px;}
+
+
 </style>

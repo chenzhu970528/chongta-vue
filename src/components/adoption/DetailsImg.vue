@@ -3,8 +3,8 @@
 
 
       <el-carousel height="300px">
-        <el-carousel-item v-for="(img,index) in imgList" :key="index">
-          <img :src="img">
+        <el-carousel-item style="text-align: center" v-for="(img,index) in imgList" :key="index">
+          <img style="height: 300px" :src="img">
         </el-carousel-item>
       </el-carousel>
     </div>
