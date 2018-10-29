@@ -1,8 +1,8 @@
 <template>
-  <div style="margin-left: 35px">
+  <div style="margin-left: 35px" >
     <el-row>
       <el-col :span="5" v-for="(diary, index) in diarys" :key="diarys.length" :offset="index > 0 ? 4 : 0">
-        <router-link tag="div" :to="'/adoption/details/'+diary.adoId"><a>
+        <router-link class="list-group-item-info" tag="div" :to="'/adoption/details/'+diary.adoId"><a>
           <el-card :body-style="{ padding: '0px' }">
             <img style="height: 180px" :src="urlImg(diary.adoPic.split(',')[0])" class="image">
             <div style="padding: 14px;">
@@ -105,5 +105,14 @@
 
   .clearfix:after {
     clear: both
+  }
+  .list-group-item-info:hover{
+    position: relative;
+    left: -10px;
+    top:-10px;
+    box-shadow:2px 2px 5px 2px #a8a8a8;
+  }
+  a{
+    text-decoration:none;
   }
 </style>

@@ -172,11 +172,11 @@
             }
             self.Num = num;
             console.log(self.Num)
-            // axios.get('/proxy?mobile=' + self.userPhone + '&tpl_id=109274&tpl_value=%23code%23%3D' +
-          //   self.Num + '&key=7de7348eb9dd99ab08bcc7e7063a53ad')
-          //   .then((res)=>{
-          //     console.log(res)
-          //   }).catch(err=>{console.log(err)})
+            axios.get('/proxy?mobile=' + self.userPhone + '&tpl_id=109274&tpl_value=%23code%23%3D' +
+            self.Num + '&key=7de7348eb9dd99ab08bcc7e7063a53ad')
+            .then((res)=>{
+              console.log(res)
+            }).catch(err=>{console.log(err)})
           this.getCode()
           },
 

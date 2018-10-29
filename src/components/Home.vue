@@ -10,7 +10,7 @@
           <!--</el-carousel-item>-->
         <!--</el-carousel>-->
       <!--</div>-->
-        <span>treat your </span><span>pet like royalty</span>
+        <span></span><span>treat your pet like royalty</span>
     </div>
     <div class="q1"></div>
     <div class="bottom">
@@ -133,8 +133,8 @@
     /*margin-top: 70px;*/
   }
   .top{
-    height: 640px;
-    background: url("../assets/HomePage/bg2.jpg") center;
+    height: 750px;
+    background: url("../assets/HomePage/photo-1518640165980-d3e0e2aa6c1e.jpg") center;
     background-size: 100% auto;
   }
   .top img{

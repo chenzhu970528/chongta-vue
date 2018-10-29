@@ -4,7 +4,7 @@
         <el-col :span="7" v-for="(diary, index) in diarys"  :key="diarys.length" :offset="index > 0 ? 3 : 0">
           <router-link tag="div" :to="'/adoption/details/'+diary.adoId"><a>
             <el-card :body-style="{ padding: '0px' }">
-              <img style="height: 250px" :src="douhao(diary.adoPic)" class="image">
+              <img style="height: 250px" :src="urlImg(diary.adoPic.split(',')[0])" class="image">
               <div style="padding: 14px;">
                 <span>{{diary.adoTitle}}</span>
                 <div class="bottom clearfix">
@@ -26,13 +26,14 @@
         return {
           mydata: [],
           diarys: [],
+          url:this.$store.state.url
         };
       },
-      methods:{
-        douhao(str){
-          if(str!= null)
-            return str.toString().split(",")[0]
-        }
+      methods: {
+        urlImg(str) {
+          // console.log(this.url+str)
+          return this.url + str
+        },
       },
       created(){
         axios.get(this.$store.state.url+"/adoptions").then((result) => {

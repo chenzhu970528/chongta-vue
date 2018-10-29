@@ -9,7 +9,15 @@
       <div class="title2" >
          <h3 class="line">最新寻宠</h3>
         <el-row v-for="diary in diarys" class="ROW">
-          <el-col :span="7"><img alt="" :src="urlImg(diary.lppic.split(',')[0])"></el-col>
+
+         <!--<div>-->
+           <!--<router-link   tag="li" :to="'/homeless/lostpetsdetails/'+diary.lpId" style="cursor: pointer;list-style: none" exact>-->
+          <el-col :span="7">
+            <img alt="" :src="urlImg(diary.lppic.split(',')[0])">
+          </el-col>
+           <!--</router-link>-->
+           <!--</div>-->
+
           <el-col :span="16" :push="1">
             <span>时间：{{diary.lpTime}}</span>
             <span>丢失地点：{{diary.address}}</span>

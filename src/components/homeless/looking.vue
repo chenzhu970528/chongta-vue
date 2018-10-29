@@ -5,9 +5,9 @@
     <ul class="list-group" >
     <li class="list-group-item list-group-item-info" v-for="(activity,index) in activitys" :key="index" style="margin-bottom: 10px" >
       <div class="img" style="float: left">
-        <router-link   active-class="active" role="presentation" :to="'/homeless/homelessdetails/'+activity.homeId" style="cursor: pointer;list-style: none" exact>
+        <!--<router-link   active-class="active" role="presentation" :to="'/homeless/homelessdetails/'+activity.homeId" style="cursor: pointer;list-style: none" exact>-->
         <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="width: 150px;height: 140px;margin-right: 15px;margin-top: -5px">
-        </router-link>
+        <!--</router-link>-->
       </div>
       <div><span>标题：{{activity.lpmes}}</span></div>
       <div><span>地点：{{activity.address}}</span></div>

@@ -110,7 +110,8 @@
                       <p>确定删除吗？</p>
                       <div style="text-align: right; margin: 0">
                         <el-button size="mini" type="text">取消</el-button>
-                        <el-button type="primary" size="mini" @click="delcom(com.fcId)">确定</el-button>
+
+                        <el-button type="primary" size="mini" @click="delcomment(com.fcId)">确定</el-button>
                       </div>
                       <el-button slot="reference" icon="el-icon-delete" circle></el-button>
 
@@ -549,32 +550,42 @@
       axios.get(this.$store.state.url + `/forumDel/art/?faId=${faId}`).then((result) => {
         _this.tips = '删除成功'
         _this.show()
+        history.go(-1)
 
       })
     },
     //删除评论
-    delcom(fcId) {
+    delcomment(fcId) {
+      console.log('000000000000')
       console.log(fcId)
       let _this = this
-      $.ajax({
-        url: this.$store.state.url + "/forumDel/comment?fcId=" + fcId,
-        type: "get",
-        success: function (result) {
-
-          _this.tips = '删除成功'
-          _this.show()
-          //重新渲染数据用
-          _this.ajax()
-          console.log(_this.value1)
-        }
+      axios.get(this.$store.state.url + `/forumDel/comment?fcId=${fcId}`).then((result) => {
+        _this.tips = '评论删除成功'
+        _this.show()
+        //重新渲染数据用
+        _this.ajax()
       })
+
+
+      // $.ajax({
+      //   url: this.$store.state.url + "/forumDel/comment?fcId=" + fcId,
+      //   type: "get",
+      //   success: function (result) {
+      //
+      //     _this.tips = '评论删除成功'
+      //     _this.show()
+      //     //重新渲染数据用
+      //     _this.ajax()
+      //     console.log(_this.value1)
+      //   }
+      // })
     },
     //删除回复
     delrep(frId) {
       console.log(frId)
       let _this = this
       axios.get(this.$store.state.url + `/forumDel/reply?frId=${frId}`).then((result) => {
-        _this.tips = '删除成功'
+        _this.tips = '回复删除成功'
         _this.show()
         //重新渲染数据用
         _this.ajax()

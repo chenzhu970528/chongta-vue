@@ -16,13 +16,15 @@
         <ul class="body">
           <li class="li1">
 
-
-            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val.faId">
-              <a href="" @click="see(val[0].faId)">
+<span @click="see(val[0].faId)">
+   <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val.faId">
+              <!--<a href="">-->
                 <img :src='s+val[0].faImg' alt="">
                 <p class="title">{{val[0].faTitle}}</p>
-              </a>
+              <!--</a>-->
             </router-link>
+</span>
+
             <p class="val">{{val[0].faText}}</p>
           </li>
         </ul>
