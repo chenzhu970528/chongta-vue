@@ -5,45 +5,6 @@
       </div>
       <!--<sildes-show></sildes-show>-->
       <div class="cont container">
-        <!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
-          <!--&lt;!&ndash; Indicators &ndash;&gt;-->
-          <!--<ol class="carousel-indicators">-->
-            <!--<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>-->
-            <!--<li data-target="#carousel-example-generic" data-slide-to="1"></li>-->
-            <!--<li data-target="#carousel-example-generic" data-slide-to="2"></li>-->
-          <!--</ol>-->
-
-          <!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
-          <!--<div class="carousel-inner" role="listbox">-->
-            <!--<div class="item active">-->
-              <!--<ul>-->
-                <!--<li>-->
-                  <!--<router-link tag="a" active-class="active" role="presentation" :to="">-->
-                    <!--<img  @click="see()"  class=img :src=values[0].img>-->
-                    <!--<p @click="see()" class="p"><span class="left0"></span><a @click="see()"  class="a title"></a></p>-->
-                  <!--</router-link>-->
-                <!--</li>-->
-              <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="item">-->
-              <!--<img src="" alt="...">-->
-              <!--<div class="carousel-caption">-->
-                <!--...-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--...-->
-          <!--</div>-->
-
-          <!--&lt;!&ndash; Controls &ndash;&gt;-->
-          <!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">-->
-            <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
-            <!--<span class="sr-only">Previous</span>-->
-          <!--</a>-->
-          <!--<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">-->
-            <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
-            <!--<span class="sr-only">Next</span>-->
-          <!--</a>-->
-        <!--</div>-->
 
         <!--小喵-->
         <div class="main">
@@ -81,9 +42,12 @@
               </div>
             </div>
           </div>
-          <div class="topText">
-
-            <span style="color: #fff"><i style="color: #fff;font-size: 40px">“</i>我养你有什么用不过是漫长的人生里，你陪我走一程，却是拿性命相托<i style="color: #fff;font-size: 40px">”</i></span>
+          <div class="topText polaroid">
+            <span style="color: #fff">
+              <i style="color: #fff;font-size: 40px">“</i>
+              我养你有什么用不过是漫长的人生里，你陪我走一程，却是拿性命相托
+              <i style="color: #fff;font-size: 40px">”</i>
+            </span>
 
           </div>
           <div class="qrCord">
@@ -148,6 +112,85 @@
 </script>
 
 <style scoped>
+  .polaroid {
+    position: absolute;
+    top: -320px;
+    left: 150px;
+    width: 400px;
+    height: 320px;
+    max-width: 30em;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-style: solid;
+    border-color: #fff;
+    border-width: 1em 1em 4.5em;
+    box-shadow: 0 0 1em rgba(153,153,153,0.4), 0 0 25em rgba(0,0,0,0.7), 0 0 30em rgba(0,0,0,0.5), 0 0 40em #000;
+    -webkit-animation: swing 3.5s ease-in-out forwards infinite;
+    animation: swing 3.5s ease-in-out forwards infinite;
+    -webkit-transform-origin: 50% -10em;
+    transform-origin: 50% -10em;
+  }
+  .polaroid::before,
+  .polaroid::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    height: 15em;
+    width: 0.2em;
+    background-color: #000;
+  }
+  .polaroid::before {
+    -webkit-transform: skew(3deg);
+    transform: skew(3deg);
+    left: 0.5em;
+  }
+  .polaroid::after {
+    -webkit-transform: skew(-3deg);
+    transform: skew(-3deg);
+    right: 0.5em;
+  }
+  @-webkit-keyframes swing {
+    0% {
+      -webkit-transform: translateX(-50%) rotate(10deg);
+      transform: translateX(-50%) rotate(10deg);
+    }
+    50% {
+      -webkit-transform: translateX(-50%) rotate(-10deg) skewX(5deg) skewY(-2deg) scale(1.1);
+      transform: translateX(-50%) rotate(-10deg) skewX(5deg) skewY(-2deg) scale(1.1);
+    }
+    100% {
+      -webkit-transform: translateX(-50%) rotate(10deg);
+      transform: translateX(-50%) rotate(10deg);
+    }
+  }
+  @keyframes swing {
+    0% {
+      -webkit-transform: translateX(-50%) rotate(10deg);
+      transform: translateX(-50%) rotate(10deg);
+    }
+    50% {
+      -webkit-transform: translateX(-50%) rotate(-10deg) skewX(5deg) skewY(-2deg) scale(1.1);
+      transform: translateX(-50%) rotate(-10deg) skewX(5deg) skewY(-2deg) scale(1.1);
+    }
+    100% {
+      -webkit-transform: translateX(-50%) rotate(10deg);
+      transform: translateX(-50%) rotate(10deg);
+    }
+  }
+  /*摇晃*/
+  .topText{
+    background:url("../../assets/adoption/adoTop.jpg") no-repeat center;
+    background-size: 100%;
+    /*width: 500px;*/
+    /*height: 350px;*/
+    /*border: 30px solid #fff;*/
+    /*position: absolute;*/
+    /*right:-50px;*/
+    /*top: -220px;*/
+  }
+
+
+
   .tol{
     /*margin-top: 70px;*/
     background-color: white;
@@ -179,16 +222,7 @@
     /*min-height: 900px;*/
     position: relative;
   }
-  .topText{
-    background:url("../../assets/adoption/adoTop.jpg") no-repeat center;
-    background-size: 100%;
-    width: 500px;
-    height: 350px;
-    border: 30px solid #fff;
-    position: absolute;
-    right:-50px;
-    top: -220px;
-  }
+
   .topText span{
     display: inline-block;
     font-size: 16px;
