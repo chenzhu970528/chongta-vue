@@ -18,6 +18,7 @@
               <div><span>丢失地址：</span><span>{{activity.address}}</span> <br>
                 <span>丢失人：</span><span>{{activity.userName}}</span> <br>
                 <span>丢失类型：</span><span>{{activity.type}}</span>
+                <img src="../../assets/homeless/764087968048435921.png" alt="" class="zhang"  id="f" >
               </div>
             </div>
           </div>
@@ -98,6 +99,14 @@
 </script>
 
 <style scoped>
+  .zhang{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    right: 30px;
+    bottom: 24px;
+
+  }
   .listInfo {
     width: 380px;
     height: auto;
