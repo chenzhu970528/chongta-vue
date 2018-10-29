@@ -7,21 +7,23 @@
         <el-row>
           <el-col :span="7">
             <!--我的用户头像-->
-            <img src="../../../assets/user/default33.png" alt="">
+            <img :src='url+pic.headPic' alt="" class="head">
           </el-col>
           <el-col :span="7">
             <span>{{UserName.replace('"',' ').replace('"',' ')}}</span>
             <span class="time">{{val.time}}</span>
           </el-col>
         </el-row>
-        <p>{{val.faText}}</p>
+        <p>{{val.faText}}{{val.frText}}</p>
         <el-row style="margin-top: 10px" class="row2">
           <el-col :span="9" class="release">
             <img src="../../../assets/user/default11.png" alt="" style="width:80px;height:80px;">
           </el-col>
           <el-col :span="12">
+
             <h5>{{val.userName}}</h5>
-            <span @click="go(val.faId)">
+           <span @click="go(val.faId)">
+
             <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId"> {{val.faTitle}}</router-link>
             </span>
           </el-col>
@@ -43,6 +45,9 @@
         visiblelife: false,
         isshow: false,
         value: [],
+        url: this.$store.state.url,
+        pic:[],
+        Artpic:[],
       }
     },
 
@@ -60,7 +65,21 @@ console.log(index+'30才对')
       let id = this.UserId.replace(/\"/g, "")
       axios.get(this.$store.state.url + `/forumSee/user/com?userId=${id}`).then((result) => {
         this.value = result.data.data;
+
+        for(let i=0;i<this.value.length;i++){
+          let faId= this.value[i].faId
+          axios.get(this.$store.state.url + `/forumSee/user/Artpic?faId=${faId}`).then((result) => {
+            this.Artpic = result.data.data;
+          })
+
+        }
+        console.log( this.Artpic )
+
       })
+ axios.get(this.$store.state.url + `/forumSee/user/pic?userId=${id}`).then((result) => {
+        this.pic = result.data.data[0];
+      })
+
 
 
     }
@@ -69,6 +88,11 @@ console.log(index+'30才对')
 </script>
 
 <style scoped>
+  .head{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+  }
   #scroll {
     padding: 0 35px;
     width: 80%;
