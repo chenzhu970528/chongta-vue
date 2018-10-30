@@ -16,12 +16,12 @@
 
         '4、任何单位或个人认为通过本网站网页内容可能涉嫌侵犯其著作权，应该及时向我们提出书面权利通知，并提供身份证明、权属证明及详细侵权情况证明。我们收到上述法律文件后，将会依法尽快处理。', {
           confirmButtonText: '确定',
-          callback: action => {
-            this.$message({
-              type: 'info',
-              message: `action: ${ action }`
-            });
-          }
+          // callback: action => {
+          //   this.$message({
+          //     type: 'info',
+          //     message: `来自宠它网`
+          //   });
+          // }
         });
       }
     }

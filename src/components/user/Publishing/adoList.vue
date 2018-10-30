@@ -8,6 +8,7 @@
   <div class="inner_ado">
     <div class="tol" v-for="(activity,index) in activitys">
       <el-row class="card">
+        <div class="stamp" v-if="activity.adostate==1"></div>
         <router-link  tag="li" active-class="active" role="presentation" :to="'/adoption/details/'+activity.homeId" style="list-style: none;cursor: pointer" exact>
           <el-col :span="7" class="petPic">
           <div class="pic"><img :src="urlImg(activity.adoPic)"></div>
@@ -165,6 +166,16 @@
 </script>
 
 <style scoped>
+  .stamp{
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    right: 10px;
+    bottom: -32px;
+    background: url("../../../assets/user/zhang.png") no-repeat;
+    background-size: 100%;
+    z-index: 10;
+  }
   .block{
     width: 60%;
     margin-left: 20%;
@@ -194,6 +205,7 @@
   .card{
     width: 100%;
     min-height: 180px;
+    position: relative;
     /*background-color: red;*/
   }
   .tol{

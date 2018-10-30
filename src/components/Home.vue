@@ -130,7 +130,14 @@
     text-align: center;
     font-weight: bold;
     font-size: 50px;
-    color: #648eff;
+    color: #0369ba;
+  }
+  .top span:first-child{
+    position: relative;
+    top:270px;
+    left: 1%;
+  }
+  .top span:last-child{
     position: absolute;
     top:270px;
     right: 1%;
