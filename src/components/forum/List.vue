@@ -215,7 +215,7 @@
           axios.get(this.$store.state.url+"/forumSee/time").then((result) => {
             _this.myActData = result.data.data;
             _this.pageCount = _this.myActData.length;
-            console.log(_this.pageCount)
+            // console.log(_this.pageCount)
             _this.loadData()
             //   for (let i = 0; i < 6; i++) {
             //     this.value1.push(this.value[i])
@@ -228,7 +228,7 @@
           axios.get(this.$store.state.url+"/forumSee/essence").then((result) => {
             _this.myActData = result.data.data;
             _this.pageCount = _this.myActData.length;
-            console.log(_this.pageCount)
+            // console.log(_this.pageCount)
             _this.loadData()
             // for (let i = 0; i < 6; i++) {
             //   this.value1.push(this.value[i])
@@ -240,7 +240,7 @@
           axios.get(this.$store.state.url+"/forumSee/diary").then((result) => {
             _this.myActData = result.data.data;
             _this.pageCount = _this.myActData.length;
-            console.log(_this.pageCount)
+            // console.log(_this.pageCount)
             _this.loadData()
             // for (let i = 0; i < 6; i++) {
             //   this.value1.push(this.value[i])

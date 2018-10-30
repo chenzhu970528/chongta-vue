@@ -120,7 +120,7 @@
     methods: {
       addhomeless() {
         let _this=this
-        console.log(this.upath);
+        // console.log(this.upath);
         var zipFormData = new FormData();
         //依次添加多个文件
         for(var i = 0 ; i< this.upath.length ; i++){
@@ -139,9 +139,9 @@
         let config = { headers: { 'Content-Type': 'multipart/form-data' } };
         this.$axios.post(this.$store.state.url+'/homeless/Add', zipFormData,config)
           .then(function (response) {
-            console.log(response);
-            console.log(response.data);
-            console.log(response.bodyText);
+            // console.log(response);
+            // console.log(response.data);
+            // console.log(response.bodyText);
             alert("发布成功！！！")
             location.href= _this.$store.state.myurl+'/homeless'
           }).catch((err) => {
@@ -159,12 +159,9 @@
           this.check1=true
         }
       },
-      // 登录验证
+      // 表单验证
       islogin(){
-        if(!this.$store.state.isLogin) {
-          alert("请登录后发布")
-          location.href=this.$store.state.myurl+'/homeless'
-        }else if(this.check1&&this.check2) {
+        if(this.check1&&this.check2) {
           this.addhomeless()
         }else {
           alert('不符合上传要求，请重新输入并同意相关协议')

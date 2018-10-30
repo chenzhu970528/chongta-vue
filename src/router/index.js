@@ -103,8 +103,16 @@ export default new Router({
     },
     {
       path: '/adoption/issue',
-      name:'AdoIssue',
+      name: 'AdoIssue',
       component: AdoIssue,
+      beforeEnter: (to, from, next) => {
+        if (localStorage.getItem('userId')) {
+          next()
+        } else {
+          next(false)
+          alert('请登陆后发布')
+        }
+      }
     },
     // 婚介
     {
@@ -126,7 +134,15 @@ export default new Router({
     {
       path:'/matchmaking/mpublish',
       name:'mpublish',
-      component:mpublish
+      component:mpublish,
+      beforeEnter: (to, from, next) => {
+        if (localStorage.getItem('userId')) {
+          next()
+        } else {
+          next(false)
+          alert('请登陆后发布')
+        }
+      }
     },
     //流浪精灵模块
     {
@@ -153,6 +169,14 @@ export default new Router({
       path: '/homeless/publish',
       name: 'publish',
       component: publish,
+      beforeEnter: (to, from, next) => {
+        if(localStorage.getItem('userId')){
+          next()
+        }else {
+          next(false)
+          alert('请登陆后发布')
+        }
+      }
     },
     // {
     //   path: '/homeless/detailsimg',
@@ -200,11 +224,20 @@ export default new Router({
     {path: '/forum/:faId',
       name: 'Details',
       component: Details,
+
     },
     {
       path: '/homeless/wantadopt',
       name: 'wantadopt',
       component:wantadopt,
+      beforeEnter: (to, from, next) => {
+        if(localStorage.getItem('userId')){
+          next()
+        }else {
+          next(false)
+          alert('请登陆后发布')
+        }
+      }
     },
     {
       path: '/homeless/detail',
@@ -259,7 +292,10 @@ export default new Router({
       name:'UserDetails',
       component: UserDetails,
     },
-
-
   ]
 })
+
+
+
+
+

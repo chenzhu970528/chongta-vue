@@ -33,7 +33,7 @@
             <h4>基本信息</h4>
             <dl>
               <dd>
-              <span class="glyphicon glyphicon-user" aria-hidden="true"> 联系人：</span>{{diary.realName}}
+              <span class="glyphicon glyphicon-user" aria-hidden="true"> 联系人：</span>{{diary.userName}}
               </dd>
               <dd>
               <span class="glyphicon glyphicon-retweet" aria-hidden="true"> 性别：</span>{{userSex}}
@@ -43,6 +43,12 @@
               </dd>
               <dd>
               <span class="glyphicon glyphicon-envelope" aria-hidden="true"> 邮箱：</span>{{diary.userEmail}}
+              </dd>
+               <dd>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"> 微信：</span>{{diary.wechat}}
+              </dd>
+               <dd>
+              <span class="glyphicon glyphicon-map-marker" aria-hidden="true"> 地址：</span>{{diary.address}}
               </dd>
             </dl>
             <el-button type="text" style="margin-left: 0px" slot="reference">{{diary.userName}}</el-button>
@@ -107,14 +113,27 @@
         }
       },
       methods:{
-
+          // 判断是否完善个人信息
+        ajaxuser(){
+          axios.get(this.$store.state.url + `/user/showUser/${this.userId}`).then((result) => {
+           if(result.data.data[0].address.length==0){
+             alert('请完善个人信息后提交');
+             location.href=this.$store.state.myurl+'/user/update'
+           }else {
+             this.centerDialogVisible = true
+           }
+          })
+            .catch((err) => {
+              console.log(err)
+            })
+        },
         // 登录验证
         islogin(){
           if(!this.$store.state.isLogin) {
             alert("请登录后提交")
             return false
           }else {
-           this.centerDialogVisible = true
+           this.ajaxuser()
           }
         },
         wantAdo(){
@@ -146,7 +165,7 @@
             if(result.data.data.jsondata.adostate==1){
               this.checkAdo=true
             }
-            console.log(result.data.data.jsondata)
+            // console.log(result.data.data.jsondata)
             // console.log(result.data.data.jsondata2)
             for (let i = 0; i < this.jsondata2.length; i++) {
               this.diarys.push(this.jsondata2[i])
@@ -154,7 +173,7 @@
           })
         },
       },
-      created(){
+      mounted(){
         this.ajax()
       }
     }

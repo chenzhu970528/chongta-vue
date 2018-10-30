@@ -38,7 +38,7 @@
     },
     created(){
       axios.get(this.$store.state.url+"/matchmaking/countAply").then((result) => {
-        console.log(result.data)
+        // console.log(result.data)
         this.hotdata = result.data.data;
         for (let i = 0; i < this.hotdata.length; i++) {
           this.showLists.push(this.hotdata[i])

@@ -157,7 +157,7 @@
             matId:this.matId
           },
           success: function (result) {
-            console.log(result.data)
+            // console.log(result.data)
             alert("发布成功！！！")
             history.go(-1)
             location.reload()

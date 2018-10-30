@@ -79,6 +79,15 @@
             <textarea id="inputdetaildetail" class="form-control" v-model="value1.detail" rows="5"></textarea>
           </div>
         </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" v-model="check2"> 我同意全部事项
+              </label>
+            </div>
+          </div>
+        </div>
         <!--<div class="form-group">-->
         <!--<label  class="col-sm-3 control-label">您所在地区：</label>-->
         <!--<div class="col-sm-6">-->
@@ -136,23 +145,24 @@
               relId:this.$store.state.userId,
           },
           upath:'',  //保存选中的文件
+          check1:false,
+          check2:false,
         };
       },
 
       methods: {
         // 登录验证
         islogin(){
-          if(!this.$store.state.isLogin) {
-            alert("请登录后发布")
-            return false
-          }else {
+          if(this.check1&&this.check2) {
             this.addmatch()
+          }else {
+            alert('不符合上传要求，请重新输入并同意相关协议')
           }
         },
               //发布
         addmatch() {
           let _this=this
-          console.log(this.upath);
+          // console.log(this.upath);
           var zipFormData = new FormData();
           //依次添加多个文件
           for(var i = 0 ; i< this.upath.length ; i++){
@@ -185,6 +195,12 @@
         //选中文件后，将文件保存到实例的变量中
         changeImage(e) {
           this.upath = e.target.files;
+          if(this.upath.length<2||this.upath.length>6){
+            alert("请上传2-6张图片")
+            this.check1=false
+          }else {
+            this.check1=true
+          }
         },
         // addmatch(){
         //   let _this = this

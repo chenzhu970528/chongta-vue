@@ -42,7 +42,7 @@
     },
     created(){
       axios.get(this.$store.state.url+`/matchmaking/matchdetail/${this.relId}`).then((result) => {
-        console.log(result.data.data[0])
+        // console.log(result.data.data[0])
         this.Mdeldata = result.data.data[0];
         if(this.Mdeldata.medReport !=null){
           this.Mdeldata.medReport='已提交体检报告'

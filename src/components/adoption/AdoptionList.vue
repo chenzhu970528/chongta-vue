@@ -1,7 +1,7 @@
 <template>
   <div style="margin-left: 35px" >
     <el-row>
-      <el-col :span="5" v-for="(diary, index) in diarys" :key="diarys.length" :offset="index > 0 ? 4 : 0">
+      <el-col :span="5" v-for="(diary, index) in diarys" :key="index" :offset="index > 0 ? 4 : 0">
         <router-link class="list-group-item-info" tag="div" :to="'/adoption/details/'+diary.adoId"><a>
           <el-card  :body-style="{ padding: '0px' }">
             <div class="view">
@@ -46,7 +46,7 @@
     methods: {
       ajaxall(){
         axios.get(this.$store.state.url+"/adoptions").then((result) => {
-          console.log(result.data.data)
+          // console.log(result.data.data)
           this.mydata = result.data.data;
           this.dalength=result.data.data.length-8
           this.handleInfo()
