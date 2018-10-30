@@ -1,8 +1,6 @@
 <template>
     <div class="tol">
-      <div class="top">
-
-      </div>
+      <div class="top"></div>
       <!--<sildes-show></sildes-show>-->
       <div class="cont container">
 

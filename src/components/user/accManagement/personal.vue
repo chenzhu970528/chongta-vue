@@ -87,7 +87,6 @@
     height: 50px;
     line-height: 50px;
     font-size: 16px;
-    /*background-color: palevioletred;*/
     color: #e7e7e7;
   }
   .route span{

@@ -8,7 +8,7 @@
     <div class="right">
       <div class="title2" >
          <h3 class="line">最新寻宠</h3>
-        <el-row v-for="diary in diarys" class="ROW">
+        <el-row v-for="(diary,index) in diarys" :key="index"class="ROW">
 
          <!--<div>-->
            <!--<router-link   tag="li" :to="'/homeless/lostpetsdetails/'+diary.lpId" style="cursor: pointer;list-style: none" exact>-->
