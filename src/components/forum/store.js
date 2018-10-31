@@ -2,20 +2,18 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-let arr=window.localStorage;
-
+window.localStorage.a = 0
 const store = new Vuex.Store({
   state: {
-    name:'交流分享',
-    nametype:'b'
+    a:1
   },
   mutations: {
+    add(state) {
+      state.a++
 
-  },
-  addName (state,name) {
-      state.name=name.amount
-      state.nametype=name.am
     }
+  },
+
 
 
 })

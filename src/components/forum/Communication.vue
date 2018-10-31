@@ -58,7 +58,7 @@
   .top{
     width: 100%;
     height: 420px;
-    background:0 70% url("../../assets/forum/1-15052G61341.jpg") no-repeat;
+    background:0 70% url("../../assets/forum/12.jpg") no-repeat;
     background-size: 100% ;
     /*min-height: 900px;*/
     position: relative;
