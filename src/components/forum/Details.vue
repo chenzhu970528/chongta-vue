@@ -5,8 +5,9 @@
       <!--<img style="position: fixed;" src="../../assets/forum/6.jpg" alt="">-->
       <!--</div>-->
       <div class="left">
-        <!--详细内容     -->
+        <!--详细内容     -->   <div>&nbsp &nbsp<h2>{{value.art[0].faTitle}}</h2></div>
         <div class="val">
+
           <div class="headpic">
             <!--<img class='headimg' :src='url+value.pic[0].headPic' alt="">-->
             <img class='headimg' :src='url+value.pic[0].headPic' alt="">
@@ -58,18 +59,18 @@
     <span>&nbsp{{value.sum[0][0].sum_count-1}}回复</span>
     </span>
           </div>
-          <div class="center">
-            <img :src='url+value.art[0].faImg' alt="">
-          </div>
 
-          <div>&nbsp &nbsp<h2>{{value.art[0].faTitle}}</h2></div>
+
+
 
           <!--帖子的内容-->
 
           <div class="img">
 
             <p>{{value.art[0].faText}}</p>
-
+            <div class="center">
+              <img :src='url+value.art[0].faImg' alt="">
+            </div>
 
           </div>
         </div>

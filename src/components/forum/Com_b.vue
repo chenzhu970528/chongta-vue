@@ -27,8 +27,7 @@
           </div>
         </div>
         <input class="btn btn-default" type="button" @click="addForum" value="发表">
-      </form>
-
+        </form>
     </div>
     <p v-if="vv" class="cc">发表成功</p>
     <p v-if="v" class="cc">标题字数超出</p>
@@ -58,7 +57,7 @@
         v: false,
         v1: false,
         v2: false,
-        v3: false
+        v3: false,
       }
     },
     methods: {
@@ -86,7 +85,7 @@
         }
         this.title = '';
         this.text = '';
-        console.log(this.upath);
+        // console.log(this.upath);
         var zipFormData = new FormData();
         //依次添加多个文件
         for (var i = 0; i < this.upath.length; i++) {
@@ -127,6 +126,10 @@
           }
           else {
             _this.addImg()
+           window.localStorage.a++
+
+            store.commit('add')
+            console.log(store.state.a)
           }
         }
       },

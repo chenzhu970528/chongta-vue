@@ -79,9 +79,16 @@
         Names: ['最新', '精品推荐', '领养日记', '交流分享'],
         url: ['new', 'recommend', 'diary', 'share'],
         s: this.$store.state.url,
-        faId:0
+        faId: 0,
 
       }
+    },
+    computed:{
+      a() {
+        return  store.state.a
+
+
+    },
     },
     methods: {
       but(index) {
@@ -94,41 +101,59 @@
         let storage = window.localStorage;
         storage.faId = index
       },
+
+      time(){
+        // setTimeout(alert('= ='),5000)
+        let _this=this
+       return setTimeout(function () {
+         _this.value=[
+            {values0: []},
+            {values1: []},
+            {values2: []},
+            {values3: []}],
+            axios.get(_this.$store.state.url + "/forumSee/time").then((result) => {
+              _this.mydata = result.data.data;
+              for (let i = 0; i < 6; i++) {
+                _this.value[0].values0.push(_this.mydata[i])
+              }
+              _this.value[0] = _this.value[0].values0
+
+              console.log( _this.mydata)
+            })
+          axios.get(_this.$store.state.url + "/forumSee/essence").then((result) => {
+            _this.mydata1 = result.data.data;
+            for (let i = 0; i < 6; i++) {
+              _this.value[1].values1.push(_this.mydata1[i])
+            }
+            _this.value[1] = _this.value[1].values1
+          })
+
+          axios.get(_this.$store.state.url + "/forumSee/diary").then((result) => {
+            _this.mydata2 = result.data.data;
+            for (let i = 0; i < 6; i++) {
+              _this.value[2].values2.push(_this.mydata2[i])
+            }
+            _this.value[2] = _this.value[2].values2
+          })
+
+          axios.get(_this.$store.state.url + "/forumSee/gossip").then((result) => {
+            _this.mydata3 = result.data.data;
+            for (let i = 0; i < 6; i++) {
+              _this.value[3].values3.push(_this.mydata3[i])
+            }
+            _this.value[3] = _this.value[3].values3
+          })
+        },200)
+
+      }
+    },
+    watch:{
+    "a":"time"
     },
     mounted() {
-      axios.get(this.$store.state.url + "/forumSee/time").then((result) => {
-        this.mydata = result.data.data;
-        for (let i = 0; i < 6; i++) {
-          this.value[0].values0.push(this.mydata[i])
-        }
-        this.value[0] = this.value[0].values0
-      })
-      axios.get(this.$store.state.url + "/forumSee/essence").then((result) => {
-        this.mydata1 = result.data.data;
-        for (let i = 0; i < 6; i++) {
-          this.value[1].values1.push(this.mydata1[i])
-        }
-        this.value[1] = this.value[1].values1
-      })
-
-      axios.get(this.$store.state.url + "/forumSee/diary").then((result) => {
-        this.mydata2 = result.data.data;
-        for (let i = 0; i < 6; i++) {
-          this.value[2].values2.push(this.mydata2[i])
-        }
-        this.value[2] = this.value[2].values2
-      })
-
-      axios.get(this.$store.state.url + "/forumSee/gossip").then((result) => {
-        this.mydata3 = result.data.data;
-        for (let i = 0; i < 6; i++) {
-          this.value[3].values3.push(this.mydata3[i])
-        }
-        this.value[3] = this.value[3].values3
-      })
+      this.time()
 
     }
-
   }
 </script>
 

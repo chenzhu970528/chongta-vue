@@ -5,7 +5,6 @@
         <com_d></com_d>
       </div>
 
-
       <ul>
         <li :key="index" v-model="val.faId" v-for="(val,index) in activitys">
           <div class="head">
@@ -127,62 +126,7 @@
         })
 
       },
-      // next() {
-      //   this.q = this.q + 6
-      //
-      //   if (this.a < this.cou-1) {
-      //     this.w = this.w + 6
-      //     this.value1 = []
-      //     this.a++  //记录当前页
-      //     for (let i = this.q; i < this.w; i++) {
-      //       this.value1.push(this.value[i])
-      //     }
-      //     // console.log(this.value)
-      //     // console.log(this.value1)
-      //   }
-      //   //最后一页的，要取出最后一页多少个帖子
-      //   else if (this.a == this.cou-1) {
-      //     this.value1 = []
-      //     this.a++  //记录当前页
-      //     this.w=this.value.length
-      //     for (let i = this.q; i <this.w ; i++) {
-      //       this.value1.push(this.value[i])
-      //     }
-      //     // console.log(this.value)
-      //     // console.log(this.value1)
-      //
-      //   }
-      //   else {
-      //     this.cc()
-      //   }
-      //
-      // },
 
-      // front() {
-      //
-      //   //当前页是最后一页的情况下
-      //   if(this.a==this.cou-1){
-      //     //用全部数量减去最后一页的数量，获取倒数第二个的最大长度
-      //    this.w=this.w-(this.w-(6*this.cou-1))
-      //     this.q=this.w-6
-      //     for (let i = this.q; i <this.w; i++) {
-      //       this.value1.push(this.value[i])
-      //     }
-      //     this.a--
-      //   }
-      //   else if(this.a==1){
-      //     this.cc()
-      //   }
-      //   else{
-      //     this.q=this.q-6
-      //     this.w=this.w-6
-      //     for (let i = this.q; i <this.w; i++) {
-      //       this.value1.push(this.value[i])
-      //     }
-      //     this.a--
-      //   }
-      //
-      // },
       cc() {
         let _this = this
         _this.vv = true
@@ -313,15 +257,20 @@
   ul {
     position: relative;
     left: -40px;
+
+
   }
 
   li {
     width: 768px;
     list-style: none;
     padding: 35px;
-    background: #ffffff;
+    /*background: #ffffff;*/
     margin-bottom: 35px;
     overflow: hidden;
+    background: #ffffff;
+    /*box-shadow: -2px 2px 10px 2px #bcbcbc;*/
+    background: rgba(255, 255, 255, 0.9);
   }
 
   .val {
