@@ -62,16 +62,6 @@
         mydiarys(){
           return this.diarys
         },
-        userSex:{
-          get(){
-            let _this=this
-            if(_this.diarys.sex==0){
-              return '男'
-            }else {
-              return '女'
-            }
-          }
-        }
       },
       methods:{
           aa(a){

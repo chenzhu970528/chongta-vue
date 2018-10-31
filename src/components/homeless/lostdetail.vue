@@ -2,26 +2,21 @@
   <div class="all">
     <div class="top"></div>
     <div class="cont container">
-
-      <!--<div class="container1"></div>-->
-      <!--<div class="container2">-->
-        <!--<detailsimg></detailsimg>-->
-      <!--</div>-->
-      <div class="route">您的当前位置：<span><a href="/homeless">流浪精灵/寻宠之家</a></span><span>/</span><span>详情</span></div>
+      <div class="route">您的当前位置：<span><a href="/homeless">流浪精灵/寻宠之家</a></span><span>/</span><span>丢失宠物</span></div>
       <div class="title">
         <img src="../../assets/adoption/take.png" width="50" alt="">
-        <span class="text-primary">流浪详情</span>
+        <span class="text-primary">丢失详情</span>
       </div>
       <div class="adoTitle">
-        <h3 class="text-primary">{{mydata.getmes}}</h3>
+        <h3 class="text-primary">{{mydata.lpmes}}</h3>
       </div>
       <div class="container">
         <div class="row">
           <div class="col-xs-5" style="margin-top: 25px">
-            <detailsimg></detailsimg>
+            <lostimg></lostimg>
           </div>
           <div class="col-xs-7">
-            <detailsmes></detailsmes>
+            <lostmes></lostmes>
           </div>
         </div>
         <div class="descript">
@@ -31,11 +26,6 @@
             <p class="text-danger" style="margin-top: 10px"><span class="glyphicon glyphicon-alert" aria-hidden="true"> </span> 安全提示：请不要相信任何需要金钱交易的无偿领养！例如宠物免费，骗取运费等常见骗术！</p>
           </div>
         </div>
-
-        <!--&lt;!&ndash;<div class="recommend">&ndash;&gt;-->
-        <!--&lt;!&ndash;<h4 class="text-primary">你可能对以下内容感兴趣</h4>&ndash;&gt;-->
-        <!--&lt;!&ndash;<ado-recommend></ado-recommend>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
       </div>
     </div>
   </div>
@@ -45,24 +35,24 @@
 <script>
   import axios from 'axios'
   // import Recommend from '../homeless/Recommend'
-  import detailsimg from '../homeless/detailsimg.vue'
-  import detailsmes from '../homeless/detailsmes.vue'
+  import lostmes from '../homeless/lostmes'
+  import lostimg from '../homeless/lostimg'
   export default {
     name: "detail",
     components:{
-      'detailsimg':detailsimg,
-      'detailsmes':detailsmes
+      'lostimg':lostimg,
+      'lostmes':lostmes
       // 'ado-recommend':Recommend
     },
     data(){
       return{
-        homeId:this.$route.params.homeId,
+        lpId:this.$route.params.lpId,
         // 详细信息
         mydata:[],
       }
     },
     created(){
-      axios.get(this.$store.state.url+`/homeless/details/${this.homeId}`).then((result) => {
+      axios.get(this.$store.state.url+`/homeless/lostdetails/${this.lpId}`).then((result) => {
         // console.log(result.data)
         this.mydata = result.data.data
       })
@@ -71,6 +61,21 @@
 </script>
 
 <style scoped>
+  .cont{
+    background:rgba(255,255,255,0.9);
+    margin-top:150px ;
+    box-shadow:-2px 2px 10px 2px #bcbcbc;
+    min-height: 500px;
+    width: 1240px;
+  }
+  .top{
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+  }
   .all{
     /*background-color: #f7f7f7;*/
     padding-top: 150px;
@@ -91,29 +96,21 @@
     width: 1240px;
     position: relative;
   }
-  .top{
-    width: 100%;
-    height: 70px;
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    z-index: 3;
-  }
   /*.container1{*/
-    /*width: 90%;*/
-    /*height: 400px;*/
-    /*background-color: cornflowerblue;*/
-    /*position: absolute;*/
-    /*right: 0;*/
-    /*bottom: 0;*/
+  /*width: 90%;*/
+  /*height: 400px;*/
+  /*background-color: cornflowerblue;*/
+  /*position: absolute;*/
+  /*right: 0;*/
+  /*bottom: 0;*/
   /*}*/
   /*.container2{*/
-    /*width: 60%;*/
-    /*height: 300px;*/
-    /*background-color: yellow;*/
-    /*position: absolute;*/
-    /*left: 0;*/
-    /*top:0*/
+  /*width: 60%;*/
+  /*height: 300px;*/
+  /*background-color: yellow;*/
+  /*position: absolute;*/
+  /*left: 0;*/
+  /*top:0*/
   /*}*/
   .adoTitle{
     width: 1136px;

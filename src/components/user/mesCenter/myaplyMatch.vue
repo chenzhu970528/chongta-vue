@@ -2,18 +2,18 @@
     <div>
       <el-row style="text-align: center">
         <el-col :span="6">
-          <el-col :span="12">分布人</el-col></el-col>
-        <el-col :span="7">标题</el-col>
+          <el-col :span="12">标题</el-col></el-col>
         <el-col :span="7">发布时间</el-col>
+        <el-col :span="7">状态</el-col>
         <el-col :span="4">操作</el-col>
       </el-row>
-      <el-row style="text-align:center;margin-top: 20px;line-height: 40px;" v-for="(myAply,index) in showmyAply" :key="showmyAply.length">
+      <el-row style="text-align:center;margin-top: 20px;line-height: 40px;" v-for="(myAply,index) in showmyAply" :key="index">
         <el-col :span="6">
-          <el-col :span="12">头像</el-col>
-          <el-col :span="12">{{myAply.username}}</el-col>
+          <!--<el-col :span="12">标题</el-col>-->
+          <el-col :span="12">{{myAply.title}}</el-col>
         </el-col>
-        <el-col :span="7">{{myAply.title}}</el-col>
-        <el-col :span="7">{{myAply.relTime}}</el-col>
+        <el-col :span="7">{{myAply.maplyTime}}</el-col>
+        <el-col :span="7">{{myAply.maplyTime}}</el-col>
         <el-col :span="4">
             <el-popover
               placement="top"
@@ -45,7 +45,7 @@
           isshow:false,
           showmyAply:[],
           myAplydata:[],
-          userId:this.$route.params.userId,
+          userId:this.$store.state.userId,
         }
       },
       created(){
