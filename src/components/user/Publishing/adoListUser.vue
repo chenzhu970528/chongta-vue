@@ -9,7 +9,6 @@
       center>
       <dl>
       <dd>
-
       <span class="glyphicon glyphicon-user" aria-hidden="true"> 联系人：</span>{{val.userName}}
       </dd>
       <dd>
