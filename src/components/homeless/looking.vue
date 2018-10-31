@@ -4,12 +4,12 @@
 
     <ul class="list-group" >
     <li class="list-group-item list-group-item-info" v-for="(activity,index) in activitys" :key="index" style="margin-bottom: 10px" >
-      <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/lostdetails/'+activity.lpId" style="float: left;list-style: none;cursor: pointer" exact>
+      <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/lostdetails/'+activity.lpId" style="float: left;list-style: none;cursor: pointer" exact>-->
       <div class="img" style="float: left">
         <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="width: 150px;height: 140px;margin-right: 15px;margin-top: -5px">
 
       </div>
-      </router-link>
+      <!--</router-link>-->
       <div><span>标题：{{activity.lpmes}}</span></div>
       <div><span>丢失地点：{{activity.address}}</span></div>
       <div><span>奖赏：{{activity.reward}}</span></div>

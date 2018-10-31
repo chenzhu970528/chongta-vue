@@ -91,7 +91,7 @@
                   <img :src='url+value.comhead[index][0].headPic' alt="" class="img1">
                   <div class="headRight">
                     <p class="name1">{{com.userName}}</p>
-                    <p>{{com.time.slice(0,16).replace('T',' ')}}</p>
+                    <p class="time">{{com.time.slice(0,16).replace('T',' ')}}</p>
                   </div>
                 </div>
                 <div class="val1">
@@ -138,7 +138,7 @@
                         <div class="headRight">
                           <p><span class="name1">{{reply.frName}}</span> 回复<span class="name1">{{reply.fcName}}</span>
                           </p>
-                          <p>{{reply.time.slice(0,16).replace('T',' ')}}</p>
+                          <p class="time">{{reply.time.slice(0,16).replace('T',' ')}}</p>
                         </div>
                       </div>
                       <div class="val1 but">
@@ -758,6 +758,7 @@ console.log(faId)
     left: 30%;
     color: #fefefe;
     font-size: 18px;
+    z-index:100;
   }
 
   #con {
@@ -983,5 +984,8 @@ console.log(faId)
 
   .glyphicon-arrow-up {
     cursor: pointer;
+  }
+  .time{
+    font-size:14px;
   }
 </style>

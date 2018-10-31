@@ -21,24 +21,9 @@
         <!--<router-link tag="a" :to="">-->
           <a href="../user/accManagement/personal.vue" style="text-decoration: none">{{jsondata1.userName}}</a>
         &nbsp;&nbsp;&nbsp; <span>联系方式： {{jsondata1.userPhone}}</span>
-        <!--</router-link>-->
-
-
-
         <!--游客可见的个人信息-->
-
       </li>
-      <!--<li class="list-group-item list-group-item-info">-->
-        <!--<span class="glyphicon glyphicon-heart-empty"  aria-hidden="true"> 有意领养者：</span>-->
-
-
-        <!--<span style="margin-left: 10px" v-for="diary in diarys">-->
-          <!--<router-link tag="a" :to="'/userDetails/'+diary.userId">{{diary.realName}}</router-link>-->
-        <!--</span>-->
-
-      <!--</li>-->
     </ul>
-    <!--<button type="button" class="btn btn-lg btn-primary">我想领养</button>-->
   </div>
 </template>
 

@@ -16,8 +16,7 @@
         <h4>{{activity.getmes}}</h4>
         <div class="address">
           <div><span>地址：</span><span>{{activity.address}}</span> <br>
-            <span>简述：</span>
-            <span style="display: inline;overflow: hidden">
+            <span>简述：</span><span>
               {{activity.detail}}</span>
           </div>
         </div>
@@ -53,7 +52,7 @@
       return {
         mydata: [],
         pageIndex: 1,
-        pagesize: 5,  //每页条数
+        pagesize: 7,  //每页条数
         pageCount:0,
         myActData:[],  //放数据库取得数据
         activitys:[],   //方循环的数据

@@ -118,7 +118,7 @@
               }
               _this.value[0] = _this.value[0].values0
 
-              console.log( _this.mydata)
+              // console.log( _this.mydata)
             })
           axios.get(_this.$store.state.url + "/forumSee/essence").then((result) => {
             _this.mydata1 = result.data.data;

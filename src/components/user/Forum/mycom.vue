@@ -29,11 +29,14 @@
           </div>
 
 
-
-
           </el-col>
         </el-row>
       </div>
+    </div>
+
+    <div v-if="isshow" class="noList">
+      <img src="../../../assets/user/default8.png" alt="">
+      <p>还没有任何评论哦</p>
     </div>
   </div>
 
@@ -65,15 +68,20 @@
       window.localStorage.faId=index;
 console.log(index+'30才对')
       },
-      seehead(faId){
+      showPic() {
+        this.isshow = true
+      },
 
-      }
+
     },
     mounted() {
       let id = this.UserId.replace(/\"/g, "")
       axios.get(this.$store.state.url + `/forumSee/user/com?userId=${id}`).then((result) => {
         this.value = result.data.data;
+        if(this.value.length<1){
+          this.showPic()
 
+        }
         for(let i=0;i<this.value.length;i++){
           let faId= this.value[i].faId
           axios.get(this.$store.state.url + `/forumSee/user/Artpic?faId=${faId}`).then((result) => {
