@@ -2,13 +2,13 @@
   <div >
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"> 宠物类型：</span> {{jsondata1.type}}
+        <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"> 宠物类型：</span>{{jsondata1.type}}
       </li>
       <li class="list-group-item list-group-item-info">
-        <span class="glyphicon glyphicon-glass" aria-hidden="true"> 宠物性别：</span> {{petSex}}
+        <span class="glyphicon glyphicon-glass" aria-hidden="true"> 宠物性别：</span> {{lostsex}}
       </li>
       <li class="list-group-item list-group-item-info">
-        <span class="glyphicon glyphicon-time" aria-hidden="true"> 发布时间：</span> {{jsondata1.homeTime}}
+        <span class="glyphicon glyphicon-time" aria-hidden="true"> 发布时间：</span> {{jsondata1.lpTime}}
       </li>
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-map-marker" aria-hidden="true"> 地址：</span> {{jsondata1.address}}
@@ -19,9 +19,8 @@
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-user" aria-hidden="true"> 发布者：</span>
         <!--<router-link tag="a" :to="">-->
-          <a href="../user/accManagement/personal.vue" style="text-decoration: none">{{jsondata1.userName}}</a>
+        <a href="../user/accManagement/personal.vue" style="text-decoration: none">{{jsondata1.userName}}</a>
         &nbsp;&nbsp;&nbsp; <span>联系方式： {{jsondata1.userPhone}}</span>
-        <!--游客可见的个人信息-->
       </li>
     </ul>
   </div>
@@ -30,17 +29,16 @@
 <script>
   import axios from 'axios'
   export default {
-    name: "detailsmes",
     data(){
       return{
-        homeId:this.$route.params.homeId,
+        lpId:this.$route.params.lpId,
         // 详细信息
         jsondata1:[],
         diarys:[]
       }
     },
     computed:{
-      petSex:{
+      lostsex:{
         get(){
           let _this=this
           if(_this.jsondata1.sex==0){
@@ -52,8 +50,8 @@
       }
     },
     created(){
-      axios.get(this.$store.state.url+`/homeless/homelessdetails/${this.homeId}`).then((result) => {
-        // console.log(result.data.data);
+      axios.get(this.$store.state.url+`/homeless/lostpetsdetails/${this.lpId}`).then((result) => {
+        console.log(result);
         this.jsondata1 = result.data.data;
       })
     }

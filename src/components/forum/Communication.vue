@@ -8,7 +8,7 @@
       </div>
 
       <div>
-        <recommend>精品推荐</recommend>
+        <mostCom>评论多的</mostCom>
       </div>
       <com_d></com_d>
       <div>
@@ -29,7 +29,7 @@
   import Com_b from './Com_b.vue'
   import Com_d from './Com_d.vue'
   import Ranking from './Ranking'
-  import Recommend from './Recommend.vue'
+  import MostCom from './MostCom.vue'
   import hot from './hot.vue'
   export default {
     name: "Communication",
@@ -38,7 +38,7 @@
       'com_b': Com_b,
       'ranking':Ranking,
       'com_d': Com_d,
-      'recommend': Recommend,
+      'mostCom': MostCom,
       'hot': hot,
 
     },
@@ -58,7 +58,7 @@
   .top{
     width: 100%;
     height: 420px;
-    background:0 70% url("../../assets/forum/1-15052G61341.jpg") no-repeat;
+    background:0 70% url("../../assets/forum/12.jpg") no-repeat;
     background-size: 100% ;
     /*min-height: 900px;*/
     position: relative;

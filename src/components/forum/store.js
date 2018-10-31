@@ -10,11 +10,13 @@ const store = new Vuex.Store({
     nametype:'b'
   },
   mutations: {
-    addName (state,name) {
+
+  },
+  addName (state,name) {
       state.name=name.amount
       state.nametype=name.am
     }
-  },
+
 
 })
 

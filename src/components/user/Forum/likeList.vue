@@ -1,9 +1,9 @@
 <template>
   <div class="inner_ado">
-    <div class="tol" v-for="(val,index) in value">
+    <div class="tol" v-for="(val,index) in lostlists">
       <el-row class="card">
         <el-col :span="7" class="petPic">
-          <div class="pic"></div>
+          <div class="pic"><img :src='url+val.faImg'></div>
         </el-col>
         <el-col :span="15">
              <span   @click="see(val.faId)">
@@ -33,10 +33,29 @@
         </div>
       </el-row>
     </div>
+
     <div v-if="isshow" class="noList">
       <img src="../../../assets/user/default8.png" alt="">
       <p>还没有任何收藏哦</p>
     </div>
+    <!--分页-->
+    <el-row>
+      <div class="block">
+        <span class="demonstration"></span>
+        <el-pagination ref="elpage"
+                       @current-change="change()"
+                       :current-page.sync="pageIndex"
+                       layout="prev, pager, next"
+                       :total="pageCount"
+                       :page-size = "pagesize"
+        >
+        </el-pagination>
+      </div>
+      <!--<el-col :span="10" :push="7">-->
+      <!--<change-page></change-page>-->
+      <!--</el-col>-->
+    </el-row>
+    <p v-if="hide" class="cc">取消成功</p>
   </div>
 </template>
 
@@ -44,41 +63,76 @@
 <script>
   import  axios from 'axios'
   import {mapGetters} from 'vuex';
-  import  lifelist from './lifeList.vue'
-  import changePage from '../../matchmaking/changepage.vue'
+
   export default {
     name: "likeList",
     components: {
-      'life-list': lifelist,
-      'change-page': changePage,
     },
     data() {
       return {
         visiblelife: false,
         isshow:false,
-        value: [],
+
         visible1:[],
-        hide:false
+        hide:false,
+
+        lostlists:[],
+        pageIndex: 1,
+        pagesize: 3,  //每页条数
+        pageCount:0,
+        value: [],//放数据库取得数据
+        url:this.$store.state.url,
+
       }
     },
 
-    computed: mapGetters([
+    computed: {
+      ...mapGetters([
       'UserId',
       'UserName',
     ]),
+      myActData1(){
+        return this.lostlists;
+      }
+    },
+
     methods:{
+      loadData() {
+        this.lostlists = [];
+        let start = (this.pageIndex-1) * this.pagesize;
+        let end = start + this.pagesize;
+        if(end>=this.pageCount){
+          end=this.pageCount
+        }
+        for (let i = start; i < end; i++) {
+          this.lostlists.push(this.value[i])
+        }
+      },
+      change(){
+        return this.loadData();
+      },
       ajax(){
         let id = this.UserId.replace(/\"/g, "")
         axios.get(this.$store.state.url+`/forumSee/user/like?userId=${id}`).then((result) => {
           this.value=[]
           this.value = result.data.data;
 
+          if( this.value.length<1){
+            this.lostlists = [];
+            this.showPic()
+          }
+            this.pageCount=this.value.length;
+            this.loadData()
         })
       },
       see(index) {
         let storage = window.localStorage;
         storage.faId = index
 
+      },
+
+      showPic() {
+        this.isshow = true
       },
       delLike(faId){
         let _this=this
@@ -95,11 +149,18 @@
               _this.visible1=[],
               // _this.publishdets=[],
               _this.ajax()
+              _this.show()
           }
         })
         // this.visible2 = false
       },
-
+      show() {
+        let _this = this
+        _this.hide = true
+        setTimeout(function () {
+          _this.hide = false
+        }, 3000)
+      },
     }
     ,
     mounted() {
@@ -109,6 +170,13 @@
 </script>
 
 <style scoped>
+  .block{
+    width: 60%;
+    margin-left: 20%;
+    text-align: center;
+    margin-top: 90px;
+    margin-bottom: 30px;
+  }
   .cc {
     width: 180px;
     height: 60px;
@@ -118,9 +186,10 @@
     border-radius: 3px;
     position: fixed;
     top: 50%;
-    left: 70%;
+    left: 60%;
     color: #fefefe;
     font-size: 18px;
+    z-index:100;
   }
 
   .inner_ado{
@@ -149,9 +218,13 @@
     width: 110px;
     height: 110px;
     border-radius: 110px;
-    background: -10px -10px url("../../../assets/match/mao1.jpg");
     margin-top: 20px;
     margin-left: 10px;
+  }
+  .pic img{
+    width: 110px;
+    height: 110px;
+    border-radius: 110px;
   }
   .petPic{
     height: 200px;

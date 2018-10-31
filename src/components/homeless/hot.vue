@@ -8,21 +8,25 @@
     <div class="right">
       <div class="title2" >
          <h3 class="line">最新寻宠</h3>
-        <el-row v-for="(diary,index) in diarys" :key="index"class="ROW">
 
+        <el-row v-for="(diary,index) in diarys" :key="index" class="ROW">
+          <router-link  tag="li" :to="'/homeless/lostdetails/'+diary.lpId" style="list-style: none;cursor: pointer" exact>
          <!--<div>-->
            <!--<router-link   tag="li" :to="'/homeless/lostpetsdetails/'+diary.lpId" style="cursor: pointer;list-style: none" exact>-->
-          <el-col :span="7">
+          <el-col :span="5">
             <img alt="" :src="urlImg(diary.lppic.split(',')[0])">
           </el-col>
            <!--</router-link>-->
            <!--</div>-->
 
-          <el-col :span="16" :push="1">
+          <el-col :span="17" :push="2">
             <span>时间：{{diary.lpTime}}</span>
             <span>丢失地点：{{diary.address}}</span>
+            <span >报酬：{{diary.reward}}</span>
           </el-col>
+          </router-link>
         </el-row>
+
          <!--<ul class="lie" v-for="diary in diarys">-->
            <!--<li>-->
              <!--<a href="">-->
@@ -31,6 +35,9 @@
            <!--</li>-->
          <!--</ul>-->
       </div>
+    </div>
+    <div class="ct">
+      <img src="../../assets/homeless/ct.png" alt="">
     </div>
   </div>
 </template>
@@ -97,7 +104,7 @@
   .button span{
     display: inline-block;
     border: 1px solid cornflowerblue;
-    font-size: 17px;
+    font-size: 22px;
     width: 100px;
     background-color: cornflowerblue;
     color:white;
@@ -129,5 +136,9 @@
   .title2 img{
     height: 70px;
     width: 70px;
+  }
+  .ct img{
+
+    margin-left: 60px;
   }
 </style>

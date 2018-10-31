@@ -7,13 +7,13 @@
       <el-col :span="7">发布时间</el-col>
       <el-col :span="4">操作</el-col>
     </el-row>
-    <el-row style="text-align:center;margin-top: 20px;line-height: 40px;" v-for="(myAply,index) in showmyAply" :key="showmyAply.length">
+    <el-row style="text-align:center;margin-top: 20px;line-height: 40px;" v-for="(myAply,index) in myAplys" :key="index">
       <el-col :span="6">
         <el-col :span="12">头像</el-col>
         <el-col :span="12">{{myAply.username}}</el-col>
       </el-col>
       <el-col :span="7">{{myAply.title}}</el-col>
-      <el-col :span="7">{{myAply.relTime}}</el-col>
+      <el-col :span="7">{{myAply.relTime}}</el-col>s
       <el-col :span="4">
         <el-popover
           placement="top"
@@ -42,8 +42,24 @@
           return{
             visiblematch:[],
             isshow:false,
-
+            myAplys:[],
+            myAplydata:[],
+            userId:this.$store.state.userId,
           }
+      },
+      created(){
+        axios.get(this.$store.state.url+`/matchmaking/${this.userId}/sendaply`).then((result) => {
+          this.myAplydata = result.data.data[0];
+          console.log(result.data.data[0]);
+          for (let i = 0; i < this.myAplydata.length; i++) {
+            this.myAplys.push(this.myAplydata[i]);
+            this.visiblematch.push(false)
+          }
+          if(result.data.data[0].length==0){
+            this.showPic()
+            // _this.isshow=true
+          }
+        })
       },
       methods:{
         showPic:function () {

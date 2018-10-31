@@ -3,6 +3,7 @@
 
     <br>
     <br>
+<p class="top">热门文章</p>
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -17,9 +18,9 @@
           <ul class="ul">
             <li class="li" v-for="val in value">
 
-              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-                <img class=img  @click="see(val.faId)" :src='url+val.faImg'>
-                <p class="p"><span class="left0"></span><a @click="see(val.faId)" class="a title">{{val.faTitle}}</a></p>
+              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
+                <img class=img  @click="see(val[0].faId)" :src='url+val[0].faImg'>
+                <p class="p"><span class="left0"></span><a @click="see(val[0].faId)" class="a title">{{val[0].faTitle}}</a></p>
               </router-link>
 
             </li>
@@ -29,9 +30,9 @@
           <ul class="ul">
             <li class="li" v-for="val in value1">
 
-                <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-                <img class=img  @click="see(val.faId)" :src='url+val.faImg'>
-                <p class="p" @click="see(val.faId)"><span class="left0"></span><a class="a title">{{val.faTitle}}</a></p>
+                <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
+                <img class=img  @click="see(val[0].faId)" :src='url+val[0].faImg'>
+                <p class="p" @click="see(val[0].faId)"><span class="left0"></span><a class="a title">{{val[0].faTitle}}</a></p>
               </router-link>
 
             </li>
@@ -40,9 +41,9 @@
         <div class="item">
           <ul class="ul">
             <li class="li" v-for="val in value2">
-              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-                <img class=img @click="see(val.faId)"  :src='url+val.faImg'>
-                <p class="p" @click="see(val.faId)" ><span class="left0"></span><a class="a title">{{val.faTitle}}</a></p>
+              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
+                <img class=img @click="see(val[0].faId)"  :src='url+val[0].faImg'>
+                <p class="p" @click="see(val[0].faId)" ><span class="left0"></span><a class="a title">{{val[0].faTitle}}</a></p>
               </router-link>
             </li>
           </ul>
@@ -64,7 +65,7 @@
   import store from './store.js'
 
   export default {
-    name: "Recommend",
+    name: "MostCom",
     data() {
       return {
         url: this.$store.state.url,
@@ -82,7 +83,7 @@
 
     },
     mounted() {
-      axios.get(this.$store.state.url + "/forumSee/essence").then((result) => {
+      axios.get(this.$store.state.url + "/forumSee/com").then((result) => {
 
         this.mydata = result.data.data;
 
@@ -101,6 +102,15 @@
 </script>
 
 <style scoped>
+
+  .top{
+    text-align: center;
+    font-size:22px;
+    color: #294666;
+    margin-bottom:40px;
+
+    margin-top:-10px;
+  }
   #carousel-example-generic {
     width: 1190px;
     /*padding-right:40px;*/
