@@ -3,9 +3,9 @@
     <div class="song">
       <div class="listbox clearfix" v-for="(activity,index) in myActData1" :key="index"  style="margin-bottom: 10px"  >
         <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
-          <div class="listimg img" style="float: left">
+          <div class="listimg img" style="float: left;">
             <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
-            <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="width: 150px;height: 140px;">
+            <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="width: 150px;height: 150px;">
             <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/founded/'+activity.state" style="float: left;list-style: none;cursor: pointer" exact>-->
               <!--<img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="" style="width: 150px;height: 140px;">-->
             <!--</router-link>-->
@@ -18,7 +18,7 @@
               <div><span>丢失地址：</span><span>{{activity.address}}</span> <br>
                 <span>丢失人：</span><span>{{activity.userName}}</span> <br>
                 <span>丢失类型：</span><span>{{activity.type}}</span>
-                <img src="../../assets/homeless/764087968048435921.png" alt="" class="zhang"  id="f" >
+                <!--<img src="../../assets/homeless/764087968048435921.png" alt="" class="zhang"  id="f" >-->
               </div>
             </div>
           </div>

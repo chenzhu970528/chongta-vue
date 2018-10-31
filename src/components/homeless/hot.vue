@@ -21,6 +21,7 @@
           <el-col :span="16" :push="1">
             <span>时间：{{diary.lpTime}}</span>
             <span>丢失地点：{{diary.address}}</span>
+            <span >报酬：{{diary.reward}}</span>
           </el-col>
         </el-row>
          <!--<ul class="lie" v-for="diary in diarys">-->
@@ -70,7 +71,8 @@
         // this.homeTime = result.data.data.homeTime
         // console.log(result.data)
         for (let i = 0; i < this.mydata.length; i++) {
-          this.diarys.push(this.mydata[i])
+          this.diarys.push(this.mydata[i]);
+          if(this.diarys[i].reward=='') this.diarys[i].reward='无'
         }
       })
     }
@@ -97,7 +99,7 @@
   .button span{
     display: inline-block;
     border: 1px solid cornflowerblue;
-    font-size: 17px;
+    font-size: 22px;
     width: 100px;
     background-color: cornflowerblue;
     color:white;

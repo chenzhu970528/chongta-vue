@@ -16,7 +16,10 @@
         <h4>{{activity.getmes}}</h4>
         <div class="address">
           <div><span>地址：</span><span>{{activity.address}}</span> <br>
-            <span>简述：</span><span>{{activity.detail}}</span></div>
+            <span>简述：</span>
+            <span style="display: inline;overflow: hidden">
+              {{activity.detail}}</span>
+          </div>
         </div>
       </div>
     </router-link>

@@ -4,7 +4,7 @@
       <div class="top1"></div>
       <div class="col-xs-8 col-xs-offset-2 text" style="">
         <h1 style="">“</h1>
-        <p>
+        <p style="font-size: 18px">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;救助和领养，不仅仅是一时的不忍和爱心，真的是一件需要我们花时<br>
           间，花精力、花金钱的事情。同时，它们的命运也在您的一念之间。如 <br>
           果您现在还没有能力做救助人，那么从宣传“领养代替购买、文明养宠，不 <br>
