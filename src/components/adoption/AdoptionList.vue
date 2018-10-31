@@ -1,7 +1,7 @@
 <template>
   <div style="margin-left: 35px" >
     <el-row>
-      <el-col :span="5" v-for="(diary, index) in diarys" :key="diarys.length" :offset="index > 0 ? 4 : 0">
+      <el-col :span="5" v-for="(diary, index) in mydiarys" :key="index" :offset="index > 0 ? 4 : 0">
         <router-link class="list-group-item-info" tag="div" :to="'/adoption/details/'+diary.adoId"><a>
           <el-card  :body-style="{ padding: '0px' }">
             <div class="view">
@@ -35,7 +35,7 @@
     name: "AdoptionList",
     data() {
       return {
-        mydata: [],
+        mydata: [],//获取所有数据
         diarys: [],
         dalength:0,
         moren:8,
@@ -43,10 +43,15 @@
         url:this.$store.state.url,
       };
     },
+    computed:{
+      mydiarys(){
+        return this.diarys;
+      }
+    },
     methods: {
       ajaxall(){
         axios.get(this.$store.state.url+"/adoptions").then((result) => {
-          console.log(result.data.data)
+          // console.log(result.data.data)
           this.mydata = result.data.data;
           this.dalength=result.data.data.length-8
           this.handleInfo()

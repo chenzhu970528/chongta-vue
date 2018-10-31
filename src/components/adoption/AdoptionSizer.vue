@@ -441,23 +441,28 @@
 
         <div class="sex">
           <span class="text-primary">性别:</span>
-          <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="#" role="tab" data-toggle="tab">不限</a></li>
-            <li role="presentation"><a href="#" role="tab" data-toggle="tab">公</a></li>
-            <li role="presentation"><a href="#" role="tab" data-toggle="tab">母</a></li>
-          </ul>
+          <el-radio-group  v-model="adosex" size="small">
+            <el-radio-button label="不限"></el-radio-button>
+            <el-radio-button label="公"></el-radio-button>
+            <el-radio-button label="母"></el-radio-button>
+          </el-radio-group>
+          <!--<ul class="nav nav-pills">-->
+            <!--<li role="presentation" class="active"><a href="#" role="tab" data-toggle="tab">不限</a></li>-->
+            <!--<li role="presentation"><a href="#" @click="" role="tab" data-toggle="tab">公</a></li>-->
+            <!--<li role="presentation"><a href="#" role="tab" data-toggle="tab">母</a></li>-->
+          <!--</ul>-->
         </div>
         <div class="sex">
           <span class="text-primary">年龄:</span>
-          <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="#" role="tab" data-toggle="tab">不限</a></li>
-            <li role="presentation"><a href="#" role="tab" data-toggle="tab">2个月内</a></li>
-            <li role="presentation"><a href="#" role="tab" data-toggle="tab">2-3个月</a></li>
-            <li role="presentation"><a href="#" role="tab" data-toggle="tab">3-6个月</a></li>
-            <li role="presentation"><a href="#" role="tab" data-toggle="tab">6-12个月</a></li>
-            <li role="presentation"><a href="#" role="tab" data-toggle="tab">1年以上</a></li>
-            <li role="presentation"><a href="#" role="tab" data-toggle="tab">3年以上</a></li>
-          </ul>
+          <el-radio-group  v-model="adoage" size="small">
+            <el-radio-button label="不限"></el-radio-button>
+            <el-radio-button label="2个月内"></el-radio-button>
+            <el-radio-button label="2-3个月"></el-radio-button>
+            <el-radio-button label="3-6个月"></el-radio-button>
+            <el-radio-button label="6-12个月"></el-radio-button>
+            <el-radio-button label="1年以上"></el-radio-button>
+            <el-radio-button label="3年以上"></el-radio-button>
+          </el-radio-group>
         </div>
       </div>
 
@@ -470,7 +475,10 @@
     name: "AdoptionSizer",
     data() {
       return {
-        type: 0
+        type: 0,
+        adosex:'不限',
+        adoage:'不限',
+
       }
     },
     methods: {

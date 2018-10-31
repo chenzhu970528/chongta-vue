@@ -112,7 +112,7 @@
 <style scoped>
   .polaroid {
     position: absolute;
-    top: -320px;
+    top: -300px;
     left: 150px;
     width: 400px;
     height: 320px;
@@ -122,7 +122,7 @@
     border-style: solid;
     border-color: #fff;
     border-width: 1em 1em 4.5em;
-    box-shadow: 0 0 1em rgba(153,153,153,0.4), 0 0 25em rgba(0,0,0,0.7), 0 0 30em rgba(0,0,0,0.5), 0 0 40em #000;
+    box-shadow: 0 0 10px rgba(153,153,153,0.1), 0 0 20px rgba(0,0,0,0.4), 0 0 30px rgba(0,0,0,0.2), 0 0 30px #000;
     -webkit-animation: swing 3.5s ease-in-out forwards infinite;
     animation: swing 3.5s ease-in-out forwards infinite;
     -webkit-transform-origin: 50% -10em;
