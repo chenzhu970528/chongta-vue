@@ -71,8 +71,7 @@
         // this.homeTime = result.data.data.homeTime
         // console.log(result.data)
         for (let i = 0; i < this.mydata.length; i++) {
-          this.diarys.push(this.mydata[i]);
-          if(this.diarys[i].reward=='') this.diarys[i].reward='无'
+          this.diarys.push(this.mydata[i])
         }
       })
     }

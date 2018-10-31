@@ -65,7 +65,7 @@
   import store from './store.js'
 
   export default {
-    name: "Recommend",
+    name: "MostCom",
     data() {
       return {
         url: this.$store.state.url,

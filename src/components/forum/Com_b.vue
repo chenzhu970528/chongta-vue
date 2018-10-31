@@ -224,6 +224,7 @@
     left: 50%;
     color: #fefefe;
     font-size: 18px;
+    z-index:100;
   }
 
   .left {
