@@ -63,20 +63,11 @@
                   </el-input>
                 </p>
               </div>
-          <!--<div>-->
-            <!--地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：-->
-            <!--<p>-->
-              <!--<el-input-->
-                <!--placeholder="请输入内容"-->
-                <!--v-model="aplymatch.address"-->
-                <!--clearable>-->
-              <!--</el-input>-->
-            <!--</p>-->
-          <!--</div>-->
           <div>性&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
             <el-radio   v-model="aplymatch.sex"label="1">公</el-radio>
             <el-radio   v-model="aplymatch.sex"label="2">母</el-radio>
           </div>
+
           <!--<div>交&nbsp;&nbsp;配&nbsp;&nbsp;史：-->
             <!--<el-radio  v-model="aplymatch.maHistory" label="1">有</el-radio>-->
             <!--<el-radio  v-model="aplymatch.maHistory" label="2">无</el-radio>-->
@@ -85,7 +76,7 @@
       </div>
       <span slot="footer" class="dialog-footer">
     <el-button @click="centerDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="aply">提交</el-button>
+    <el-button type="primary" @click="aplypb">提交</el-button>
   </span>
     </el-dialog>
   </div>
@@ -100,27 +91,29 @@
         aplymatch:{
           type:'',
           sex:'0',
-          maHistory:'0',
           age:'',
           detail:'',
           // address:'',
           birth:'2018-11-11',
           PetName:'',
-          aplyId:'',
+          aplyId:this.$store.state.userId,
+
           // matId:this.$router.params.matId,
         },
-        upath:'',  //保存选中的文件
-        options2: [{
-          label: '江苏',
-          cities: []
-        }, {
-          label: '浙江',
-          cities: []
-        }],
-        props: {
-          value: 'label',
-          children: 'cities'
-        },
+        upath:'',
+        check1:false,
+        //保存选中的文件
+        // options2: [{
+        //   label: '江苏',
+        //   cities: []
+        // }, {
+        //   label: '浙江',
+        //   cities: []
+        // }],
+        // props: {
+        //   value: 'label',
+        //   children: 'cities'
+        // },
         value1: '',
         value2: '',
         inputkind: '',
@@ -136,73 +129,86 @@
     },
     methods: {
       // 登录验证
-      islogin(){
-        if(!this.$store.state.isLogin) {
+      islogin() {
+        if (!this.$store.state.isLogin) {
           alert("请登录后发布")
           return false
-        }else {
+        } else {
           this.centerDialogVisible = true
         }
       },
-      aply(){
+      aply() {
         let _this = this;
         var zipFormData = new FormData();
-        for(var i = 0 ; i< this.upath.length ; i++){
+        for (var i = 0; i < this.upath.length; i++) {
           zipFormData.append('filename', this.upath[i]);
         }
-        $.ajax({
-          url: this.$store.state.url+"/matchmaking/addaply",
-          type: "post",
-          data: {
-            type:this.aplymatch.type,
-            sex:this.aplymatch.sex,
-            detail:this.aplymatch.detail,
-            age:this.aplymatch.age,
-            // address:this.aplymatch.address,
-            birth:this.aplymatch.birth,
-            PetName:this.aplymatch.PetName,
-            aplyId:this.$store.state.userId,
-            matId:this.matId
-          },
-          success: function (result) {
-            // console.log(result.data)
+        //添加其他的表单元素
+        zipFormData.append('PetName', this.aplymatch.PetName)
+        zipFormData.append('type', this.aplymatch.type)
+        zipFormData.append('birth', this.aplymatch.birth)
+        zipFormData.append('age', this.aplymatch.age)
+        zipFormData.append('detail', this.aplymatch.detail)
+        zipFormData.append('sex', this.aplymatch.sex)
+        zipFormData.append('aplyId', this.aplymatch.aplyId)
+        zipFormData.append('matId', this.matId)
+        let config = {headers: {'Content-Type': 'multipart/form-data'}};
+        this.$axios.post(this.$store.state.url + '/matchmaking/addaply', zipFormData, config)
+          .then(function (response) {
+
             alert("发布成功！！！")
-            history.go(-1)
-            location.reload()
-          }
-        })
+            // location.href = _this.$store.state.myurl + '/homeless'
+          }).catch((err) => {
+          console.log(err)
+          alert(err)
+        });
       },
+      //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
         this.upath = e.target.files;
+        if (this.upath.length < 2 || this.upath.length > 6) {
+          alert("请上传2-6张图片")
+          this.check1 = false
+        } else {
+          this.check1 = true
+        }
       },
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
+      // 表单验证
+      aplypb(){
+        if(this.check1) {
+          this.aply()
+        }else {
+          alert('不符合上传要求，请重新输入并同意相关协议')
+        }
       },
-      handlePreview(file) {
-        console.log(file);
-      },
-      handleExceed(files, fileList) {
-        this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-      },
-      beforeRemove(file, fileList) {
-        return this.$confirm(`确定移除 ${ file.name }？`);
-      },
-      handleItemChange(val) {
-        console.log('active item:', val);
-        setTimeout(_ => {
-          if (val.indexOf('江苏') > -1 && !this.options2[0].cities.length) {
-            this.options2[0].cities = [{
-              label: '南京'
-            }];
-          } else if (val.indexOf('浙江') > -1 && !this.options2[1].cities.length) {
-            this.options2[1].cities = [{
-              label: '杭州'
-            }];
-          }
-        }, 300);
-      }
+      //     $.ajax({
+      //       url: this.$store.state.url+"/matchmaking/addaply",
+      //       type: "post",
+      //       data: {
+      //         type:this.aplymatch.type,
+      //         sex:this.aplymatch.sex,
+      //         detail:this.aplymatch.detail,
+      //         age:this.aplymatch.age,
+      //         // address:this.aplymatch.address,
+      //         birth:this.aplymatch.birth,
+      //         PetName:this.aplymatch.PetName,
+      //         aplyId:this.$store.state.userId,
+      //         matId:this.matId
+      //       },
+      //       success: function (result) {
+      //         // console.log(result.data)
+      //         alert("发布成功！！！")
+      //         history.go(-1)
+      //         location.reload()
+      //       }
+      //     })
+      //   },
+      //   changeImage(e) {
+      //     this.upath = e.target.files;
+      //   },
+      //
+      // }
     }
-    // }
   }
 
 
