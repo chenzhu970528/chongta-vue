@@ -17,12 +17,13 @@
           <p class="title">标题：<span>{{showList.title}}</span></p>
           <p>发布时间：<span>{{showList.relTime}}</span></p>
           <p>地点：<span>{{showList.address}}</span></p>
-          <el-row>
+          <el-row class="details">
             <el-col :span="5">详细信息：</el-col>
             <el-col :span="18" >
               <span class="detail">{{showList.detail}}</span>
             </el-col>
           </el-row>
+          <p>申请人：<span> <match-User :matId="showList.matId"></match-User></span></p>
         </el-col>
         <div>
           <el-popover
@@ -67,8 +68,12 @@
 
 <script>
   import axios from 'axios'
+  import matchUser from './matchUser.vue'
     export default {
       name: "matchList",
+      components:{
+        'match-User':matchUser
+      },
       data(){
         return{
           visiblematch: [],
@@ -155,17 +160,17 @@
         ajaxall(){
           let _this=this;
           axios.get(this.$store.state.url+`/matchmaking/matchdetails/${this.relId}`).then((result) => {
-            console.log(result.data.data);
+            // console.log(result.data.data);
             _this.myActData = result.data.data;
             _this.pageCount=_this.myActData.length;
-            console.log(_this.pageCount)
+            // console.log(_this.pageCount)
             _this.loadData()
           })
         }
       },
       mounted(){
-        this.ajax()
-        this.ajaxall()
+        this.ajax();
+        this.ajaxall();
       }
     }
 </script>
@@ -242,5 +247,8 @@
     color: #575757;
     position: relative;
     top:-500px;
+  }
+  .details{
+    margin-top: 20px;
   }
 </style>

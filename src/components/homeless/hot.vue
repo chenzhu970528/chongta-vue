@@ -8,7 +8,7 @@
     <div class="right">
       <div class="title2" >
          <h3 class="line">最新寻宠</h3>
-        <el-row v-for="diary in diarys" class="ROW">
+        <el-row v-for="(diary,index) in diarys" :key="index"class="ROW">
 
          <!--<div>-->
            <!--<router-link   tag="li" :to="'/homeless/lostpetsdetails/'+diary.lpId" style="cursor: pointer;list-style: none" exact>-->
@@ -21,6 +21,7 @@
           <el-col :span="16" :push="1">
             <span>时间：{{diary.lpTime}}</span>
             <span>丢失地点：{{diary.address}}</span>
+            <span >报酬：{{diary.reward}}</span>
           </el-col>
         </el-row>
          <!--<ul class="lie" v-for="diary in diarys">-->
@@ -70,7 +71,8 @@
         // this.homeTime = result.data.data.homeTime
         // console.log(result.data)
         for (let i = 0; i < this.mydata.length; i++) {
-          this.diarys.push(this.mydata[i])
+          this.diarys.push(this.mydata[i]);
+          if(this.diarys[i].reward=='') this.diarys[i].reward='无'
         }
       })
     }
@@ -97,7 +99,7 @@
   .button span{
     display: inline-block;
     border: 1px solid cornflowerblue;
-    font-size: 17px;
+    font-size: 22px;
     width: 100px;
     background-color: cornflowerblue;
     color:white;

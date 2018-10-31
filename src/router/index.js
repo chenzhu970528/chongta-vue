@@ -44,6 +44,9 @@ import com from '../components/user/Forum/mycom.vue'
 import Homeless from '../components/homeless/Homeless.vue'
 import publish from '../components/homeless/publish.vue'
 
+import lostimg from '../components/homeless/lostimg.vue'
+import  lostmes from '../components/homeless/lostmes.vue'
+import lostdetail from '../components/homeless/lostdetail.vue'
 import detail from '../components/homeless/detail.vue'
 import wantadopt from '../components/homeless/wantadopt'
 import people from '../components/homeless/people'
@@ -103,8 +106,16 @@ export default new Router({
     },
     {
       path: '/adoption/issue',
-      name:'AdoIssue',
+      name: 'AdoIssue',
       component: AdoIssue,
+      beforeEnter: (to, from, next) => {
+        if (localStorage.getItem('userId')) {
+          next()
+        } else {
+          next(false)
+          alert('请登陆后发布')
+        }
+      }
     },
     // 婚介
     {
@@ -126,7 +137,15 @@ export default new Router({
     {
       path:'/matchmaking/mpublish',
       name:'mpublish',
-      component:mpublish
+      component:mpublish,
+      beforeEnter: (to, from, next) => {
+        if (localStorage.getItem('userId')) {
+          next()
+        } else {
+          next(false)
+          alert('请登陆后发布')
+        }
+      }
     },
     //流浪精灵模块
     {
@@ -153,22 +172,26 @@ export default new Router({
       path: '/homeless/publish',
       name: 'publish',
       component: publish,
+      beforeEnter: (to, from, next) => {
+        if(localStorage.getItem('userId')){
+          next()
+        }else {
+          next(false)
+          alert('请登陆后发布')
+        }
+      }
     },
-    // {
-    //   path: '/homeless/detailsimg',
-    //   name:'detailsimg',
-    //   component: detailsimg,
-    // },
+
     {
       path: '/homeless/details/:homeId',
       name:'detail',
       component: detail,
     },
-    // {
-    //   path: '/homeless/details/:userId',
-    //   name:'detailsmes',
-    //   component: detailsmes,
-    // },
+    {
+      path: '/homeless/lostdetails/:lpId',
+      name:'lostdetail',
+      component: lostdetail,
+    },
 
 
     {path: '/user/personal',
@@ -200,22 +223,31 @@ export default new Router({
     {path: '/forum/:faId',
       name: 'Details',
       component: Details,
+
     },
     {
       path: '/homeless/wantadopt',
       name: 'wantadopt',
       component:wantadopt,
+      beforeEnter: (to, from, next) => {
+        if(localStorage.getItem('userId')){
+          next()
+        }else {
+          next(false)
+          alert('请登陆后发布')
+        }
+      }
     },
     {
       path: '/homeless/detail',
       name: 'detail',
       component: detail,
     },
-    // {
-    //   path: '/homeless/details',
-    //   name: 'details',
-    //   component: details,
-    // },
+    {
+      path: '/homeless/lostdetail',
+      name: 'lostdetail',
+      component: lostdetail,
+    },
     {
       path: '/finish',
       name: 'finish',
@@ -225,6 +257,16 @@ export default new Router({
       path: '/homeless/people',
       name: 'people',
       component: people,
+    },
+    {
+      path: '/homeless/lostimg',
+      name: 'lostimg',
+      component: lostimg,
+    },
+    {
+      path: '/homeless/lostmes',
+      name: 'lostmes',
+      component: lostmes,
     },
     // 个人中心
     {
@@ -259,7 +301,10 @@ export default new Router({
       name:'UserDetails',
       component: UserDetails,
     },
-
-
   ]
 })
+
+
+
+
+

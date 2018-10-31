@@ -6,21 +6,9 @@
       :visible.sync="centerDialogVisible"
       width="50%"
       center>
-      <div class="modal-header">
-        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-        <!--<h4 class="modal-title" >婚配申请表</h4>-->
-      </div>
+      <div class="modal-header"></div>
       <div class="modal-body">
         <form action="">
-          <!--<div>宠物类型：-->
-          <!--<p>-->
-          <!--<el-input-->
-          <!--placeholder="猫"-->
-          <!--v-model="inputkind"-->
-          <!--clearable>-->
-          <!--</el-input>-->
-          <!--</p>-->
-          <!--</div>-->
           <div>
             爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
             <p>
@@ -30,9 +18,19 @@
                 clearable>
               </el-input>
             </p>
-
           </div>
           <div class="block">
+            <div>
+              品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;种：
+              <p>
+                <el-input
+                  placeholder="例如：哈士奇"
+                  v-model="aplymatch.type"
+                  clearable>
+                </el-input>
+              </p>
+            </div>
+            <div class="block">
             <span class="demonstration">生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：</span>
             <p>
               <el-date-picker
@@ -43,26 +41,28 @@
               </el-date-picker>
             </p>
           </div>
-          <div>
-            年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：
-            <p>
-              <el-input
-                placeholder="数字"
-                v-model="aplymatch.age"
-                clearable>
-              </el-input>
-            </p>
-          </div>
-          <div>
-            详&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;情：
-            <p>
-              <el-input
-                placeholder="请输入内容"
-                v-model="aplymatch.detail"
-                clearable>
-              </el-input>
-            </p>
-          </div>
+              <div>
+                年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：
+                <p>
+                  <el-input placeholder="以月为单位" v-model="aplymatch.age" clearable></el-input>
+                </p>
+              </div>
+            <label class="control-label">上传图片：</label>
+              <input type="file" name="avatar"
+                     @change="changeImage($event)"
+                     accept="image/gif,image/jpeg,image/jpg,image/png"
+                     ref="avatarInput"
+                     multiple><br/>
+              <div>
+                详&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;情：
+                <p>
+                  <el-input
+                    placeholder="请输入内容"
+                    v-model="aplymatch.detail"
+                    clearable>
+                  </el-input>
+                </p>
+              </div>
           <!--<div>-->
             <!--地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：-->
             <!--<p>-->
@@ -81,7 +81,7 @@
             <!--<el-radio  v-model="aplymatch.maHistory" label="1">有</el-radio>-->
             <!--<el-radio  v-model="aplymatch.maHistory" label="2">无</el-radio>-->
           <!--</div>-->
-        </form>
+          </div></form>
       </div>
       <span slot="footer" class="dialog-footer">
     <el-button @click="centerDialogVisible = false">取 消</el-button>
@@ -98,16 +98,18 @@
       return {
         centerDialogVisible: false,
         aplymatch:{
+          type:'',
           sex:'0',
           maHistory:'0',
           age:'',
           detail:'',
-          address:'',
+          // address:'',
           birth:'2018-11-11',
           PetName:'',
           aplyId:'',
           // matId:this.$router.params.matId,
         },
+        upath:'',  //保存选中的文件
         options2: [{
           label: '江苏',
           cities: []
@@ -143,26 +145,35 @@
         }
       },
       aply(){
-        let _this = this
+        let _this = this;
+        var zipFormData = new FormData();
+        for(var i = 0 ; i< this.upath.length ; i++){
+          zipFormData.append('filename', this.upath[i]);
+        }
         $.ajax({
           url: this.$store.state.url+"/matchmaking/addaply",
           type: "post",
           data: {
+            type:this.aplymatch.type,
             sex:this.aplymatch.sex,
             detail:this.aplymatch.detail,
-            address:this.aplymatch.address,
+            age:this.aplymatch.age,
+            // address:this.aplymatch.address,
             birth:this.aplymatch.birth,
             PetName:this.aplymatch.PetName,
             aplyId:this.$store.state.userId,
             matId:this.matId
           },
           success: function (result) {
-            console.log(result.data)
+            // console.log(result.data)
             alert("发布成功！！！")
             history.go(-1)
             location.reload()
           }
         })
+      },
+      changeImage(e) {
+        this.upath = e.target.files;
       },
       handleRemove(file, fileList) {
         console.log(file, fileList);

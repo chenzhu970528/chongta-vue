@@ -81,7 +81,7 @@
         // console.log('-----------------')
         // console.log('start:' + start)
         // console.log('end:' + end)
-        console.log(this.myActData[1]);
+        // console.log(this.myActData[1]);
         if(end>=this.pageCount){
           end=this.pageCount
         }
@@ -96,10 +96,10 @@
     mounted(){
       let _this=this;
       axios.get(this.$store.state.url+"/matchmaking").then((result) => {
-        console.log(result.data.data[0]);
+        // console.log(result.data.data[0]);
         _this.myActData = result.data.data[0];
         _this.pageCount=_this.myActData.length;
-        console.log(_this.pageCount)
+        // console.log(_this.pageCount)
         _this.loadData()
         // for (let i = 0; i < this.matchdata.length; i++) {
         //   this.activitys.push(this.myActData[i])

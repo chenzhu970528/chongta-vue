@@ -2,10 +2,10 @@
   <div >
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"> 宠物类型：</span> {{jsondata1.type?'猫':'狗'}}
+        <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"> 宠物类型：</span> {{jsondata1.type}}
       </li>
       <li class="list-group-item list-group-item-info">
-        <span class="glyphicon glyphicon-glass" aria-hidden="true"> 宠物性别：</span> {{jsondata1.sex?'公':'母'}}
+        <span class="glyphicon glyphicon-glass" aria-hidden="true"> 宠物性别：</span> {{petSex}}
       </li>
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-time" aria-hidden="true"> 发布时间：</span> {{jsondata1.homeTime}}
@@ -54,9 +54,21 @@
         diarys:[]
       }
     },
+    computed:{
+      petSex:{
+        get(){
+          let _this=this
+          if(_this.jsondata1.sex==0){
+            return '公'
+          }else {
+            return '母'
+          }
+        }
+      }
+    },
     created(){
       axios.get(this.$store.state.url+`/homeless/homelessdetails/${this.homeId}`).then((result) => {
-        console.log(result.data.data);
+        // console.log(result.data.data);
         this.jsondata1 = result.data.data;
       })
     }

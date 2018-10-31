@@ -32,7 +32,7 @@
           <label class="col-sm-3 control-label">宠物类别：</label>
           <div class="col-sm-6">
             <input type="text" @change="verify1" required="required" v-model="adoForm.petType" class="form-control" id="petType"
-                   placeholder="宠物类别(猫，狗，其他)">
+                   placeholder="请输入宠物种类">
           </div>
         </div>
         <!--<div class="form-group">-->
@@ -106,7 +106,7 @@
 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="button" @click="islogin" class="btn btn-default">发布</button>
+            <button type="button" @click="verify" class="btn btn-default">发布</button>
           </div>
         </div>
       </form>
@@ -146,15 +146,6 @@
     mounted(){
     },
     methods: {
-      // 登录验证
-      islogin() {
-        if (!this.$store.state.isLogin) {
-          alert("请登录后发布")
-          location.href=this.$store.state.myurl+'/adoption'
-        } else {
-          this.verify()
-        }
-      },
       // 验证
       verify1() {
         if (this.adoForm.petType == "") {
@@ -239,9 +230,9 @@
         let config = {headers: {'Content-Type': 'multipart/form-data'}};
         this.$axios.post(this.$store.state.url + '/adoptions/adoAdd', zipFormData, config)
           .then(function (response) {
-            console.log(response);
-            console.log(response.data);
-            console.log(response.bodyText);
+            // console.log(response);
+            // console.log(response.data);
+            // console.log(response.bodyText);
             alert("发布成功！！！")
             location.href=_this.$store.state.myurl+'/adoption'
           }).catch((err) => {

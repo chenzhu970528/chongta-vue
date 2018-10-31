@@ -4,16 +4,17 @@
 
     <ul class="list-group" >
     <li class="list-group-item list-group-item-info" v-for="(activity,index) in activitys" :key="index" style="margin-bottom: 10px" >
+      <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/lostdetails/'+activity.lpId" style="float: left;list-style: none;cursor: pointer" exact>
       <div class="img" style="float: left">
-        <!--<router-link   active-class="active" role="presentation" :to="'/homeless/homelessdetails/'+activity.homeId" style="cursor: pointer;list-style: none" exact>-->
         <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="width: 150px;height: 140px;margin-right: 15px;margin-top: -5px">
-        <!--</router-link>-->
+
       </div>
+      </router-link>
       <div><span>标题：{{activity.lpmes}}</span></div>
-      <div><span>地点：{{activity.address}}</span></div>
+      <div><span>丢失地点：{{activity.address}}</span></div>
       <div><span>奖赏：{{activity.reward}}</span></div>
-      <div><span>联系人昵称：{{activity.reward}}</span></div>
-      <div><span>号码：{{activity.reward}}</span></div>
+      <div><span>联系人昵称：{{activity.userName}}</span></div>
+      <div><span>号码：{{activity.userPhone}}</span></div>
 
     </li>
   </ul>
@@ -61,7 +62,7 @@
         this.activitys = [];
         let start = (this.pageIndex-1) * this.pagesize;
         let end = start + this.pagesize;
-        console.log(this.myActData[1]);
+        // console.log(this.myActData[1]);
         if(end>=this.pageCount){
           end=this.pageCount
         }
@@ -81,8 +82,11 @@
     mounted() {
       axios.get(this.$store.state.url+"/homeless/lostpets").then((result) => {
         this.myActData = result.data.data;
+        for (let i = 0; i < this.myActData.length; i++) {
+          if(this.myActData[i].reward=='') this.myActData[i].reward='无'
+        }
         this.pageCount=this.myActData.length;
-        this.loadData()
+        this.loadData();
       })
     }
   }

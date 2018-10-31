@@ -2,6 +2,7 @@
 <div>
   <div class="song">
   <div class="listbox clearfix" v-for="(activity,index) in myActData1" :key="index"  style="margin-bottom: 10px"  >
+    <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>
       <div class="listimg img" style="float: left">
         <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
         <img :src="urlImg(activity.homePic.split(',')[0])" alt="" style="width: 150px;height: 140px;">
@@ -10,22 +11,16 @@
         </router-link>
       </div>
 
+
       <div class="listInfo"   >
-        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>
         <h4>{{activity.getmes}}</h4>
-        </router-link>
         <div class="address">
           <div><span>地址：</span><span>{{activity.address}}</span> <br>
             <span>简述：</span><span>{{activity.detail}}</span></div>
         </div>
       </div>
-      <!--<div class="listCell">-->
-        <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId"-->
-                      <!--style="list-style: none;cursor: pointer" exact>-->
-          <!--<span class="glyphicon glyphicon-earphone"> 联系{{diary.userName}}</span>-->
-        <!--</router-link>-->
+    </router-link>
 
-      <!--</div>-->
     </div >
 
   </div>
@@ -72,7 +67,7 @@
         this.activitys = [];
         let start = (this.pageIndex-1) * this.pagesize;
         let end = start + this.pagesize;
-        console.log(this.myActData[1]);
+        // console.log(this.myActData[1]);
         if(end>=this.pageCount){
           end=this.pageCount
         }
@@ -94,7 +89,7 @@
         // console.log(result.data)
         _this.myActData = result.data.data;
         _this.pageCount=_this.myActData.length;
-        console.log(_this.pageCount)
+        // console.log(_this.pageCount)
         _this.loadData()
         // this.homeTime = result.data.data.homeTime
         // console.log(result.data)
