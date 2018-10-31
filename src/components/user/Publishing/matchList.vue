@@ -17,7 +17,7 @@
           <p class="title">标题：<span>{{showList.title}}</span></p>
           <p>发布时间：<span>{{showList.relTime}}</span></p>
           <p>地点：<span>{{showList.address}}</span></p>
-          <el-row>
+          <el-row class="details">
             <el-col :span="5">详细信息：</el-col>
             <el-col :span="18" >
               <span class="detail">{{showList.detail}}</span>
@@ -247,5 +247,8 @@
     color: #575757;
     position: relative;
     top:-500px;
+  }
+  .details{
+    margin-top: 20px;
   }
 </style>

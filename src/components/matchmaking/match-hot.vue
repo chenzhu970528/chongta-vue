@@ -18,7 +18,7 @@
 <style scoped>
   .hot{
     width: 320px;
-    height: 500px;
+    min-height: 500px;
     position: absolute;
     right: 10px;
     top: 300px;
