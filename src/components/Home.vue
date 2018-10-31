@@ -138,9 +138,9 @@
     left: 1%;
   }
   .top span:last-child{
-    position: absolute;
+    /*position: absolute;*/
     top:270px;
-    right: 1%;
+    left: 57%;
   }
   .bottom{
     margin-top:150px;
