@@ -22,39 +22,158 @@
         </a></router-link>
       </el-col>
     </el-row>
-
-    <button style="margin: 20px auto" type="button" @click="getMore" class="btn btn-default btn-lg btn-block">加载更多
+    <div v-if="nomore"class="nofind">
+      <img src="../../assets/adoption/nofind.png" alt="">
+      <p>抱歉，暂时没有找到相关的宠物</p>
+      <p><a @click="other">你可以看一看其他宠物 ></a></p>
+    </div>
+    <button v-if="(diarys.length)>8&&(mydiarys.length<diarys.length)" @click="next" style="margin: 20px auto" type="button"  class="btn btn-default btn-lg btn-block">加载更多
     </button>
   </div>
 </template>
 
 <script>
   import axios from 'axios'
-
+  import store from './store.js'
   export default {
     name: "AdoptionList",
     data() {
       return {
+        nomore:false,
         mydata: [],//获取所有数据
         diarys: [],
-        dalength:0,
-        moren:8,
-        nomas:false,
         url:this.$store.state.url,
+        Sizer:[],
+        q:0,
+        w:8,
+        page:1,
+        cou:0,
+        mydiarys:[]
       };
     },
     computed:{
-      mydiarys(){
-        return this.diarys;
+      adosex(){
+       return store.state.petSex
+      },
+      adoage(){
+        return store.state.petAge
+      },
+      adotype(){
+        return store.state.petType
       }
     },
+    watch:{
+      'adosex':'sizer',
+      'adotype':'sizer'
+    },
+
     methods: {
+      sizer(){
+        this.nomore=false
+        this.diarys=[]
+        this.mydiarys=[]
+        if(this.adotype==-1){
+          if(this.adosex==-1){
+            // 类型不限，性别不限
+            for (let i = 0; i < this.mydata.length; i++) {
+              this.diarys.push(this.mydata[i])
+            }
+          }
+          else{
+            // 类型不限，性别有限
+            for (let i = 0; i < this.mydata.length; i++) {
+              if(this.mydata[i].sex==this.adosex){
+                this.diarys.push(this.mydata[i])
+              }
+            }
+          }
+        }
+        else{
+          if(this.adosex==-1){
+            // 类型有限，性别不限
+            for (let i = 0; i < this.mydata.length; i++) {
+              if(this.mydata[i].petType==this.adotype){
+                this.diarys.push(this.mydata[i])
+              }
+            }
+          }
+          else{
+            // 类型有限，性别有限
+            for (let i = 0; i < this.mydata.length; i++) {
+              if(this.mydata[i].petType==this.adotype&&this.mydata[i].sex==this.adosex){
+                this.diarys.push(this.mydata[i])
+              }
+            }
+          }
+        }
+        //当前显示
+        if (this.diarys.length > 8) {
+          for (let i = 0; i < 8; i++) {
+            this.mydiarys.push(this.diarys[i])
+          }
+        } else {
+          for (let i = 0; i < this.diarys.length; i++) {
+            this.mydiarys.push(this.diarys[i])
+          }}
+          if(this.mydiarys.length==0){
+            this.nomore=true
+          }
+      },
+
+      next() {
+        this.q = this.q + 8
+        if (this.page < this.cou - 1) {
+          this.w = this.w + 8
+          this.page++  //记录当前页
+          for (let i = this.q; i < this.w; i++) {
+            console.log(this.w)
+            this.mydiarys.push(this.diarys[i])
+          }
+          // console.log(this.value)
+          // console.log(this.value1)
+        }
+        //最后一页的，要取出最后一页多少个帖子
+        else if (this.page === this.cou - 1) {
+
+          this.w = this.diarys.length
+          for (let i = this.q; i < this.w; i++) {
+            this.mydiarys.push(this.diarys[i])
+          }
+
+        }
+      },
+      //收起显示第一页
+      one() {
+        this.mydiarys = []
+        for (let i = 0; i < 8; i++) {
+          this.mydiarys.push(this.diarys[i])
+        }
+
+      },
+
       ajaxall(){
+        this.nomore=false
         axios.get(this.$store.state.url+"/adoptions").then((result) => {
           // console.log(result.data.data)
           this.mydata = result.data.data;
-          this.dalength=result.data.data.length-8
-          this.handleInfo()
+          // this.more=result.data.data.length
+          for (let i = 0; i < this.mydata.length; i++) {
+            this.diarys.push(this.mydata[i])
+          }
+          this.cou=Math.ceil(this.diarys.length/8)
+
+          //当前显示
+          if (this.diarys.length > 8) {
+            for (let i = 0; i < 8; i++) {
+              this.mydiarys.push(this.diarys[i])
+            }
+          } else {
+            for (let i = 0; i < this.diarys.length; i++) {
+              this.mydiarys.push(this.diarys[i])
+            }}
+          if(this.mydiarys.length==0){
+            this.nomore=true
+          }
         })
           .catch((err) => {
             console.log(err)
@@ -64,26 +183,9 @@
         // console.log(this.url+str)
         return this.url+str
       },
-      getMore() {
-      if(this.nomas) alert('没有更多啦');
-        if (this.dalength < 4) {
-          this.nomas = true;
-          this.diarys = [];
-            for (let i = 0; i < this.mydata.length; i++) {
-              this.diarys.push(this.mydata[i])
-            }
-        }else {
-          this.dalength -= 4;
-          this.moren += 4;
-          this.diarys = [];
-          this.handleInfo()
-        }
-      },
-      handleInfo(){
-        for (let i = 0; i < this.moren; i++) {
-          this.diarys.push(this.mydata[i])
-        }
-      },
+      other(){
+        this.ajaxall()
+      }
     },
     mounted() {
       this.ajaxall()
@@ -92,6 +194,26 @@
 </script>
 
 <style scoped>
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .nofind{
+    padding-top: 80px;
+    width: 500px;
+    height: 300px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .nofind img{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+  .nofind p{
+    font-size: 16px;
+    color: #666;
+  }
   .label{
     position: absolute;
     background: url("../../assets/adoption/ling.png")no-repeat;

@@ -2,20 +2,25 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-let arr=window.localStorage;
+
 
 const store = new Vuex.Store({
   state: {
-    name:'交流分享',
-    nametype:'b'
+    petType:'-1',
+    petSex:'-1',
   },
   mutations: {
-    addName (state,name) {
-      state.name=name.amount
-      state.nametype=name.am
+    addpetType(state,type) {
+      state.petType=type
+    },
+
+    addpetSex(state,sex) {
+      state.petSex=sex
     }
   },
 
 })
 
 export default store
+
+

@@ -116,7 +116,8 @@
           // 判断是否完善个人信息
         ajaxuser(){
           axios.get(this.$store.state.url + `/user/showUser/${this.userId}`).then((result) => {
-           if(result.data.data[0].address.length==0){
+            // console.log(result.data.data[0].address)
+           if(result.data.data[0].address==null){
              alert('请完善个人信息后提交');
              location.href=this.$store.state.myurl+'/user/update'
            }else {
@@ -149,7 +150,7 @@
             success: function (result) {
               // console.log(result)
               alert('申请成功')
-              location.href=this.$store.state.myurl+'/user'
+              location.href=_this.$store.state.myurl+'/user'
             }
           })
         },

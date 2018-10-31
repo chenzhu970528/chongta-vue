@@ -43,32 +43,32 @@
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="doghot">
                 <dl>
-                  <dd style="color: #23527c"><b>不限</b></dd>
-                  <dd><a href="">萨摩耶</a></dd>
-                  <dd><a href="">拉布拉多</a></dd>
-                  <dd><a href="">柯基犬</a></dd>
-                  <dd><a href="">哈士奇</a></dd>
-                  <dd><a href="">金毛</a></dd>
-                  <dd><a href="">泰迪</a></dd>
-                  <dd><a href="">英国斗牛犬</a></dd>
-                  <dd><a href="">法国斗牛犬</a></dd>
-                  <dd><a href="">博美</a></dd>
-                  <dd><a href="">比熊犬</a></dd>
-                  <dd><a href="">边境牧羊犬</a></dd>
+                  <dd style="color: #23527c"><a @click="addtype('-1')"><b>不限</b></a></dd>
+                  <dd><a @click="addtype('萨摩耶')">萨摩耶</a></dd>
+                  <dd><a @click="addtype('拉布拉多')">拉布拉多</a></dd>
+                  <dd><a @click="addtype('柯基犬')">柯基犬</a></dd>
+                  <dd><a @click="addtype('哈士奇')">哈士奇</a></dd>
+                  <dd><a @click="addtype('金毛')">金毛</a></dd>
+                  <dd><a @click="addtype('泰迪')">泰迪</a></dd>
+                  <dd><a @click="addtype('英国斗牛犬')">英国斗牛犬</a></dd>
+                  <dd><a @click="addtype('法国斗牛犬')">法国斗牛犬</a></dd>
+                  <dd><a @click="addtype('博美')">博美</a></dd>
+                  <dd><a @click="addtype('比熊犬')">比熊犬</a></dd>
+                  <dd><a @click="addtype('边境牧羊犬')">边境牧羊犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogA">
                 <dl>
-                  <dd><a href="">澳大利亚牧牛犬</a></dd>
-                  <dd><a href="">澳大利亚梗</a></dd>
-                  <dd><a href="">安纳托利亚牧羊犬</a></dd>
-                  <dd><a href="">阿拉斯加</a></dd>
-                  <dd><a href="">澳大利亚牧羊犬</a></dd>
-                  <dd><a href="">美国爱斯基摩犬</a></dd>
-                  <dd><a href="">爱尔兰猎狼犬</a></dd>
-                  <dd><a href="">爱尔兰梗</a></dd>
-                  <dd><a href="">阿芬平斯澈犬/猴面梗</a></dd>
-                  <dd><a href="">阿富汗猎犬</a></dd>
+                  <dd><a @click="addtype('澳大利亚牧牛犬')">澳大利亚牧牛犬</a></dd>
+                  <dd><a @click="addtype('澳大利亚梗')">澳大利亚梗</a></dd>
+                  <dd><a @click="addtype('安纳托利亚牧羊犬')">安纳托利亚牧羊犬</a></dd>
+                  <dd><a @click="addtype('阿拉斯加')">阿拉斯加</a></dd>
+                  <dd><a @click="addtype('澳大利亚牧羊犬')">澳大利亚牧羊犬</a></dd>
+                  <dd><a @click="addtype('美国爱斯基摩犬')">美国爱斯基摩犬</a></dd>
+                  <dd><a @click="addtype('爱尔兰猎狼犬')">爱尔兰猎狼犬</a></dd>
+                  <dd><a @click="addtype('爱尔兰梗')">爱尔兰梗</a></dd>
+                  <dd><a @click="addtype('阿芬平斯澈犬/猴面梗')">阿芬平斯澈犬/猴面梗</a></dd>
+                  <dd><a @click="addtype('阿富汗猎犬')">阿富汗猎犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogB">
@@ -336,20 +336,20 @@
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="cathot">
                 <dl>
-                  <dd style="color: #23527c"><b>不限</b></dd>
-                  <dd><a href="">加菲猫</a></dd>
-                  <dd><a href="">英国短毛猫</a></dd>
-                  <dd><a href="">折耳猫</a></dd>
-                  <dd><a href="">英国短毛猫</a></dd>
-                  <dd><a href="">布偶猫</a></dd>
+                  <dd style="color: #23527c" ><a @click="addtype('-1')"><b>不限</b></a></dd>
+                  <dd><a @click="addtype('加菲猫')">加菲猫</a></dd>
+                  <dd><a @click="addtype('英国短毛猫')">英国短毛猫</a></dd>
+                  <dd><a @click="addtype('折耳猫')">折耳猫</a></dd>
+                  <dd><a @click="addtype('东方猫')">东方猫</a></dd>
+                  <dd><a @click="addtype('布偶猫')">布偶猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane " id="catA">
                 <dl>
-                  <dd><a href="">阿比西尼亚猫</a></dd>
-                  <dd><a href="">矮脚猫</a></dd>
-                  <dd><a href="">奥西猫</a></dd>
-                  <dd><a href="">埃及猫</a></dd>
+                  <dd><a @click="addtype('阿比西尼亚猫')">阿比西尼亚猫</a></dd>
+                  <dd><a @click="addtype('矮脚猫')">矮脚猫</a></dd>
+                  <dd><a @click="addtype('奥西猫')">奥西猫</a></dd>
+                  <dd><a @click="addtype('埃及猫')">埃及猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catB">
@@ -441,29 +441,24 @@
 
         <div class="sex">
           <span class="text-primary">性别:</span>
-          <el-radio-group  v-model="adosex" size="small">
-            <el-radio-button label="不限"></el-radio-button>
-            <el-radio-button label="公"></el-radio-button>
-            <el-radio-button label="母"></el-radio-button>
-          </el-radio-group>
-          <!--<ul class="nav nav-pills">-->
-            <!--<li role="presentation" class="active"><a href="#" role="tab" data-toggle="tab">不限</a></li>-->
-            <!--<li role="presentation"><a href="#" @click="" role="tab" data-toggle="tab">公</a></li>-->
-            <!--<li role="presentation"><a href="#" role="tab" data-toggle="tab">母</a></li>-->
-          <!--</ul>-->
-        </div>
-        <div class="sex">
-          <span class="text-primary">年龄:</span>
-          <el-radio-group  v-model="adoage" size="small">
-            <el-radio-button label="不限"></el-radio-button>
-            <el-radio-button label="2个月内"></el-radio-button>
-            <el-radio-button label="2-3个月"></el-radio-button>
-            <el-radio-button label="3-6个月"></el-radio-button>
-            <el-radio-button label="6-12个月"></el-radio-button>
-            <el-radio-button label="1年以上"></el-radio-button>
-            <el-radio-button label="3年以上"></el-radio-button>
+          <el-radio-group @change="addsex" v-model="adosex" size="small">
+            <el-radio-button label="-1">不限</el-radio-button>
+            <el-radio-button label="0">公</el-radio-button>
+            <el-radio-button label="1">母</el-radio-button>
           </el-radio-group>
         </div>
+        <!--<div class="sex">-->
+          <!--<span class="text-primary">年龄:</span>-->
+          <!--<el-radio-group @change="addage"  v-model="adoage" size="small">-->
+            <!--<el-radio-button label="0">不限</el-radio-button>-->
+            <!--<el-radio-button label="1">2个月内</el-radio-button>-->
+            <!--<el-radio-button label="2">2-3个月</el-radio-button>-->
+            <!--<el-radio-button label="3">6个月</el-radio-button>-->
+            <!--<el-radio-button label="4">6-12个月</el-radio-button>-->
+            <!--<el-radio-button label="5">1年以上</el-radio-button>-->
+            <!--<el-radio-button label="6">3年以上</el-radio-button>-->
+          <!--</el-radio-group>-->
+        <!--</div>-->
       </div>
 
     </div>
@@ -471,17 +466,27 @@
 </template>
 
 <script>
+  import store from './store.js'
   export default {
     name: "AdoptionSizer",
     data() {
       return {
         type: 0,
-        adosex:'不限',
-        adoage:'不限',
-
+        adosex:'-1',
+        adoage:'0',
       }
     },
     methods: {
+      addsex(){
+        store.commit('addpetSex',this.adosex)
+      },
+      addage(){
+        store.commit('addpetAge',this.adoage)
+      },
+      addtype(type){
+        store.commit('addpetType',type)
+      },
+
       show: function (index) {
         this.type = index;
       }
@@ -492,8 +497,11 @@
 <style scoped>
   a {
     text-decoration: none;
+    cursor: pointer;
   }
-
+  dl{
+    margin-bottom:50px
+  }
   .border {
     background: url("../../assets/adoption/border.png") no-repeat;
     width: 800px;

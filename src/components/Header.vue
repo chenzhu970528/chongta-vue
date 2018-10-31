@@ -79,6 +79,18 @@
 </script>
 
 <style scoped>
+  @media (min-width: 1px){
+    .navbar-nav>li {
+      float: left;
+    }
+  }
+  /*@media (max-width: 960px){*/
+    /*.bgsty{*/
+      /*max-width: 960px;*/
+      /*!*background-color: rgba(255, 255, 255,0.9);*!*/
+      /*!*border: 1px solid cornflowerblue;*!*/
+    /*}*/
+  /*}*/
   .top-nav{
     background-color: #fff;
   }
