@@ -1,9 +1,9 @@
 <template>
   <div class="inner_ado">
-    <div class="tol" v-for="(val,index) in value">
+    <div class="tol" v-for="(val,index) in lostlists">
       <el-row class="card">
         <el-col :span="7" class="petPic">
-          <div class="pic"></div>
+          <div class="pic"><img :src='url+val.faImg'></div>
         </el-col>
         <el-col :span="15">
           <span   @click="see(val.faId)">
@@ -35,8 +35,25 @@
       <img src="../../../assets/user/default8.png" alt="">
       <p>还没有任何发布哦，快去发布吧</p>
     </div>
-    <p v-if="hide" class="cc">删除成功</p>
 
+    <!--分页-->
+    <el-row>
+      <div class="block">
+        <span class="demonstration"></span>
+        <el-pagination ref="elpage"
+                       @current-change="change()"
+                       :current-page.sync="pageIndex"
+                       layout="prev, pager, next"
+                       :total="pageCount"
+                       :page-size = "pagesize"
+        >
+        </el-pagination>
+      </div>
+      <!--<el-col :span="10" :push="7">-->
+      <!--<change-page></change-page>-->
+      <!--</el-col>-->
+    </el-row>
+    <p v-if="hide" class="cc">删除成功</p>
   </div>
 </template>
 
@@ -55,44 +72,78 @@
     data() {
       return {
         isshow:false,
-        value: [],
         visible1:[],
-        hide:false
+        hide:false,
+
+        lostlists:[],
+        pageIndex: 1,
+        pagesize: 3,  //每页条数
+        pageCount:0,
+        value: [],//放数据库取得数据
+        url:this.$store.state.url,
+
       }
     },
 
-    computed: mapGetters([
-      'UserId',
-      'UserName',
-    ]),
+    computed: {
+      ...mapGetters([
+        'UserId',
+        'UserName',
+      ]),
+      myActData1(){
+        return this.lostlists;
+      }
+    },
 
-      //删除帖子
-      methods: {
-        delart(faId) {
-          let _this = this
-          $.ajax({
-            url: this.$store.state.url + "/forumDel/art/?faId=" + faId,
-            type: "get",
-            success: function (result) {
-              _this.show()
-              _this.visible1 = []
-              // _this.publishdets = []
-              //重新渲染数据
-              let userId = _this.UserId.replace(/\"/g, "")
-              axios.get(_this.$store.state.url + `/forumSee/user/diary?userId=${userId}`).then((result) => {
-                // console.log('测试测试')
-                _this.value = []
-                _this.value = result.data.data;
-              })
-            }
-          })
-          // this.visible2 = false
-        },
-        see(index) {
-          let storage = window.localStorage;
-          storage.faId = index
+    methods: {
+      loadData() {
+        this.lostlists = [];
+        let start = (this.pageIndex - 1) * this.pagesize;
+        let end = start + this.pagesize;
 
-        },
+        if (end >= this.pageCount) {
+          end = this.pageCount
+        }
+        for (let i = start; i < end; i++) {
+          this.lostlists.push(this.value[i])
+        }
+      },
+      change() {
+        return this.loadData();
+      },
+      delart(faId) {
+        let _this = this
+        $.ajax({
+          url: this.$store.state.url + "/forumDel/art/?faId=" + faId,
+          type: "get",
+          success: function (result) {
+            _this.show()
+            _this.visible1 = []
+            // _this.publishdets = []
+            //重新渲染数据
+            let userId = _this.UserId.replace(/\"/g, "")
+            axios.get(_this.$store.state.url + `/forumSee/user/diary?userId=${userId}`).then((result) => {
+              // console.log('测试测试')
+              _this.value = []
+              _this.value = result.data.data;
+
+              if( _this.value.length<1){
+                _this.lostlists = [];
+                this.showPic()
+              }
+                _this.pageCount=_this.value.length;
+                _this.loadData()
+
+            })
+          }
+        })
+        // this.visible2 = false
+      },
+      see(index) {
+        let storage = window.localStorage;
+        storage.faId = index
+
+      },
       show() {
         let _this = this
         _this.hide = true
@@ -100,13 +151,22 @@
           _this.hide = false
           // _this.comf = 0
         }, 3000)
+
+      },
+
+      showPic() {
+        this.isshow = true
       },
     },
     mounted() {
       let id = this.UserId.replace(/\"/g, "")
       axios.get(this.$store.state.url+`/forumSee/user/diary?userId=${id}`).then((result) => {
         this.value = result.data.data;
-
+        this.pageCount=this.value.length;
+        this.loadData()
+        if( this.value.length<1){
+          this.showPic()
+        }
       })
     }
   }
@@ -122,9 +182,10 @@
     border-radius: 3px;
     position: fixed;
     top: 50%;
-    left: 70%;
+    left: 60%;
     color: #fefefe;
     font-size: 18px;
+    z-index:100;
   }
 
   .inner_ado{
@@ -137,6 +198,13 @@
     font-size: 13px;
     color: #737373;
   }
+  .block{
+      width: 60%;
+      margin-left: 20%;
+      text-align: center;
+      margin-top: 90px;
+      margin-bottom: 30px;
+    }
   .card{
     width: 100%;
     min-height: 150px;
@@ -153,11 +221,14 @@
     width: 110px;
     height: 110px;
     border-radius: 110px;
-    background: -10px -10px url("../../../assets/match/mao1.jpg");
     margin-top: 20px;
     margin-left: 10px;
   }
-
+  .pic img{
+    width: 110px;
+    height: 110px;
+    border-radius: 110px;
+  }
 
   p{
     padding-top: 7px;

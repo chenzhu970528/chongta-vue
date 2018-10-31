@@ -2,20 +2,16 @@
   <div class="right" >
     <div class="route">您的当前位置：<span>论坛</span><span>/</span><span>我的收藏</span></div>
     <forum-list></forum-list>
-    <div class="page">
-      <change-page></change-page>
-    </div>
+
   </div>
 </template>
 
 <script>
   import forumList from './likeList'
-  import changePage from '../../matchmaking/changepage.vue'
   import  axios from 'axios'
     export default {
       name: "like",
       components:{
-        'change-page':changePage,
         'forum-list':forumList
       },
 

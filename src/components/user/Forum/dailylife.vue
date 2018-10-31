@@ -2,9 +2,7 @@
   <div class="right" >
     <div class="route">您的当前位置：<span>论坛</span><span>/</span><span>日常交流</span></div>
     <life-list></life-list>
-    <div class="page">
-      <change-page></change-page>
-    </div>
+
   </div>
 </template>
 
