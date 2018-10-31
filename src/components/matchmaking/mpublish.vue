@@ -143,7 +143,7 @@
         // 登录验证
         islogin(){
           if(!this.$store.state.isLogin) {
-            alert("请登录后发布")
+            alert("请登录后发布");
             return false
           }else {
             this.addmatch()
@@ -151,7 +151,7 @@
         },
               //发布
         addmatch() {
-          let _this=this
+          let _this=this;
           console.log(this.upath);
           var zipFormData = new FormData();
           //依次添加多个文件
@@ -159,26 +159,26 @@
             zipFormData.append('filename', this.upath[i]);
           }
           //添加其他的表单元素
-          zipFormData.append('type',this.value1.type)
-          zipFormData.append('PetName',this.value1.PetName)
-          zipFormData.append('birth',this.value1.birth)
-          zipFormData.append('sex',this.value1.sex)
-          zipFormData.append('title',this.value1.title)
-          zipFormData.append('sandword',this.value1.sandword)
-          zipFormData.append('request',this.value1.request)
-          zipFormData.append('detail',this.value1.detail)
-          zipFormData.append('age',this.value1.age)
-          zipFormData.append('relId',this.value1.relId)
+          zipFormData.append('type',this.value1.type);
+          zipFormData.append('PetName',this.value1.PetName);
+          zipFormData.append('birth',this.value1.birth);
+          zipFormData.append('sex',this.value1.sex);
+          zipFormData.append('title',this.value1.title);
+          zipFormData.append('sandword',this.value1.sandword);
+          zipFormData.append('request',this.value1.request);
+          zipFormData.append('detail',this.value1.detail);
+          zipFormData.append('age',this.value1.age);
+          zipFormData.append('relId',this.value1.relId);
           let config = { headers: { 'Content-Type': 'multipart/form-data' } };
           this.$axios.post(this.$store.state.url+'/matchmaking/addMatch', zipFormData,config)
             .then(function (response) {
               // console.log(response);
               // console.log(response.data);
               // console.log(response.bodyText);
-              alert("发布成功！！！")
+              alert("发布成功！！！");
               location.href=_this.$store.state.myurl+'/matchmaking/TimeDesc'
             }).catch((err) => {
-            console.log(err)
+            console.log(err);
             alert(err)
           });
         },
