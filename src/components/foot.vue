@@ -18,19 +18,21 @@
 
 <style scoped>
   #foot{
-    height: 80px;
+    height: 150px;
     width: 100%;
     text-align: center;
-    margin-top: 100px
+    margin-top:120px;
+    background: #2c2c2c;
   }
   ul{
     position: relative;
     bottom: 30px;
     list-style: none;
-    padding: 0;
+    padding-top:100px;
     color: white;
     width: 500px;
-    margin: 10px auto;
+    margin: 10px  auto;
+
   }
   ul li{
     display: inline-block;
