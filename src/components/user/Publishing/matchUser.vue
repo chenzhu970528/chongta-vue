@@ -60,7 +60,6 @@
           centerDialogVisible: false,
           jsondata:[],
           diarys:[],
-          diarys1:[],
           url:this.$store.state.url,
           show:false,
           val:[],
@@ -79,7 +78,7 @@
       methods: {
         urlImg(str){
           // let strs=str.split(',')[0];
-          console.log(str)
+          // console.log(str)
           return this.url+str
         },
         aa(a){
@@ -96,9 +95,7 @@
             // console.log(result.data.data.jsondata)
             // console.log(result.data.data.jsondata2)
             for (let i = 0; i < this.jsondata.length; i++) {
-              this.diarys1.push(this.jsondata[i]);
               this.diarys.push(this.jsondata[i]);
-
             }
             if(this.diarys.length==0){
               this.show=true
@@ -109,12 +106,12 @@
         agree(matId,aplyId){
           let _this = this
           $.ajax({
-            url: this.$store.state.url+"/matchmaking/agree",
-            type: "post",
-            data: {
-              matId: matId,
-              aplyId:aplyId
-            },
+            url: this.$store.state.url+"/matchmaking/agree/"+matId+"/"+aplyId,
+            type: "get",
+            // data: {
+            //   matId: matId,
+            //   aplyId:aplyId
+            // },
             success: function (result) {
               // console.log(result)
               location.reload()
