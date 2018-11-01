@@ -66,7 +66,7 @@
           return{
             visiblematch: false,
             isshow:false,
-            userId:this.$route.params.userId,
+            userId: this.$store.state.userId,
             aplyMatch:[],
             showaplyMatchs:[]
           }

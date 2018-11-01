@@ -1,23 +1,27 @@
 <template>
   <div>
-  <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="list-style: none;cursor: pointer" exact>-->
+    <div class="song">
+      <div class="listbox clearfix" v-for="(activity,index) in activitys" :key="index"  style="margin-bottom: 10px"  >
+        <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/lostdetails/'+activity.lpId" style="float: left;list-style: none;cursor: pointer" exact>-->
 
-    <ul class="list-group" >
-    <li class="list-group-item list-group-item-info" v-for="(activity,index) in activitys" :key="index" style="margin-bottom: 10px" >
-      <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/lostdetails/'+activity.lpId" style="float: left;list-style: none;cursor: pointer" exact>-->
-      <div class="img" style="float: left">
-        <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="width: 150px;height: 140px;margin-right: 15px;margin-top: -5px">
+        <div class="listimg img" style="float: left;" >
+          <viewer >
+            <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="">
+            <img :src="urlImg(activity.lppic.split(',')[1])" alt="" style="display: none">
+            <img :src="urlImg(activity.lppic.split(',')[2])" alt="" style="display: none">
+          </viewer>
+          </div>
 
-      </div>
-      <!--</router-link>-->
-      <div><span>标题：{{activity.lpmes}}</span></div>
-      <div><span>丢失地点：{{activity.address}}</span></div>
-      <div><span>奖赏：{{activity.reward}}</span></div>
-      <div><span>联系人昵称：{{activity.userName}}</span></div>
-      <div><span>号码：{{activity.userPhone}}</span></div>
-
-    </li>
-  </ul>
+          <div class="spans">
+            <span class="firstspan"><span>标题：</span>{{activity.lpmes}}</span>
+            <span class="firstspan"><span>丢失地点：</span>{{activity.address}}</span>
+            <span class="firstspan"><span>奖赏：</span>{{activity.reward}}</span>
+            <span class="firstspan"><span>联系人昵称：</span>{{activity.userName}}</span>
+            <span class="firstspan"><span>号码：</span>{{activity.userPhone}}</span>
+          </div>
+        <!--</router-link>-->
+      </div >
+    </div>
     <!--分页-->
     <el-row>
       <div class="block">
@@ -31,9 +35,6 @@
         >
         </el-pagination>
       </div>
-      <!--<el-col :span="10" :push="7">-->
-      <!--<change-page></change-page>-->
-      <!--</el-col>-->
     </el-row>
   </div>
 </template>
@@ -93,22 +94,69 @@
 </script>
 
 <style scoped>
-  .list-group-item-info:hover{
-  position: relative;
-  left: -10px;
-  top:-10px;
-  box-shadow:2px 2px 5px 2px #a8a8a8;
-}
-  .list-group{
+  .firstspan{
+    display: block;
+    font-size: 15px;
+    width:700px;
+    margin-bottom: 5px;
+  }
+
+  .spans{
     position: relative;
+    left: 30px;
+    top: 10px;
+    width: 100px;
   }
   .block{
     margin-top: 20px;
   }
-  /*.img{*/
-    /*width: 100px;*/
-    /*height: 100px;*/
-    /*background-color: yellow;*/
-    /*position: absolute;*/
-  /*}*/
+  .listInfo span{
+    font-size: 20px;
+  }
+  .listbox {
+    border: 1px solid #becee1;
+    border-radius: 10px;
+  }
+  .listbox:hover{
+    border: 1px solid #6d9eff;
+  }
+  .listbox img{
+    position: relative;
+    z-index: 20;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+  .clearfix {
+    display: block;
+  }
+  a{color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    outline: 0;
+  }
+  .listInfo h4 {
+    width: 480px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 20px;
+  }
+
+  .listInfo .des dl {
+    color: #999;
+    width: 440px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .address span {
+    color: #666;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .img img{
+    width: 150px;
+    height: 150px;
+  }
 </style>

@@ -9,6 +9,7 @@
       </div>
       <div class="adoTitle">
         <h3 class="text-primary">{{mydata.lpmes}}</h3>
+        <!--<img src="../../assets/homeless/1.jpg" alt="" style="position: relative;z-index: 10" v-if="mydata.state==1">-->
       </div>
       <div class="container">
         <div class="row">
