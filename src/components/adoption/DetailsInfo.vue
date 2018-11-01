@@ -166,8 +166,8 @@
           // 判断是否完善个人信息
         ajaxuser(){
           axios.get(this.$store.state.url + `/user/showUser/${this.userId}`).then((result) => {
-            // console.log(result.data.data[0].address)
-           if(result.data.data[0].address==null){
+            console.log(result.data.data[0].address.length)
+           if(result.data.data[0].address.length==0){
              alert('请完善个人信息后提交');
              location.href=this.$store.state.myurl+'/user/update'
            }else {
