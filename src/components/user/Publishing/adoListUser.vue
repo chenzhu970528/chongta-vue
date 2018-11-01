@@ -9,7 +9,6 @@
       center>
       <dl>
       <dd>
-
       <span class="glyphicon glyphicon-user" aria-hidden="true"> 联系人：</span>{{val.userName}}
       </dd>
       <dd>
@@ -49,7 +48,8 @@
             // 遍历出的有意领养者
             diarys:[],
             centerDialogVisible:false,
-            val:[]
+            val:[],
+            petsex:''
           }
         },
       props: {

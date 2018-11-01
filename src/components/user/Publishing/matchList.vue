@@ -5,9 +5,10 @@
         发布
       </router-link>
     </div>
-  <div class="inner_ado">
+  <div class="inner_ado" id="scroll">
     <div class="tol" v-for="(showList,index) in showLists">
       <el-row class="card">
+        <img src="../../../assets/user/yuande.png" alt="" style="width: 150px;position: absolute;right: 10px;top: 20px;" v-if="showList.agree=='1'">
         <router-link  tag="li" active-class="active" role="presentation" :to="'/matchmaking/matchDel/'+showList.matId" style="list-style: none;cursor: pointer" exact>
         <el-col :span="7" class="petPic">
           <div class="pic"><img :src="urlImg(showList.petPic)"></div>
@@ -17,13 +18,14 @@
           <p class="title">标题：<span>{{showList.title}}</span></p>
           <p>发布时间：<span>{{showList.relTime}}</span></p>
           <p>地点：<span>{{showList.address}}</span></p>
+          <!--<p >tongyi：<span>{{showList.agree}}</span></p>-->
           <el-row class="details">
             <el-col :span="5">详细信息：</el-col>
             <el-col :span="18" >
               <span class="detail">{{showList.detail}}</span>
             </el-col>
           </el-row>
-          <p>申请人：<span> <match-User :matId="showList.matId"></match-User></span></p>
+          <p v-if="showList.agree=='0'">申请人：<span> <match-User :matId="showList.matId"></match-User></span></p>
         </el-col>
         <div>
           <el-popover
@@ -32,11 +34,10 @@
             v-model="visiblematch[index]">
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="visiblematch[index]">取消</el-button>
+              <!--<el-button size="mini" type="text" @click="visiblematch=false">取消</el-button>-->
               <el-button type="primary" size="mini" @click="delMatch(showList.matId)" >确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>
-            <!--<el-button slot="reference">删除</el-button>-->
           </el-popover>
         </div>
       </el-row>
@@ -47,22 +48,22 @@
     </div>
   </div>
     <!--分页-->
-    <el-row>
-      <div class="block">
-        <span class="demonstration"></span>
-        <el-pagination ref="elpage"
-                       @current-change="change()"
-                       :current-page.sync="pageIndex"
-                       layout="prev, pager, next"
-                       :total="pageCount"
-                       :page-size = "pagesize"
-        >
-        </el-pagination>
-      </div>
-      <!--<el-col :span="10" :push="7">-->
-      <!--<change-page></change-page>-->
-      <!--</el-col>-->
-    </el-row>
+    <!--<el-row>-->
+      <!--<div class="block">-->
+        <!--<span class="demonstration"></span>-->
+        <!--<el-pagination ref="elpage"-->
+                       <!--@current-change="change()"-->
+                       <!--:current-page.sync="pageIndex"-->
+                       <!--layout="prev, pager, next"-->
+                       <!--:total="pageCount"-->
+                       <!--:page-size = "pagesize"-->
+        <!--&gt;-->
+        <!--</el-pagination>-->
+      <!--</div>-->
+      <!--&lt;!&ndash;<el-col :span="10" :push="7">&ndash;&gt;-->
+      <!--&lt;!&ndash;<change-page></change-page>&ndash;&gt;-->
+      <!--&lt;!&ndash;</el-col>&ndash;&gt;-->
+    <!--</el-row>-->
 </div>
 </template>
 
@@ -77,56 +78,58 @@
       data(){
         return{
           visiblematch: [],
+          show:false,
           relId:this.$store.state.userId,
           mydata:[],
           // matchlist:[],
           showLists:[],
           isshow:false,
-          pageIndex: 1,
-          pagesize: 3,  //每页条数
-          pageCount:0,
-          myActData:[],  //放数据库取得数据
+          // pageIndex: 1,
+          // pagesize: 4,  //每页条数
+          // pageCount:0,
+          // myActData:[],  //放数据库取得数据
           url:this.$store.state.url
         };
       },
-      computed:{
-        myActData1(){
-          return this.showLists;
-        }
-      },
-      watch:{
-        '$route':'mounted'
-      },
-      // created(){
-      //   this.ajax()
+      // computed:{
+      //   myActData1(){
+      //     return this.showLists;
+      //   }
       // },
+      // watch:{
+      //   '$route':'mounted'
+      // },
+      created(){
+        this.ajax()
+      },
       methods:{
         urlImg(str){
           let strs=str.split(',')[0]
           // console.log(this.url+str)
           return this.url+strs
         },
-        loadData() {
-          this.showLists = [];
-          let start = (this.pageIndex-1) * this.pagesize;
-          let end = start + this.pagesize;
-          console.log(this.myActData[1]);
-          if(end>=this.pageCount){
-            end=this.pageCount
-          }
-          for (var i = start; i < end; i++) {
-            this.showLists.push(this.myActData[i])
-          }
-        },
-        change(){
-          return this.loadData();
-        },
+        // loadData() {
+        //   this.showLists = [];
+        //   let start = (this.pageIndex-1) * this.pagesize;
+        //   let end = start + this.pagesize;
+        //   console.log(this.myActData[1]);
+        //   if(end>=this.pageCount){
+        //     end=this.pageCount
+        //   }
+        //   for (var i = start; i < end; i++) {
+        //     this.showLists.push(this.myActData[i])
+        //   }
+        // },
+        // change(){
+        //   return this.loadData();
+        // },
         ajax(){
           axios.get(this.$store.state.url+`/matchmaking/matchdetails/${this.relId}`).then((result) => {
             this.mydata = result.data.data;
             for (let i = 0; i < this.mydata.length; i++) {
               this.showLists.push(this.mydata[i])
               this.visiblematch.push(false);
+              // if(this.showLists[i].agree==='1') this.show=true
             }
             if(result.data.data.length==0){
               this.showPic()
@@ -134,6 +137,19 @@
             }
           })
         },
+        // agree(){
+        //   axios.get(this.$store.state.url+`/matchmaking/agreeName/${this}`).then((result) => {
+        //     this.mydata = result.data.data;
+        //     for (let i = 0; i < this.mydata.length; i++) {
+        //       this.showLists.push(this.mydata[i])
+        //       this.visiblematch.push(false);
+        //     }
+        //     if(result.data.data.length==0){
+        //       this.showPic()
+        //       // _this.isshow=true
+        //     }
+        //   })
+        // },
         delMatch(matId){
           let _this=this
           $.ajax({
@@ -144,11 +160,11 @@
                 _this.mydata=[]
                   _this.visiblematch=[]
                   _this.showLists=[]
-                  _this.myActData=[]
-                  _this.showLists=[]
+                  // _this.myActData=[]
+                  // _this.showLists=[]
                 _this.ajax()
                 _this.ajaxall()
-                _this.loadData()
+                // _this.loadData()
               }catch(e){
               }
             }
@@ -164,50 +180,66 @@
             _this.myActData = result.data.data;
             _this.pageCount=_this.myActData.length;
             // console.log(_this.pageCount)
-            _this.loadData()
+            // _this.loadData()
           })
         }
       },
-      mounted(){
-        this.ajax();
-        this.ajaxall();
-      }
+      // mounted(){
+      //   this.ajax();
+      //   this.ajaxall();
+      // }
     }
 </script>
 
 <style scoped>
-  .block{
-    width: 60%;
-    margin-left: 20%;
-    text-align: center;
-    margin-top: 90px;
-    margin-bottom: 30px;
+  #scroll{
+    /*padding: 35px;*/
+    /*width: 80%;*/
+    /*margin-left: 10%;*/
+    max-height: 600px;
+    /*background-color: rgba(237, 210, 234, 0.5);*/
+    margin-top: 30px;
+    overflow: auto;
+  }
+  #scroll::-webkit-scrollbar{
+    width:4px;
+    height:4px;
+  }
+  #scroll::-webkit-scrollbar-track{
+    background:rgba(255, 255, 255, 0.3);
+    border-radius:2px;
+  }
+  #scroll::-webkit-scrollbar-thumb{
+    background: #bababa;
+    border-radius:2px;
+  }
+  #scroll::-webkit-scrollbar-thumb:hover{
+    background: #747474;
+  }
+  #scroll::-webkit-scrollbar-corner {
+    background: #f6f6f6;
   }
   .fabu{
-    /*background-color: red;*/
     height: 25px;
     width: 45px;
     position: relative;
-    /*left: 542px;*/
     right: -90%;
-    /*margin-bottom: 20px;*/
   }
   .inner_ado{
-    width: 80%;
-    margin-left: 9%;
     margin-top: 2%;
     position: relative;
-    /*background-color: yellow;*/
     min-height: 500px;
     font-size: 13px;
     color: #737373;
   }
   .card{
     width: 100%;
+    position: relative;
     min-height: 150px;
-    /*background-color: red;*/
   }
   .tol{
+    width: 80%;
+    margin-left: 10%;
     border-radius: 20px;
     background-color: rgba(255,255,255,0.5);
     margin-bottom: 25px;
@@ -241,12 +273,6 @@
     color: #575757;
     /*position: relative;*/
     /*top:-500px;*/
-  }
-  .showList{
-    text-align: center;
-    color: #575757;
-    position: relative;
-    top:-500px;
   }
   .details{
     margin-top: 20px;

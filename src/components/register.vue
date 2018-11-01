@@ -305,7 +305,7 @@
 
 <style scoped>
 .container{
-  background: url('../assets/homeless/bg1.jpg');
+  background: url('../assets/homeless/bk1.jpg');
   width: 100%;
   background-size: 100% 100%;
 }

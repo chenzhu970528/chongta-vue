@@ -8,12 +8,14 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
-
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
+  },
+  // 百度地图API
+  externals: {
+    'BMap': 'BMap'
   },
   output: {
     path: config.build.assetsRoot,

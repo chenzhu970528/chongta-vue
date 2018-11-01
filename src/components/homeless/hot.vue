@@ -8,30 +8,25 @@
     <div class="right">
       <div class="title2" >
          <h3 class="line">最新寻宠</h3>
-        <el-row v-for="(diary,index) in diarys" :key="index"class="ROW">
-
-         <!--<div>-->
-           <!--<router-link   tag="li" :to="'/homeless/lostpetsdetails/'+diary.lpId" style="cursor: pointer;list-style: none" exact>-->
-          <el-col :span="7">
+        <el-row v-for="(diary,index) in diarys" :key="index" class="ROW">
+          <router-link  tag="li" :to="'/homeless/lostdetails/'+diary.lpId" style="list-style: none;cursor: pointer" exact>
+          <el-col :span="5">
             <img alt="" :src="urlImg(diary.lppic.split(',')[0])">
           </el-col>
-           <!--</router-link>-->
-           <!--</div>-->
-
-          <el-col :span="16" :push="1">
+          <el-col :span="17" :push="2">
             <span>时间：{{diary.lpTime}}</span>
             <span>丢失地点：{{diary.address}}</span>
-            <span >报酬：{{diary.reward}}</span>
+            <span >报酬：{{diary.reward}} </span>
+            <span v-if="diary.state==0" class="founded">进程：寻找中</span>
+            <span v-if="diary.state==1" class="founded1">进程：已找到</span>
           </el-col>
+          </router-link>
         </el-row>
-         <!--<ul class="lie" v-for="diary in diarys">-->
-           <!--<li>-->
-             <!--<a href="">-->
-               <!--<span>{{diary.getmes}}</span>-->
-             <!--</a>-->
-           <!--</li>-->
-         <!--</ul>-->
+
       </div>
+    </div>
+    <div class="ct">
+      <img src="../../assets/homeless/ct.png" alt="">
     </div>
   </div>
 </template>
@@ -72,6 +67,7 @@
         // console.log(result.data)
         for (let i = 0; i < this.mydata.length; i++) {
           this.diarys.push(this.mydata[i])
+          if (this.mydata[i].reward == '') this.mydata[i].reward = '无'
         }
       })
     }
@@ -130,5 +126,17 @@
   .title2 img{
     height: 70px;
     width: 70px;
+  }
+  .ct img{
+
+    margin-left: 60px;
+  }
+  .founded{
+    float: right;
+    color: #fda65f;
+  }
+  .founded1{
+    float: right;
+    color: #6494ec;
   }
 </style>

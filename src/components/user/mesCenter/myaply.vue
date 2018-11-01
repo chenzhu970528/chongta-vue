@@ -44,7 +44,7 @@
   .right{
     position: relative;
     left: 40px;
-    min-height: 780px;
+    height: 780px;
     background-color: rgba(255,255,255,0.5);
   }
   .route{

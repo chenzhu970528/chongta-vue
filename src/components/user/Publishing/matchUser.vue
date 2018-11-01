@@ -2,42 +2,41 @@
   <div>
     <span v-if="show">暂无申请人</span>
     <div v-for="(diary,index) in diarys">
-      <el-button  type="text" @click="centerDialogVisible = true" class="spanText">{{diary.userName}}</el-button>{{index}}
+      <el-button  type="text" @click="aa(index)" class="spanText">{{diary.userName}}</el-button>
       <el-dialog
         title="领养者详情"
         :visible.sync="centerDialogVisible"
         width="40%"
         center>
-      <dl v-for="(diary1,index1) in diarys1">
+      <dl>
       <dd>
-        {{index}}
-        <span aria-hidden="true"> 申请人：</span><span>{{diarys1[index].userName}}</span>
+        <span aria-hidden="true"> 申请人：</span><span>{{val.userName}}</span>
       </dd>
       <dd>
       <dd>
-        <span aria-hidden="true"> 申请人电话：</span><span>{{diary1.userPhone}}</span>
+        <span aria-hidden="true"> 申请人电话：</span><span>{{val.userPhone}}</span>
       </dd>
       <dd>
-        <span aria-hidden="true"> 邮箱：</span><span>{{diary1.userEmail}}</span>
+        <span aria-hidden="true"> 邮箱：</span><span>{{val.userEmail}}</span>
       </dd>
       <dd>
-        <span aria-hidden="true"> 宠物名：</span><span>{{diary1.PetName}}</span>
+        <span aria-hidden="true"> 宠物名：</span><span>{{val.PetName}}</span>
       </dd>
       <dd>
-        <span aria-hidden="true"> 宠物类型：</span><span>{{diary1.type}}</span>
+        <span aria-hidden="true"> 宠物类型：</span><span>{{val.type}}</span>
       </dd>
       <dd>
-        <span aria-hidden="true"> 宠物性别：</span><span>{{diary1.sex}}</span>
+        <span aria-hidden="true"> 宠物性别：</span><span>{{val.sex}}</span>
       </dd>
       <dd>
-        <span aria-hidden="true"> 宠物年龄：</span><span>{{diary1.age}}</span>
+        <span aria-hidden="true"> 宠物年龄：</span><span>{{val.age}}</span>
       </dd>
       <dd>
-        <span aria-hidden="true"> 申请时间：</span><span>{{diary1.maplyTime}}</span>
+        <span aria-hidden="true"> 申请时间：</span><span>{{val.maplyTime}}</span>
       </dd>
       <dd>
         <span aria-hidden="true"> 宠物照片：</span>
-        <img :src="urlImg(diary1.petPic)" class="pic">
+        <img :src="urlImg(val.petPic)" class="pic">
       </dd>
       </dl>
       <span slot="footer" class="dialog-footer">
@@ -61,9 +60,10 @@
           centerDialogVisible: false,
           jsondata:[],
           diarys:[],
-          diarys1:[],
           url:this.$store.state.url,
-          show:false
+          show:false,
+          val:[],
+          pic:[]
         }
       },
       props: {
@@ -72,12 +72,22 @@
       mounted() {
         this.ajaxuser()
       },
+    computed:{
+
+    },
       methods: {
         urlImg(str){
-          let strs=str.split(',')[0];
-          // console.log(this.url+str)
-          return this.url+strs
+          // let strs=str.split(',')[0];
+          // console.log(str)
+          return this.url+str
         },
+        aa(a){
+          this.centerDialogVisible = true;
+          this.val= this.diarys[a];
+          this.val.petPic=this.diarys[a].petPic.split(',')[0]
+          // console.log(this.val.petPic)
+        },
+
         ajaxuser() {
           axios.get(this.$store.state.url + `/matchmaking/`+this.matId+`/showaply`).then((result) => {
             // console.log(result.data.data);
@@ -85,9 +95,7 @@
             // console.log(result.data.data.jsondata)
             // console.log(result.data.data.jsondata2)
             for (let i = 0; i < this.jsondata.length; i++) {
-              this.diarys1.push(this.jsondata[i]);
               this.diarys.push(this.jsondata[i]);
-
             }
             if(this.diarys.length==0){
               this.show=true
@@ -98,12 +106,12 @@
         agree(matId,aplyId){
           let _this = this
           $.ajax({
-            url: this.$store.state.url+"/matchmaking/agree",
-            type: "post",
-            data: {
-              matId: matId,
-              aplyId:aplyId
-            },
+            url: this.$store.state.url+"/matchmaking/agree/"+matId+"/"+aplyId,
+            type: "get",
+            // data: {
+            //   matId: matId,
+            //   aplyId:aplyId
+            // },
             success: function (result) {
               // console.log(result)
               location.reload()

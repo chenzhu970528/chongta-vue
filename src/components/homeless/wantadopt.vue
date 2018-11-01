@@ -31,8 +31,8 @@
         <div class="form-group">
           <label class="col-sm-3 control-label">性别：</label>
           <div class="col-sm-6">
-            <el-radio v-model="addlose.sex" label="1">公</el-radio>
-            <el-radio v-model="addlose.sex" label="2">母</el-radio>
+            <el-radio v-model="addlose.sex" label="0">公</el-radio>
+            <el-radio v-model="addlose.sex" label="1">母</el-radio>
           </div>
         </div>
         <div class="form-group">
@@ -102,7 +102,7 @@
     data() {
       return {
         addlose:{
-          sex:'0',
+          sex:'',
           type:'',
           lostpeople:'',
           lostphone:'',

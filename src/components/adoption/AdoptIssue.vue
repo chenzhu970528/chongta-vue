@@ -78,10 +78,59 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-3  control-label">您的地址：</label>
-          <div class="col-sm-6">
-            <input type="text" @change="verify5" required="required" v-model="adoForm.adoAddress" class="form-control" id="inputAdress"
-                   placeholder="请输入联系地址">
+          <div class="linkage">
+            <div class="row">
+              <label class="col-sm-3  control-label">您的地址：</label>
+              <div class="el-col-sm-offset-1 el-col-sm-6" >
+                <el-select
+                  id="sheng"
+                  v-model="sheng"
+                  @change="choseProvince"
+                  placeholder="省级地区">
+                  <el-option
+                    v-for="item in province"
+                    :key="item.id"
+                    :label="item.value"
+                    :value="item.id">
+                  </el-option>
+                </el-select>
+              </div>
+              <div  class=" " >
+                <el-select
+                  id="shi"
+                  v-model="shi"
+                  @change="choseCity"
+                  placeholder="市级地区">
+                  <el-option
+                    v-for="item in shi1"
+                    :key="item.id"
+                    :label="item.value"
+                    :value="item.id">
+                  </el-option>
+                </el-select>
+              </div>
+            </div>
+            <div class="row">
+              <div  class="el-col-sm-push-7 ">
+                <el-select
+                  id="qu"
+                  v-model="qu"
+                  @change="choseBlock"
+                  placeholder="区级地区">
+                  <el-option
+                    v-for="item in qu1"
+                    :key="item.id"
+                    :label="item.value"
+                    :value="item.id">
+                  </el-option>
+                </el-select>
+              </div>
+            </div>
+          </div>
+          <label style="margin-top:10px " class="col-sm-3  control-label">详细地址：</label>
+          <div style="margin-top:10px " class=" col-sm-6">
+            <input type="text" @change="verify5" required="required" v-model="street" class="form-control" id="inputAdress"
+                   placeholder="请输入详细地址">
           </div>
         </div>
         <div class="form-group">
@@ -115,10 +164,23 @@
 </template>
 
 <script>
+  import  axios from 'axios'
   export default {
     name: "AdoptIssue",
     data() {
       return {
+        // 省市级联选择器
+        mapJson:'../static/json/map.json',
+        province:'',
+        sheng: '',
+        shi: '',
+        shi1: [],
+        qu: '',
+        qu1: [],
+        city:'',
+        block:'',
+        street:'',
+
         check1: false,
         check2: false,
         check3: false,
@@ -144,8 +206,84 @@
       };
     },
     mounted(){
+      this.getCityData()
     },
     methods: {
+      huoqu(){
+        var sheng=$("#sheng").val();
+        var shi=$("#shi").val();
+        var qu=$("#qu").val();
+        this.adoForm.adoAddress=(sheng+shi+qu+this.street)
+      },
+      // 加载china地点数据，三级
+      getCityData:function(){
+        var that = this
+        axios.get(this.mapJson).then(function(response){
+          if (response.status==200) {
+            var data = response.data
+            that.province = []
+            that.city = []
+            that.block = []
+            // 省市区数据分类
+            for (var item in data) {
+              if (item.match(/0000$/)) {//省
+                that.province.push({id: item, value: data[item], children: []})
+              } else if (item.match(/00$/)) {//市
+                that.city.push({id: item, value: data[item], children: []})
+              } else {//区
+                that.block.push({id: item, value: data[item]})
+              }
+            }
+            // 分类市级
+            for (var index in that.province) {
+              for (var index1 in that.city) {
+                if (that.province[index].id.slice(0, 2) === that.city[index1].id.slice(0, 2)) {
+                  that.province[index].children.push(that.city[index1])
+                }
+              }
+            }
+            // 分类区级
+            for(var item1 in that.city) {
+              for(var item2 in that.block) {
+                if (that.block[item2].id.slice(0, 4) === that.city[item1].id.slice(0, 4)) {
+                  that.city[item1].children.push(that.block[item2])
+                }
+              }
+            }
+          }
+          else{
+            console.log(response.status)
+          }
+        }).catch(function(error){console.log(typeof+ error)})
+      },
+      // 选省
+      choseProvince:function(e) {
+        for (var index2 in this.province) {
+          if (e === this.province[index2].id) {
+            this.shi1 = this.province[index2].children
+            this.shi = this.province[index2].children[0].value
+            this.qu1 =this.province[index2].children[0].children
+            this.qu = this.province[index2].children[0].children[0].value
+            this.E = this.qu1[0].id
+          }
+        }
+      },
+      // 选市
+      choseCity:function(e) {
+        for (var index3 in this.city) {
+          if (e === this.city[index3].id) {
+            this.qu1 = this.city[index3].children
+            this.qu = this.city[index3].children[0].value
+            this.E = this.qu1[0].id
+            // console.log(this.E)
+          }
+        }
+      },
+      // 选区
+      choseBlock:function(e) {
+        this.E=e;
+        // console.log(this.E)
+      },
       // 验证
       verify1() {
         if (this.adoForm.petType == "") {
@@ -180,7 +318,7 @@
         }
       },
       verify5() {
-        if (this.adoForm.adoAddress == "") {
+        if (this.street == "") {
           alert("请填写联系地址")
           this.check5 = false
         } else {
@@ -203,6 +341,7 @@
       },
       verify() {
           if(this.check1&&this.check2&&this.check3&&this.check4&&this.check5&&this.check6&&this.check7){
+            this.huoqu()
             this.edit()
           }else {
             alert('不符合上传要求，请重新输入')

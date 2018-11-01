@@ -44,9 +44,9 @@
                 </div>
               </div>
             </div>
-            <div class="qrCord">
+            <div class="qrCord" @click="ajaxuser">
               <!--<div class="erweima"><img src="../../assets/homeless/E997FFB8C02AEA4FDB1644CF03466ED5.png" alt=""></div>-->
-              <router-link  to="/matchmaking/mpublish" class="btn"><span>我要发布</span></router-link>
+              <router-link  to="/matchmaking/mpublish"  class="btn"><span>我要发布</span></router-link>
               <!--<img src="../../assets/adoption/0974a659d83ad4c85bf93dd1c987cae2.png" alt="">-->
 
             </div>
@@ -70,6 +70,7 @@
   </div>
 </template>
 <script>
+  import axios from 'axios'
   import  matchhot from './match-hot.vue'
   import Header from '../Header.vue'
   import  matchlist from './matchlist.vue'
@@ -84,8 +85,25 @@
     },
     data(){
       return{
-        show:false
+        show:false,
+        relId:this.$store.state.userId
       }
+    },
+    methods:{
+      // 判断是否完善个人信息
+      ajaxuser(){
+        console.log('++++++++++++')
+        axios.get(this.$store.state.url + `/user/showUser/${this.relId}`).then((result) => {
+          console.log(result.data.data[0].address.length)
+          if(result.data.data[0].address.length==0){
+            alert('请完善个人信息后提交');
+            location.href=this.$store.state.myurl+'/user/update'
+          }
+        })
+          .catch((err) => {
+            console.log(err)
+          })
+      },
     }
   }
 </script>

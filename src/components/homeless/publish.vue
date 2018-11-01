@@ -19,15 +19,28 @@
           </div>
         </div>
         <div class="form-group">
-          <label  class="col-sm-3  control-label">拾到时间：</label>
-          <div class="col-sm-6">
-            <el-date-picker
-              value-format="yyyy-MM-dd"
-              v-model="hp.homeTime"
+          <!--<label  class="col-sm-3  control-label">拾到时间：</label>-->
+          <!--<div class="col-sm-6">-->
+            <!--<el-date-picker-->
+              <!--value-format="yyyy-MM-dd"-->
+              <!--v-model="hp.homeTime"-->
 
-              type="date"
-              placeholder="拾到日期">
+              <!--type="date"-->
+              <!--placeholder="拾到日期">-->
+            <!--</el-date-picker>-->
+          <!--</div>-->
+          <div class="block">
+            <label class="col-sm-3 control-label">拾到时间：</label>
+            <div class="col-sm-6">
+            <el-date-picker
+              value-format="yyyy-MM-dd hh-mm-ss"
+              v-model="hp.homeTime"
+              type="datetime"
+              placeholder="拾到日期"
+              align="right"
+              :picker-options="pickerOptions1">
             </el-date-picker>
+              </div>
           </div>
         </div>
         <div class="form-group">
@@ -37,13 +50,65 @@
             <el-radio v-model="hp.sex" label="1">母</el-radio>
           </div>
         </div>
+        <!--<div class="form-group">-->
+          <!--<label for="inputTitle" class="col-sm-3 control-label" >拾到地址:<br>（文字描述)</label>-->
+          <!--<div class="col-sm-6">-->
+            <!--<input type="text" required="required"  class="form-control" id="inputTitle"-->
+                   <!--v-model="hp.address"-->
+                   <!--placeholder="xx市区xx地区附近 关键标志物">-->
+          <!--</div>-->
+        <!--</div>-->
         <div class="form-group">
-          <label for="inputTitle" class="col-sm-3 control-label" >拾到地址:<br>（文字描述)</label>
-          <div class="col-sm-6">
-            <input type="text" required="required"  class="form-control" id="inputTitle"
-                   v-model="hp.address"
-                   placeholder="xx市区xx地区附近 关键标志物">
-          </div>
+          <el-row>
+            <el-col :span="3" :push="4"><span>联系地址</span></el-col>
+            <el-col :span="6" :push="4">
+              <el-select
+                id="sheng"
+                v-model="sheng"
+                @change="choseProvince"
+                placeholder="省级地区">
+                <el-option
+                  v-for="item in province"
+                  :key="item.id"
+                  :label="item.value"
+                  :value="item.id">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="6" :push="3">
+              <el-select
+                id="shi"
+                v-model="shi"
+                @change="choseCity"
+                placeholder="市级地区">
+                <el-option
+                  v-for="item in shi1"
+                  :key="item.id"
+                  :label="item.value"
+                  :value="item.id">
+                </el-option>
+              </el-select>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6" :push="7">
+              <el-select
+                id="qu"
+                v-model="qu"
+                @change="choseBlock"
+                placeholder="区级地区">
+                <el-option
+                  v-for="item in qu1"
+                  :key="item.id"
+                  :label="item.value"
+                  :value="item.id">
+                </el-option>
+              </el-select>
+            </el-col>
+          </el-row>
+          <el-row style="margin-top: 10px">
+            <el-col :span="10" :push="7" class="iptext"><input v-model="street" style="width: 100%" type="text" placeholder=" 请输入详细地址" ></el-col>
+          </el-row>
         </div>
         <div class="form-group">
           <label  class="col-sm-3 control-label">上传图片：</label>
@@ -95,16 +160,29 @@
 </template>
 
 <script>
+  import  axios from 'axios'
   export default {
     name: "publish",
     data() {
       return {
+        // 省市级联选择器
+        mapJson:'../static/json/map.json',
+        province:'',
+        sheng: '',
+        shi: '',
+        shi1: [],
+        qu: '',
+        qu1: [],
+        city:'',
+        block:'',
+        street:'',
+
         hp:{
         phone:'',
         detail:'',
         address:'',
         sex:'',
-        homeTime:'2018-11-11',
+        homeTime:'2018-11-11 00-00-00',
         type:'',
         people:'',
         getmes:'',
@@ -114,11 +192,43 @@
         check1:false,
         check2:false,
 
+        pickerOptions1: {
+          shortcuts: [{
+            text: '今天',
+            onClick(picker) {
+              picker.$emit('pick', new Date());
+            }
+          }, {
+            text: '昨天',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit('pick', date);
+            }
+          }, {
+            text: '一周前',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', date);
+            }
+          }]
+        },
+
       }
     },
-
+      mounted(){
+        this.getCityData()
+      },
     methods: {
+      huoqu(){
+        var sheng=$("#sheng").val();
+        var shi=$("#shi").val();
+        var qu=$("#qu").val();
+        this.hp.address=(sheng+shi+qu+this.street)
+      },
       addhomeless() {
+        this.huoqu()
         let _this=this
         // console.log(this.upath);
         var zipFormData = new FormData();
@@ -159,6 +269,78 @@
           this.check1=true
         }
       },
+
+      // 加载china地点数据，三级
+      getCityData:function(){
+        var that = this
+        axios.get(this.mapJson).then(function(response){
+          if (response.status==200) {
+            var data = response.data
+            that.province = []
+            that.city = []
+            that.block = []
+            // 省市区数据分类
+            for (var item in data) {
+              if (item.match(/0000$/)) {//省
+                that.province.push({id: item, value: data[item], children: []})
+              } else if (item.match(/00$/)) {//市
+                that.city.push({id: item, value: data[item], children: []})
+              } else {//区
+                that.block.push({id: item, value: data[item]})
+              }
+            }
+            // 分类市级
+            for (var index in that.province) {
+              for (var index1 in that.city) {
+                if (that.province[index].id.slice(0, 2) === that.city[index1].id.slice(0, 2)) {
+                  that.province[index].children.push(that.city[index1])
+                }
+              }
+            }
+            // 分类区级
+            for(var item1 in that.city) {
+              for(var item2 in that.block) {
+                if (that.block[item2].id.slice(0, 4) === that.city[item1].id.slice(0, 4)) {
+                  that.city[item1].children.push(that.block[item2])
+                }
+              }
+            }
+          }
+          else{
+            console.log(response.status)
+          }
+        }).catch(function(error){console.log(typeof+ error)})
+      },
+      // 选省
+      choseProvince:function(e) {
+        for (var index2 in this.province) {
+          if (e === this.province[index2].id) {
+            this.shi1 = this.province[index2].children
+            this.shi = this.province[index2].children[0].value
+            this.qu1 =this.province[index2].children[0].children
+            this.qu = this.province[index2].children[0].children[0].value
+            this.E = this.qu1[0].id
+          }
+        }
+      },
+      // 选市
+      choseCity:function(e) {
+        for (var index3 in this.city) {
+          if (e === this.city[index3].id) {
+            this.qu1 = this.city[index3].children
+            this.qu = this.city[index3].children[0].value
+            this.E = this.qu1[0].id
+            // console.log(this.E)
+          }
+        }
+      },
+      // 选区
+      choseBlock:function(e) {
+        this.E=e;
+        // console.log(this.E)
+      },
+
+
       // 表单验证
       islogin(){
         if(this.check1&&this.check2) {
