@@ -10,7 +10,7 @@
 
           <div class="headpic">
             <!--<img class='headimg' :src='url+value.pic[0].headPic' alt="">-->
-            <img class='headimg' :src='url+value.pic[0].headPic' alt="">
+           <span class='headimg'><img class='headimg' :src='url+value.pic[0].headPic' alt=""></span>
             <span class="name">{{value.art[0].userName}}</span>
 
             <span>{{value.art[0].time.slice(0,16).replace('T',' ')}}</span>
@@ -40,7 +40,7 @@
               <!--v-model="visible2[index]"-->
               <p>确定删除吗？</p>
               <div style="text-align: right; margin: 0">
-                <el-button size="mini" type="text">取消</el-button>
+                <el-button size="mini" type="text" >取消</el-button>
                 <el-button type="primary" size="mini" @click="delart(value.art[0].faId)">确定</el-button>
               </div>
               <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -52,6 +52,7 @@
 &nbsp
               <!--增加收藏-->
     <span v-if="addlike" class="s glyphicon glyphicon-heart-empty" @click="addLike()" title="收藏">{{value.like[0].like_sum}}</span>
+
               <!--取消收藏-->
     <span v-if="dellike" class="s glyphicon glyphicon-heart" @click="delLike()"
           title="取消收藏">{{value.like[0].like_sum}}</span>
@@ -68,8 +69,8 @@
           <div class="img">
 
             <p>{{value.art[0].faText}}</p>
-            <div class="center">
-              <img :src='url+value.art[0].faImg' alt="">
+            <div class="center" v-for="Img in img">
+              <img :src='url+Img' alt=""><br><br>
             </div>
 
           </div>
@@ -88,7 +89,7 @@
             <li class="hhh" v-for="(com,index) in value1">
               <div class="border1">
                 <div class="head1">
-                  <img :src='url+value.comhead[index][0].headPic' alt="" class="img1">
+                  <span  class="img1"><img :src='url+value.comhead[index][0].headPic' alt="" class="img1"></span>
                   <div class="headRight">
                     <p class="name1">{{com.userName}}</p>
                     <p class="time">{{com.time.slice(0,16).replace('T',' ')}}</p>
@@ -105,7 +106,8 @@
                       <span v-if="admin ||com.userId==userId ">
                        <el-popover
                          placement="top"
-                         width="160">
+                         width="160"
+                       >
 
                       <p>确定删除吗？</p>
                       <div style="text-align: right; margin: 0">
@@ -114,6 +116,8 @@
                       </div>
                       <el-button slot="reference" icon="el-icon-delete" circle></el-button>
                     </el-popover>
+
+
                     </span>
 
 
@@ -134,7 +138,7 @@
 
                     <div class="com1 " v-for="(reply,keys) in  value1[index].replys">
                       <div class="head">
-                        <img :src='url+reply.headPic' alt="" class="img1">
+                       <span class="img1"> <img :src='url+reply.headPic' alt="" class="img1"></span>
                         <div class="headRight">
                           <p><span class="name1">{{reply.frName}}</span> 回复<span class="name1">{{reply.fcName}}</span>
                           </p>
@@ -227,7 +231,9 @@
     ]),
     data() {
       return {
+        visible2: false,
         comhead: [],
+        img: [],
         value: [],//文章和全部评论回复
         value1: [],//存放显示的评论
         imgs: [require("../../assets/mao1.jpg"), require("../../assets/images/a.jpg")],
@@ -637,8 +643,15 @@ console.log(faId)
         get.value1 = [],
         get.comhead = [],
           axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
-            // get.comhead = result.data.data.comhead
+
             get.value = result.data.data;
+            let img =  get.value.art[0].faImg.split(',')
+            if(img.length>1){
+              img.pop()
+            }
+
+           this.img=img
+
             this.addlike = true
             this.dellike = false
             if (this.UserId) {
@@ -718,6 +731,9 @@ console.log(faId)
 </script>
 
 <style scoped>
+  span{
+    display: inline-block;
+  }
   .blue {
     background: #4c8abe;
     border: none;
@@ -829,6 +845,8 @@ console.log(faId)
     width: 60px;
     height: 60px;
     border-radius: 60px;
+    background: url("../../assets/forum/8.jpg");
+
   }
 
   .img {
@@ -915,6 +933,7 @@ console.log(faId)
     width: 44px;
     height: 44px;
     border-radius: 22px;
+    background: url("../../assets/forum/8.jpg");
     vertical-align: unset;
   }
 

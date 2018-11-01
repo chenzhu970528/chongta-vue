@@ -2,7 +2,6 @@
   <div class="right" >
     <div class="route">您的当前位置：<span>论坛</span><span>/</span><span>养宠日记</span></div>
       <adoDiarylist></adoDiarylist>
-
     <div class="page">
       <!--<change-page></change-page>-->
     </div>

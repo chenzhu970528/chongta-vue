@@ -19,7 +19,7 @@
           </div>
           <div class="photo">
             <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-              <img @click="see(val.faId)" :src='url+val.faImg' alt="图片">
+              <img @click="see(val.faId)" :src='url+imgs[index]' alt="图片">
             </router-link>
             <a></a>
           </div>
@@ -67,7 +67,7 @@
     },
     data() {
       return {
-        imgs: [{img: require("../../assets/images/a.jpg")}],
+        imgs: [],
 
         Names: ['最新', '精品推荐', '养宠日记', '交流分享', '搜索结果'],
         faId: '',
@@ -139,6 +139,11 @@
         // console.log('0000'+storage.text)
         axios.get(this.$store.state.url+`/forumSee/query/?Keyword=${storage.text}`).then((result) => {
           this.myActData = result.data.data[0];
+          for(let i=0;i<this.myActData.length;i++){
+            let img = this.myActData[i].faImg.split(',')
+            this.imgs.push(img[0].replace('，',''))
+          }
+
           this.pageCount = this.myActData.length;
           this.loadData()
 
@@ -159,12 +164,12 @@
           axios.get(this.$store.state.url+"/forumSee/time").then((result) => {
             _this.myActData = result.data.data;
             _this.pageCount = _this.myActData.length;
-            // console.log(_this.pageCount)
+            for(let i=0;i<this.myActData.length;i++){
+              let img = this.myActData[i].faImg.split(',')
+              this.imgs.push(img[0].replace('，',''))
+            }
             _this.loadData()
-            //   for (let i = 0; i < 6; i++) {
-            //     this.value1.push(this.value[i])
-            //   }
-            //   this.cou = Math.ceil(this.value.length / 6)
+
           })
 
         }
@@ -172,36 +177,36 @@
           axios.get(this.$store.state.url+"/forumSee/essence").then((result) => {
             _this.myActData = result.data.data;
             _this.pageCount = _this.myActData.length;
-            // console.log(_this.pageCount)
+            for(let i=0;i<this.myActData.length;i++){
+              let img = this.myActData[i].faImg.split(',')
+              this.imgs.push(img[0].replace('，',''))
+            }
             _this.loadData()
-            // for (let i = 0; i < 6; i++) {
-            //   this.value1.push(this.value[i])
-            // }
-            // this.cou = Math.ceil(this.value.length / 6)
+
           })
         }
         else if (plate == 2) {
           axios.get(this.$store.state.url+"/forumSee/diary").then((result) => {
             _this.myActData = result.data.data;
             _this.pageCount = _this.myActData.length;
-            // console.log(_this.pageCount)
+            for(let i=0;i<this.myActData.length;i++){
+              let img = this.myActData[i].faImg.split(',')
+              this.imgs.push(img[0].replace('，',''))
+            }
             _this.loadData()
-            // for (let i = 0; i < 6; i++) {
-            //   this.value1.push(this.value[i])
-            // }
-            // this.cou = Math.ceil(this.value.length / 6)
+
           })
         }
         else {
           axios.get(this.$store.state.url+"/forumSee/gossip").then((result) => {
             _this.myActData = result.data.data;
             _this.pageCount = _this.myActData.length;
-            // console.log(_this.pageCount)
+            for(let i=0;i<this.myActData.length;i++){
+              let img = this.myActData[i].faImg.split(',')
+              this.imgs.push(img[0].replace('，',''))
+            }
             _this.loadData()
-            // for (let i = 0; i < 6; i++) {
-            //   this.value1.push(this.value[i])
-            // }
-            // this.cou = Math.ceil(this.value.length / 6)
+
           })
         }
       }

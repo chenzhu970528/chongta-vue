@@ -106,11 +106,15 @@ console.log(index+'30才对')
     width: 60px;
     height: 60px;
     border-radius: 30px;
+    background: url("../../../assets/forum/8.jpg");
+
   }
   .head1{
     width: 80px;
     height: 80px;
     border-radius: 40px;
+    background: url("../../../assets/forum/8.jpg");
+
   }
   #scroll {
     padding: 0 35px;
