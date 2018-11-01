@@ -19,15 +19,28 @@
           </div>
         </div>
         <div class="form-group">
-          <label  class="col-sm-3  control-label">拾到时间：</label>
-          <div class="col-sm-6">
-            <el-date-picker
-              value-format="yyyy-MM-dd"
-              v-model="hp.homeTime"
+          <!--<label  class="col-sm-3  control-label">拾到时间：</label>-->
+          <!--<div class="col-sm-6">-->
+            <!--<el-date-picker-->
+              <!--value-format="yyyy-MM-dd"-->
+              <!--v-model="hp.homeTime"-->
 
-              type="date"
-              placeholder="拾到日期">
+              <!--type="date"-->
+              <!--placeholder="拾到日期">-->
+            <!--</el-date-picker>-->
+          <!--</div>-->
+          <div class="block">
+            <label class="col-sm-3 control-label">拾到时间：</label>
+            <div class="col-sm-6">
+            <el-date-picker
+              value-format="yyyy-MM-dd hh-mm-ss"
+              v-model="hp.homeTime"
+              type="datetime"
+              placeholder="拾到日期"
+              align="right"
+              :picker-options="pickerOptions1">
             </el-date-picker>
+              </div>
           </div>
         </div>
         <div class="form-group">
@@ -104,7 +117,7 @@
         detail:'',
         address:'',
         sex:'',
-        homeTime:'2018-11-11',
+        homeTime:'2018-11-11 00-00-00',
         type:'',
         people:'',
         getmes:'',
