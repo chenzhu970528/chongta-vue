@@ -7,10 +7,10 @@
         <el-col :span="4">操作</el-col>
       </el-row>
       <div id="scroll">
-        <el-row style="text-align:left;margin-top: 20px;line-height: 40px;" v-for="(myAply,index) in showmyAply">
+        <el-row style="text-align:left;margin-top: 20px;line-height: 40px;" v-for="(myAply,index) in showmyAply" :key="index">
           <el-col :span="8"><router-link class="linnk" :to="'/matchmaking/matchDel/'+myAply.matId">{{myAply.title}}</router-link></el-col>
           <el-col :span="7">{{myAply.maplyTime}}</el-col>
-          <el-col :span="5">状态</el-col>
+          <el-col :span="5" style="color: #ede2bb">{{myAply.agree}}</el-col>
           <el-col :span="4">
             <el-popover
               placement="top"
@@ -70,7 +70,10 @@
             // console.log(result.data.data[0]);
             for (let i = 0; i < this.myAplydata.length; i++) {
               this.showmyAply.push(this.myAplydata[i]);
-              this.visiblematch.push(false)
+              this.visiblematch.push(false);
+              if(this.showmyAply[i].agree==='1'){
+                this.showmyAply[i].agree='已被配对成功'
+              }else this.showmyAply[i].agree='待配对'
             }
             if(result.data.data[0].length==0){
               this.showPic()
