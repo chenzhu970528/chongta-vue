@@ -96,9 +96,7 @@
           let config = {headers: {'Content-Type': 'multipart/form-data'}};
           this.$axios.post(this.$store.state.url + '/forumAdd/art', zipFormData, config)
             .then(function (response) {
-              // console.log(response);
-              // console.log(response.data);
-              // console.log(response.bodyText);
+
               _this.tips='发表成功'
               _this.c()
             }).catch((err) => {

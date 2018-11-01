@@ -3,7 +3,7 @@
     <div class="tol" v-for="(val,index) in lostlists">
       <el-row class="card">
         <el-col :span="7" class="petPic">
-          <div class="pic"><img :src='url+val.faImg'></div>
+          <div class="pic"><img :src='url+img1[index]'></div>
         </el-col>
         <el-col :span="15">
              <span   @click="see(val.faId)">
@@ -75,7 +75,8 @@
 
         visible1:[],
         hide:false,
-
+img:[],
+img1:[],
         lostlists:[],
         pageIndex: 1,
         pagesize: 3,  //每页条数
@@ -106,6 +107,7 @@
         }
         for (let i = start; i < end; i++) {
           this.lostlists.push(this.value[i])
+          this.img1.push(this.img[i])
         }
       },
       change(){
@@ -115,8 +117,13 @@
         let id = this.UserId.replace(/\"/g, "")
         axios.get(this.$store.state.url+`/forumSee/user/like?userId=${id}`).then((result) => {
           this.value=[]
+          this.img=[]
+          this.img1=[]
           this.value = result.data.data;
-
+          for (let i = 0; i < this.value.length; i++) {
+            let img = this.value[i].faImg.split(',')
+            this.img.push(img[0].replace('，', ''))
+          }
           if( this.value.length<1){
             this.lostlists = [];
             this.showPic()

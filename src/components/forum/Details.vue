@@ -846,7 +846,6 @@ console.log(faId)
     height: 60px;
     border-radius: 60px;
     background: url("../../assets/forum/8.jpg");
-
   }
 
   .img {
