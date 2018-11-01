@@ -220,6 +220,7 @@
     border-radius: 110px;
     margin-top: 20px;
     margin-left: 10px;
+    background: url("../../../assets/forum/8.jpg");
   }
   .pic img{
     width: 110px;
