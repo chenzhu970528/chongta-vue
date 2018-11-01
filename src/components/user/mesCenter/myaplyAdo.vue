@@ -17,7 +17,7 @@
             v-model="visiblematch[index]">
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="visiblematch[index] = false">取消</el-button>
+              <el-button size="mini" type="text" @click="visiblematch[index] === false">取消</el-button>
               <el-button type="primary" size="mini" @click="deleate(myAply.addId)">确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -25,7 +25,6 @@
         </el-col>
       </el-row>
     </div>
-
     <div v-if="isshow" class="noList">
       <img src="../../../assets/user/default8.png" alt="">
       <p>还没有任何发布哦，快去发布吧</p>
@@ -39,7 +38,7 @@
         name: "myaplyAdo",
       data(){
           return{
-            visiblematch:[],
+            visiblematch:false,
             isshow:false,
             userId: this.$store.state.userId,
             showmyAply:[],
@@ -61,7 +60,7 @@
             // console.log(this.mydata);
             for (let i = 0; i < this.mydata.length; i++) {
               this.showmyAply.push(this.mydata[i]);
-              this.visiblematch.push(false);
+              // this.visiblematch.push(false);
               if(this.showmyAply[i].agree==='1'){
                 this.showmyAply[i].agree='已被领养成功'
               }else this.showmyAply[i].agree='待领养'

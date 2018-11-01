@@ -122,25 +122,19 @@
     height: 750px;
     background: url("../assets/HomePage/photo-1518640165980-d3e0e2aa6c1e.jpg") center;
     background-size: 100% auto;
+    position: relative;
   }
   .top img{
     width: 100%;
   }
   .top span{
-    text-align: center;
+    /*text-align: center;*/
     font-weight: bold;
     font-size: 50px;
     color: #0369ba;
-  }
-  .top span:first-child{
-    position: relative;
-    top:270px;
-    left: 1%;
-  }
-  .top span:last-child{
-    /*position: absolute;*/
-    top:270px;
-    left: 57%;
+    position: absolute;
+    top: 35%;
+    right: 1%;
   }
   .bottom{
     margin-top:150px;

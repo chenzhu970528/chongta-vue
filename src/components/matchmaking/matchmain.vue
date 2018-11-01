@@ -59,9 +59,9 @@
       <div class="listStyle">
       <span>
         <!--<span><router-link  to="/matchmaking" class="her" active-class="active" role="presentation" exact>默认</router-link></span>-->
-        <span><router-link  active-class="active" role="presentation" to="/matchmaking/TimeDesc" class="her style1">查看最新<span class="glyphicon glyphicon-arrow-up" ></span></router-link></span>
-        <span><router-link  to="/matchmaking/Timeasc" class="her style2">按时间<span class="glyphicon glyphicon-arrow-down"></span></router-link></span>
-        <span><router-link  to="/matchmaking/HotDesc" class="her style3">查看最热<span class="glyphicon glyphicon-fire" ></span></router-link></span>
+        <span><router-link  active-class="style1" role="presentation" to="/matchmaking/TimeDesc" class="her " exact>查看最新<span class="glyphicon glyphicon-arrow-up" ></span></router-link></span>
+        <span><router-link  active-class="style2" to="/matchmaking/Timeasc" class="her">按时间<span class="glyphicon glyphicon-arrow-down"></span></router-link></span>
+        <span><router-link  active-class="style3" to="/matchmaking/HotDesc" class="her">查看最热<span class="glyphicon glyphicon-fire" ></span></router-link></span>
       </span>
       </div>
       <router-view></router-view>
@@ -168,13 +168,13 @@
     text-decoration: none;
     color: grey;
   }
-  .style1:focus{
+  .style1{
     color: #c382ed
   }
-  .style2:focus{
+  .style2{
     color: cornflowerblue
   }
-  .style3:focus{
+  .style3{
     color: #ed5652
   }
   .qrCord span{

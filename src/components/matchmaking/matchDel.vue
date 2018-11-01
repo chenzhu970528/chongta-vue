@@ -2,6 +2,10 @@
 <template>
   <div class="tol">
     <div class="top"></div>
+    <div class="dang" v-if="Mdeldata.agree==='1'">
+      <img src="../../assets/match/dANG1.png" alt="">
+      <span>已经被其他小可爱领走了哦, <a href="/matchmaking">返回上一页</a></span>
+    </div>
     <div class="cont container">
       <div class="route">您的当前位置：<span><a href="/matchmaking">宠物婚介</a></span><span>/</span><span>详情</span></div>
       <div class="row firstrow">
@@ -22,6 +26,8 @@
         </div>
       </div>
     </div>
+    <!--<div style="position: absolute;display: inline-block;right: 20%;top: 68%;"></div>-->
+
   </div>
 
 </template>
@@ -149,5 +155,20 @@
   }
   h3 span{
     padding-right: 10px;
+  }
+  .dang{
+    background-color: rgba(116,116,116,0.5);width: 100%;height: 730px;position: absolute;top: 70px;z-index: 1000000;text-align: center
+  }
+  .dang span{
+    color: whitesmoke;font-weight: bold;font-size: 30px;position: absolute;left: 30%;top: 40%
+  }
+  .dang img{
+    width: 300px;
+  }
+  .dang span a{
+    color: whitesmoke;
+  }
+  .dang span a:hover{
+    color: #c7d1ed;
   }
 </style>
