@@ -15,7 +15,26 @@
         <span class="glyphicon glyphicon-time" aria-hidden="true" value-format="yyyy-MM-dd HH:mm:ss"> 发布时间：</span> {{jsondata1.adoTime}}
       </li>
       <li class="list-group-item list-group-item-info">
-        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"> 地址：</span> {{jsondata1.adoAddress}}
+        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"> 地址：</span> <button type="button" @click="handleCreate" class="btn btn-link" data-toggle="modal" data-target="#myModal">
+        {{jsondata1.adoAddress}}
+      </button>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{jsondata1.adoAddress}}</h4>
+              </div>
+              <div class="modal-body">
+                <div id="cellMap"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </li>
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-user" aria-hidden="true"> 联系人：</span> {{jsondata1.userName}}
@@ -56,7 +75,7 @@
         </span>
       </li>
     </ul>
-    <el-button type="primary" @click="islogin" v-if="!checkAdo" >我想领养<i class="el-icon-success el-icon--right"></i></el-button>
+    <el-button style="margin-left: 50px;" type="primary" @click="islogin" v-if="!checkAdo" >我想领养<i class="el-icon-success el-icon--right"></i></el-button>
     <el-dialog
       title="提示"
       :visible.sync="centerDialogVisible"
@@ -113,11 +132,42 @@
         }
       },
       methods:{
+        handleCreate(){
+          let _this=this
+          //console.log(document.getElementById("cellMap"));
+          setTimeout(() => {
+            _this.cellMap()
+          }, 0);
+          //setInterval(this.cellInfMap(),2000);
+        },
+        // 地图
+        cellMap(){
+          // 百度地图API功能
+          var map = new BMap.Map("cellMap");
+          var point = new BMap.Point(116.331398,39.897445);
+          map.enableScrollWheelZoom()
+          map.centerAndZoom(point,12);
+          // 创建地址解析器实例
+          var myGeo = new BMap.Geocoder();
+          // 将地址解析结果显示在地图上,并调整地图视野
+          myGeo.getPoint(this.jsondata1.adoAddress, function(point){
+            if (point) {
+              map.centerAndZoom(point, 16);
+              var marker = new BMap.Marker(point);// 创建标注
+              map.addOverlay(marker);
+              map.panBy(500,300)
+              marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+            }else{
+              alert("该地址没有解析到结果!");
+            }
+          }, "北京市");
+
+        },
           // 判断是否完善个人信息
         ajaxuser(){
           axios.get(this.$store.state.url + `/user/showUser/${this.userId}`).then((result) => {
-            // console.log(result.data.data[0].address)
-           if(result.data.data[0].address==null){
+            console.log(result.data.data[0].address.length)
+           if(result.data.data[0].address.length==0){
              alert('请完善个人信息后提交');
              location.href=this.$store.state.myurl+'/user/update'
            }else {
@@ -176,11 +226,18 @@
       },
       mounted(){
         this.ajax()
+      },
+      watch:{
+        '$router':'ajax'
       }
     }
 </script>
 
 <style scoped>
+  .modal-dialog{
+    width: 1024px;
+  }
+  #cellMap {width: 1000px;height: 600px;overflow: hidden;margin:0;font-family:"微软雅黑";}
   .stamp{
     width: 500px;
     height: 500px;
@@ -195,7 +252,5 @@
     margin: 5px 5px;
     border-radius:10px ;
   }
-  button{
-    margin-left: 50px;
-  }
+
 </style>
