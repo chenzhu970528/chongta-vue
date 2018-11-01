@@ -6,16 +6,15 @@ let arr=window.localStorage;
 
 const store = new Vuex.Store({
   state: {
-    name:'交流分享',
-    nametype:'b'
+  a:0
   },
   mutations: {
+    add (state) {
+      state.a++
+
+    }
 
   },
-  addName (state,name) {
-      state.name=name.amount
-      state.nametype=name.am
-    }
 
 
 })
