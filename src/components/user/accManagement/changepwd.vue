@@ -110,7 +110,10 @@
               userId:_this.$store.state.userId,
             },
             success: function (result) {
-              alert("修改成功")
+              _this.inputold='';
+              _this.inputnew='';
+              _this.inputnew2='';
+                alert("修改成功")
             }
           })
         },
