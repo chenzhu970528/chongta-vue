@@ -9,6 +9,7 @@
 </template>
 
 <script>
+  import store from './store.js'
   import axios from 'axios'
     export default {
         name: "DetailsImg",
@@ -16,14 +17,19 @@
           return{
             adoId:this.$route.params.adoId,
             imgList:[
-              // {url:require("../../assets/adoption/dog1.jpg")} ,
-              // {url:require("../../assets/adoption/dog2.jpg")} ,
-              // {url:require("../../assets/adoption/dog3.jpg")} ,
-              // {url:require("../../assets/adoption/dog4.jpg")} ,
+
             ],
             myImg:[],
             url:this.$store.state.url
           }
+      },
+      watch:{
+        'cont':'ajax'
+      },
+      computed:{
+        cont(){
+          return store.state.cont
+        },
       },
       created() {
           this.ajax()
@@ -31,6 +37,10 @@
       methods:{
           ajax(){
             let _this=this
+            this.adoId=_this.$route.params.adoId,
+              this.imgList=[],
+              this.myImg=[],
+              this.url=_this.$store.state.url
             axios.get(this.$store.state.url+`/adoptions/details/${this.adoId}`).then((result) => {
               _this.myImg = result.data.data.jsondata.adoPic.split(",");
               for(let i=0;i<_this.myImg.length-1;i++){

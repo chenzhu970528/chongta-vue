@@ -49,6 +49,7 @@
 </template>
 
 <script>
+  import store from './store.js'
   import axios from 'axios'
   import Recommend from '../adoption/DetailsRecommend'
   import Album from '../adoption/DetailsImg.vue'
@@ -67,7 +68,14 @@
             mydata:[],
           }
       },
+      watch:{
+        'cont':'myajax'
+      },
+
       computed:{
+        cont(){
+          return store.state.cont
+        },
         adoType:{
           get(){
             let _this=this
@@ -79,11 +87,19 @@
           }
         },
       },
+      methods:{
+        myajax(){
+          let _this =this
+          this.adoId=_this.$route.params.adoId,
+          this.mydata=[]
+          axios.get(this.$store.state.url+`/adoptions/details/${this.adoId}`).then((result) => {
+            // console.log(result.data)
+            this.mydata = result.data.data.jsondata;
+          })
+        }
+      },
       created(){
-        axios.get(this.$store.state.url+`/adoptions/details/${this.adoId}`).then((result) => {
-          // console.log(result.data)
-          this.mydata = result.data.data.jsondata;
-        })
+        this.myajax()
       }
     }
 </script>
