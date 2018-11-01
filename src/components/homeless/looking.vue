@@ -6,7 +6,7 @@
 
         <div class="listimg img" style="float: left;" >
           <viewer >
-            <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="">
+            <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="width: 160px;height: 152px;">
             <img :src="urlImg(activity.lppic.split(',')[1])" alt="" style="display: none">
             <img :src="urlImg(activity.lppic.split(',')[2])" alt="" style="display: none">
           </viewer>

@@ -225,7 +225,7 @@
   .top{
     width: 100%;
     height: 420px;
-    background:url("../../assets/adoption/adoTop.jpg") no-repeat center;
+    background:url("../../assets/adoption/q3.jpg") no-repeat center;
     background-size: 100%;
     /*min-height: 900px;*/
     position: relative;
