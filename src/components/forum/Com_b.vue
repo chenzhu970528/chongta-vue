@@ -17,7 +17,7 @@
           <textarea class="form-control" v-model="text" placeholder="分享你的趣事吧"></textarea>
         </div>
         <div class="form-group">
-          <!--<label  class="col-sm-3 control-label">上传图片：</label>-->
+
           <div class="col-sm-6">
             <input class="left" type="file" name="avatar"
                    @change="changeImage($event)"
@@ -29,11 +29,8 @@
         <input class="btn btn-default" type="button" @click="addForum" value="发表">
         </form>
     </div>
-    <p v-if="vv" class="cc">发表成功</p>
-    <p v-if="v" class="cc">标题字数超出</p>
-    <p v-if="v1" class="cc">最少两个字哦</p>
-    <p v-if="v2" class="cc">先去登录吧</p>
-    <p v-if="v3" class="cc">内容不能为空</p>
+    <p v-if="vv" class="cc">{{tips}}</p>
+
   </div>
 </template>
 <script>
@@ -53,11 +50,8 @@
         title: '',
         text: '',
         type: 'b',
+        tips:'发表成功',
         vv: false,
-        v: false,
-        v1: false,
-        v2: false,
-        v3: false,
       }
     },
     methods: {
@@ -83,96 +77,81 @@
           userName: this.UserName.replace(/\"/g, ""),
           faType: this.type,
         }
+
         this.title = '';
         this.text = '';
         // console.log(this.upath);
         var zipFormData = new FormData();
         //依次添加多个文件
-        for (var i = 0; i < this.upath.length; i++) {
-          zipFormData.append('filename', this.upath[i]);
-        }
-        //添加其他的表单元素
-        zipFormData.append('faTitle', aa.faTitle)
-        zipFormData.append('faText', aa.faText)
-        zipFormData.append('userId', aa.userId)
-        zipFormData.append('userName', aa.userName)
-        zipFormData.append('faType', aa.faType)
-        let config = {headers: {'Content-Type': 'multipart/form-data'}};
-        this.$axios.post(this.$store.state.url + '/forumAdd/art', zipFormData, config)
-          .then(function (response) {
-            // console.log(response);
-            // console.log(response.data);
-            // console.log(response.bodyText);
-            _this.cc()
-          }).catch((err) => {
-          alert(err)
-        });
+        if(this.upath.length<6){
+          for (var i = 0; i < this.upath.length; i++) {
+            zipFormData.append('filename', this.upath[i]);
+          }
+          //添加其他的表单元素
+          zipFormData.append('faTitle', aa.faTitle)
+          zipFormData.append('faText', aa.faText)
+          zipFormData.append('userId', aa.userId)
+          zipFormData.append('userName', aa.userName)
+          zipFormData.append('faType', aa.faType)
+          let config = {headers: {'Content-Type': 'multipart/form-data'}};
+          this.$axios.post(this.$store.state.url + '/forumAdd/art', zipFormData, config)
+            .then(function (response) {
+              // console.log(response);
+              // console.log(response.data);
+              // console.log(response.bodyText);
+              _this.tips='发表成功'
+              _this.c()
+            }).catch((err) => {
+            alert(err)
+          });
 
+        }
+      else{
+          _this.tips='最多上传六张图片'
+        this.c()
+        }
       },
       addForum() {
         let _this = this;
         if (!_this.UserId) {
-          _this.c2()
+          _this.tips='先去登录吧'
+          _this.c()
         }
         else if (_this.text == '') {
-          _this.c3()
+          _this.tips='内容不能为空哦'
+          _this.c()
+        }
+        else if (_this.title == '') {
+          _this.tips='标题不能为空哦'
+          _this.c()
         }
         else if (_this.text != '' && _this.title != '') {
           if (_this.title.length > 15) {
+            _this.tips='标题字数超出'
             _this.c()
           }
-          else if (_this.title.length < 2) {
-            _this.c1()
+          else if(this.upath.length<1){
+            _this.tips='最少上传一张图片'
+            _this.c()
           }
           else {
             _this.addImg()
            window.localStorage.a++
 
             store.commit('add')
-            console.log(store.state.a)
+            // console.log(store.state.a)
           }
         }
       },
-
-      //发表提示
-      cc() {
+      //提示
+      c() {
         let _this = this
         _this.vv = true
         setTimeout(function () {
           _this.vv = false
         }, 3000)
       },
-      //15字数限制
-      c() {
-        let _this = this
-        _this.v = true
-        setTimeout(function () {
-          _this.v = false
-        }, 3000)
-      },
-      //2字数限制
-      c1() {
-        let _this = this
-        _this.v1 = true
-        setTimeout(function () {
-          _this.v1 = false
-        }, 3000)
-      },
-      //登录提示
-      c2() {
-        let _this = this
-        _this.v2 = true
-        setTimeout(function () {
-          _this.v2 = false
-        }, 3000)
-      }, //内容提示
-      c3() {
-        let _this = this
-        _this.v3 = true
-        setTimeout(function () {
-          _this.v3 = false
-        }, 3000)
-      },
+
     }
   }
 </script>
@@ -182,7 +161,7 @@
     position: absolute;
     width: 150px;
     height: 400px;
-    top: 0px;
+    top: -6px;
     left: 25px;
     background-color: rgba(156, 173, 255, 0.2);
     text-align: center;
@@ -210,6 +189,8 @@
   .p {
     margin-bottom: -30px;
     color: #68809e;
+    /*font-weight: bolder;*/
+    font-size:15px;
   }
 
   .cc {
@@ -243,6 +224,7 @@
     padding-top: 20px;
     border-radius: 10px;
     margin-left: -60px;
+    margin-top:45px;
   }
 
   textarea {

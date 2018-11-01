@@ -271,6 +271,10 @@ export default {
 </script>
 
 <style>
+  a{
+    cursor: pointer;
+    text-decoration: none;
+  }
 
   body {
     padding-right: 0px !important;

@@ -34,7 +34,7 @@
             v-model="visiblelost[index]">
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="visiblelost[index]">取消</el-button>
+              <!--<el-button size="mini" type="text" @click="visiblelost=false">取消</el-button>-->
               <el-button type="primary" size="mini" @click="dellostpets(lostlist.lpId)">确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>

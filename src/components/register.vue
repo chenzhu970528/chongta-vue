@@ -5,7 +5,7 @@
       <div class="alrady">
         <el-alert
           title=""
-          type="info" style="font-size: 20px;float: left">
+          type="info" style="font-size: 18px;float: left">
           欢迎来到宠它网，已有账号，去
           <div style="display: inline-block">
             <user-login></user-login>
@@ -13,7 +13,7 @@
         </el-alert>
       </div>
       <div class="bg">
-        <form class="form-horizontal" style="margin-top: 200px;margin-left: 10px">
+        <form class="form-horizontal" style="padding-top: 40px; margin-top: 200px;margin-left: 10px">
           <div class="form-group first">
             <label  class="col-sm-2 control-label col-sm-offset-2">用户名</label>
             <div class="col-sm-4">

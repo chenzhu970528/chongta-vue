@@ -5,10 +5,10 @@
     <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>
       <div class="listimg img" style="float: left">
         <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
-        <img :src="urlImg(activity.homePic.split(',')[0])" alt="" style="width: 150px;height: 140px;">
-        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/homelessdetails/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>
-        <!--<img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="" style="width: 150px;height: 140px;">-->
-        </router-link>
+        <img :src="urlImg(activity.homePic.split(',')[0])" alt="" style="width: 160px;height: 152px;">
+        <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/homelessdetails/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
+        <!--&lt;!&ndash;<img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="" style="width: 150px;height: 140px;">&ndash;&gt;-->
+        <!--</router-link>-->
       </div>
 
 
@@ -16,7 +16,7 @@
         <h4>{{activity.getmes}}</h4>
         <div class="address">
           <div><span>地址：</span><span>{{activity.address}}</span> <br>
-            <span>简述：</span><span>{{activity.detail}}</span><br>
+            <span>简述：</span><span style="text-overflow : ellipsis;white-space:nowrap;overflow:hidden">{{activity.detail}}</span><br>
             <span>发现时间：{{activity.homeTime}}</span>
           </div>
         </div>
@@ -126,6 +126,10 @@
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
   }
+  /*.listbox img img{*/
+    /*width: 200px;*/
+    /*height: 200px;*/
+  /*}*/
   .clearfix {
     display: block;
   }

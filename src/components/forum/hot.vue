@@ -3,7 +3,7 @@
 <p class="top">最多收藏</p>
     <div class="con">
       <div class="pic" v-for="(list,index) in list1">
-        <img :src='s+list[0].faImg' class="pic-image" alt="Pic"/>
+        <img :src='s+img[index]' class="pic-image" alt="Pic"/>
         <span class="pic-caption bottom-to-top">
                <h1 class="pic-title" @click="see(list[0].faId)">
                  <router-link tag="p" active-class="active" role="presentation" :to="`/forum/`+list[0].faId">
@@ -30,6 +30,7 @@
       return {
         list1: [],
         s:this.$store.state.url,
+        img:[]
       }
     },
     methods: {
@@ -40,9 +41,11 @@
     },
     mounted() {
       axios.get(this.$store.state.url + "/forumSee/likes").then((result) => {
-        // this.list1 = result.data.data;
+        this.mydata = result.data.data;
         for (let i=0 ;i<6;i++) {
-          this.list1.push(result.data.data[i])
+          this.list1.push(this.mydata[i])
+          let img = this.mydata[i][0].faImg.split(',')
+          this.img.push(img[0].replace('，',''))
         }
       })
 

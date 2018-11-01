@@ -480,9 +480,6 @@
       addsex(){
         store.commit('addpetSex',this.adosex)
       },
-      addage(){
-        store.commit('addpetAge',this.adoage)
-      },
       addtype(type){
         store.commit('addpetType',type)
       },
