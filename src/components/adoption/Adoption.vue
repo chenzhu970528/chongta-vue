@@ -122,7 +122,7 @@
   .polaroid {
     position: absolute;
     top: -300px;
-    left: 150px;
+    left: 100px;
     width: 400px;
     height: 320px;
     max-width: 30em;
@@ -225,7 +225,7 @@
   .top{
     width: 100%;
     height: 420px;
-    background:url("../../assets/adoption/q3.jpg") no-repeat center;
+    background:url("../../assets/adoption/top.jpg") no-repeat center;
     background-size: 100%;
     /*min-height: 900px;*/
     position: relative;

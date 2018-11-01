@@ -17,7 +17,6 @@
               v-model="visiblematch[index]">
               <p>确定删除吗？</p>
               <div style="text-align: right; margin: 0">
-                <el-button size="mini" type="text" @click="visiblematch[index] = false">取消</el-button>
                 <el-button type="primary" size="mini" @click="deleate(myAply.aplyId,myAply.matId)">确定</el-button>
               </div>
               <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -43,30 +42,16 @@
           isshow:false,
           showmyAply:[],
           myAplydata:[],
-          userId: this.$store.state.userId,
+          aplyId: this.$store.state.userId,
         }
       },
       created() {
         this.ajax()
       },
-      // created(){
-      //   axios.get(this.$store.state.url+`/matchmaking/${this.userId}/sendaply`).then((result) => {
-      //     this.myAplydata = result.data.data[0];
-      //     // console.log(result.data.data[0]);
-      //     for (let i = 0; i < this.myAplydata.length; i++) {
-      //       this.showmyAply.push(this.myAplydata[i]);
-      //       this.visiblematch.push(false)
-      //     }
-      //     if(result.data.data[0].length==0){
-      //       this.showPic()
-      //       // _this.isshow=true
-      //     }
-      //   })
-      // },
       methods:{
         ajax(){
-          axios.get(this.$store.state.url+`/matchmaking/${this.userId}/sendaply`).then((result) => {
-            this.myAplydata = result.data.data[0];
+          axios.get(this.$store.state.url+`/matchmaking/${this.aplyId}/sendaply`).then((result) => {
+            this.myAplydata = result.data.data;
             // console.log(result.data.data[0]);
             for (let i = 0; i < this.myAplydata.length; i++) {
               this.showmyAply.push(this.myAplydata[i]);
@@ -75,7 +60,7 @@
                 this.showmyAply[i].agree='已被配对成功'
               }else this.showmyAply[i].agree='待配对'
             }
-            if(result.data.data[0].length==0){
+            if(result.data.data.length==0){
               this.showPic()
               // _this.isshow=true
             }

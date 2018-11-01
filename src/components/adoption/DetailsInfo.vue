@@ -91,6 +91,7 @@
 </template>
 
 <script>
+  import store from './store.js'
   import axios from 'axios'
     export default {
         name: "DetailsInfo",
@@ -109,7 +110,13 @@
             diarys:[]
           }
       },
+      watch:{
+        'cont':'ajax'
+      },
       computed:{
+        cont(){
+          return store.state.cont
+        },
         userSex:{
           get(){
             let _this=this
@@ -161,7 +168,6 @@
               alert("该地址没有解析到结果!");
             }
           }, "北京市");
-
         },
           // 判断是否完善个人信息
         ajaxuser(){
@@ -205,6 +211,18 @@
           })
         },
         ajax(){
+          let _this = this
+          this.adoLimit=false,
+            this.checkAdo=false,
+            this.centerDialogVisible= false,
+            this.userId=_this.$store.state.userId,
+            this.adoId=_this.$route.params.adoId,
+          // 详细信息
+          this.jsondata1=[],
+            // 所有有意领养者
+            this.jsondata2=[],
+            // 遍历出的有意领养者
+            this.diarys=[]
           axios.get(this.$store.state.url+`/adoptions/details/${this.adoId}`).then((result) => {
             // console.log(result.data)
             this.jsondata1 = result.data.data.jsondata;
@@ -227,9 +245,6 @@
       mounted(){
         this.ajax()
       },
-      watch:{
-        '$router':'ajax'
-      }
     }
 </script>
 

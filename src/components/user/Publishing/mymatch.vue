@@ -4,19 +4,16 @@
     <div class="route">您的当前位置：<span>我的发布</span><span>/</span><span>相亲角</span></div>
       <match-list></match-list>
     <div class="page">
-      <!--<change-page></change-page>-->
     </div>
   </div>
 </template>
 
 <script>
   import  matchList from './matchList.vue'
-  // import changePage from '../../matchmaking/changepage.vue'
     export default {
         name: "mymatch",
       components:{
         'match-list':matchList,
-        // 'change-page':changePage,
       }
     }
 </script>
