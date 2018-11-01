@@ -221,9 +221,8 @@
     width: 120px;
     height: 120px;
     z-index: 10;
-    left: 12px;
-    top: 15px;
-    transform:rotate(-34deg);
+    top: 14px;
+    transform:rotate(-37deg);
   }
   .time {
     font-size: 13px;
@@ -256,8 +255,6 @@
   }
   .list-group-item-info:hover{
     position: relative;
-    left: -10px;
-    top:-10px;
     box-shadow:2px 2px 5px 2px #a8a8a8;
   }
   a{

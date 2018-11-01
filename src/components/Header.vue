@@ -30,14 +30,15 @@
         </li>
         <li class="dropdown" v-if="isLogin">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-             aria-expanded="false">{{UserName.replace(/\"/g, "")}}<span class="caret"></span></a>
+             aria-expanded="false">{{UserName.replace(/\"/g, "")}}<i class="caret"></i></a>
           <ul class="dropdown-menu">
             <router-link tag="li" active-class="active" role="presentation" to="/user"><a>个人中心</a></router-link>
             <li role="separator" class="divider"></li>
             <li><a href="#" @click="cleanUser">退出登录</a></li>
           </ul>
         </li>
-        <li><a>定位</a></li>
+        <li><span><i class="el-icon-location"></i>{{address}}</span></li>
+        <div id="allmap"></div>
       </ul>
     </div><!-- /.container-fluid -->
   </nav>
@@ -51,6 +52,7 @@
     name: "Header",
     data(){
       return{
+        address:''
       }
     },
     components:{
@@ -66,9 +68,25 @@
       cleanUser(){
         localStorage.clear();
         location.href=this.$store.state.myurl
+      },
+      myaddress(){
+        let _this = this
+        // 百度地图API功能
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point(116.331398,39.897445);
+        map.centerAndZoom(point,12);
+
+        function myFun(result){
+          var cityName = result.name;
+          map.setCenter(cityName);
+          _this.address=cityName;
+        }
+        var myCity = new BMap.LocalCity();
+        myCity.get(myFun);
       }
     },
     mounted(){
+      this.myaddress()
       $(window).scroll(function () {
         if ($(".bgsty").offset().top > 360) {$(".navbar-fixed-top").addClass("top-nav");
         }else {$(".navbar-fixed-top").removeClass("top-nav");}
@@ -103,9 +121,18 @@
   }
 
   .navbar li a {
+     height: 70px;
+     line-height: 40px;
+     font-size: 18px;
+   }
+  .navbar li span {
+    display: inline-block;
     height: 70px;
-    line-height: 40px;
+    line-height: 70px;
     font-size: 18px;
+    color: cornflowerblue;
+    margin-right: 10px;
+    margin-left: 20px;
   }
 
   .navbar .dropdown li a {
