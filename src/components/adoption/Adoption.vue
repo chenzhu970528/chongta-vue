@@ -96,6 +96,11 @@
   import axios from 'axios'
     export default {
         name: "Adoption",
+      data(){
+          return{
+            myaddress:''
+          }
+      },
       components:{
         'sildes-show':Slideshow,
         'ado-sizer': Sizer,
@@ -105,8 +110,12 @@
         'UserId',
         'UserName',
         'isLogin'
-      ])
+      ]),
+      mounted(){
+
+      },
     }
+
 </script>
 
 <style scoped>
@@ -192,6 +201,7 @@
   .tol{
     /*margin-top: 70px;*/
     background-color: white;
+    padding-bottom: 20px;
   }
   /*a{*/
     /*text-decoration: none;*/

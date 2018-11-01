@@ -3,6 +3,9 @@
     <div class="top">
       <div class="top1"></div>
       <div class="col-xs-8 col-xs-offset-2 text" style="">
+        <!--<div style="float: left;position: relative;z-index: 20; width: 30px;height: 30px;">-->
+          <!--<img src="../../assets/homeless/8639acb25039bc5a92e3ea84dc3677ce0d0fa58aa3c6c-EbtJL9_fw658.gif" alt="">-->
+        <!--</div>-->
         <h1 style="">“</h1>
         <p style="font-size: 18px">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;救助和领养，不仅仅是一时的不忍和爱心，真的是一件需要我们花时<br>

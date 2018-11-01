@@ -2,10 +2,16 @@
   <div>
     <div class="song">
       <div class="listbox clearfix" v-for="(activity,index) in activitys" :key="index"  style="margin-bottom: 10px"  >
-        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/lostdetails/'+activity.lpId" style="float: left;list-style: none;cursor: pointer" exact>
-          <div class="listimg img" style="float: left">
+        <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/lostdetails/'+activity.lpId" style="float: left;list-style: none;cursor: pointer" exact>-->
+
+        <div class="listimg img" style="float: left;" >
+          <viewer >
             <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="">
+            <img :src="urlImg(activity.lppic.split(',')[1])" alt="" style="display: none">
+            <img :src="urlImg(activity.lppic.split(',')[2])" alt="" style="display: none">
+          </viewer>
           </div>
+
           <div class="spans">
             <span class="firstspan"><span>标题：</span>{{activity.lpmes}}</span>
             <span class="firstspan"><span>丢失地点：</span>{{activity.address}}</span>
@@ -13,7 +19,7 @@
             <span class="firstspan"><span>联系人昵称：</span>{{activity.userName}}</span>
             <span class="firstspan"><span>号码：</span>{{activity.userPhone}}</span>
           </div>
-        </router-link>
+        <!--</router-link>-->
       </div >
     </div>
     <!--分页-->
@@ -91,7 +97,7 @@
   .firstspan{
     display: block;
     font-size: 15px;
-    width: 800px;
+    width:700px;
     margin-bottom: 5px;
   }
 
@@ -99,6 +105,7 @@
     position: relative;
     left: 30px;
     top: 10px;
+    width: 100px;
   }
   .block{
     margin-top: 20px;
@@ -114,6 +121,8 @@
     border: 1px solid #6d9eff;
   }
   .listbox img{
+    position: relative;
+    z-index: 20;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
   }

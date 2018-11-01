@@ -48,7 +48,8 @@
             // 遍历出的有意领养者
             diarys:[],
             centerDialogVisible:false,
-            val:[]
+            val:[],
+            petsex:''
           }
         },
       props: {
