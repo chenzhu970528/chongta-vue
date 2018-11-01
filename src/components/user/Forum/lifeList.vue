@@ -4,7 +4,7 @@
     <div class="tol" v-for="(val,index) in lostlists">
       <el-row class="card">
         <el-col :span="7" class="petPic">
-          <div class="pic"><img :src='url+val.faImg'></div>
+          <div class="pic"><img :src='url+img1[index]'></div>
         </el-col>
         <el-col :span="15">
           <span @click="see(val.faId)">
@@ -73,7 +73,8 @@
     data() {
       return {
         isshow: false,
-
+img:[],
+        img1:[],
         visible1: [],
         hide: false,
         lostlists:[],
@@ -107,6 +108,7 @@
         }
         for (let i = start; i < end; i++) {
           this.lostlists.push(this.value[i])
+          this.img1.push(this.img[i])
         }
       },
       change(){
@@ -127,6 +129,8 @@
             axios.get(_this.$store.state.url + `/forumSee/user/share?userId=${userId}`).then((result) => {
              // console.log('测试测试')
               _this.value = []
+              _this.img=[]
+              _this.img1=[]
               _this.value = result.data.data;
               if( _this.value.length<1){
                 _this.lostlists = [];
@@ -162,6 +166,10 @@
       let id = this.UserId.replace(/\"/g, "")
       axios.get(this.$store.state.url + `/forumSee/user/share?userId=${id}`).then((result) => {
         this.value = result.data.data;
+        for (let i = 0; i < this.value.length; i++) {
+          let img = this.value[i].faImg.split(',')
+          this.img.push(img[0].replace('，', ''))
+        }
         this.pageCount=this.value.length;
         this.loadData()
         if(this.value .length<1){

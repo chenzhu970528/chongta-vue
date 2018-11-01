@@ -3,10 +3,10 @@
     <div class="tol" v-for="(val,index) in lostlists">
       <el-row class="card">
         <el-col :span="7" class="petPic">
-          <div class="pic"><img :src='url+val.faImg'></div>
+          <div class="pic"><img :src='url+img1[index]'></div>
         </el-col>
         <el-col :span="15">
-          <span   @click="see(val.faId)">
+          <span @click="see(val.faId)">
               <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
           <p class="title">标题：<span>{{val.faTitle}}</span></p>
           </router-link>
@@ -45,7 +45,7 @@
                        :current-page.sync="pageIndex"
                        layout="prev, pager, next"
                        :total="pageCount"
-                       :page-size = "pagesize"
+                       :page-size="pagesize"
         >
         </el-pagination>
       </div>
@@ -59,10 +59,11 @@
 
 
 <script>
-  import  axios from 'axios'
+  import axios from 'axios'
   import {mapGetters} from 'vuex';
-  import  lifelist from './lifeList.vue'
+  import lifelist from './lifeList.vue'
   import changePage from '../../matchmaking/changepage.vue'
+
   export default {
     name: "adoDiarylist",
     components: {
@@ -71,16 +72,17 @@
     },
     data() {
       return {
-        isshow:false,
-        visible1:[],
-        hide:false,
-
-        lostlists:[],
+        isshow: false,
+        visible1: [],
+        hide: false,
+        img: [],
+        img1: [],
+        lostlists: [],
         pageIndex: 1,
         pagesize: 3,  //每页条数
-        pageCount:0,
+        pageCount: 0,
         value: [],//放数据库取得数据
-        url:this.$store.state.url,
+        url: this.$store.state.url,
 
       }
     },
@@ -90,7 +92,7 @@
         'UserId',
         'UserName',
       ]),
-      myActData1(){
+      myActData1() {
         return this.lostlists;
       }
     },
@@ -106,6 +108,7 @@
         }
         for (let i = start; i < end; i++) {
           this.lostlists.push(this.value[i])
+          this.img1.push(this.img[i])
         }
       },
       change() {
@@ -126,13 +129,18 @@
               // console.log('测试测试')
               _this.value = []
               _this.value = result.data.data;
-
-              if( _this.value.length<1){
+              _this.img=[]
+              _this.img1=[]
+              for (let i = 0; i < this.value.length; i++) {
+                let img = this.value[i].faImg.split(',')
+                this.img.push(img[0].replace('，', ''))
+              }
+              if (_this.value.length < 1) {
                 _this.lostlists = [];
                 this.showPic()
               }
-                _this.pageCount=_this.value.length;
-                _this.loadData()
+              _this.pageCount = _this.value.length;
+              _this.loadData()
 
             })
           }
@@ -160,11 +168,16 @@
     },
     mounted() {
       let id = this.UserId.replace(/\"/g, "")
-      axios.get(this.$store.state.url+`/forumSee/user/diary?userId=${id}`).then((result) => {
+      axios.get(this.$store.state.url + `/forumSee/user/diary?userId=${id}`).then((result) => {
         this.value = result.data.data;
-        this.pageCount=this.value.length;
+        this.pageCount = this.value.length;
+        for (let i = 0; i < this.value.length; i++) {
+          let img = this.value[i].faImg.split(',')
+          this.img.push(img[0].replace('，', ''))
+        }
+
         this.loadData()
-        if( this.value.length<1){
+        if (this.value.length < 1) {
           this.showPic()
         }
       })
@@ -185,10 +198,10 @@
     left: 60%;
     color: #fefefe;
     font-size: 18px;
-    z-index:100;
+    z-index: 100;
   }
 
-  .inner_ado{
+  .inner_ado {
     width: 80%;
     margin-left: 9%;
     margin-top: 5%;
@@ -198,74 +211,83 @@
     font-size: 13px;
     color: #737373;
   }
-  .block{
-      width: 60%;
-      margin-left: 20%;
-      text-align: center;
-      margin-top: 90px;
-      margin-bottom: 30px;
-    }
-  .card{
+
+  .block {
+    width: 60%;
+    margin-left: 20%;
+    text-align: center;
+    margin-top: 90px;
+    margin-bottom: 30px;
+  }
+
+  .card {
     width: 100%;
     min-height: 150px;
     /*background-color: red;*/
 
-    word-wrap:break-word;
+    word-wrap: break-word;
   }
-  .tol{
+
+  .tol {
     border-radius: 20px;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     margin-bottom: 25px;
   }
-  .pic{
+
+  .pic {
     width: 110px;
     height: 110px;
     border-radius: 110px;
     margin-top: 20px;
     margin-left: 10px;
-    background: url("../../../assets/forum/8.jpg");
+    /*background: url("../../../assets/forum/8.jpg");*/
   }
-  .pic img{
+
+  .pic img {
     width: 110px;
     height: 110px;
     border-radius: 110px;
   }
 
-  p{
+  p {
     padding-top: 7px;
 
-    word-wrap:break-word;
-
+    word-wrap: break-word;
 
   }
-  .text{
-    word-wrap:break-word;
-    overflow : hidden;
+
+  .text {
+    word-wrap: break-word;
+    overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
-  .detail{
+
+  .detail {
     display: inline-block;
     /*height: 70px;*/
     overflow: hidden;
     /*background-color: plum;*/
     text-overflow: ellipsis;
   }
-  .noList{
+
+  .noList {
     text-align: center;
     color: #575757;
     /*position: relative;*/
     /*top:-500px;*/
   }
-  .showList{
+
+  .showList {
     text-align: center;
     color: #575757;
     position: relative;
-    top:-500px;
+    top: -500px;
   }
-  a{
+
+  a {
     text-decoration: none;
     color: #575757;
   }

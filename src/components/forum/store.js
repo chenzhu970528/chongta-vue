@@ -6,14 +6,12 @@ let arr=window.localStorage;
 
 const store = new Vuex.Store({
   state: {
-  a:0
+   a:0,
   },
   mutations: {
     add (state) {
       state.a++
-
     }
-
   },
 
 
