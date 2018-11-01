@@ -35,7 +35,7 @@
           return this.url + str
         },
       },
-      created(){
+      mounted(){
         axios.get(this.$store.state.url+"/adoptions").then((result) => {
           // console.log(result.data)
           this.mydata = result.data.data;

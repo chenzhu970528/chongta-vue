@@ -271,7 +271,16 @@ export default {
 </script>
 
 <style>
-#app {
+
+  body {
+    padding-right: 0px !important;
+  }
+  *.modal-open {
+    overflow-y: scroll;
+    padding-right: 0 !important;
+  }
+
+  #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
