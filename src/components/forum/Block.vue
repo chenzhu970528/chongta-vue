@@ -16,9 +16,9 @@
 
         <ul class="body">
           <li class="li1">
-<span >
-   <router-link @click="see(val[0].faId)" tag="a" active-class="active" role="presentation" :to="`forum/`+val[0].faId">
-        <img :src='s+val[0].faImg' alt="">
+<span @click="see(val[0].faId)">
+   <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[0].faId">
+        <img :src='s+faImg[index]' alt="" >
      <p class="title">{{val[0].faTitle}}</p>
             </router-link>
 </span>
@@ -76,6 +76,7 @@
           {values1: []},
           {values2: []},
           {values3: []}],
+        faImg: ['0', '1', '2', '3'],
         Names: ['最新', '精品推荐', '领养日记', '交流分享'],
         url: ['new', 'recommend', 'diary', 'share'],
         s: this.$store.state.url,
@@ -83,12 +84,12 @@
 
       }
     },
-    computed:{
+    computed: {
       a() {
-        return  store.state.a
+        return store.state.a
 
 
-    },
+      },
     },
     methods: {
       but(index) {
@@ -100,19 +101,23 @@
         // console.log('aaaaaaaaaaaaa' + index)
         let storage = window.localStorage;
         storage.faId = index
+        // console.log(index)
       },
 
-      time(){
+      time() {
         // setTimeout(alert('= ='),5000)
-        let _this=this
-       return setTimeout(function () {
-         _this.value=[
+        let _this = this
+        return setTimeout(function () {
+          _this.value = [
             {values0: []},
             {values1: []},
             {values2: []},
             {values3: []}],
             axios.get(_this.$store.state.url + "/forumSee/time").then((result) => {
+
               _this.mydata = result.data.data;
+              let img = _this.mydata[0].faImg.split(',')
+              _this.faImg[0] = img[0]
               for (let i = 0; i < 6; i++) {
                 _this.value[0].values0.push(_this.mydata[i])
               }
@@ -121,7 +126,11 @@
               // console.log( _this.mydata)
             })
           axios.get(_this.$store.state.url + "/forumSee/essence").then((result) => {
+
             _this.mydata1 = result.data.data;
+
+            let img = _this.mydata1[0].faImg.split(',')
+            _this.faImg[1] = img[0]
             for (let i = 0; i < 6; i++) {
               _this.value[1].values1.push(_this.mydata1[i])
             }
@@ -129,7 +138,10 @@
           })
 
           axios.get(_this.$store.state.url + "/forumSee/diary").then((result) => {
+
             _this.mydata2 = result.data.data;
+            let img = _this.mydata2[0].faImg.split(',')
+            _this.faImg[2] = img[0]
             for (let i = 0; i < 6; i++) {
               _this.value[2].values2.push(_this.mydata2[i])
             }
@@ -138,17 +150,19 @@
 
           axios.get(_this.$store.state.url + "/forumSee/gossip").then((result) => {
             _this.mydata3 = result.data.data;
+            let img = _this.mydata3[0].faImg.split(',')
+            _this.faImg[3] = img[0]
             for (let i = 0; i < 6; i++) {
               _this.value[3].values3.push(_this.mydata3[i])
             }
             _this.value[3] = _this.value[3].values3
           })
-        },200)
 
+        },500)
       }
     },
-    watch:{
-    "a":"time"
+    watch: {
+      "a": "time"
     },
     mounted() {
       this.time()

@@ -16,10 +16,10 @@
       <div class="carousel-inner" role="listbox">
         <div class="item active">
           <ul class="ul">
-            <li class="li" v-for="val in value">
+            <li class="li" v-for="(val,index) in value">
 
               <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
-                <img class=img  @click="see(val[0].faId)" :src='url+val[0].faImg'>
+                <img class=img  @click="see(val[0].faId)" :src='url+img[index]'>
                 <p class="p"><span class="left0"></span><a @click="see(val[0].faId)" class="a title">{{val[0].faTitle}}</a></p>
               </router-link>
 
@@ -28,10 +28,10 @@
         </div>
         <div class="item">
           <ul class="ul">
-            <li class="li" v-for="val in value1">
+            <li class="li" v-for="(val,index) in value1">
 
                 <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
-                <img class=img  @click="see(val[0].faId)" :src='url+val[0].faImg'>
+                <img class=img  @click="see(val[0].faId)" :src='url+img1[index]'>
                 <p class="p" @click="see(val[0].faId)"><span class="left0"></span><a class="a title">{{val[0].faTitle}}</a></p>
               </router-link>
 
@@ -40,9 +40,9 @@
         </div>
         <div class="item">
           <ul class="ul">
-            <li class="li" v-for="val in value2">
+            <li class="li" v-for="(val,index) in value2">
               <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
-                <img class=img @click="see(val[0].faId)"  :src='url+val[0].faImg'>
+                <img class=img @click="see(val[0].faId)"  :src='url+img2[index]'>
                 <p class="p" @click="see(val[0].faId)" ><span class="left0"></span><a class="a title">{{val[0].faTitle}}</a></p>
               </router-link>
             </li>
@@ -73,6 +73,9 @@
         value: [],
         value1: [],
         value2: [],
+        img: [],
+        img1: [],
+        img2: [],
       }
     },
     methods: {
@@ -86,15 +89,21 @@
       axios.get(this.$store.state.url + "/forumSee/com").then((result) => {
 
         this.mydata = result.data.data;
-
         for (let i = 0; i < 3; i++) {
           this.value.push(this.mydata[i])
+          let img = this.mydata[i][0].faImg.split(',')
+          this.img.push(img[0].replace('，',''))
         }
+
         for (let i = 3; i < 6; i++) {
           this.value1.push(this.mydata[i])
+          let img = this.mydata[i][0].faImg.split(',')
+          this.img1.push(img[0].replace('，',''))
         }
         for (let i = 6; i < 9; i++) {
           this.value2.push(this.mydata[i])
+          let img = this.mydata[i][0].faImg.split(',')
+          this.img2.push(img[0].replace('，',''))
         }
       })
     }

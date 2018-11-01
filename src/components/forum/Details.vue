@@ -68,8 +68,8 @@
           <div class="img">
 
             <p>{{value.art[0].faText}}</p>
-            <div class="center">
-              <img :src='url+value.art[0].faImg' alt="">
+            <div class="center" v-for="Img in img">
+              <img :src='url+Img' alt=""><br><br>
             </div>
 
           </div>
@@ -228,6 +228,7 @@
     data() {
       return {
         comhead: [],
+        img: [],
         value: [],//文章和全部评论回复
         value1: [],//存放显示的评论
         imgs: [require("../../assets/mao1.jpg"), require("../../assets/images/a.jpg")],
@@ -637,8 +638,15 @@ console.log(faId)
         get.value1 = [],
         get.comhead = [],
           axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
-            // get.comhead = result.data.data.comhead
+
             get.value = result.data.data;
+            let img =  get.value.art[0].faImg.split(',')
+            if(img.length>1){
+              img.pop()
+            }
+
+           this.img=img
+
             this.addlike = true
             this.dellike = false
             if (this.UserId) {
