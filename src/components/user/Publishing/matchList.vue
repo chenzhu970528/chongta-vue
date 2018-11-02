@@ -47,23 +47,6 @@
       <p>还没有任何发布哦，快去<router-link   to="/matchmaking/mpublish" style="list-style: none;text-decoration: none" exact>发布吧!</router-link></p>
     </div>
   </div>
-    <!--分页-->
-    <!--<el-row>-->
-      <!--<div class="block">-->
-        <!--<span class="demonstration"></span>-->
-        <!--<el-pagination ref="elpage"-->
-                       <!--@current-change="change()"-->
-                       <!--:current-page.sync="pageIndex"-->
-                       <!--layout="prev, pager, next"-->
-                       <!--:total="pageCount"-->
-                       <!--:page-size = "pagesize"-->
-        <!--&gt;-->
-        <!--</el-pagination>-->
-      <!--</div>-->
-      <!--&lt;!&ndash;<el-col :span="10" :push="7">&ndash;&gt;-->
-      <!--&lt;!&ndash;<change-page></change-page>&ndash;&gt;-->
-      <!--&lt;!&ndash;</el-col>&ndash;&gt;-->
-    <!--</el-row>-->
 </div>
 </template>
 

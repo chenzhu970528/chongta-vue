@@ -273,7 +273,7 @@
     -moz-transition:all 0.5s;
     -webkit-transition:all 0.5s;
 
-    overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写好样式，进行隐藏，用overflow:hidden; height:0;*/
+    overflow:hidden; height:0; z-index:40;/*transform:translateX(200px);*/}/*写好样式，进行隐藏，用overflow:hidden; height:0;*/
   .hover h3{color:#fff; border-bottom:2px solid rgba(255, 255 ,255, 0.5); padding-bottom:10px;}
   .view:hover .hover{
     height:120px;

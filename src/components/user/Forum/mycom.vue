@@ -254,5 +254,12 @@ console.log(index+'30才对')
   width:450px;
   height: 80px;
 }
+  .noList {
+    text-align: center;
+    color: #575757;
+    /*position: relative;*/
+    /*top:-500px;*/
+  }
+
 </style>
 
