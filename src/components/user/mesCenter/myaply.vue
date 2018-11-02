@@ -54,15 +54,15 @@
     height: 50px;
     line-height: 50px;
     font-size: 16px;
-    /*background-color: palevioletred;*/
-    color: rgba(45, 54, 68, 0.9);
+    color: white;
+    /*color: rgba(45, 54, 68, 0.9);*/
   }
   .route span{
     margin-right: 10px;
     font-size: 14px;
   }
   .route span:last-child{
-    color: #8aa7cf;
+    color: #c9eaff;
   }
   h3{
     text-align: center;

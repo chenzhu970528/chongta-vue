@@ -100,7 +100,7 @@
     color: cornflowerblue;
     padding-top: 250px;
     width: 580px;
-    height: 650px;
+    height: 600px;
     background: url("../../assets/user/bgLogin.png") no-repeat;
     background-color: #fff;
     background-size: 100% 100%;

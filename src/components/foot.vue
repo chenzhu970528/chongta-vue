@@ -21,8 +21,8 @@
     height: 150px;
     width: 100%;
     text-align: center;
-    margin-top: 80px;
-    background: #4f4f4f;
+    /*margin-top: 80px;*/
+    /*background: #4f4f4f;*/
   }
   ul{
     position: relative;
