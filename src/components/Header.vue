@@ -157,6 +157,7 @@ margin-top:5px;
   }
   .bgsty{
     min-width: 1000px;
+    z-index: 50;
     /*background-color: rgba(255, 255, 255,0.9);*/
     /*border: 1px solid cornflowerblue;*/
   }

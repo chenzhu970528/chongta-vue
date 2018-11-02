@@ -73,238 +73,237 @@
               </div>
               <div role="tabpanel" class="tab-pane" id="dogB">
                 <dl>
-                  <dd><a href="">波音达犬</a></dd>
-                  <dd><a href="">比特犬</a></dd>
-                  <dd><a href="">捕鼠梗</a></dd>
-                  <dd><a href="">葡萄牙波登可犬</a></dd>
-                  <dd><a href="">波兰牧羊犬</a></dd>
-                  <dd><a href="">伯恩山犬</a></dd>
-                  <dd><a href="">波利犬</a></dd>
-                  <dd><a href="">布里塔尼犬</a></dd>
-                  <dd><a href="">伯瑞犬</a></dd>
-                  <dd><a href="">波士顿犬</a></dd>
-                  <dd><a href="">博美</a></dd>
-                  <dd><a href="">冰岛牧羊犬</a></dd>
-                  <dd><a href="">北海道犬</a></dd>
-                  <dd><a href="">贝灵顿梗</a></dd>
-                  <dd><a href="">边境梗</a></dd>
-                  <dd><a href="">巴吉度</a></dd>
-                  <dd><a href="">比格犬</a></dd>
-                  <dd><a href="">比利牛斯獒犬</a></dd>
-                  <dd><a href="">边境牧羊犬</a></dd>
-                  <dd><a href="">比利时玛利诺犬</a></dd>
-                  <dd><a href="">巴哥</a></dd>
-                  <dd><a href="">比利时牧羊犬</a></dd>
+                  <dd><a @click="addtype('波音达犬')">波音达犬</a></dd>
+                  <dd><a @click="addtype('比特犬')">比特犬</a></dd>
+                  <dd><a @click="addtype('捕鼠梗')">捕鼠梗</a></dd>
+                  <dd><a @click="addtype('葡萄牙波登可犬')">葡萄牙波登可犬</a></dd>
+                  <dd><a @click="addtype('波兰牧羊犬')">波兰牧羊犬</a></dd>
+                  <dd><a @click="addtype('伯恩山犬')">伯恩山犬</a></dd>
+                  <dd><a @click="addtype('波利犬')">波利犬</a></dd>
+                  <dd><a @click="addtype('布里塔尼犬')">布里塔尼犬</a></dd>
+                  <dd><a @click="addtype('伯瑞犬')">伯瑞犬</a></dd>
+                  <dd><a @click="addtype('波士顿犬')">波士顿犬</a></dd>
+                  <dd><a @click="addtype('博美')">博美</a></dd>
+                  <dd><a @click="addtype('冰岛牧羊犬')">冰岛牧羊犬</a></dd>
+                  <dd><a @click="addtype('北海道犬')">北海道犬</a></dd>
+                  <dd><a @click="addtype('贝灵顿梗')">贝灵顿梗</a></dd>
+                  <dd><a @click="addtype('边境梗')">边境梗</a></dd>
+                  <dd><a @click="addtype('巴吉度')">巴吉度</a></dd>
+                  <dd><a @click="addtype('比格犬')">比格犬</a></dd>
+                  <dd><a @click="addtype('比利牛斯獒犬')">比利牛斯獒犬</a></dd>
+                  <dd><a @click="addtype('边境牧羊犬')">边境牧羊犬</a></dd>
+                  <dd><a @click="addtype('比利时玛利诺犬')">比利时玛利诺犬</a></dd>
+                  <dd><a @click="addtype('巴哥')">巴哥</a></dd>
+                  <dd><a @click="addtype('比利时牧羊犬')">比利时牧羊犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogC">
                 <dl>
-                  <dd><a href="">茶杯犬</a></dd>
-                  <dd><a href="">查理士王小猎犬</a></dd>
-                  <dd><a href="">川东猎犬</a></dd>
-                  <dd><a href="">柴犬</a></dd>
-                  <dd><a href="">长须牧羊犬</a></dd>
-                  <dd><a href="">藏獒</a></dd>
+                  <dd><a @click="addtype('茶杯犬')">茶杯犬</a></dd>
+                  <dd><a @click="addtype('查理士王小猎犬')">查理士王小猎犬</a></dd>
+                  <dd><a @click="addtype('川东猎犬')">川东猎犬</a></dd>
+                  <dd><a @click="addtype('柴犬')">柴犬</a></dd>
+                  <dd><a @click="addtype('长须牧羊犬')">长须牧羊犬</a></dd>
+                  <dd><a @click="addtype('藏獒')">藏獒</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogD">
                 <dl>
-                  <dd><a href="">德国牧羊犬</a></dd>
-                  <dd><a href="">短毛猎狐梗</a></dd>
-                  <dd><a href="">杜高</a></dd>
-                  <dd><a href="">斗牛梗</a></dd>
-                  <dd><a href="">德国短毛指示犬</a></dd>
-                  <dd><a href="">德国杜宾犬</a></dd>
-                  <dd><a href="">大麦町犬</a></dd>
-                  <dd><a href="">德国刚毛指示犬</a></dd>
-                  <dd><a href="">大型雪纳瑞</a></dd>
-                  <dd><a href="">丹迪丁蒙梗</a></dd>
-                  <dd><a href="">迷你杜宾犬</a></dd>
-                  <dd><a href="">大丹犬</a></dd>
-                  <dd><a href="">大白熊犬</a></dd>
+                  <dd><a @click="addtype('德国牧羊犬')">德国牧羊犬</a></dd>
+                  <dd><a @click="addtype('短毛猎狐梗')">短毛猎狐梗</a></dd>
+                  <dd><a @click="addtype('杜高')">杜高</a></dd>
+                  <dd><a @click="addtype('斗牛梗')">斗牛梗</a></dd>
+                  <dd><a @click="addtype('德国短毛指示犬')">德国短毛指示犬</a></dd>
+                  <dd><a @click="addtype('德国杜宾犬')">德国杜宾犬</a></dd>
+                  <dd><a @click="addtype('大麦町犬')">大麦町犬</a></dd>
+                  <dd><a @click="addtype('德国刚毛指示犬')">德国刚毛指示犬</a></dd>
+                  <dd><a @click="addtype('大型雪纳瑞')">大型雪纳瑞</a></dd>
+                  <dd><a @click="addtype('丹迪丁蒙梗')">丹迪丁蒙梗</a></dd>
+                  <dd><a @click="addtype('迷你杜宾犬')">迷你杜宾犬</a></dd>
+                  <dd><a @click="addtype('大丹犬')">大丹犬</a></dd>
+                  <dd><a @click="addtype('大白熊犬')">大白熊犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogE">
                 <dl>
-                  <dd><a href="">恶霸犬</a></dd>
-                  <dd><a href="">俄罗斯南部牧羊犬</a></dd>
+                  <dd><a @click="addtype('恶霸犬')">恶霸犬</a></dd>
+                  <dd><a @click="addtype('俄罗斯南部牧羊犬')">俄罗斯南部牧羊犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogF">
                 <dl>
-                  <dd><a href="">芬兰狐狸犬</a></dd>
-                  <dd><a href="">法国斗牛犬</a></dd>
-                  <dd><a href="">佛兰德牧羊犬</a></dd>
-                  <dd><a href="">法国狼犬</a></dd>
-                  <dd><a href="">法老王猎犬</a></dd>
-                  <dd><a href="">巴西菲勒犬</a></dd>
+                  <dd><a @click="addtype('芬兰狐狸犬')">芬兰狐狸犬</a></dd>
+                  <dd><a @click="addtype('法国斗牛犬')">法国斗牛犬</a></dd>
+                  <dd><a @click="addtype('佛兰德牧羊犬')">佛兰德牧羊犬</a></dd>
+                  <dd><a @click="addtype('法国狼犬')">法国狼犬</a></dd>
+                  <dd><a @click="addtype('法老王猎犬')">法老王猎犬</a></dd>
+                  <dd><a @click="addtype('巴西菲勒犬')">巴西菲勒犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogG">
                 <dl>
-                  <dd><a href="">哥顿雪达犬</a></dd>
-                  <dd><a href="">高加索</a></dd>
-                  <dd><a href="">刚毛猎狐梗</a></dd>
-                  <dd><a href="">古牧</a></dd>
-                  <dd><a href="">刚毛指示格里芬犬</a></dd>
+                  <dd><a @click="addtype('哥顿雪达犬')">哥顿雪达犬</a></dd>
+                  <dd><a @click="addtype('高加索')">高加索</a></dd>
+                  <dd><a @click="addtype('刚毛猎狐梗')">刚毛猎狐梗</a></dd>
+                  <dd><a @click="addtype('古牧')">古牧</a></dd>
+                  <dd><a @click="addtype('刚毛指示格里芬犬')">刚毛指示格里芬犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogH">
                 <dl>
-                  <dd><a href="">惠比特犬</a></dd>
-                  <dd><a href="">荷兰毛狮犬</a></dd>
-                  <dd><a href="">黑狼犬</a></dd>
-                  <dd><a href="">爱尔兰红白雪达犬</a></dd>
-                  <dd><a href="">哈威那犬/哈瓦那犬</a></dd>
-                  <dd><a href="">红骨猎浣熊犬</a></dd>
-                  <dd><a href="">德国狐狸犬</a></dd>
-                  <dd><a href="">哈士奇</a></dd>
-                  <dd><a href="">蝴蝶犬</a></dd>
-                  <dd><a href="">湖畔梗</a></dd>
+                  <dd><a @click="addtype('惠比特犬')">惠比特犬</a></dd>
+                  <dd><a @click="addtype('荷兰毛狮犬')">荷兰毛狮犬</a></dd>
+                  <dd><a @click="addtype('黑狼犬')">黑狼犬</a></dd>
+                  <dd><a @click="addtype('爱尔兰红白雪达犬')">爱尔兰红白雪达犬</a></dd>
+                  <!--<dd><a @click="addtype('哈威那犬/哈瓦那犬')">哈威那犬/哈瓦那犬</a></dd>-->
+                  <dd><a @click="addtype('红骨猎浣熊犬')">红骨猎浣熊犬</a></dd>
+                  <dd><a @click="addtype('德国狐狸犬')">德国狐狸犬</a></dd>
+                  <dd><a @click="addtype('哈士奇')">哈士奇</a></dd>
+                  <dd><a @click="addtype('蝴蝶犬')">蝴蝶犬</a></dd>
+                  <dd><a @click="addtype('湖畔梗')">湖畔梗</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogJ">
                 <dl>
-                  <dd><a href="">京巴犬/北京犬/狮子犬</a></dd>
-                  <dd><a href="">加纳利犬</a></dd>
-                  <dd><a href="">吉娃娃</a></dd>
-                  <dd><a href="">金毛</a></dd>
-                  <dd><a href="">杰克罗素梗</a></dd>
+                  <!--<dd><a @click="addtype('湖畔梗')">京巴犬/北京犬/狮子犬</a></dd>-->
+                  <dd><a @click="addtype('加纳利犬')">加纳利犬</a></dd>
+                  <dd><a @click="addtype('吉娃娃')">吉娃娃</a></dd>
+                  <dd><a @click="addtype('金毛')">金毛</a></dd>
+                  <dd><a @click="addtype('杰克罗素梗')">杰克罗素梗</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogK">
                 <dl>
-                  <dd><a href="">美国可卡犬</a></dd>
-                  <dd><a href="">匈牙利库维斯犬</a></dd>
-                  <dd><a href="">英国可卡犬</a></dd>
-                  <dd><a href="">中国昆明犬</a></dd>
-                  <dd><a href="">凯利蓝梗/爱尔兰梗</a></dd>
-                  <dd><a href="">凯恩梗</a></dd>
-                  <dd><a href="">威尔士柯基</a></dd>
-                  <dd><a href="">柯基犬</a></dd>
-                  <dd><a href="">卡斯罗犬</a></dd>
-                  <dd><a href="">克伦伯猎鹬犬</a></dd>
-                  <dd><a href="">可蒙犬</a></dd>
+                  <dd><a @click="addtype('美国可卡犬')">美国可卡犬</a></dd>
+                  <dd><a @click="addtype('匈牙利库维斯犬')">匈牙利库维斯犬</a></dd>
+                  <dd><a @click="addtype('英国可卡犬')">英国可卡犬</a></dd>
+                  <dd><a @click="addtype('中国昆明犬')">中国昆明犬</a></dd>
+                  <!--<dd><a @click="addtype('杰克罗素梗')">凯利蓝梗/爱尔兰梗</a></dd>-->
+                  <dd><a @click="addtype('凯恩梗')">凯恩梗</a></dd>
+                  <dd><a @click="addtype('威尔士柯基')">威尔士柯基</a></dd>
+                  <dd><a @click="addtype('柯基犬')">柯基犬</a></dd>
+                  <dd><a @click="addtype('卡斯罗犬')">卡斯罗犬</a></dd>
+                  <dd><a @click="addtype('克伦伯猎鹬犬')">克伦伯猎鹬犬</a></dd>
+                  <dd><a @click="addtype('可蒙犬')">可蒙犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogL">
                 <dl>
-                  <dd><a href="">灵缇</a></dd>
-                  <dd><a href="">腊肠犬</a></dd>
-                  <dd><a href="">捷克狼犬</a></dd>
-                  <dd><a href="">拉布拉多</a></dd>
-                  <dd><a href="">拉萨犬</a></dd>
-                  <dd><a href="">罗威士梗</a></dd>
-                  <dd><a href="">罗威纳犬</a></dd>
-                  <dd><a href="">罗得西亚脊背犬</a></dd>
+                  <dd><a @click="addtype('灵缇')">灵缇</a></dd>
+                  <dd><a @click="addtype('腊肠犬')">腊肠犬</a></dd>
+                  <dd><a @click="addtype('捷克狼犬')">捷克狼犬</a></dd>
+                  <dd><a @click="addtype('拉布拉多')">拉布拉多</a></dd>
+                  <dd><a @click="addtype('拉萨犬')">拉萨犬</a></dd>
+                  <dd><a @click="addtype('罗威士梗')">罗威士梗</a></dd>
+                  <dd><a @click="addtype('罗威纳犬')">罗威纳犬</a></dd>
+                  <dd><a @click="addtype('罗得西亚脊背犬')">罗得西亚脊背犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogM">
                 <dl>
-                  <dd><a href="">马尔济斯犬</a></dd>
-                  <dd><a href="">美国斗牛犬</a></dd>
-                  <dd><a href="">马里努阿犬</a></dd>
-                  <dd><a href="">美国斯塔福梗</a></dd>
-                  <dd><a href="">美国猎狐犬</a></dd>
-                  <dd><a href="">美国水猎犬</a></dd>
-                  <dd><a href="">曼彻斯特梗犬</a></dd>
+                  <dd><a @click="addtype('马尔济斯犬')">马尔济斯犬</a></dd>
+                  <dd><a @click="addtype('美国斗牛犬')">美国斗牛犬</a></dd>
+                  <dd><a @click="addtype('马里努阿犬')">马里努阿犬</a></dd>
+                  <dd><a @click="addtype('美国斯塔福梗')">美国斯塔福梗</a></dd>
+                  <dd><a @click="addtype('美国猎狐犬')">美国猎狐犬</a></dd>
+                  <dd><a @click="addtype('美国水猎犬')">美国水猎犬</a></dd>
+                  <dd><a @click="addtype('曼彻斯特梗犬')">曼彻斯特梗犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogN">
                 <dl>
-                  <dd><a href="">牛头梗</a></dd>
-                  <dd><a href="">迷你牛头梗</a></dd>
-                  <dd><a href="">纽芬兰犬</a></dd>
-                  <dd><a href="">纽波利顿獒犬</a></dd>
-                  <dd><a href="">挪威猎糜犬</a></dd>
+                  <dd><a @click="addtype('牛头梗')">牛头梗</a></dd>
+                  <dd><a @click="addtype('迷你牛头梗')">迷你牛头梗</a></dd>
+                  <dd><a @click="addtype('纽芬兰犬')">纽芬兰犬</a></dd>
+                  <dd><a @click="addtype('纽波利顿獒犬')">纽波利顿獒犬</a></dd>
+                  <dd><a @click="addtype('挪威猎糜犬')">挪威猎糜犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogP">
                 <dl>
-                  <dd><a href="">葡萄牙水犬</a></dd>
-                  <dd><a href="">葡萄牙牧羊犬</a></dd>
-                  <dd><a href="">帕特大勒梗</a></dd>
-                  <dd><a href="">平毛寻回猎犬</a></dd>
+                  <dd><a @click="addtype('葡萄牙水犬')">葡萄牙水犬</a></dd>
+                  <dd><a @click="addtype('葡萄牙牧羊犬')">葡萄牙牧羊犬</a></dd>
+                  <dd><a @click="addtype('帕特大勒梗')">帕特大勒梗</a></dd>
+                  <dd><a @click="addtype('平毛寻回猎犬')">平毛寻回猎犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogQ">
                 <dl>
-                  <dd><a href="">拳师犬</a></dd>
-                  <dd><a href="">秋田犬-美系</a></dd>
-                  <dd><a href="">切萨皮克海湾寻回犬</a></dd>
-                  <dd><a href="">秋田犬-日本</a></dd>
+                  <dd><a @click="addtype('拳师犬')">拳师犬</a></dd>
+                  <dd><a @click="addtype('秋田犬-美系')">秋田犬-美系</a></dd>
+                  <dd><a @click="addtype('切萨皮克海湾寻回犬')">切萨皮克海湾寻回犬</a></dd>
+                  <dd><a @click="addtype('秋田犬-日本')">秋田犬-日本</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogR">
                 <dl>
-                  <dd><a href="">软毛麦色梗</a></dd>
-                  <dd><a href="">日本狆犬</a></dd>
+                  <dd><a @click="addtype('软毛麦色梗')">软毛麦色梗</a></dd>
+                  <dd><a @click="addtype('日本狆犬')">日本狆犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogS">
                 <dl>
-                  <dd><a href="">澳洲丝毛梗</a></dd>
-                  <dd><a href="">松狮犬</a></dd>
-                  <dd><a href="">苏格兰梗</a></dd>
-                  <dd><a href="">苏联红犬</a></dd>
-                  <dd><a href="">苏格兰牧羊犬</a></dd>
-                  <dd><a href="">威尔士史宾格</a></dd>
-                  <dd><a href="">斯科舍诱鸭寻回犬</a></dd>
-                  <dd><a href="">凯斯梗犬</a></dd>
-                  <dd><a href="">沙皮犬</a></dd>
-                  <dd><a href="">圣伯纳犬</a></dd>
-                  <dd><a href="">萨路基犬</a></dd>
-                  <dd><a href="">意大利士兵诺犬</a></dd>
-                  <dd><a href="">舒伯齐犬</a></dd>
-                  <dd><a href="">萨摩耶犬</a></dd>
-                  <dd><a href="">英国史宾格犬</a></dd>
+                  <dd><a @click="addtype('澳洲丝毛梗')">澳洲丝毛梗</a></dd>
+                  <dd><a @click="addtype('松狮犬')">松狮犬</a></dd>
+                  <dd><a @click="addtype('苏格兰梗')">苏格兰梗</a></dd>
+                  <dd><a @click="addtype('苏联红犬')">苏联红犬</a></dd>
+                  <dd><a @click="addtype('苏格兰牧羊犬')">苏格兰牧羊犬</a></dd>
+                  <dd><a @click="addtype('威尔士史宾格')">威尔士史宾格</a></dd>
+                  <dd><a @click="addtype('斯科舍诱鸭寻回犬')">斯科舍诱鸭寻回犬</a></dd>
+                  <dd><a @click="addtype('凯斯梗犬')">凯斯梗犬</a></dd>
+                  <dd><a @click="addtype('沙皮犬')">沙皮犬</a></dd>
+                  <dd><a @click="addtype('圣伯纳犬')">圣伯纳犬</a></dd>
+                  <dd><a @click="addtype('萨路基犬')">萨路基犬</a></dd>
+                  <dd><a @click="addtype('舒伯齐犬')">舒伯齐犬</a></dd>
+                  <dd><a @click="addtype('萨摩耶犬')">萨摩耶犬</a></dd>
+                  <dd><a @click="addtype('英国史宾格犬')">英国史宾格犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogT">
                 <dl>
-                  <dd><a href="">中华田园犬</a></dd>
-                  <dd><a href="">日本土佐犬</a></dd>
-                  <dd><a href="">泰迪</a></dd>
+                  <dd><a @click="addtype('中华田园犬')">中华田园犬</a></dd>
+                  <dd><a @click="addtype('日本土佐犬')">日本土佐犬</a></dd>
+                  <dd><a @click="addtype('泰迪')">泰迪</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogW">
                 <dl>
-                  <dd><a href="">匈牙利威斯拉犬</a></dd>
-                  <dd><a href="">万能梗/艾里梗</a></dd>
-                  <dd><a href="">德国魏玛犬/威玛猎犬</a></dd>
+                  <dd><a @click="addtype('匈牙利威斯拉犬')">匈牙利威斯拉犬</a></dd>
+                  <dd><a @click="addtype('万能梗/艾里梗')">万能梗/艾里梗</a></dd>
+                  <dd><a @click="addtype('德国魏玛犬/威玛猎犬')">德国魏玛犬/威玛猎犬</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogX">
                 <dl>
-                  <dd><a href="">迷你雪纳瑞</a></dd>
-                  <dd><a href="">寻血猎犬</a></dd>
-                  <dd><a href="">标准雪纳瑞</a></dd>
-                  <dd><a href="">爱尔兰雪达犬/红雪达</a></dd>
-                  <dd><a href="">西藏猎犬</a></dd>
-                  <dd><a href="">西藏梗</a></dd>
-                  <dd><a href="">西里汉梗</a></dd>
-                  <dd><a href="">西施犬</a></dd>
-                  <dd><a href="">中国细犬</a></dd>
-                  <dd><a href="">小鹿犬</a></dd>
-                  <dd><a href="">下司犬</a></dd>
-                  <dd><a href="">西高地</a></dd>
-                  <dd><a href="">喜乐蒂</a></dd>
+                  <dd><a @click="addtype('迷你雪纳瑞')">迷你雪纳瑞</a></dd>
+                  <dd><a @click="addtype('寻血猎犬')">寻血猎犬</a></dd>
+                  <dd><a @click="addtype('标准雪纳瑞犬')">标准雪纳瑞</a></dd>
+                  <dd><a @click="addtype('爱尔兰雪达犬/红雪达')">爱尔兰雪达犬/红雪达</a></dd>
+                  <dd><a @click="addtype('西藏猎犬')">西藏猎犬</a></dd>
+                  <dd><a @click="addtype('西藏梗')">西藏梗</a></dd>
+                  <dd><a @click="addtype('西里汉梗')">西里汉梗</a></dd>
+                  <dd><a @click="addtype('西施犬')">西施犬</a></dd>
+                  <dd><a @click="addtype('中国细犬')">中国细犬</a></dd>
+                  <dd><a @click="addtype('小鹿犬')">小鹿犬</a></dd>
+                  <dd><a @click="addtype('下司犬')">下司犬</a></dd>
+                  <dd><a @click="addtype('西高地')">西高地</a></dd>
+                  <dd><a @click="addtype('喜乐蒂')">喜乐蒂</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogY">
                 <dl>
-                  <dd><a href="">英国斗牛犬</a></dd>
-                  <dd><a href="">意大利灵缇</a></dd>
-                  <dd><a href="">约克夏梗</a></dd>
-                  <dd><a href="">英国猎狐犬</a></dd>
-                  <dd><a href="">英国雪达犬</a></dd>
-                  <dd><a href="">日本银狐</a></dd>
+                  <dd><a @click="addtype('英国斗牛犬')">英国斗牛犬</a></dd>
+                  <dd><a @click="addtype('意大利灵缇')">意大利灵缇</a></dd>
+                  <dd><a @click="addtype('约克夏梗')">约克夏梗</a></dd>
+                  <dd><a @click="addtype('英国猎狐犬')">英国猎狐犬</a></dd>
+                  <dd><a @click="addtype('英国雪达犬')">英国雪达犬</a></dd>
+                  <dd><a @click="addtype('日本银狐')">日本银狐</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="dogZ">
                 <dl>
-                  <dd><a href="">中亚牧羊犬</a></dd>
-                  <dd><a href="">中国冠毛犬</a></dd>
+                  <dd><a @click="addtype('中亚牧羊犬')">中亚牧羊犬</a></dd>
+                  <dd><a @click="addtype('中国冠毛犬')">中国冠毛犬</a></dd>
                 </dl>
               </div>
             </div>
@@ -354,85 +353,85 @@
               </div>
               <div role="tabpanel" class="tab-pane" id="catB">
                 <dl>
-                  <dd><a href="">波米拉猫</a></dd>
-                  <dd><a href="">伯曼猫</a></dd>
-                  <dd><a href="">波斯猫</a></dd>
-                  <dd><a href="">布偶猫</a></dd>
-                  <dd><a href="">柴猫</a></dd>
-                  <dd><a href="">巴厘猫</a></dd>
+                  <dd><a @click="addtype('波米拉猫')">波米拉猫</a></dd>
+                  <dd><a @click="addtype('伯曼猫')">伯曼猫</a></dd>
+                  <dd><a @click="addtype('波斯猫')">波斯猫</a></dd>
+                  <dd><a @click="addtype('布偶猫')">布偶猫</a></dd>
+                  <dd><a @click="addtype('柴猫')">柴猫</a></dd>
+                  <dd><a @click="addtype('巴厘猫')">巴厘猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catD">
                 <dl>
-                  <dd><a href="">东方猫</a></dd>
-                  <dd><a href="">德文卷毛猫</a></dd>
+                  <dd><a @click="addtype('东方猫')">东方猫</a></dd>
+                  <dd><a @click="addtype('德文卷毛猫')">德文卷毛猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catE">
                 <dl>
-                  <dd><a href="">俄罗斯蓝猫</a></dd>
+                  <dd><a @click="addtype('俄罗斯蓝猫')">俄罗斯蓝猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catJ">
                 <dl>
-                  <dd><a href="">加拿大无毛猫</a></dd>
-                  <dd><a href="">金吉拉</a></dd>
-                  <dd><a href="">加菲猫</a></dd>
+                  <dd><a @click="addtype('加拿大无毛猫')">加拿大无毛猫</a></dd>
+                  <dd><a @click="addtype('金吉拉')">金吉拉</a></dd>
+                  <dd><a @click="addtype('加菲猫')">加菲猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catK">
                 <dl>
-                  <dd><a href="">卡尔特猫</a></dd>
-                  <dd><a href="">科拉特猫</a></dd>
+                  <dd><a @click="addtype('卡尔特猫')">卡尔特猫</a></dd>
+                  <dd><a @click="addtype('科拉特猫')">科拉特猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catM">
                 <dl>
-                  <dd><a href="">英国短毛猫</a></dd>
+                  <dd><a @click="addtype('英国短毛猫')">英国短毛猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catP">
                 <dl>
-                  <dd><a href="">皮堡斯</a></dd>
+                  <dd><a @click="addtype('皮堡斯')">皮堡斯</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catR">
                 <dl>
-                  <dd><a href="">日本短尾猫</a></dd>
+                  <dd><a @click="addtype('日本短尾猫')">日本短尾猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catS">
                 <dl>
-                  <dd><a href="">塞尔凯特卷毛猫</a></dd>
-                  <dd><a href="">折耳猫</a></dd>
-                  <dd><a href="">山东狮子猫</a></dd>
-                  <dd><a href="">斯芬克斯猫</a></dd>
-                  <dd><a href="">沙特尔猫</a></dd>
+                  <dd><a @click="addtype('塞尔凯特卷毛猫')">塞尔凯特卷毛猫</a></dd>
+                  <dd><a @click="addtype('折耳猫')">折耳猫</a></dd>
+                  <dd><a @click="addtype('山东狮子猫')">山东狮子猫</a></dd>
+                  <dd><a @click="addtype('斯芬克斯猫')">斯芬克斯猫</a></dd>
+                  <dd><a @click="addtype('沙特尔猫')">沙特尔猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catT">
                 <dl>
-                  <dd><a href="">土耳其安哥拉猫</a></dd>
-                  <dd><a href="">土耳其梵猫</a></dd>
+                  <dd><a @click="addtype('土耳其安哥拉猫')">土耳其安哥拉猫</a></dd>
+                  <dd><a @click="addtype('土耳其梵猫')">土耳其梵猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catX">
                 <dl>
-                  <dd><a href="">新加坡猫</a></dd>
-                  <dd><a href="">喜马拉雅猫</a></dd>
-                  <dd><a href="">西伯利亚森林猫</a></dd>
-                  <dd><a href="">夏尔特猫</a></dd>
-                  <dd><a href="">暹罗猫</a></dd>
+                  <dd><a @click="addtype('新加坡猫')">新加坡猫</a></dd>
+                  <dd><a @click="addtype('喜马拉雅猫')">喜马拉雅猫</a></dd>
+                  <dd><a @click="addtype('西伯利亚森林猫')">西伯利亚森林猫</a></dd>
+                  <dd><a @click="addtype('夏尔特猫')">夏尔特猫</a></dd>
+                  <dd><a @click="addtype('暹罗猫')">暹罗猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catY">
                 <dl>
-                  <dd><a href="">英国短毛猫</a></dd>
+                  <dd><a @click="addtype('英国短毛猫')">英国短毛猫</a></dd>
                 </dl>
               </div>
               <div role="tabpanel" class="tab-pane" id="catZ">
                 <dl>
-                  <dd><a href="">中国狸花猫</a></dd>
+                  <dd><a @click="addtype('中国狸花猫')">中国狸花猫</a></dd>
                 </dl>
               </div>
             </div>
