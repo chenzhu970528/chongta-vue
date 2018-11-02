@@ -93,11 +93,12 @@
   }
   .top{
     width: 100%;
-    height: 70px;
+    height: 95px;
     background-color: #fff;
-    position: fixed;
-    top: 0;
+    margin-top: -150px;
     z-index: 3;
+    box-shadow: -2px 2px 10px 2px #f8f8f8;
+    margin-bottom:50px;
   }
   /*.container1{*/
     /*width: 90%;*/

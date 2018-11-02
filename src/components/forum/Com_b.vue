@@ -83,7 +83,7 @@
         // console.log(this.upath);
         var zipFormData = new FormData();
         //依次添加多个文件
-        if(this.upath.length<6){
+        if(this.upath.length<7){
           for (var i = 0; i < this.upath.length; i++) {
             zipFormData.append('filename', this.upath[i]);
           }

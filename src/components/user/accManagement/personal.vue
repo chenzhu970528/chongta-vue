@@ -80,6 +80,8 @@
     height: 780px;
     background-color: rgba(255,255,255,0.6);
   }
+
+
   .route{
     position: relative;
     left: 5%;
@@ -87,14 +89,14 @@
     height: 50px;
     line-height: 50px;
     font-size: 16px;
-    color: #e7e7e7;
+    color: rgba(45, 54, 68, 0.9);
   }
   .route span{
     margin-right: 10px;
     font-size: 14px;
   }
   .route span:last-child{
-    color: #b9ffff;
+    color: #8aa7cf;
   }
   h3{
     text-align: left;

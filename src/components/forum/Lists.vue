@@ -1,20 +1,24 @@
 <template>
-  <div id="content">
+  <div class="body">
     <div class="top">
     </div>
-    <div>
+    <div id="content">
+
+      <div>
         <div class="left">
           <list></list>
         </div>
 
         <div class="right">
 
-        <ranking></ranking>
+          <ranking></ranking>
 
         </div>
 
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -38,20 +42,28 @@
     margin: 0;
     padding: 0
   }
-
+.body{
+  width:100%;
+  /*background-color: #f6f6f6;*/
+  margin:-200px 0;
+}
   #content {
-    /*box-shadow: -2px 2px 10px 2px #bcbcbc;*/
-    /*background: rgba(255, 255, 255, 0.9);*/
+
     width: 1240px;
     margin: auto;
     margin-top:100px;
     position: relative;
-    padding-top:30px;
-    padding-bottom: 200px;
+    padding-top:180px;
+    padding-bottom: 0px;
+
   }
-.top{
-  margin-left:15px;
-}
+  .top {
+    background: white;
+    height:85px;
+    margin-top:110px;
+    margin-bottom:-250px;
+    box-shadow: -2px 2px 10px 2px #f8f8f8;
+  }
   .left {
     display: inline-block;
     width: 830px;

@@ -99,8 +99,9 @@
 <style scoped>
 
   .q1{
+ padding-top:20px;
     height: 450px;
-    background: url(../assets/forum/7.jpg) no-repeat center;
+    background: url(../assets/forum/15.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: 100% auto;
     background-blend-mode: darken
@@ -117,6 +118,8 @@
     width: 100%;
     background: rgb(242, 244,241);
     position: relative;
+    margin-bottom:-100px;
+    padding-bottom:150px;
   }
   .top{
     height: 750px;

@@ -111,6 +111,7 @@
 <style scoped>
   .tol{
     background-color: white;
+
   }
   .top{
     width: 100%;
@@ -120,6 +121,7 @@
     /*background-size: 100% auto;*/
     /*min-height: 900px;*/
     position: relative;
+
   }
   .cont{
     width: 1240px;

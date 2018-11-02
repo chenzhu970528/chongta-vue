@@ -18,16 +18,17 @@
 
 <style scoped>
   #foot{
-    height: 80px;
+    height: 150px;
     width: 100%;
     text-align: center;
-    margin-top: 100px
+    margin-top: 80px;
+    background: #4f4f4f;
   }
   ul{
     position: relative;
     bottom: 30px;
     list-style: none;
-    padding: 0;
+    padding-top: 100px;
     color: white;
     width: 500px;
     margin: 10px auto;

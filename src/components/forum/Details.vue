@@ -1,10 +1,10 @@
 <template>
   <div id="con">
+    <div class="top"></div>
     <div id="content">
-      <!--<div id="top">-->
-      <!--<img style="position: fixed;" src="../../assets/forum/6.jpg" alt="">-->
-      <!--</div>-->
+
       <div class="left">
+        <div class="a">
         <!--详细内容     -->   <div>&nbsp &nbsp<h2>{{value.art[0].faTitle}}</h2></div>
         <div class="val">
 
@@ -83,6 +83,7 @@
         </div>
         <!--添加评论-->
         <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
+        </div>
         <!--评论区域-->
         <div v-if="value1.length>0" class="com">
           <ul>
@@ -779,17 +780,20 @@ console.log(faId)
 
   #con {
     /*background: url("../../assets/forum/7.jpg");*/
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
     width: 100%;
     height: 100%;
-    margin-top: -110px
+    margin-top: -240px;
+    margin-bottom: -240px;
+    padding-bottom:100px;
   }
 
-  #top {
-    width: 1366px;
-    height: 1000px;
-    margin-top: -110px;
-    margin-left: -60px;
+  .top {
+    background: white;
+    height:85px;
+    margin-top:150px;
+    margin-bottom:-300px;
+    box-shadow: -2px 2px 10px 2px #f0f0f0;
   }
 
   #content {
@@ -815,14 +819,17 @@ console.log(faId)
     width: 800px;
     background: white;
     /*border:1px solid #989898;*/
-    margin: 25px 0 0 25px;
-    padding: 22px;
-
+    margin: 175px 0 0 25px;
+    padding-left:38px;
+    padding-right:40px;
+    padding-bottom: 100px;
     word-wrap: break-word;
+    box-shadow: -2px 2px 10px 2px #f3f3f3;
+    background: rgba(255, 255, 255, 0.95);
   }
 
   .headpic {
-    width: 740px;
+    width: 720px;
     height: 90px;
     line-height: 70px;
   }
@@ -845,18 +852,18 @@ console.log(faId)
     width: 60px;
     height: 60px;
     border-radius: 60px;
-    background: url("../../assets/forum/8.jpg");
+    background: url("../../assets/forum/6.jpg");
   }
 
   .img {
-    width: 754px;
+    width: 720px;
     display: block;
     font-size: 18px;
 
   }
 
   .center {
-    width: 754px;
+    width: 720px;
     text-align: center;
 
     word-wrap: break-word;
@@ -864,7 +871,7 @@ console.log(faId)
 
   .center > img {
     margin: auto;
-    max-width: 754px;
+    max-width: 725px;
 
     word-wrap: break-word;
   }
@@ -873,10 +880,12 @@ console.log(faId)
     border-bottom: 1px dotted #ddd;
     padding-bottom: 60px;
     margin-bottom: 20px;
+
   }
 
   .com {
     padding: 60px 0;
+
   }
 
   .right {
@@ -903,8 +912,8 @@ console.log(faId)
     margin-left: -40px;
     padding-bottom: 30px;
     list-style: none;
-  }
 
+  }
   .head1 {
     width: 754px;
     height: 50px;
@@ -932,7 +941,7 @@ console.log(faId)
     width: 44px;
     height: 44px;
     border-radius: 22px;
-    background: url("../../assets/forum/8.jpg");
+    background: url("../../assets/forum/6.jpg");
     vertical-align: unset;
   }
 
@@ -974,21 +983,21 @@ console.log(faId)
   }
 
   .cominp0 {
-    width: 700px;
+    width: 660px;
     min-height: 35px;
     margin-top: 10px;
   }
 
   .cominp1 {
     min-height: 35px;
-    width: 650px;
+    width: 610px;
 
     word-wrap: break-word;
   }
 
   .cominp2 {
     min-height: 35px;
-    width: 600px;
+    width: 560px;
 
     word-wrap: break-word;
   }

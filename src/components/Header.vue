@@ -1,9 +1,9 @@
 <template>
-  <nav class="bgsty navbar  navbar-fixed-top">
+  <nav class="bgsty navbar ">
     <div class=" container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header ">
-        <img class="logodog" width="60" src="../assets/logoDog.png" alt="">
+        <!--<img class="logodog" width="60" src="../assets/logoDog.png" alt="">-->
         <img class="logo" src="../assets/logo.png" alt="">
       </div>
 
@@ -87,10 +87,10 @@
     },
     mounted(){
       this.myaddress()
-      $(window).scroll(function () {
-        if ($(".bgsty").offset().top > 360) {$(".navbar-fixed-top").addClass("top-nav");
-        }else {$(".navbar-fixed-top").removeClass("top-nav");}
-      })
+      // $(window).scroll(function () {
+      //   if ($(".bgsty").offset().top > 360) {$(".navbar-fixed-top").addClass("top-nav");
+      //   }else {$(".navbar-fixed-top").removeClass("top-nav");}
+      // })
     }
 
   }
@@ -110,27 +110,38 @@
     /*}*/
   /*}*/
   .top-nav{
-    background-color: #fff;
+
+  }
+  .navbar{
+    background-color: rgba(93, 164, 245, 0.0);
+    height: 80px;
+margin-top:5px;
+    position: relative;
+    z-index:100;
+    margin-bottom:-100px;
   }
   a{
     text-decoration: none;
+    color: #0a498f;
+    /*font-weight: bold;*/
   }
   .logo {
-    width: 150px;
-    height: 70px;
+    margin-top:-5px;
+    width: 160px;
+    height: 75px;
   }
 
   .navbar li a {
      height: 70px;
      line-height: 40px;
-     font-size: 18px;
+    font-size:21px;
    }
   .navbar li span {
     display: inline-block;
     height: 70px;
     line-height: 70px;
     font-size: 18px;
-    color: cornflowerblue;
+    color: #294666;
     margin-right: 10px;
     margin-left: 20px;
   }

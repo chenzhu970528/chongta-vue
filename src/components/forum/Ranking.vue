@@ -43,12 +43,14 @@
 
 <style scoped>
   .d1 {
+    box-shadow: -2px 2px 10px 2px #f3f3f3;
+    background: rgba(255, 255, 255, 0.9);
     width: 360px;
     background: white;
     position: relative;
     padding: 20px;
     display: inline-block;
-    margin-top: 1px;
+    margin-top: 150px;
     margin-bottom: 20px;
   }
 

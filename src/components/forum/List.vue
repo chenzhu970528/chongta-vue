@@ -251,7 +251,7 @@
 
   .con {
     margin: 25px;
-    width: 800px;
+    width: 850px;
     /*height: 1650px;*/
     padding: 0px 20px 20px 20px;
     /*border: 1px solid #989898;*/
@@ -261,15 +261,19 @@
 
   ul {
     position: relative;
-    left: -40px;
+    left: -60px;
 
 
   }
 
   li {
-    width: 768px;
+    box-shadow: -2px 2px 10px 2px #e4e4e4;
+    background: rgba(255, 255, 255, 0.9);
+    width:800px;
     list-style: none;
     padding: 35px;
+    padding-bottom: 0;
+    padding-top: 20px;
     /*background: #ffffff;*/
     margin-bottom: 35px;
     overflow: hidden;
@@ -307,7 +311,7 @@
   }
 
   img {
-    max-width: 658px;
+    max-width: 730px;
   }
 
   .value {

@@ -171,9 +171,9 @@ console.log(index+'30才对')
     line-height: 50px;
     font-size: 16px;
     /*background-color: palevioletred;*/
-    color: #e7e7e7;
+    color: rgba(45, 54, 68, 0.9);
 
-    word-wrap: break-word;
+
   }
 
   .route span {
@@ -184,7 +184,7 @@ console.log(index+'30才对')
   }
 
   .route span:last-child {
-    color: #b9ffff;
+    color: #8aa7cf;
   }
 
   .comment {

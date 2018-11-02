@@ -96,11 +96,12 @@
   }
   .top{
     width: 100%;
-    height: 70px;
-    background-color: whitesmoke;
-    position: fixed;
+    height: 95px;
+    background-color: white;
     top: 0;
     z-index: 3;
+    margin-bottom:-100px;
+    box-shadow: -2px 2px 10px 2px #f8f8f8;
   }
   a{
     color: #747474;

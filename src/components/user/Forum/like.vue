@@ -37,14 +37,14 @@
     line-height: 50px;
     font-size: 16px;
     /*background-color: palevioletred;*/
-    color: #e7e7e7;
+    color: rgba(45, 54, 68, 0.9);
   }
   .route span{
     margin-right: 10px;
     font-size: 14px;
   }
-  .route span:first-child{
-    color: #b9ffff;
+  .route span:last-child{
+    color: #8aa7cf;
   }
   .page{
     width: 80%;
