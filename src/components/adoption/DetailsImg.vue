@@ -3,6 +3,7 @@
       <el-carousel height="300px" >
         <el-carousel-item style="text-align: center" v-for="(img,index) in imgList" :key="index">
           <img style="height: 300px" :src="img">
+          <video :src='img' controls="controls" style="width: 500px;"> </video>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -15,6 +16,7 @@
         name: "DetailsImg",
       data(){
           return{
+            mp4:'mp4',
             adoId:this.$route.params.adoId,
             imgList:[
 

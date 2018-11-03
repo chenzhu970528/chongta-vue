@@ -25,7 +25,7 @@ export default {
     'app-header':Header,
     'foot':foot
   },mounted(){
-  //  动态背景
+    // 动态背景
 (function($){
   var canvas = $('#bg').children('canvas'),
     background = canvas[0],
@@ -35,7 +35,7 @@ export default {
       circle: {
         amount: 18,
         layer: 3,
-        color: [180, 200, 245],
+        color: [70, 130, 180],
         alpha: 0.3
       },
       line: {
@@ -115,8 +115,8 @@ export default {
       var gradient = [];
 
       gradient[0] = bctx.createRadialGradient(wWidth*0.3, wHeight*0.1, 0, wWidth*0.3, wHeight*0.1, wWidth*0.9);
-      gradient[0].addColorStop(0, 'rgb(255,255,255)');
-      // gradient[0].addColorStop(1, 'transparent');
+      gradient[0].addColorStop(0, 'rgb(51,122,183)');
+      gradient[0].addColorStop(1, 'transparent');
 
       bctx.translate(wWidth, 0);
       bctx.scale(-1,1);
@@ -125,8 +125,8 @@ export default {
       bctx.fillRect(0, 0, wWidth, wHeight);
 
       gradient[1] = bctx.createRadialGradient(wWidth*0.1, wHeight*0.1, 0, wWidth*0.3, wHeight*0.1, wWidth);
-      gradient[1].addColorStop(0, 'rgb(255,255,255)');
-      // gradient[1].addColorStop(0.8, 'transparent');
+      gradient[1].addColorStop(0, 'rgb(6,73,144)');
+      gradient[1].addColorStop(0.8, 'transparent');
 
       bctx.translate(wWidth, 0);
       bctx.scale(-1,1);
@@ -135,8 +135,8 @@ export default {
       bctx.fillRect(0, 0, wWidth, wHeight);
 
       gradient[2] = bctx.createRadialGradient(wWidth*0.1, wHeight*0.5, 0, wWidth*0.1, wHeight*0.5, wWidth*0.5);
-      gradient[2].addColorStop(0, 'rgba(255,255,255,0.8)');
-      // gradient[2].addColorStop(1, 'transparent');
+      gradient[2].addColorStop(0, 'rgba(99,184,255,0.5)');
+      gradient[2].addColorStop(1, 'transparent');
 
       bctx.beginPath();
       bctx.fillStyle = gradient[2];
@@ -274,7 +274,6 @@ export default {
   a{
     cursor: pointer;
     text-decoration: none;
-    color: rgb(208, 230, 255);
   }
 
   body {
@@ -287,8 +286,8 @@ export default {
 
   #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
@@ -308,6 +307,7 @@ export default {
   width:100%;
   height:100%;
 }
+
 
 
 </style>

@@ -50,9 +50,10 @@
             <label class="control-label">上传图片：</label>
               <input type="file" name="avatar"
                      @change="changeImage($event)"
-                     accept="image/gif,image/jpeg,image/jpg,image/png"
+                     accept="image/gif,image/jpeg,image/jpg,image/png,.img"
                      ref="avatarInput"
-                     multiple><br/>
+                     multiple><span style="line-height: 30px"><b>上传视频请在图片后</b></span>
+            <br/>
               <div>
                 详&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;情：
                 <p>

@@ -17,7 +17,7 @@
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-xs-5" style="margin-top: 25px">
+          <div class="col-xs-5" style="margin-top: 7px">
             <detailsimg></detailsimg>
           </div>
           <div class="col-xs-7">
@@ -93,7 +93,7 @@
   }
   .top{
     width: 100%;
-    height: 95px;
+    height: 110px;
     background-color: #fff;
     margin-top: -150px;
     z-index: 3;

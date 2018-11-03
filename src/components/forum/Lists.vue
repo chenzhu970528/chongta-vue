@@ -59,7 +59,7 @@
   }
   .top {
     background: white;
-    height:85px;
+    height:100px;
     margin-top:110px;
     margin-bottom:-250px;
     box-shadow: -2px 2px 10px 2px #f8f8f8;

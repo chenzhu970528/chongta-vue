@@ -48,6 +48,8 @@
         userForm: {
           userPhone: '',
           userPwd: '',
+          hide:false,
+          tips:'发表成功'
         },
         centerDialogVisible: false
       }
@@ -60,7 +62,6 @@
           type: "post",
           data: _this.userForm,
           success: function (result) {
-
             if (result.data == 1) {
               alert("手机号不能为空");
             } else if (result.data == 2) {
@@ -96,12 +97,13 @@
     margin-top: 30px;
   }
   .bglogin{
+    box-shadow: #08498f -5px 5px;
     border-radius: 15px;
     color: cornflowerblue;
-    padding-top: 250px;
+    padding-top: 90px;
     width: 580px;
-    height: 650px;
-    background: url("../../assets/user/bgLogin.png") no-repeat;
+    height: 450px;
+    background: url("../../assets/adoption/border.png") no-repeat;
     background-color: #fff;
     background-size: 100% 100%;
     position: absolute;

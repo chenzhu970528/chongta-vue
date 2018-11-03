@@ -8,6 +8,7 @@
     <div class="right">
       <div class="title2" >
          <h3 class="line">最新寻宠</h3>
+        <!--<div class="inner_ado" id="scroll">-->
         <el-row v-for="(diary,index) in diarys" :key="index" class="ROW">
           <router-link  tag="li" :to="'/homeless/lostdetails/'+diary.lpId" style="list-style: none;cursor: pointer" exact>
           <el-col :span="5">
@@ -29,6 +30,7 @@
       <img src="../../assets/homeless/ct.png" alt="">
     </div>
   </div>
+    <!--</div>-->
 </template>
 
 <script>
@@ -75,6 +77,34 @@
 </script>
 
 <style scoped>
+  #scroll{
+    /*padding: 35px;*/
+    /*width: 80%;*/
+    /*margin-left: 10%;*/
+    max-height: 600px;
+    /*background-color: rgba(237, 210, 234, 0.5);*/
+    margin-top: 30px;
+    overflow: auto;
+    margin-right: -7%;
+  }
+  #scroll::-webkit-scrollbar{
+    width:4px;
+    height:4px;
+  }
+  #scroll::-webkit-scrollbar-track{
+    background:rgba(255, 255, 255, 0.3);
+    border-radius:2px;
+  }
+  #scroll::-webkit-scrollbar-thumb{
+    background: #bababa;
+    border-radius:2px;
+  }
+  #scroll::-webkit-scrollbar-thumb:hover{
+    background: #747474;
+  }
+  #scroll::-webkit-scrollbar-corner {
+    background: #f6f6f6;
+  }
   /*div{*/
     /*background-color: palevioletred;*/
   .button{

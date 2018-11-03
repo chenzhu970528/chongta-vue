@@ -46,9 +46,10 @@
           <div class="col-sm-6">
             <input type="file" name="avatar"
                    @change="changeImage($event)"
-                   accept="image/gif,image/jpeg,image/jpg,image/png"
+                   accept="image/gif,image/jpeg,image/jpg,image/png,.mp4"
                    ref="avatarInput"
-                   multiple><br/>
+                   multiple><span style="line-height: 30px"><b>上传视频请在图片后</b></span>
+            <br/>
           </div>
         </div>
         <div class="form-group">
@@ -229,7 +230,7 @@
   }
   .top{
     width: 100%;
-    height: 95px;
+    height: 110px;
     background-color: #fff;
     /*position: fixed;*/
     top: 0;

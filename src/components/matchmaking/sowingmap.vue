@@ -4,6 +4,7 @@
       <el-carousel trigger="click" height="260px" style="text-align: center">
         <el-carousel-item v-for="(mao,index) in imgList" :key="index">
           <img :src="mao">
+          <video :src='img' controls="controls" style="width: 190px;"> </video>
         </el-carousel-item>
       </el-carousel>
     </div>

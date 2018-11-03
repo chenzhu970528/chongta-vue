@@ -4,7 +4,7 @@
       <div class="listbox clearfix" v-for="(activity,index) in activitys" :key="index"  style="margin-bottom: 10px"  >
         <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/lostdetails/'+activity.lpId" style="float: left;list-style: none;cursor: pointer" exact>-->
 
-        <div class="listimg img" style="float: left;" >
+        <div class="listimg img" style="float: left;cursor: pointer" >
           <viewer >
             <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="width: 160px;height: 152px;">
             <img :src="urlImg(activity.lppic.split(',')[1])" alt="" style="display: none">

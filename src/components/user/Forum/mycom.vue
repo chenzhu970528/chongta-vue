@@ -164,28 +164,22 @@ console.log(index+'30才对')
     word-wrap: break-word;
   }
 
-  .route {
+  .route{
     position: relative;
     left: 5%;
     width: 90%;
     height: 50px;
     line-height: 50px;
     font-size: 16px;
-    /*background-color: palevioletred;*/
-    color: rgba(45, 54, 68, 0.9);
-
-
+    color: white;
+    /*color: rgba(45, 54, 68, 0.9);*/
   }
-
-  .route span {
+  .route span{
     margin-right: 10px;
     font-size: 14px;
-
-    word-wrap: break-word;
   }
-
-  .route span:last-child {
-    color: #8aa7cf;
+  .route span:last-child{
+    color: #c9eaff;
   }
 
   .comment {

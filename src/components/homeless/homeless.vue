@@ -1,5 +1,5 @@
 <template>
-  <div class="tol">
+  <div class="tol" >
     <div class="top">
       <div class="top1"></div>
       <div class="col-xs-8 col-xs-offset-2 text" style="">
@@ -27,16 +27,15 @@
   import fenlei from './fenlei'
   import cat from './cat'
   export default {
-    name: "homeless",
-    methods:{
-      toHome(){
-        this.$router.push({path:'/'})
-      }
+    methods: {
+      toHome() {
+        this.$router.push({path: '/'})
+      },
     },
-    components:{
-      'fenlei':fenlei,
+    components: {
+      'fenlei': fenlei,
       // 'hot':hot,
-      'cat':cat
+      'cat': cat
     }
   }
 
@@ -68,14 +67,7 @@
     /*min-height: 900px;*/
     position: relative;
   }
-  /*.top div{*/
-    /*position: relative;*/
-    /*top:185px;*/
-    /*left: 30%;*/
-    /*width: 500px;*/
-    /*height: 300px;*/
-    /*border: 3px solid whitesmoke;*/
-  /*}*/
+
   img{
     height: 300px;
     width: 300px;
