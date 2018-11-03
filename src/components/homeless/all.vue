@@ -105,12 +105,12 @@
 
 <style scoped>
   .title{
-    /*height: 5px;*/
+    height: 25px;
     display: inline-block;
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
-    width: 200px;
+    width: 300px;
 
 
 
