@@ -71,7 +71,7 @@
   }
   .top{
     width: 100%;
-    height: 90px;
+    height: 110px;
     background-color: #fff;
     top: 0;
     z-index: 3;

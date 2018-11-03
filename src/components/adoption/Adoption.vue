@@ -122,7 +122,7 @@
   .polaroid {
     position: absolute;
     top: -300px;
-    left: 100px;
+    left: 50px;
     width: 400px;
     height: 320px;
     max-width: 30em;

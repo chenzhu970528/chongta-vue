@@ -115,7 +115,7 @@
   }
   .right{
     float: right;
-    width: 250px;
+    min-width: 250px;
   }
   .left{
     width: 750px;

@@ -96,7 +96,7 @@
   }
   .top{
     width: 100%;
-    height: 95px;
+    height: 110px;
     background-color: white;
     top: 0;
     z-index: 3;

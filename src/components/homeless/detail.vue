@@ -93,7 +93,7 @@
   }
   .top{
     width: 100%;
-    height: 95px;
+    height: 110px;
     background-color: #fff;
     margin-top: -150px;
     z-index: 3;

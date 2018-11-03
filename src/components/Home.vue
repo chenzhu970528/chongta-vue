@@ -118,7 +118,6 @@
     width: 100%;
     background: rgb(242, 244,241);
     position: relative;
-    margin-bottom:-100px;
     padding-bottom:150px;
   }
   .top{
