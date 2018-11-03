@@ -5,6 +5,8 @@
     class="pic">
       <el-carousel-item v-for="(img,index) in imgList" :key="index">
         <img :src="img">
+        <!--<video :src="url+Img" controls="controls" style="max-width: 700px"></video>-->
+        <video :src='img' controls="controls" style="width: 190px;"> </video>
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -16,6 +18,7 @@
     name: "DetailsImg",
     data(){
       return{
+        mp4:'mp4',
         homeId:this.$route.params.homeId,
         imgList:[
 

@@ -60,7 +60,7 @@
         <!--</div>-->
         <div class="form-group">
           <el-row>
-            <el-col :span="3" :push="4"><span>联系地址</span></el-col>
+            <el-col :span="3" :push="4"><span><b>&nbsp;&nbsp;&nbsp;&nbsp;联系地址:</b> </span></el-col>
             <el-col :span="6" :push="4">
               <el-select
                 id="sheng"
@@ -115,9 +115,10 @@
           <div class="col-sm-6">
             <input type="file" name="avatar"
                    @change="changeImage($event)"
-                   accept="image/gif,image/jpeg,image/jpg,image/png"
+                   accept="image/gif,image/jpeg,image/jpg,image/png,.mp4"
                    ref="avatarInput"
-                   multiple><br/>
+                   multiple><span style="line-height: 30px"><b>上传视频请在图片后</b></span>
+            <br/>
           </div>
         </div>
         <div class="form-group">

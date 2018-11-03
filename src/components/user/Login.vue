@@ -48,6 +48,8 @@
         userForm: {
           userPhone: '',
           userPwd: '',
+          hide:false,
+          tips:'发表成功'
         },
         centerDialogVisible: false
       }
@@ -60,7 +62,6 @@
           type: "post",
           data: _this.userForm,
           success: function (result) {
-
             if (result.data == 1) {
               alert("手机号不能为空");
             } else if (result.data == 2) {

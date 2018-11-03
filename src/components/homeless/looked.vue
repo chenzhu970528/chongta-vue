@@ -4,14 +4,8 @@
       <div class="listbox clearfix" v-for="(activity,index) in myActData1" :key="index"  style="margin-bottom: 10px"  >
         <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
           <div class="listimg img" style="float: left;">
-            <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
             <img :src="urlImg(activity.lppic.split(',')[0])" alt="" style="width: 160px;height: 152px;">
-            <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/founded/'+activity.state" style="float: left;list-style: none;cursor: pointer" exact>-->
-              <!--<img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="" style="width: 150px;height: 140px;">-->
-            <!--</router-link>-->
           </div>
-
-
           <div class="listInfo"   >
             <h4>{{activity.lpmes}}</h4>
             <div class="address">
@@ -22,10 +16,7 @@
               </div>
             </div>
           </div>
-        <!--</router-link>-->
-
       </div >
-
     </div>
     <!--分页-->
     <el-row>
@@ -99,14 +90,13 @@
 </script>
 
 <style scoped>
-  .zhang{
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    right: 30px;
-    bottom: 24px;
-
-  }
+  /*.zhang{*/
+    /*width: 200px;*/
+    /*height: 200px;*/
+    /*position: absolute;*/
+    /*right: 30px;*/
+    /*bottom: 24px;*/
+  /*}*/
   .listInfo {
     width: 380px;
     height: auto;
@@ -121,6 +111,7 @@
   .listbox {
     border: 1px solid #becee1;
     border-radius: 10px;
+    background-color: rgba(201, 201, 201, 0.74);
   }
   .listbox:hover{
     border: 1px solid #6d9eff;

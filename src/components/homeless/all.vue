@@ -16,7 +16,7 @@
         <h4>{{activity.getmes}}</h4>
         <div class="address">
           <div><span>地址：</span><span>{{activity.address}}</span> <br>
-            <span>简述：</span><span style="text-overflow : ellipsis;white-space:nowrap;overflow:hidden">{{activity.detail}}</span><br>
+            <span >简述：</span><span class="title">{{activity.detail}}</span><br>
             <span>发现时间：{{activity.homeTime}}</span>
           </div>
         </div>
@@ -104,6 +104,17 @@
 </script>
 
 <style scoped>
+  .title{
+    /*height: 5px;*/
+    display: inline-block;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    width: 200px;
+
+
+
+  }
   .listInfo {
     width: 380px;
     height: auto;

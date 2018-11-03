@@ -13,7 +13,7 @@
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-xs-5" style="margin-top: 25px">
+          <div class="col-xs-5" style="margin-top: 7px">
             <lostimg></lostimg>
           </div>
           <div class="col-xs-7">
@@ -80,7 +80,6 @@
     margin-bottom:-90px;
   }
   .all{
-    /*background-color: #f7f7f7;*/
     padding-top: 150px;
     padding-bottom: 30px;
   }
@@ -93,28 +92,11 @@
   }
   .cont{
     background: rgba(247, 247, 247, 0.9);
-    /*margin-top:150px ;*/
     box-shadow:-2px 2px 10px 2px #bcbcbc;
     min-height: 500px;
     width: 1240px;
     position: relative;
   }
-  /*.container1{*/
-  /*width: 90%;*/
-  /*height: 400px;*/
-  /*background-color: cornflowerblue;*/
-  /*position: absolute;*/
-  /*right: 0;*/
-  /*bottom: 0;*/
-  /*}*/
-  /*.container2{*/
-  /*width: 60%;*/
-  /*height: 300px;*/
-  /*background-color: yellow;*/
-  /*position: absolute;*/
-  /*left: 0;*/
-  /*top:0*/
-  /*}*/
   .adoTitle{
     width: 1136px;
     margin: 0  auto;

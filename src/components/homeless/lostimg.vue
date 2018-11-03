@@ -3,6 +3,7 @@
     <el-carousel height="300px" class="pic">
       <el-carousel-item v-for="(img,index) in imgList" :key="index">
         <img :src="img">
+        <video :src='img' controls="controls" style="width: 500px;"> </video>
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -13,6 +14,7 @@
   export default {
     data(){
       return{
+        mp4:'mp4',
         lpId:this.$route.params.lpId,
         imgList:[
 
@@ -57,12 +59,5 @@
   img{
     height: 300px;
   }
-  /*.el-carousel__item:nth-child(2n) {*/
-  /*background-color: #99a9bf;*/
-  /*}*/
-
-  /*.el-carousel__item:nth-child(2n+1) {*/
-  /*background-color: #d3dce6;*/
-  /*}*/
 </style>
 
