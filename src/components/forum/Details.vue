@@ -834,7 +834,7 @@ margin-top: 15px;
 
   .top {
     background: white;
-    height: 85px;
+    height: 90px;
     margin-top: 150px;
     margin-bottom: -300px;
     box-shadow: -2px 2px 10px 2px #f0f0f0;
@@ -863,7 +863,7 @@ margin-top: 15px;
     width: 800px;
     background: white;
     /*border:1px solid #989898;*/
-    margin: 175px 0 0 25px;
+    margin: 55px 0 0 25px;
     padding-left: 38px;
     padding-right: 40px;
     padding-bottom: 400px;
