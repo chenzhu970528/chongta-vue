@@ -89,31 +89,6 @@
             </div>
           </div>
         </div>
-        <!--<div class="form-group">-->
-        <!--<label  class="col-sm-3 control-label">您所在地区：</label>-->
-        <!--<div class="col-sm-6">-->
-        <!--<el-cascader-->
-        <!--:options="options2"-->
-        <!--@active-item-change="handleItemChange"-->
-        <!--:props="props"-->
-        <!--&gt;</el-cascader>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-        <!--<label  class="col-sm-3 control-label">体检报告：</label>-->
-        <!--<div class="col-sm-6">-->
-        <!--<el-upload-->
-        <!--class="upload-demo"-->
-        <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-        <!--:on-preview="handlePreview"-->
-        <!--:on-remove="handleRemove"-->
-        <!--:file-list="fileListRep"-->
-        <!--list-type="picture">-->
-        <!--&lt;!&ndash;<el-button size="small" type="primary">点击上传</el-button>&ndash;&gt;-->
-        <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
-        <!--</el-upload>-->
-        <!--</div>-->
-        <!--</div>-->
         <div class="form-group">
           <div class="col-sm-offset-5 col-sm-7">
             <button type="button" @click="islogin" class="btn btn-default">提交</button>

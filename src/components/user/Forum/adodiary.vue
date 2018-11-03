@@ -30,7 +30,7 @@
     position: relative;
     left: 40px;
     min-height: 780px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255,0.7);
     box-shadow: -2px 2px 10px 2px #f7f7f7;
 
   }
@@ -41,15 +41,15 @@
     height: 50px;
     line-height: 50px;
     font-size: 16px;
-    color: white;
-    /*color: rgba(45, 54, 68, 0.9);*/
+    /*background-color: palevioletred;*/
+    color: rgba(45, 54, 68, 0.9);
   }
   .route span{
     margin-right: 10px;
     font-size: 14px;
   }
   .route span:last-child{
-    color: #c9eaff;
+    color: #8aa7cf;
   }
   .page{
     width: 80%;
