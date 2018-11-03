@@ -56,17 +56,18 @@
 
 <style scoped>
   #foot{
-    height: 150px;
+    height: 130px;
     width: 100%;
     text-align: center;
-    /*margin-top: 80px;*/
-    /*background: #4f4f4f;*/
+    margin-top: 80px;
+    background: #4f4f4f;
+    margin-bottom: -20px;
   }
   ul{
     position: relative;
     bottom: 30px;
     list-style: none;
-    padding-top: 100px;
+    padding-top: 80px;
     color: white;
     width: 500px;
     margin: 10px auto;
