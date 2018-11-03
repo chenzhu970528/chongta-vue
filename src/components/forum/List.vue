@@ -253,7 +253,7 @@
     margin: 25px;
     width: 850px;
     /*height: 1650px;*/
-    padding: 0px 20px 20px 20px;
+    padding: 0px 20px 55px 20px;
     /*border: 1px solid #989898;*/
 
     word-wrap:break-word;

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="top"></div>
     <div class="container">
       <div class="alrady">
         <el-alert
@@ -13,7 +12,7 @@
         </el-alert>
       </div>
       <div class="bg">
-        <form class="form-horizontal" style="padding-top: 40px; margin-top: 200px;margin-left: 10px">
+        <form class="form-horizontal" style="padding-top: 40px; margin-top: 220px;margin-left: 10px">
           <div class="form-group first">
             <label  class="col-sm-2 control-label col-sm-offset-2">用户名</label>
             <div class="col-sm-4">
@@ -310,8 +309,7 @@
   background-size: 100% 100%;
 }
 .alrady{
-  margin-top: 70px;
-  /*height: 30px;*/
+  margin-top: 110px;
 }
 a{
   text-decoration: none;

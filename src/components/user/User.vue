@@ -59,7 +59,7 @@
   }
   .top1{
     width: 100%;
-    height: 95px;
+    height: 110px;
     background-color: white;
     /*position: fixed;*/
     top: 0;

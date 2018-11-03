@@ -363,7 +363,7 @@
   }
   .top{
     width: 100%;
-    height: 85px;
+    height: 110px;
     background-color: #fff;
     /*position: fixed;*/
     top: 0;

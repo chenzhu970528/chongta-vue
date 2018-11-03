@@ -790,7 +790,7 @@ console.log(faId)
 
   .top {
     background: white;
-    height:85px;
+    height:100px;
     margin-top:150px;
     margin-bottom:-300px;
     box-shadow: -2px 2px 10px 2px #f0f0f0;
@@ -805,7 +805,7 @@ console.log(faId)
     margin: auto;
     margin-top: 100px;
     position: relative;
-    padding-bottom: 300px;
+    padding-bottom: 150px;
     padding-top: 80px;
   }
 
@@ -819,7 +819,7 @@ console.log(faId)
     width: 800px;
     background: white;
     /*border:1px solid #989898;*/
-    margin: 175px 0 0 25px;
+    margin: 67px 0 0 25px;
     padding-left:38px;
     padding-right:40px;
     padding-bottom: 100px;
