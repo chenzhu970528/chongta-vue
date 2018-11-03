@@ -96,12 +96,13 @@
     margin-top: 30px;
   }
   .bglogin{
+    box-shadow: #08498f -5px 5px;
     border-radius: 15px;
     color: cornflowerblue;
-    padding-top: 250px;
+    padding-top: 90px;
     width: 580px;
-    height: 600px;
-    background: url("../../assets/user/bgLogin.png") no-repeat;
+    height: 450px;
+    background: url("../../assets/adoption/border.png") no-repeat;
     background-color: #fff;
     background-size: 100% 100%;
     position: absolute;

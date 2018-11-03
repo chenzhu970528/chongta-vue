@@ -123,7 +123,7 @@
   }
   .top{
     height: 750px;
-    background: url("../assets/HomePage/photo-1518640165980-d3e0e2aa6c1e.jpg") center;
+    background: url("../assets/HomePage/photo-1518640165980-d3e0e2aa6c1e.jpg") no-repeat center;
     background-size: 100% auto;
     position: relative;
   }

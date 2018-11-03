@@ -1,14 +1,8 @@
 <template>
-  <nav class="bgsty navbar ">
-    <div class=" container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header ">
-        <!--<img class="logodog" width="60" src="../assets/logoDog.png" alt="">-->
-        <img class="logo" src="../assets/logo.png" alt="">
-      </div>
-
+  <div class="header">
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav left" >
+        <img class="logo" src="../assets/logo.png" alt="">
         <!--exact可以避免根路由使用始终激活的样式-->
         <router-link tag="li" active-class="active" role="presentation" to="/" exact><a>首页</a></router-link>
         <router-link tag="li" active-class="active" role="presentation" to="/adoption"><a>领养中心</a></router-link>
@@ -17,7 +11,7 @@
         <router-link tag="li" active-class="active" role="presentation" to="/forum"><a>宠宠交流</a></router-link>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav right" >
         <li v-if="!isLogin"><router-link tag="li" active-class="active" role="presentation" to="/register" style="margin-top: 15px"><a>注册</a></router-link></li>
         <li v-if="!isLogin">
           <user-login></user-login>
@@ -40,8 +34,7 @@
         <li><span><i class="el-icon-location"></i>{{address}}</span></li>
         <div id="allmap"></div>
       </ul>
-    </div><!-- /.container-fluid -->
-  </nav>
+  </div>
 
 </template>
 
@@ -102,41 +95,50 @@
       float: left;
     }
   }
-  /*@media (max-width: 960px){*/
-    /*.bgsty{*/
-      /*max-width: 960px;*/
-      /*!*background-color: rgba(255, 255, 255,0.9);*!*/
-      /*!*border: 1px solid cornflowerblue;*!*/
-    /*}*/
-  /*}*/
-  .top-nav{
-
-  }
-  .navbar{
-    background-color: rgba(93, 164, 245, 0.0);
+  .header{
+    width: 100%;
+    z-index: 50;
+    padding-top: 10px;
     height: 80px;
-margin-top:5px;
     position: relative;
-    z-index:100;
     margin-bottom:-100px;
+  }
+  .nav>li>a:focus {
+    text-decoration: none;
+    background-color: #eee;
+    border-radius: 10px;
+  }
+  .nav>li>a:hover{
+    text-decoration: none;
+    background-color: #eee;
+    border-radius: 10px;
+  }
+  .right{
+    float: right;
+    width: 250px;
+  }
+  .left{
+    width: 750px;
   }
   a{
     text-decoration: none;
     color: #0a498f;
-    /*font-weight: bold;*/
   }
   .logo {
     margin-top:-5px;
     width: 160px;
     height: 75px;
+    float: left;
   }
-
-  .navbar li a {
+  .nav li{
+    margin-left: 10px;
+  }
+  .nav li a {
      height: 70px;
      line-height: 40px;
     font-size:21px;
    }
-  .navbar li span {
+  .nav li span {
     display: inline-block;
     height: 70px;
     line-height: 70px;
@@ -146,21 +148,11 @@ margin-top:5px;
     margin-left: 20px;
   }
 
-  .navbar .dropdown li a {
+  .nav .dropdown li a {
     height: 30px;
     line-height: 30px;
   }
 
-  .navbar-header li a {
-    height: 30px;
-    line-height: 30px;
-  }
-  .bgsty{
-    min-width: 1000px;
-    z-index: 50;
-    /*background-color: rgba(255, 255, 255,0.9);*/
-    /*border: 1px solid cornflowerblue;*/
-  }
   .headimg img{
     margin-left: -1px;
     margin-top: -1px;
