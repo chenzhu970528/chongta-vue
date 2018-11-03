@@ -3,7 +3,13 @@
 <p class="top">最多收藏</p>
     <div class="con">
       <div class="pic" v-for="(list,index) in list1">
-        <img :src='s+img[index]' class="pic-image" alt="Pic"/>
+        <img v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))!=mp4"
+             :src='s+img[index]' class="pic-image">
+        <video v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))==mp4"
+               :src='s+img[index]'
+               style="width:360px;max-height: 240px;"
+               class="pic-image"></video>
+
         <span class="pic-caption bottom-to-top">
                <h1 class="pic-title" @click="see(list[0].faId)">
                  <router-link tag="p" active-class="active" role="presentation" :to="`/forum/`+list[0].faId">
@@ -30,7 +36,8 @@
       return {
         list1: [],
         s:this.$store.state.url,
-        img:[]
+        img:[],
+        mp4:'mp4'
       }
     },
     methods: {
@@ -61,6 +68,11 @@
   color: #294666;
   margin:40px 0;
 }
+  video{
+    max-height: 285px;
+    vertical-align: bottom;
+
+  }
   .text{
     font-size:16px;
     margin-top:30px;

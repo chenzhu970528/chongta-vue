@@ -15,22 +15,21 @@
           </el-col>
         </el-row>
         <p>{{val.faText}}{{val.frText}}</p>
-        <el-row style="margin-top: 10px" class="row2">
-          <el-col :span="9" class="release">
-            <img :src='url+Artpic[index].headPic' alt="" class="head1">
-          </el-col>
-          <el-col :span="12" class="toto">
+        <!--<el-row style="margin-top: 10px" class="row2">-->
+          <!--<el-col :span="9" class="release">-->
+            <!--<img :src='url+Artpic[index].headPic' alt="" class="head1">-->
+          <!--</el-col>-->
+          <!--<el-col :span="12" class="toto">-->
 
-          <div class="span">
-            <h5>{{val.userName}}</h5>
-            <span @click="go(val.faId)">
-                  <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId"> {{val.faTitle}}</router-link>
-            </span>
+          <div class="span" @click="go(val.faId)">
+            <router-link  :to="`/forum/`+val.faId"> <p>{{val.userName}}:{{val.faTitle}} </p>
+            <br>
+            <p class="text">{{val.faText1}}000</p></router-link>
           </div>
 
 
-          </el-col>
-        </el-row>
+          <!--</el-col>-->
+        <!--</el-row>-->
       </div>
     </div>
 
@@ -103,19 +102,20 @@ console.log(index+'30才对')
 
 <style scoped>
   .head{
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
     background: url("../../../assets/forum/8.jpg");
-
+    margin-bottom:5px;
+    margin-top:5px;
   }
-  .head1{
-    width: 80px;
-    height: 80px;
-    border-radius: 40px;
-    background: url("../../../assets/forum/8.jpg");
+  /*.head1{*/
+    /*width: 70px;*/
+    /*height:70px;*/
+    /*border-radius: 35px;*/
+    /*background: url("../../../assets/forum/8.jpg");*/
 
-  }
+  /*}*/
   #scroll {
     padding: 0 35px;
     width: 80%;
@@ -158,7 +158,8 @@ console.log(index+'30才对')
     position: relative;
     left: 40px;
     min-height: 800px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: -2px 2px 10px 2px #eeeeee;
 
     word-wrap: break-word;
   }
@@ -250,9 +251,21 @@ console.log(index+'30才对')
     color: #575757;
   }
 .span{
-  background: #fefefe;
-  width:450px;
-  height: 80px;
+  margin-top:20px;
+  margin-left:10px;
+  padding:10px;
+  padding-left:0;
+  background: #dbdbdb;
+  width:490px;
+  height: 90px;
+cursor:pointer;
+
+  word-wrap: break-word;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
   .noList {
     text-align: center;

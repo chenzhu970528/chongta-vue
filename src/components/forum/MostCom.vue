@@ -3,7 +3,7 @@
 
     <br>
     <br>
-<p class="top">热门文章</p>
+    <p class="top">热门文章</p>
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -19,8 +19,15 @@
             <li class="li" v-for="(val,index) in value">
 
               <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
-                <img class=img  @click="see(val[0].faId)" :src='url+img[index]'>
-                <p class="p"><span class="left0"></span><a @click="see(val[0].faId)" class="a title">{{val[0].faTitle}}</a></p>
+                <img v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))!=mp4"
+                     class="img" @click="see(val[0].faId)" :src='url+img[index]'>
+                <div class="video">
+                  <video v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))==mp4"
+                         :src='url+img[index]'></video>
+                </div>
+
+                <p class="p"><span class="left0"></span><a @click="see(val[0].faId)"
+                                                           class="a title">{{val[0].faTitle}}</a></p>
               </router-link>
 
             </li>
@@ -30,9 +37,16 @@
           <ul class="ul">
             <li class="li" v-for="(val,index) in value1">
 
-                <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
-                <img class=img  @click="see(val[0].faId)" :src='url+img1[index]'>
-                <p class="p" @click="see(val[0].faId)"><span class="left0"></span><a class="a title">{{val[0].faTitle}}</a></p>
+              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
+                <img class="img" @click="see(val[0].faId)" :src='url+img1[index]'
+                     v-if="(img1[index].substring(img1[index].indexOf('.')+1,img1[index].length))!=mp4">
+               <div class="video">
+                 <video  v-if="(img1[index].substring(img1[index].indexOf('.')+1,img1[index].length))==mp4"
+                         :src='url+img1[index]'></video>
+               </div>
+
+                <p class="p" @click="see(val[0].faId)"><span class="left0"></span><a
+                  class="a title">{{val[0].faTitle}}</a></p>
               </router-link>
 
             </li>
@@ -42,8 +56,15 @@
           <ul class="ul">
             <li class="li" v-for="(val,index) in value2">
               <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
-                <img class=img @click="see(val[0].faId)"  :src='url+img2[index]'>
-                <p class="p" @click="see(val[0].faId)" ><span class="left0"></span><a class="a title">{{val[0].faTitle}}</a></p>
+                <img class="img" @click="see(val[0].faId)" :src='url+img2[index]'
+                     v-if="(img2[index].substring(img2[index].indexOf('.')+1,img2[index].length))!=mp4">
+              <div class="video">
+                <video v-if="(img2[index].substring(img2[index].indexOf('.')+1,img2[index].length))==mp4"
+                       :src='url+img2[index]'></video>
+              </div>
+
+                <p class="p" @click="see(val[0].faId)"><span class="left0"></span><a
+                  class="a title">{{val[0].faTitle}}</a></p>
               </router-link>
             </li>
           </ul>
@@ -76,6 +97,7 @@
         img: [],
         img1: [],
         img2: [],
+        mp4: 'mp4'
       }
     },
     methods: {
@@ -92,18 +114,18 @@
         for (let i = 0; i < 3; i++) {
           this.value.push(this.mydata[i])
           let img = this.mydata[i][0].faImg.split(',')
-          this.img.push(img[0].replace('，',''))
+          this.img.push(img[0].replace('，', ''))
         }
 
         for (let i = 3; i < 6; i++) {
           this.value1.push(this.mydata[i])
           let img = this.mydata[i][0].faImg.split(',')
-          this.img1.push(img[0].replace('，',''))
+          this.img1.push(img[0].replace('，', ''))
         }
         for (let i = 6; i < 9; i++) {
           this.value2.push(this.mydata[i])
           let img = this.mydata[i][0].faImg.split(',')
-          this.img2.push(img[0].replace('，',''))
+          this.img2.push(img[0].replace('，', ''))
         }
       })
     }
@@ -112,14 +134,15 @@
 
 <style scoped>
 
-  .top{
+  .top {
     text-align: center;
-    font-size:22px;
+    font-size: 22px;
     color: #294666;
-    margin-bottom:40px;
+    margin-bottom: 40px;
 
-    margin-top:-10px;
+    margin-top: -10px;
   }
+
   #carousel-example-generic {
     width: 1190px;
     /*padding-right:40px;*/
@@ -152,8 +175,18 @@
     width: 380px;
     height: 285px;
     border-radius: 5px;
+    vertical-align: bottom;
   }
+video{
+  max-height: 285px;
+  border-radius: 5px;
+  vertical-align: bottom;
 
+}
+.video{
+  border-radius: 5px;
+  overflow: hidden;
+}
   .p {
     background: #000000;
     opacity: 0.4;
@@ -162,11 +195,12 @@
     height: 40px;
     width: 100%;
     text-align: center;
-
   }
-.li:hover .p{
-  opacity: 0.5;
-}
+
+  .li:hover .p {
+    opacity: 0.5;
+  }
+
   .left0 {
     position: absolute;
     left: 0px;
@@ -189,70 +223,70 @@
   }
 </style>
 <!--<style scoped>-->
-  <!--#carousel-example-generic {-->
-    <!--width: 890px;-->
-    <!--/*padding-right:40px;*/-->
-    <!--margin: auto;-->
-  <!--}-->
+<!--#carousel-example-generic {-->
+<!--width: 890px;-->
+<!--/*padding-right:40px;*/-->
+<!--margin: auto;-->
+<!--}-->
 
-  <!--.carousel-control {-->
-    <!--width: 20px;-->
-    <!--margin: auto;-->
-  <!--}-->
+<!--.carousel-control {-->
+<!--width: 20px;-->
+<!--margin: auto;-->
+<!--}-->
 
-  <!--.ul {-->
-    <!--width: 1300px;-->
-    <!--margin-left: -40px;-->
-    <!--margin-right: -30px;-->
-  <!--}-->
+<!--.ul {-->
+<!--width: 1300px;-->
+<!--margin-left: -40px;-->
+<!--margin-right: -30px;-->
+<!--}-->
 
-  <!--.li {-->
-    <!--display: inline-block;-->
-    <!--color: white;-->
-    <!--position: relative;-->
-    <!--list-style: none;-->
-    <!--width: 280px;-->
-    <!--margin-bottom: 40px;-->
-    <!--margin-right: 25px;-->
+<!--.li {-->
+<!--display: inline-block;-->
+<!--color: white;-->
+<!--position: relative;-->
+<!--list-style: none;-->
+<!--width: 280px;-->
+<!--margin-bottom: 40px;-->
+<!--margin-right: 25px;-->
 
-  <!--}-->
+<!--}-->
 
-  <!--.img {-->
-    <!--width: 280px;-->
-    <!--height: 240px;-->
-    <!--border-radius: 5px;-->
-  <!--}-->
+<!--.img {-->
+<!--width: 280px;-->
+<!--height: 240px;-->
+<!--border-radius: 5px;-->
+<!--}-->
 
-  <!--.p {-->
-    <!--background: #000000;-->
-    <!--opacity: 0.4;-->
-    <!--position: absolute;-->
-    <!--bottom: -10px;-->
-    <!--height: 40px;-->
-    <!--width: 100%;-->
-    <!--text-align: center;-->
+<!--.p {-->
+<!--background: #000000;-->
+<!--opacity: 0.4;-->
+<!--position: absolute;-->
+<!--bottom: -10px;-->
+<!--height: 40px;-->
+<!--width: 100%;-->
+<!--text-align: center;-->
 
-  <!--}-->
+<!--}-->
 
-  <!--.left0 {-->
-    <!--position: absolute;-->
-    <!--left: 0px;-->
-    <!--color: #f1a234;-->
-    <!--font-weight: bold;-->
-    <!--line-height: 40px;-->
-  <!--}-->
+<!--.left0 {-->
+<!--position: absolute;-->
+<!--left: 0px;-->
+<!--color: #f1a234;-->
+<!--font-weight: bold;-->
+<!--line-height: 40px;-->
+<!--}-->
 
-  <!--.a {-->
-    <!--text-align: center;-->
-    <!--height: 40px;-->
-    <!--line-height: 40px;-->
-    <!--width: 100%;-->
-    <!--text-decoration: none;-->
-  <!--}-->
+<!--.a {-->
+<!--text-align: center;-->
+<!--height: 40px;-->
+<!--line-height: 40px;-->
+<!--width: 100%;-->
+<!--text-decoration: none;-->
+<!--}-->
 
-  <!--.title {-->
-    <!--font-size: 17px;-->
-    <!--color: white;-->
-  <!--}-->
+<!--.title {-->
+<!--font-size: 17px;-->
+<!--color: white;-->
+<!--}-->
 <!--</style>-->
 

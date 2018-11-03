@@ -19,7 +19,12 @@
           </div>
           <div class="photo">
             <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-              <img @click="see(val.faId)" :src='url+imgs[index]' alt="图片">
+              <img v-if="(imgs[index].substring(imgs[index].indexOf('.')+1,imgs[index].length))!=mp4"
+                @click="see(val.faId)" :src='url+imgs[index]' alt="图片">
+              <video v-if="(imgs[index].substring(imgs[index].indexOf('.')+1,imgs[index].length))==mp4"
+                     :src='url+imgs[index]'
+                     style="max-width:730px;">
+              </video>
             </router-link>
             <a></a>
           </div>
@@ -68,7 +73,7 @@
     data() {
       return {
         imgs: [],
-
+mp4:'mp4',
         Names: ['最新', '精品推荐', '养宠日记', '交流分享', '搜索结果'],
         faId: '',
         name: 0,

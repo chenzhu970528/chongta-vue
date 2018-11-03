@@ -3,7 +3,12 @@
     <div class="tol" v-for="(val,index) in lostlists">
       <el-row class="card">
         <el-col :span="7" class="petPic">
-          <div class="pic"><img :src='url+img1[index]'></div>
+          <div v-if="(img1[index].substring(img1[index].indexOf('.')+1,img1[index].length))!=mp4"
+               class="pic"><img :src='url+img1[index]'></div>
+          <div v-if="(img1[index].substring(img1[index].indexOf('.')+1,img1[index].length))==mp4"
+               class="pic video">
+            <video :src='url+img1[index]'></video>
+          </div>
         </el-col>
         <el-col :span="15">
              <span   @click="see(val.faId)">
@@ -83,7 +88,7 @@ img1:[],
         pageCount:0,
         value: [],//放数据库取得数据
         url:this.$store.state.url,
-
+mp4:'mp4'
       }
     },
 
@@ -212,32 +217,49 @@ img1:[],
   .card{
     width: 100%;
     height: 200px;
-
+padding-top:10px;
 
     word-wrap:break-word;
   }
   .tol{
     border-radius: 20px;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgb(255,255,255);
     margin-bottom: 25px;
+    box-shadow: -2px 2px 10px 0px #eeeeee;
+
   }
-  .pic{
+  .pic {
     width: 110px;
     height: 110px;
-    border-radius: 110px;
-    margin-top: 20px;
-    margin-left: 10px;
-    background: url("../../../assets/forum/8.jpg");
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left:20px;
+  }
+  video{
+    width: 250px;
+    height: 150px;
+
+  }
+  .video{
+    width: 110px;
+    height: 110px;
+    line-height: 100px;
+    border-radius: 10px;
+    overflow:hidden;
+    /*border: 1px solid #768dae;*/
+    text-align: center;
   }
   .pic img{
     width: 110px;
     height: 110px;
-    border-radius: 110px;
+    border-radius: 10px;
   }
-  .petPic{
+
+  .petPic {
     height: 200px;
     /*background-color: red;*/
   }
+
 
   p{
     padding-top: 7px;

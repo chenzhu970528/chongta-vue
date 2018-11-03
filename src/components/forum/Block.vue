@@ -3,9 +3,10 @@
     <span v-show="false">{{value}}</span>
     <!--图片 内容，小版块-->
     <div class="con" :key='index' v-for="(val,index) in value">
+
       <div class="top">
         <div><span class="left">{{Names[index]}}</span>
-          <router-link tag="span" active-class="active" role="presentation" :to="`/forum/`+url[index]">
+          <router-link :to="`/forum/`+url[index]">
             <span class="right" @click="but(index)"><a>>>更多</a></span>
           </router-link>
           <audio src=""></audio>
@@ -18,9 +19,16 @@
           <li class="li1">
 <span @click="see(val[0].faId)">
    <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[0].faId">
-        <img :src='s+faImg[index]' alt="" >
+     <img v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))!=mp4"
+          :src='s+faImg[index]' alt="">
+     <div v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))==mp4"
+       class="video">
+         <video :src='s+faImg[index]'></video>
+     </div>
+
      <p class="title">{{val[0].faTitle}}</p>
-            </router-link>
+   </router-link>
+
 </span>
 
             <p class="val">{{val[0].faText}}</p>
@@ -51,12 +59,12 @@
               <span class="span">{{val[4].time.slice(5,10)}}</span>
             </router-link>
           </li>
-          <li>
-            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[5].faId">
-              <a class="a" href="" @click="see(val[5].faId)">{{val[5].faTitle}}</a>
-              <span class="span">{{val[5].time.slice(5,10)}}</span>
-            </router-link>
-          </li>
+          <!--<li>-->
+          <!--<router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[5].faId">-->
+          <!--<a class="a" href="" @click="see(val[5].faId)">{{val[5].faTitle}}</a>-->
+          <!--<span class="span">{{val[5].time.slice(5,10)}}</span>-->
+          <!--</router-link>-->
+          <!--</li>-->
         </ul>
       </div>
     </div>
@@ -81,7 +89,7 @@
         url: ['new', 'recommend', 'diary', 'share'],
         s: this.$store.state.url,
         // faId: 0,
-
+        mp4: 'mp4'
       }
     },
     computed: {
@@ -158,7 +166,7 @@
             _this.value[3] = _this.value[3].values3
           })
 
-        },500)
+        }, 500)
       }
     },
     watch: {
@@ -183,15 +191,25 @@
   }
 
   span > a {
-    color: #a7a7a7;
+    color: #768dae;
   }
+  video{
+    height: 200px;
+    vertical-align: bottom;
 
+  }
+  .video{
+    width: 260px;
+    height:200px;
+    overflow: hidden;
+
+  }
   .con {
     background: white;
     position: relative;
     /*width: 390px;*/
     width: 290px;
-    height: 570px;
+    height: 530px;
     padding: 15px;
     display: inline-block;
     margin: 0 5px;
@@ -201,7 +219,7 @@
     /*width: 350px;*/
     width: 265px;
     height: 35px;
-    border-bottom: 1px solid #a8a8a8;
+    border-bottom: 1px solid #d9d9d9;
     color: #69819f;
   }
 
@@ -216,7 +234,7 @@
   .right {
     width: 50px;
     position: absolute;
-    left: 220px;
+    left: 230px;
     top: 15px;
     line-height: 20px;
   }
@@ -229,7 +247,7 @@
     margin-bottom: 25px;
     left: 15px;
     position: absolute;
-    border-bottom: 1px solid #a8a8a8;
+    border-bottom: 1px solid #dbdbdb;
   }
 
   .li1 {

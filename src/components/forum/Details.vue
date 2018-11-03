@@ -5,17 +5,18 @@
 
       <div class="left">
         <div class="a">
-        <!--详细内容     -->   <div>&nbsp &nbsp<h2>{{value.art[0].faTitle}}</h2></div>
-        <div class="val">
+          <!--详细内容     -->
+          <div>&nbsp &nbsp<h2>{{value.art[0].faTitle}}</h2></div>
+          <div class="val">
 
-          <div class="headpic">
-            <!--<img class='headimg' :src='url+value.pic[0].headPic' alt="">-->
-           <span class='headimg'><img class='headimg' :src='url+value.pic[0].headPic' alt=""></span>
-            <span class="name">{{value.art[0].userName}}</span>
+            <div class="headpic">
+              <!--<img class='headimg' :src='url+value.pic[0].headPic' alt="">-->
+              <span class='headimg'><img class='headimg' :src='url+value.pic[0].headPic' alt=""></span>
+              <span class="name">{{value.art[0].userName}}</span>
 
-            <span>{{value.art[0].time.slice(0,16).replace('T',' ')}}</span>
+              <span>{{value.art[0].time.slice(0,16).replace('T',' ')}}</span>
 
-            <span class="r">
+              <span class="r">
             <!--管理员推荐,判断管理员帐号-->
             <span v-if="admin">
 
@@ -31,7 +32,7 @@
             </span>
 
 &nbsp
-              <!--删除文章-->
+                <!--删除文章-->
                <span v-if="admin ||value.art[0].userId==userId ">
 
             <el-popover
@@ -40,7 +41,7 @@
               <!--v-model="visible2[index]"-->
               <p>确定删除吗？</p>
               <div style="text-align: right; margin: 0">
-                <el-button size="mini" type="text" >取消</el-button>
+                <el-button size="mini" type="text">取消</el-button>
                 <el-button type="primary" size="mini" @click="delart(value.art[0].faId)">确定</el-button>
               </div>
               <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -50,47 +51,62 @@
                </span>
 
 &nbsp
-              <!--增加收藏-->
+                <!--增加收藏-->
     <span v-if="addlike" class="s glyphicon glyphicon-heart-empty" @click="addLike()" title="收藏">{{value.like[0].like_sum}}</span>
 
-              <!--取消收藏-->
+                <!--取消收藏-->
     <span v-if="dellike" class="s glyphicon glyphicon-heart" @click="delLike()"
           title="取消收藏">{{value.like[0].like_sum}}</span>
 
     <span>&nbsp{{value.sum[0][0].sum_count-1}}回复</span>
     </span>
-          </div>
-
-
-
-
-          <!--帖子的内容-->
-
-          <div class="img">
-
-            <p>{{value.art[0].faText}}</p>
-            <div class="center" v-for="Img in img">
-              <img :src='url+Img' alt=""><br><br>
             </div>
 
+
+            <!--帖子的内容-->
+
+            <div class="img">
+
+              <p>{{value.art[0].faText}}</p>
+              <div class="center" v-for="Img in img">
+                <img :src='url+Img' alt=""><br><br>
+                <video v-if="(Img.substring(Img.indexOf('.')+1, Img.length))==mp4"
+                       :src='url+Img'
+                       controls="controls"
+                       style="max-width: 700px;"></video>
+
+
+              </div>
+
+            </div>
           </div>
+          <!--<div class="com0">-->
+          <div id="dd0" class="test_box cominp0"
+               contenteditable="true"
+               v-html="myHtmlcode"
+               @input="onDivInput($event)">
+            <br/>
+          </div>
+
+
+          <!--添加评论-->
+          <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
+          <div class="input">
+            <input type="file" name="avatar"
+                   @change="changeImage($event)"
+                   accept="image/gif,image/jpeg,image/jpg,image/png"
+                   ref="avatarInput"><br/>
+          </div>
+          <!--</div>-->
         </div>
-        <div id="dd0" class="test_box cominp0"
-             contenteditable="true"
-             v-html="myHtmlcode"
-             @input="onDivInput($event)">
-          <br/>
-        </div>
-        <!--添加评论-->
-        <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
-        </div>
+
         <!--评论区域-->
         <div v-if="value1.length>0" class="com">
           <ul>
             <li class="hhh" v-for="(com,index) in value1">
               <div class="border1">
                 <div class="head1">
-                  <span  class="img1"><img :src='url+value.comhead[index][0].headPic' alt="" class="img1"></span>
+                  <span class="img1"><img :src='url+value.comhead[index][0].headPic' alt="" class="img1"></span>
                   <div class="headRight">
                     <p class="name1">{{com.userName}}</p>
                     <p class="time">{{com.time.slice(0,16).replace('T',' ')}}</p>
@@ -98,9 +114,9 @@
                 </div>
                 <div class="val1">
                   <div class="but">
-                    <div class="">
-                      <p>{{com.faText}}</p>
-                    </div>
+                    <p class="comP">{{com.faText}}</p>
+                    <img :src='url+com.comImg' alt="" class="comimg">
+
                     <div class="com11" :key="index">
                       <span @click.prevent="aaaa(index)" class="rr">回复</span>
                       <!--删除评论-->
@@ -128,8 +144,8 @@
                           <div class="dd1 test_box cominp1" contenteditable="true"
                                v-html="myHtmlcode1"
                                @input="onDivInput1($event)">
-
                           </div>
+
                           <button @click="addReply(index,1)" type="button" class="rbtn btn btn-primary btn-sm active">发表
                           </button>
                         </div>
@@ -139,7 +155,7 @@
 
                     <div class="com1 " v-for="(reply,keys) in  value1[index].replys">
                       <div class="head">
-                       <span class="img1"> <img :src='url+reply.headPic' alt="" class="img1"></span>
+                        <span class="img1"> <img :src='url+reply.headPic' alt="" class="img1"></span>
                         <div class="headRight">
                           <p><span class="name1">{{reply.frName}}</span> 回复<span class="name1">{{reply.fcName}}</span>
                           </p>
@@ -233,6 +249,7 @@
     data() {
       return {
         visible2: false,
+        mp4: 'mp4',
         comhead: [],
         img: [],
         value: [],//文章和全部评论回复
@@ -262,86 +279,97 @@
         cou: 0,//总页数,
         rec: 0,//推荐显示，
         admin: false,
+
+        upath: [0],
       }
     },
 
     methods: {
+      //选中文件后，将文件保存到实例的变量中
+      changeImage(e) {
+        console.log(e.target.files)
+        this.upath = e.target.files;
+      },
       //重新渲染数据
       ajax() {
-        //重新渲染数据用
         let get = this;
-        let faId = window.localStorage.faId;
-        get.value.comment = []
-        get.comhead = []
-        axios.get(this.$store.state.url + `/forumSee/all/?faId=${faId}`).then((result) => {
-          // get.comhead = result.data.data.comhead
-          get.value = result.data.data;
-          get.q = 0//加载更多需要的范围值
-          get.w = 6
-          get.page = 1
-          get.aaa = []
-          get.bbb = []
-          if (this.UserId) {
-            //查看用户是否点赞
-            let faId = this.value.art[0].faId
-            get.userId = this.UserId.replace(/\"/g, "")
-            axios.get(this.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
-              if (result.data.data == 1) {
-                this.addlike = false
-                this.dellike = true
+        return setTimeout(function () {
+          //重新渲染数据用
+
+          let faId = window.localStorage.faId;
+          get.value.comment = []
+          get.comhead = []
+          axios.get(get.$store.state.url + `/forumSee/all/?faId=${faId}`).then((result) => {
+            // get.comhead = result.data.data.comhead
+            get.value = result.data.data;
+            get.q = 0//加载更多需要的范围值
+            get.w = 6
+            get.page = 1
+            get.aaa = []
+            get.bbb = []
+            if (get.UserId) {
+              //查看用户是否点赞
+              let faId = get.value.art[0].faId
+              get.userId = get.UserId.replace(/\"/g, "")
+              axios.get(get.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
+                if (result.data.data == 1) {
+                  get.addlike = false
+                  get.dellike = true
+                }
+              });
+              //判断是不是管理员
+              if (get.userId == 33) {
+                get.admin = true
               }
-            });
-            //判断是不是管理员
-            if (get.userId == 33) {
-              get.admin = true
+              //查看是否是精品推荐
+              axios.get(get.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
+                if (result.data.data == 1) {
+                  get.rec = 1;
+                }
+              })
             }
-            //查看是否是精品推荐
-            axios.get(this.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
-              if (result.data.data == 1) {
-                this.rec = 1;
-              }
-            })
-          }
 
-          if (get.value.comment) {
-            get.cou = Math.ceil(get.value.comment.length / 6)
-            for (let i = 0; i < get.value.comment.length; i++) {
-              //添加个放评论的数组
-              get.value.comment[i].replys = []
+            if (get.value.comment) {
+              get.cou = Math.ceil(get.value.comment.length / 6)
+              for (let i = 0; i < get.value.comment.length; i++) {
+                //添加个放评论的数组
+                get.value.comment[i].replys = []
 
-              get.aaa.push(false)
-              get.bbb.push([])
-              if (get.value.reply) {
+                get.aaa.push(false)
+                get.bbb.push([])
+                if (get.value.reply) {
 
-                for (let j = 0; j < get.value.reply.length; j++) {
+                  for (let j = 0; j < get.value.reply.length; j++) {
 
-                  if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
-                    get.bbb[i].push(false)
-                    get.value.comment[i].replys.push(get.value.reply[j])
+                    if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
+                      get.bbb[i].push(false)
+                      get.value.comment[i].replys.push(get.value.reply[j])
+                    }
                   }
                 }
               }
+
+
             }
+            //当前评论数
+            get.value1 = []//先清空
+            if (get.value.comment) {
+              if (get.value.comment.length > 6) {
+                for (let i = 0; i < 6; i++) {
+                  get.value1.push(get.value.comment[i])
+                }
+              }
+              else {
+                for (let i = 0; i < get.value.comment.length; i++) {
+                  get.value1.push(get.value.comment[i])
+                }
 
-
-          }
-          //当前评论数
-          get.value1 = []//先清空
-          if (get.value.comment) {
-            if (get.value.comment.length > 6) {
-              for (let i = 0; i < 6; i++) {
-                get.value1.push(get.value.comment[i])
               }
             }
-            else {
-              for (let i = 0; i < get.value.comment.length; i++) {
-                get.value1.push(get.value.comment[i])
-              }
 
-            }
-          }
+          })
 
-        })
+        },100)
 
       },
       //加载更多
@@ -429,6 +457,38 @@
 
         })
       },
+
+      //添加图片
+      addImg() {
+        let _this = this;
+        let dd = {
+          faId: this.value.art[0].faId,
+          faText: this.myHtmlCode,
+          userId: this.UserId.replace(/\"/g, ""),
+          userName: this.UserName.replace(/\"/g, ""),
+        }
+        document.getElementById('dd0').innerText = ''
+// console.log(this.upath)
+        var zipFormData = new FormData();
+        //依次添加多个文件
+
+          zipFormData.append('filename', this.upath[0]);
+        this.upath=[0]
+
+        //添加其他的表单元素
+        zipFormData.append('faId', dd.faId)
+        zipFormData.append('faText', dd.faText)
+        zipFormData.append('userId', dd.userId)
+        zipFormData.append('userName', dd.userName)
+        let config = {headers: {'Content-Type': 'multipart/form-data'}};
+        this.$axios.post(this.$store.state.url + '/forumAdd/comment', zipFormData, config)
+          .then(function (response) {
+
+          }).catch((err) => {
+          alert(err)
+        });
+      },
+
       //添加评论
       addCom() {
         if (!this.UserId) {
@@ -437,28 +497,11 @@
         }
         else {
           if (this.myHtmlCode.length >= 2) {
-            let dd = {
-              faId: this.value.art[0].faId,
-              faText: this.myHtmlCode,
-              userId: this.UserId.replace(/\"/g, ""),
-              userName: this.UserName.replace(/\"/g, ""),
-            }
             document.getElementById('dd0').innerText = ''
-            let _this = this
-            console.log(dd)
-            $.ajax({
-              url: this.$store.state.url + "/forumAdd/comment",
-              type: "post",
-              data: dd,
-              success: function (result) {
-                console.log(result.data)
-                _this.tips = '评论成功'
-                _this.show()
-                //重新渲染数据用
-                _this.ajax()
-              }
-
-            })
+            this.addImg()
+            this.ajax()
+            this.tips = '评论成功'
+            this.show()
           } else {
             this.tips = '最少两个字哦'
             this.show()
@@ -577,18 +620,6 @@
         })
 
 
-        // $.ajax({
-        //   url: this.$store.state.url + "/forumDel/comment?fcId=" + fcId,
-        //   type: "get",
-        //   success: function (result) {
-        //
-        //     _this.tips = '评论删除成功'
-        //     _this.show()
-        //     //重新渲染数据用
-        //     _this.ajax()
-        //     console.log(_this.value1)
-        //   }
-        // })
       },
       //删除回复
       delrep(frId) {
@@ -604,7 +635,7 @@
       //管理员添加推荐
       addRec(faId) {
         let _this = this
-        let id={faId:faId}
+        let id = {faId: faId}
         $.ajax({
           url: this.$store.state.url + "/forumAdd/Recommend",
           type: "post",
@@ -613,7 +644,7 @@
             _this.rec = 1
             _this.tips = '已推荐'
             _this.show()
-console.log(faId)
+            console.log(faId)
           }
         })
       },
@@ -637,21 +668,21 @@ console.log(faId)
       },
 
       require() {
-        this.rec=0
+        this.rec = 0
         let faId = window.localStorage.faId;
         let get = this
         get.value = []
         get.value1 = [],
-        get.comhead = [],
+          get.comhead = [],
           axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
 
             get.value = result.data.data;
-            let img =  get.value.art[0].faImg.split(',')
-            if(img.length>1){
+            let img = get.value.art[0].faImg.split(',')
+            if (img.length > 1) {
               img.pop()
             }
 
-           this.img=img
+            this.img = img
 
             this.addlike = true
             this.dellike = false
@@ -725,19 +756,32 @@ console.log(faId)
       '$route': 'require'
     },
 
-    mounted() {
+    created() {
       this.require()
     }
   }
 </script>
 
 <style scoped>
-  span{
+.comP{
+  margin-bottom:-10px;
+}
+  .comimg {
+    max-width: 500px;
+margin-bottom: 15px;
+margin-top: 15px;
+  }
+.input{
+  border-bottom:1px solid #e0e0e0;
+}
+  span {
     display: inline-block;
   }
+
   .blue {
     background: #4c8abe;
     border: none;
+    width: 722px;
   }
 
   input {
@@ -775,7 +819,7 @@ console.log(faId)
     left: 30%;
     color: #fefefe;
     font-size: 18px;
-    z-index:100;
+    z-index: 100;
   }
 
   #con {
@@ -785,14 +829,14 @@ console.log(faId)
     height: 100%;
     margin-top: -240px;
     margin-bottom: -240px;
-    padding-bottom:100px;
+    padding-bottom: 100px;
   }
 
   .top {
     background: white;
-    height:85px;
-    margin-top:150px;
-    margin-bottom:-300px;
+    height: 85px;
+    margin-top: 150px;
+    margin-bottom: -300px;
     box-shadow: -2px 2px 10px 2px #f0f0f0;
   }
 
@@ -820,9 +864,9 @@ console.log(faId)
     background: white;
     /*border:1px solid #989898;*/
     margin: 175px 0 0 25px;
-    padding-left:38px;
-    padding-right:40px;
-    padding-bottom: 100px;
+    padding-left: 38px;
+    padding-right: 40px;
+    padding-bottom: 400px;
     word-wrap: break-word;
     box-shadow: -2px 2px 10px 2px #f3f3f3;
     background: rgba(255, 255, 255, 0.95);
@@ -914,6 +958,7 @@ console.log(faId)
     list-style: none;
 
   }
+
   .head1 {
     width: 754px;
     height: 50px;
@@ -943,6 +988,8 @@ console.log(faId)
     border-radius: 22px;
     background: url("../../assets/forum/6.jpg");
     vertical-align: unset;
+    position: relative;
+    top:3px;
   }
 
   .val1 {
@@ -976,7 +1023,7 @@ console.log(faId)
   }
 
   .border1 {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e0e0e0;
     padding-bottom: 20px;
     margin-bottom: 20px;
     margin-top: -35px;
@@ -1012,7 +1059,9 @@ console.log(faId)
   .glyphicon-arrow-up {
     cursor: pointer;
   }
-  .time{
-    font-size:14px;
+
+  .time {
+    font-size: 14px;
   }
+
 </style>

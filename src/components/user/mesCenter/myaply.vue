@@ -45,7 +45,9 @@
     position: relative;
     left: 40px;
     height: 780px;
-    background-color: rgba(255,255,255,0.5);
+
+    background-color: rgb(255, 255, 255);
+    box-shadow: -2px 2px 10px 0px #eeeeee;
   }
   .route{
     position: relative;

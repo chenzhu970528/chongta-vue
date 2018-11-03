@@ -224,8 +224,9 @@
     width: 80%;
     margin-left: 10%;
     border-radius: 20px;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgb(255, 255, 255);
     margin-bottom: 25px;
+    box-shadow: -2px 2px 10px 0px #eeeeee;
   }
   .pic{
     width: 110px;

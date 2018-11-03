@@ -115,7 +115,7 @@
           <div class="col-sm-6">
             <input type="file" name="avatar"
                    @change="changeImage($event)"
-                   accept="image/gif,image/jpeg,image/jpg,image/png"
+                   accept="image/gif,image/jpeg,image/jpg,image/png,.mp4"
                    ref="avatarInput"
                    multiple><br/>
           </div>
