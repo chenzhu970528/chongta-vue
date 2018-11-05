@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="foot">
-      <foot></foot>
+      <foot-black></foot-black>
     </div>
   </div>
 
@@ -23,7 +23,7 @@
   import Ranking from './Ranking'
   import Com_paging from './Com_paging'
   import Com_d from './Com_d.vue'
-  import  foot from '../../components/foot'
+  import  footBlack from '../../components/footBlack.vue'
   export default {
     name: "Lists",
     components: {
@@ -31,7 +31,7 @@
       'ranking': Ranking,
       'com_paging': Com_paging,
       'com_d': Com_d,
-      'foot':foot
+      'foot-black':footBlack
     }
   }
 </script>

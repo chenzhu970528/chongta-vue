@@ -225,7 +225,7 @@
 
     </div>
     <div class="foot">
-      <foot></foot>
+      <foot-black></foot-black>
     </div>
 
   </div>
@@ -237,13 +237,13 @@
   import Com_b from './Com_b'
   import store from './store.js'
   import {mapGetters} from 'vuex';
-  import  foot from '../../components/foot'
+  import  footBlack from '../../components/footBlack.vue'
   export default {
     name: "Details",
     components: {
       'ranking': Ranking,
       'com_b': Com_b,
-      'foot':foot
+      'foot-black':footBlack
     },
     computed: mapGetters([
       'UserId',
@@ -1072,5 +1072,7 @@ margin-top: 15px;
   .time {
     font-size: 14px;
   }
-
+  .foot{
+    margin-top:30px;
+  }
 </style>
