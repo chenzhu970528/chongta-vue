@@ -4,7 +4,7 @@
     <br>
     <br>
     <p class="top">热门文章</p>
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <div id="carousel-example-generic"  class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -84,6 +84,7 @@
 <script>
   import axios from 'axios'
   import store from './store.js'
+  import $ from 'jquery'
 
   export default {
     name: "MostCom",
@@ -97,16 +98,21 @@
         img: [],
         img1: [],
         img2: [],
-        mp4: 'mp4'
+        mp4: 'mp4',
       }
+
+
+
     },
     methods: {
       see(index) {
         console.log(index)
         window.localStorage.faId = index;
-      }
+      },
+
 
     },
+
     mounted() {
       axios.get(this.$store.state.url + "/forumSee/com").then((result) => {
 

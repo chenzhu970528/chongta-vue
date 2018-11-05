@@ -62,25 +62,15 @@
   .form-control {
     width: 323px;
     margin-right:-3px;
+    z-index:1;
   }
-
+span{
+  z-index:0;
+}
   .ul > li {
     height: 30px;
     line-height: 30px;
     margin: 0;
-  }
-  .cc {
-    width: 180px;
-    height: 60px;
-    line-height: 60px;
-    text-align: center;
-    background: rgba(60, 60, 60, 0.6);
-    border-radius: 3px;
-    position: fixed;
-    top: 50%;
-    left: 48%;
-    color: #fefefe;
-    font-size: 18px;
   }
 
 </style>
