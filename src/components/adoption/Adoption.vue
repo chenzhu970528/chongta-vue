@@ -81,6 +81,9 @@
           </div>
         </div>
       </div>
+      <div class="foot">
+        <foot-black></foot-black>
+      </div>
     </div>
 </template>
 
@@ -93,6 +96,7 @@
   import List from '../adoption/AdoptionList'
   //获取所有信息
   import {mapGetters} from 'vuex';
+  import  footBlack from '../../components/footBlack.vue'
   import axios from 'axios'
     export default {
         name: "Adoption",
@@ -104,7 +108,8 @@
       components:{
         'sildes-show':Slideshow,
         'ado-sizer': Sizer,
-        'ado-list':List
+        'ado-list':List,
+        'foot-black':footBlack
       },
       computed: mapGetters([
         'UserId',
@@ -201,7 +206,7 @@
   .tol{
     /*margin-top: 70px;*/
     background-color: white;
-    padding-bottom: 20px;
+    /*padding-bottom: 20px;*/
   }
   /*a{*/
     /*text-decoration: none;*/

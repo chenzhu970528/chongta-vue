@@ -96,15 +96,20 @@
         </div>
       </form>
     </div>
+    <div class="foot">
+      <foot></foot>
+    </div>
   </div>
 </template>
 
 <script>
   import  currentway from './currentway.vue'
-    export default {
+  import  foot from '../../components/foot'
+  export default {
         name: "mpublish",
       components:{
-          'current-way':currentway
+          'current-way':currentway,
+        'foot':foot
       },
       data() {
         return {

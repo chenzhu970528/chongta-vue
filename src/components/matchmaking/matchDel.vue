@@ -26,7 +26,9 @@
           </div>
         </div>
       </div>
-    <!--<div style="position: absolute;display: inline-block;right: 20%;top: 68%;"></div>-->
+    <div class="foot">
+      <foot></foot>
+    </div>
   </div>
 
 </template>
@@ -36,12 +38,14 @@
   import maply from './maply.vue'
   import sowingmap from './sowingmap.vue'
   import  matchmsg from './matchmeg.vue'
+  import  foot from '../../components/foot'
     export default {
       name: "matchDel",
       components: {
         'sowing-map': sowingmap,
         'match-message': matchmsg,
         'm-aply': maply,
+        'foot':foot
       },
       data() {
         return {

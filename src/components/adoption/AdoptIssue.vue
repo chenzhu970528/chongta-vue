@@ -161,13 +161,20 @@
         </div>
       </form>
     </div>
+    <div class="foot">
+      <foot></foot>
+    </div>
   </div>
 </template>
 
 <script>
   import  axios from 'axios'
+  import  foot from '../../components/foot'
   export default {
     name: "AdoptIssue",
+    components:{
+      'foot':foot
+    },
     data() {
       return {
         // 省市级联选择器

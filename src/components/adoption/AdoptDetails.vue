@@ -44,6 +44,9 @@
         </div>
       </div>
     </div>
+    <div class="foot">
+      <foot></foot>
+    </div>
   </div>
 
 </template>
@@ -54,12 +57,15 @@
   import Recommend from '../adoption/DetailsRecommend'
   import Album from '../adoption/DetailsImg.vue'
   import Info from '../adoption/DetailsInfo.vue'
-    export default {
+  import  foot from '../../components/foot'
+
+  export default {
         name: "AdoptDetails",
       components:{
           'img-album':Album,
           'ado-info':Info,
-        'ado-recommend':Recommend
+        'ado-recommend':Recommend,
+        'foot':foot
       },
       data(){
           return{
