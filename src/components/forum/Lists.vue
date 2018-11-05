@@ -44,7 +44,7 @@
   }
 .body{
   width:100%;
-  /*background-color: #f6f6f6;*/
+  background-color: #f6f6f6;
   margin:-200px 0;
 }
   #content {
@@ -62,7 +62,7 @@
     height:100px;
     margin-top:110px;
     margin-bottom:-250px;
-    box-shadow: -2px 2px 10px 2px #f8f8f8;
+    /*box-shadow: -2px 2px 10px 2px #f8f8f8;*/
   }
   .left {
     display: inline-block;

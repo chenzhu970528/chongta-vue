@@ -20,9 +20,9 @@
 <span @click="see(val[0].faId)">
    <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[0].faId">
      <img v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))!=mp4"
-          :src='s+faImg[index]' alt="">
+          :src='s+faImg[index]' title="这是一个图片" alt="">
      <div v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))==mp4"
-       class="video">
+       class="video" title="这是一个视频">
          <video :src='s+faImg[index]'></video>
      </div>
 

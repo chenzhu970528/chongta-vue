@@ -6,7 +6,8 @@
       <div class="left">
         <div class="a">
           <!--详细内容     -->
-          <div>&nbsp &nbsp<h2>{{value.art[0].faTitle}}</h2></div>
+          <div>&nbsp &nbsp<h2>{{value.art[0].faTitle}}&nbsp
+            <span v-if="rec===1" title="推荐标识" class="glyphicon glyphicon-star"></span></h2></div>
           <div class="val">
 
             <div class="headpic">
@@ -61,7 +62,6 @@
     <span>&nbsp{{value.sum[0][0].sum_count-1}}回复</span>
     </span>
             </div>
-
 
             <!--帖子的内容-->
 
@@ -369,7 +369,7 @@
 
           })
 
-        },100)
+        },200)
 
       },
       //加载更多
@@ -763,6 +763,13 @@
 </script>
 
 <style scoped>
+  .glyphicon-star{
+    color: #f6d576;
+  }
+  .glyphicon-heart{
+    color: #f60000;
+  }
+
 .comP{
   margin-bottom:-10px;
 }
@@ -785,7 +792,7 @@ margin-top: 15px;
   }
 
   input {
-    height: 60px;
+    height: 30px;
   }
 
   .test_box {
@@ -824,7 +831,7 @@ margin-top: 15px;
 
   #con {
     /*background: url("../../assets/forum/7.jpg");*/
-    /*background: #f5f5f5;*/
+    background: #f5f5f5;
     width: 100%;
     height: 100%;
     margin-top: -240px;
@@ -842,7 +849,6 @@ margin-top: 15px;
 
   #content {
     /*box-shadow: -2px 2px 10px 2px #bcbcbc;*/
-    /*background: #f5f5f5;*/
     width: 1240px;
     /*width:100%;*/
     /*height: 100%;*/
@@ -866,7 +872,7 @@ margin-top: 15px;
     margin: 55px 0 0 25px;
     padding-left: 38px;
     padding-right: 40px;
-    padding-bottom: 400px;
+    padding-bottom: 100px;
     word-wrap: break-word;
     box-shadow: -2px 2px 10px 2px #f3f3f3;
     background: rgba(255, 255, 255, 0.95);
