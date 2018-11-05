@@ -92,12 +92,16 @@
         </div>
       </form>
     </div>
+    <div class="foot">
+      <foot></foot>
+    </div>
   </div>
 
 
 </template>
 
 <script>
+  import  foot from '../../components/foot'
   export default {
     name: "wantadopt",
     data() {
@@ -119,7 +123,9 @@
         check2:false,
       }
     },
-
+    components:{
+      'foot':foot
+    },
     methods: {
 
       addlost() {

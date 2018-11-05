@@ -20,12 +20,16 @@
         <fenlei></fenlei>
       </div>
     </div>
+    <div class="foot">
+      <foot-black></foot-black>
+    </div>
   </div>
 </template>
 
 <script>
   import fenlei from './fenlei'
   import cat from './cat'
+  import  footBlack from '../../components/footBlack.vue'
   export default {
     methods: {
       toHome() {
@@ -35,7 +39,8 @@
     components: {
       'fenlei': fenlei,
       // 'hot':hot,
-      'cat': cat
+      'cat': cat,
+      'foot-black':footBlack
     }
   }
 

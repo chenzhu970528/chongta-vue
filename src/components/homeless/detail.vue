@@ -38,6 +38,9 @@
         <!--&lt;!&ndash;</div>&ndash;&gt;-->
       </div>
     </div>
+    <div class="foot">
+      <foot></foot>
+    </div>
   </div>
 
 </template>
@@ -47,12 +50,15 @@
   // import Recommend from '../homeless/Recommend'
   import detailsimg from '../homeless/detailsimg.vue'
   import detailsmes from '../homeless/detailsmes.vue'
+  import  foot from '../../components/foot'
+
   export default {
     name: "detail",
     components:{
       'detailsimg':detailsimg,
-      'detailsmes':detailsmes
+      'detailsmes':detailsmes,
       // 'ado-recommend':Recommend
+      'foot':foot
     },
     data(){
       return{

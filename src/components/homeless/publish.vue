@@ -155,6 +155,9 @@
         </div>
       </form>
     </div>
+    <div class="foot">
+      <foot></foot>
+    </div>
   </div>
 
 
@@ -162,8 +165,13 @@
 
 <script>
   import  axios from 'axios'
+  import  foot from '../../components/foot'
+
   export default {
     name: "publish",
+    components:{
+      'foot':foot
+    },
     data() {
       return {
         // 省市级联选择器

@@ -8,7 +8,7 @@
     </ul>
     <hr>
     <ul v-for="showList in showLists">
-      <router-link :to="'/matchmaking/matchDel/'+showList.relId">
+      <router-link :to="'/matchmaking/matchDel/'+showList.matId">
         <li class="firstli"><img class="petImg" :src="urlImg(showList.petPic.split(',')[0])" alt=""></li>
         <li>{{showList.userName}}</li>
         <li>{{showList.PetName}}</li>

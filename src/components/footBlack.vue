@@ -1,24 +1,24 @@
 <template>
-    <div class="" id="foot">
-      <ul>
-        <li>关于我们</li>
-        <li>|</li>
-        <li>加入我们</li>
-        <li>|</li>
-        <li>商务合作</li>
-        <li>|</li>
-        <li>免责声明</li>
-      </ul>
-      <p>&copy; CopyRight 2018 宠它</p>
-      <div id="goTop">
-        <div class="goTop" v-show="goTopShow" @click="goTop"><i class="goTopIcon"></i></div>
-      </div>
+  <div class="" id="foot">
+    <ul>
+      <li>关于我们</li>
+      <li>|</li>
+      <li>加入我们</li>
+      <li>|</li>
+      <li>商务合作</li>
+      <li>|</li>
+      <li>免责声明</li>
+    </ul>
+    <p>&copy; CopyRight 2018 宠它</p>
+    <div id="goTop">
+      <div class="goTop" v-show="goTopShow" @click="goTop"><i class="goTopIcon"></i></div>
     </div>
+  </div>
 </template>
 
 <script>
     export default {
-        name: "foot",
+        name: "footBlack",
       data(){
         return{
           scrollTop: '',
@@ -63,7 +63,7 @@
     width: 100%;
     text-align: center;
     /*margin-top: 80px;*/
-    /*background: #4f4f4f;*/
+    background: #4f4f4f;
     /*margin-bottom: -20px;*/
   }
   ul{
@@ -71,7 +71,7 @@
     left: 50%;
     top: 0;
     margin-left: -260px;
-    bottom: 30px;
+    /*bottom: 30px;*/
     list-style: none;
     padding-top: 80px;
     color: white;
@@ -86,28 +86,27 @@
     left: 50%;
     top: 0;
     margin-left: -150px;
-    bottom: 30px;
+    /*bottom: 30px;*/
     color: white;
     width: 300px;
   }
   .goTop{
     position: fixed;
-    right: 60px;
-    bottom: 220px;
-    width: 80px;
-    height: 80px;
+    right: 40px;
+    bottom: 50px;
+    width: 150px;
+    height: 250px;
   }
   .goTop:hover{
 
   }
   .goTopIcon{
     display: block;
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    height: 250px;
     background-image: url("../assets/gotop.png");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 100% 100%;
   }
 
 

@@ -29,6 +29,9 @@
         </div>
       </div>
     </div>
+    <div class="foot">
+      <foot></foot>
+    </div>
   </div>
 
 </template>
@@ -38,11 +41,14 @@
   // import Recommend from '../homeless/Recommend'
   import lostmes from '../homeless/lostmes'
   import lostimg from '../homeless/lostimg'
+  import  foot from '../../components/foot'
+
   export default {
     name: "detail",
     components:{
       'lostimg':lostimg,
-      'lostmes':lostmes
+      'lostmes':lostmes,
+      'foot':foot
       // 'ado-recommend':Recommend
     },
     data(){

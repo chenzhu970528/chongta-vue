@@ -1,21 +1,18 @@
 <template>
   <div class="body">
-    <div class="top">
-    </div>
+    <div class="top"></div>
     <div id="content">
-
       <div>
         <div class="left">
           <list></list>
         </div>
-
         <div class="right">
-
           <ranking></ranking>
-
         </div>
-
       </div>
+    </div>
+    <div class="foot">
+      <foot></foot>
     </div>
   </div>
 
@@ -26,6 +23,7 @@
   import Ranking from './Ranking'
   import Com_paging from './Com_paging'
   import Com_d from './Com_d.vue'
+  import  foot from '../../components/foot'
   export default {
     name: "Lists",
     components: {
@@ -33,6 +31,7 @@
       'ranking': Ranking,
       'com_paging': Com_paging,
       'com_d': Com_d,
+      'foot':foot
     }
   }
 </script>

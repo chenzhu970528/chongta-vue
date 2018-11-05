@@ -224,7 +224,9 @@
       <p v-if="hide" class="cc">{{tips}}</p>
 
     </div>
-
+    <div class="foot">
+      <foot></foot>
+    </div>
 
   </div>
 </template>
@@ -235,12 +237,13 @@
   import Com_b from './Com_b'
   import store from './store.js'
   import {mapGetters} from 'vuex';
-
+  import  foot from '../../components/foot'
   export default {
     name: "Details",
     components: {
       'ranking': Ranking,
       'com_b': Com_b,
+      'foot':foot
     },
     computed: mapGetters([
       'UserId',
@@ -835,8 +838,8 @@ margin-top: 15px;
     width: 100%;
     height: 100%;
     margin-top: -240px;
-    margin-bottom: -240px;
-    padding-bottom: 100px;
+    /*margin-bottom: -240px;*/
+    /*padding-bottom: 100px;*/
   }
 
   .top {
@@ -855,7 +858,7 @@ margin-top: 15px;
     margin: auto;
     margin-top: 100px;
     position: relative;
-    padding-bottom: 300px;
+    /*padding-bottom: 300px;*/
     padding-top: 80px;
   }
 
