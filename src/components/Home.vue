@@ -70,6 +70,9 @@
           </el-col>
         </el-row>
       </div>
+    <div class="foot">
+      <footBlack></footBlack>
+    </div>
 
   </div>
 </template>
@@ -77,11 +80,13 @@
 <script>
   import showNum from './showNum.vue'
   import showNum1 from './showNum1.vue'
+  import footBlack from './footBlack'
     export default {
         name: "Home",
       components:{
           'show-num':showNum,
-        'show-num1':showNum1
+        'show-num1':showNum1,
+        'footBlack':footBlack
       },
       // data(){
       //   return{
@@ -99,7 +104,7 @@
 <style scoped>
 
   .q1{
- padding-top:20px;
+    padding-top:20px;
     height: 450px;
     background: url(../assets/forum/15.jpg) no-repeat center;
     background-attachment: fixed;
@@ -118,7 +123,7 @@
     width: 100%;
     background: rgb(242, 244,241);
     position: relative;
-    padding-bottom:150px;
+    /*padding-bottom:150px;*/
   }
   .top{
     height: 750px;
