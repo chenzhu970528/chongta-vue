@@ -9,21 +9,16 @@
       <canvas></canvas>
       <canvas></canvas>
     </div>
-    <div class="foot">
-    <foot></foot>
-  </div>
   </div>
 </template>
 
 <script>
-  import  foot from './components/foot.vue'
   import Header from './components/Header.vue'
 
 export default {
   name: 'App',
   components:{
     'app-header':Header,
-    'foot':foot
   },mounted(){
     // 动态背景
 (function($){

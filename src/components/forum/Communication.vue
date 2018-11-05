@@ -21,6 +21,9 @@
         <hot></hot>
       </div>
     </div>
+    <div class="foot">
+      <foot-black></foot-black>
+    </div>
   </div>
 </template>
 
@@ -31,6 +34,7 @@
   import Ranking from './Ranking'
   import MostCom from './MostCom.vue'
   import hot from './hot.vue'
+  import  footBlack from '../../components/footBlack.vue'
   export default {
     name: "Communication",
     components: {
@@ -40,7 +44,7 @@
       'com_d': Com_d,
       'mostCom': MostCom,
       'hot': hot,
-
+      'foot-black':footBlack
     },
     data :function (){
       return{
@@ -54,8 +58,8 @@
   .tol{
     /*margin-top: 70px;*/
     background-color: #f6f6f6;
-    padding-bottom: 150px;
-    margin-bottom: -200px;
+    /*padding-bottom: 150px;*/
+    /*margin-bottom: -200px;*/
   }
   .top{
     width: 100%;

@@ -67,6 +67,9 @@
       <router-view></router-view>
       <match-hot></match-hot>
     </div>
+    <div class="foot">
+      <foot-black></foot-black>
+    </div>
   </div>
 </template>
 <script>
@@ -75,13 +78,15 @@
   import Header from '../Header.vue'
   import  matchlist from './matchlist.vue'
   import select from '../adoption/AdoptionSizer'
+  import  footBlack from '../../components/footBlack.vue'
   export default {
     name: "matchmain",
     components:{
       'app-header':Header,
       'match-list':matchlist,
       'app-select':select,
-      'match-hot':matchhot
+      'match-hot':matchhot,
+      'foot-black':footBlack
     },
     data(){
       return{
@@ -111,7 +116,6 @@
 <style scoped>
   .tol{
     background-color: white;
-
   }
   .top{
     width: 100%;

@@ -4,30 +4,31 @@
     <div class="top"></div>
     <div class="dang" v-if="Mdeldata.agree==='1'">
       <img src="../../assets/match/dANG1.png" alt="">
-      <span>已经被其他小可爱领走了哦, <a href="/matchmaking">返回上一页</a></span>
+      <span>已经被其他小可爱领走了哦, <a href="/matchmaking/TimeDesc">返回上一页</a></span>
     </div>
     <div class="cont container">
-      <div class="route">您的当前位置：<span><a href="/matchmaking">宠物婚介</a></span><span>/</span><span>详情</span></div>
-      <div class="row firstrow">
-        <div class="col-xs-10 col-xs-offset-1 cent">
-          <sowing-map></sowing-map>
-          <match-message></match-message>
+      <div class="route">您的当前位置：<span><a href="/matchmaking/TimeDesc">宠物婚介</a></span><span>/</span><span>详情</span></div>
+        <div class="row firstrow">
+          <div class="col-xs-10 col-xs-offset-1 cent">
+            <sowing-map></sowing-map>
+            <match-message></match-message>
+          </div>
+        </div>
+        <!--<m-aply></m-aply>-->
+        <div class="row">
+          <div class="col-xs-9 col-xs-offset-1 cent msg">
+            <h3><span><img src="../../assets/match/sand.png" alt=""></span>主人寄语</h3>
+            <div>{{Mdeldata.sandword}}</div>
+            <h3><span><img src="../../assets/match/request.png" alt=""></span>要求</h3>
+            <div>{{Mdeldata.request}}</div>
+            <h3><span><img src="../../assets/match/detail.png" alt=""></span>详细信息</h3>
+            <div>{{Mdeldata.detail}}</div>
+          </div>
         </div>
       </div>
-      <!--<m-aply></m-aply>-->
-      <div class="row">
-        <div class="col-xs-9 col-xs-offset-1 cent msg">
-          <h3><span><img src="../../assets/match/sand.png" alt=""></span>主人寄语</h3>
-          <div>{{Mdeldata.sandword}}</div>
-          <h3><span><img src="../../assets/match/request.png" alt=""></span>要求</h3>
-          <div>{{Mdeldata.request}}</div>
-          <h3><span><img src="../../assets/match/detail.png" alt=""></span>详细信息</h3>
-          <div>{{Mdeldata.detail}}</div>
-        </div>
-      </div>
+    <div class="foot">
+      <foot></foot>
     </div>
-    <!--<div style="position: absolute;display: inline-block;right: 20%;top: 68%;"></div>-->
-
   </div>
 
 </template>
@@ -37,12 +38,14 @@
   import maply from './maply.vue'
   import sowingmap from './sowingmap.vue'
   import  matchmsg from './matchmeg.vue'
+  import  foot from '../../components/foot'
     export default {
       name: "matchDel",
       components: {
         'sowing-map': sowingmap,
         'match-message': matchmsg,
         'm-aply': maply,
+        'foot':foot
       },
       data() {
         return {
@@ -90,9 +93,10 @@
 <style scoped>
   .cont{
     width: 1240px;
+    min-height:500px ;
     background:rgba(255,255,255,0.9);
-    margin-top:150px ;
-    box-shadow:-2px 2px 10px 2px #bcbcbc;
+    margin-top:170px ;
+    box-shadow: -2px 2px 4px 2px #e6e6e6;
   }
   .top{
     width: 100%;
@@ -101,7 +105,6 @@
     top: 0;
     z-index: 3;
     margin-bottom:-100px;
-    box-shadow: -2px 2px 10px 2px #f8f8f8;
   }
   a{
     color: #747474;
@@ -111,7 +114,7 @@
     color: #4e76ff;
   }
   .route{
-    position: relative;
+    position:relative;
     left: 1%;
     height: 50px;
     line-height: 50px;
@@ -157,8 +160,10 @@
   h3 span{
     padding-right: 10px;
   }
+
+
   .dang{
-    background-color: rgba(116,116,116,0.5);width: 100%;height: 730px;position: absolute;top: 70px;z-index: 1000000;text-align: center
+    background-color: rgba(116,116,116,0.5);width: 100%;height: 720px;position: absolute;top: 90px;z-index: 1000000;text-align: center
   }
   .dang span{
     color: whitesmoke;font-weight: bold;font-size: 30px;position: absolute;left: 30%;top: 40%

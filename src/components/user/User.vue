@@ -15,6 +15,9 @@
         <el-col :span="15"><router-view></router-view></el-col>
       </el-row>
     </div>
+    <div class="foot">
+      <foot></foot>
+    </div>
   </div>
 
 </template>
@@ -23,6 +26,7 @@
   import change from './accManagement/changehead.vue'
   import left from './leftList.vue'
   import  axios from 'axios'
+  import  foot from '../../components/foot'
     export default {
       name: "User",
       data(){
@@ -33,7 +37,8 @@
       },
       components:{
         'change-head':change,
-        'left-list':left
+        'left-list':left,
+        'foot':foot
       },
       created(){
         axios.get(this.$store.state.url+`/user/showUser/${this.userId}`).then((result) => {
@@ -64,7 +69,7 @@
     /*position: fixed;*/
     top: 0;
     z-index: 3;
-    box-shadow: -2px 2px 10px 2px #f8f8f8;
+    /*box-shadow: -2px 2px 10px 2px #f8f8f8;*/
     margin-bottom:-50px;
   }
   .top{

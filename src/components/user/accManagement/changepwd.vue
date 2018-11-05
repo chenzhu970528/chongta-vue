@@ -151,7 +151,7 @@
     left: 40px;
     min-height: 780px;
     background-color: rgba(255,255,255,0.7);
-    box-shadow: -2px 2px 10px 2px #eeeeee;
+    /*box-shadow: -2px 2px 10px 2px #eeeeee;*/
   }
   .route{
     position: relative;
