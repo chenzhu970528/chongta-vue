@@ -77,7 +77,7 @@
     top: 40px;
     /*left: 40px;*/
     /*background-color: rgba(255,255,255,0.5);*/
-    box-shadow: -2px 2px 10px 2px #eeeeee;
+    /*box-shadow: -2px 2px 10px 2px #eeeeee;*/
   }
 
 </style>
