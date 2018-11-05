@@ -92,21 +92,22 @@
   }
   .goTop{
     position: fixed;
-    right: 40px;
-    bottom: 50px;
-    width: 150px;
-    height: 250px;
+    right: 60px;
+    bottom: 220px;
+    width: 80px;
+    height: 80px;
   }
   .goTop:hover{
 
   }
   .goTopIcon{
     display: block;
-    width: 150px;
-    height: 250px;
+    width: 80px;
+    height: 80px;
     background-image: url("../assets/gotop.png");
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: 100% 100%;
   }
 
 

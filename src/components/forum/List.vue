@@ -272,7 +272,7 @@ mp4:'mp4',
   }
 
   li {
-    box-shadow: -2px 2px 10px 2px #e4e4e4;
+    box-shadow: -2px 2px 10px 2px #efefef;
     background: rgba(255, 255, 255, 0.9);
     width:800px;
     list-style: none;
