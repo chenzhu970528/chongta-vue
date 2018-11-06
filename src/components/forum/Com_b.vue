@@ -23,11 +23,17 @@
                    @change="changeImage($event)"
                    accept="image/gif,image/jpeg,image/jpg,image/png,.mp4"
                    ref="avatarInput"
-                   multiple><br/>
+                   multiple>
+            <span class="size">全部文件不能大于50M/{{size}}M</span>
           </div>
+          <div class="col-sm-5">
+            <img class="img" src="../../assets/forum/23.gif" alt="">
+
+          </div>
+
         </div>
         <input class="btn btn-default" type="button" @click="addForum" value="发表">
-        </form>
+      </form>
     </div>
     <p v-if="vv" class="cc">{{tips}}</p>
 
@@ -50,8 +56,9 @@
         title: '',
         text: '',
         type: 'b',
-        tips:'发表成功',
+        tips: '发表成功',
         vv: false,
+        size: 0
       }
     },
     methods: {
@@ -65,11 +72,17 @@
       },
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
-        console.log(e.target.files)
         this.upath = e.target.files;
+        let size=0
+        for (let i = 0; i < this.upath.length; i++) {
+          size = size + this.upath[i].size
+        }
+        let s = size / (1024 * 1024)
+        this.size = s.toFixed(2)
       },
       addImg() {
         let _this = this;
+        let size = 0
         let aa = {
           faTitle: this.title,
           faText: this.text,
@@ -83,10 +96,11 @@
         // console.log(this.upath);
         var zipFormData = new FormData();
         //依次添加多个文件
-        if(this.upath.length<7){
+        if (this.upath.length < 7) {
           for (var i = 0; i < this.upath.length; i++) {
             zipFormData.append('filename', this.upath[i]);
           }
+
           //添加其他的表单元素
           zipFormData.append('faTitle', aa.faTitle)
           zipFormData.append('faText', aa.faText)
@@ -97,44 +111,48 @@
           this.$axios.post(this.$store.state.url + '/forumAdd/art', zipFormData, config)
             .then(function (response) {
 
-              _this.tips='发表成功'
+              _this.tips = '发表成功'
               _this.c()
             }).catch((err) => {
             alert(err)
           });
 
         }
-      else{
-          _this.tips='最多上传六张图片'
-        this.c()
+        else {
+          _this.tips = '最多上传六个文件'
+          this.c()
         }
       },
       addForum() {
         let _this = this;
         if (!_this.UserId) {
-          _this.tips='先去登录吧'
+          _this.tips = '先去登录吧'
           _this.c()
         }
         else if (_this.text == '') {
-          _this.tips='内容不能为空哦'
+          _this.tips = '内容不能为空哦'
           _this.c()
         }
         else if (_this.title == '') {
-          _this.tips='标题不能为空哦'
+          _this.tips = '标题不能为空哦'
           _this.c()
         }
         else if (_this.text != '' && _this.title != '') {
           if (_this.title.length > 15) {
-            _this.tips='标题字数超出'
+            _this.tips = '标题字数超出'
             _this.c()
           }
-          else if(this.upath.length<1){
-            _this.tips='最少上传一张图片'
+          else if (this.upath.length < 1) {
+            _this.tips = '最少上传一个文件'
+            _this.c()
+          }
+          else if (this.size >50) {
+            _this.tips = '文件大小超出限制'
             _this.c()
           }
           else {
             _this.addImg()
-           window.localStorage.a++
+            window.localStorage.a++
 
             store.commit('add')
             // console.log(store.state.a)
@@ -155,6 +173,15 @@
 </script>
 
 <style scoped>
+  .img{
+    height: 60px;
+    float: right;
+    margin-top:-15px;
+  }
+  .size{
+    color: #7f7f7f;
+    margin-left:-15px;
+  }
   .leftnav {
     position: absolute;
     width: 150px;
@@ -188,7 +215,7 @@
     margin-bottom: -30px;
     color: #68809e;
     /*font-weight: bolder;*/
-    font-size:15px;
+    font-size: 15px;
   }
 
   .cc {
@@ -203,7 +230,7 @@
     left: 50%;
     color: #fefefe;
     font-size: 18px;
-    z-index:100;
+    z-index: 100;
   }
 
   .left {
@@ -222,7 +249,7 @@
     padding-top: 20px;
     border-radius: 10px;
     margin-left: -60px;
-    margin-top:45px;
+    margin-top: 45px;
   }
 
   textarea {
