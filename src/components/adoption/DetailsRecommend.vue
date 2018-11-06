@@ -5,7 +5,7 @@
           <span @click="conts">
           <router-link tag="div" :to="'/adoption/details/'+diary.adoId"><a>
             <el-card :body-style="{ padding: '0px' }">
-              <img style="height: 250px" :src="urlImg(diary.adoPic.split(',')[0])" class="image">
+              <img style="height: 250px" :src="urlImg(diary.adoPic.split(',')[1])" class="image">
               <div style="padding: 14px;">
                 <span>{{diary.adoTitle}}</span>
                 <div class="bottom clearfix">

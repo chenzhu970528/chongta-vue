@@ -105,7 +105,7 @@
           //   $ ('#f1').addClass('animated rotateln')
           // },
         urlImg(str){
-          let strs=str.split(',')[0]
+          let strs=str.split(',')[1]
           // console.log(this.url+str)
           return this.url+strs
         },

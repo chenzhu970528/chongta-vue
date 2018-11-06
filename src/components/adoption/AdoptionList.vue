@@ -5,7 +5,7 @@
         <router-link class="list-group-item-info" tag="div" :to="'/adoption/details/'+diary.adoId"><a>
           <el-card  :body-style="{ padding: '0px' }">
             <div class="view">
-              <img style="height: 180px" :src="urlImg(diary.adoPic.split(',')[0])" class="image">
+              <img style="height: 180px" :src="urlImg(diary.adoPic.split(',')[1])" class="image">
               <div class="hover">
                 <h3>{{ diary.petType }}</h3>
                 <p>{{ diary.adoAddress }}</p>
@@ -217,11 +217,11 @@
   .label{
     position: absolute;
     background: url("../../assets/adoption/ling.png")no-repeat;
+    background-position:-6px -11px ;
     background-size: 100%;
     width: 120px;
-    height: 120px;
+    height: 80px;
     z-index: 10;
-    top: 14px;
     transform:rotate(-37deg);
   }
   .time {

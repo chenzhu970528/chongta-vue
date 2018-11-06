@@ -84,7 +84,7 @@
         aa(a){
           this.centerDialogVisible = true;
           this.val= this.diarys[a];
-          this.val.petPic=this.diarys[a].petPic.split(',')[0]
+          this.val.petPic=this.diarys[a].petPic.split(',')[1]
           // console.log(this.val.petPic)
         },
 
