@@ -5,7 +5,7 @@
     <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>
       <div class="listimg img" style="float: left">
         <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/details/'+diary.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
-        <img :src="urlImg(activity.homePic.split(',')[0])" alt="" style="width: 160px;height: 152px;">
+        <img :src="urlImg(activity.homePic.split(',')[1])" alt="" style="width: 160px;height: 152px;">
         <!--<router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/homelessdetails/'+activity.homeId" style="float: left;list-style: none;cursor: pointer" exact>-->
         <!--&lt;!&ndash;<img :src="'http://localhost:3000/uploadfile/adoUpload/123212018102309054'+index+'.jpg'" alt="" style="width: 150px;height: 140px;">&ndash;&gt;-->
         <!--</router-link>-->

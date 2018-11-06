@@ -85,7 +85,7 @@
           {values2: []},
           {values3: []}],
         faImg: ['0', '1', '2', '3'],
-        Names: ['最新', '精品推荐', '领养日记', '交流分享'],
+        Names: ['最新', '精品推荐', '养宠日记', '交流分享'],
         url: ['new', 'recommend', 'diary', 'share'],
         s: this.$store.state.url,
         // faId: 0,

@@ -19,11 +19,11 @@
           </div>
           <div class="photo">
             <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-              <img v-if="(imgs[index].substring(imgs[index].indexOf('.')+1,imgs[index].length))!=mp4"
-                @click="see(val.faId)" :src='url+imgs[index]' alt="图片">
-              <video v-if="(imgs[index].substring(imgs[index].indexOf('.')+1,imgs[index].length))==mp4"
-                     :src='url+imgs[index]'
-                     style="max-width:730px;">
+              <img v-if="(imgs1[index].substring(imgs1[index].indexOf('.')+1,imgs1[index].length))!=mp4"
+                @click="see(val.faId)" :src='url+imgs1[index]' title="这是一张图片" alt="图片">
+              <video v-if="(imgs1[index].substring(imgs1[index].indexOf('.')+1,imgs1[index].length))==mp4"
+                     :src='url+imgs1[index]'
+                    title="这是一个视频">
               </video>
             </router-link>
             <a></a>
@@ -73,6 +73,7 @@
     data() {
       return {
         imgs: [],
+        imgs1: [],
 mp4:'mp4',
         Names: ['最新', '精品推荐', '养宠日记', '交流分享', '搜索结果'],
         faId: '',
@@ -80,7 +81,7 @@ mp4:'mp4',
         // a: 1,//翻页第几页
         vv: false,
         pageIndex: 1,
-        pagesize: 6,  //每页条数
+        pagesize: 4,  //每页条数
         pageCount: 0,//总数量
         url:this.$store.state.url,
         myActData: [],//全部的帖子
@@ -101,19 +102,14 @@ mp4:'mp4',
         // console.log('this.pageCount:' + this.pageCount)
         let start = (this.pageIndex - 1) * this.pagesize;
         let end = start + this.pagesize;
-        //pageindex:0 , start:0 ; end:4
-        //pageindex:1 , start: 4; end:8
-        //pageindex:2 , start:8 ; end:12
-        //pageindex:3 , start:6 ; end:8
-        // console.log('-----------------')
-        // console.log('start:' + start)
-        // console.log('end:' + end)
-        // console.log(this.myActData[1]);
+
         if (end >= this.pageCount) {
           end = this.pageCount
         }
+        this.imgs1=[]
         for (var i = start; i < end; i++) {
           this.activitys.push(this.myActData[i])
+          this.imgs1.push(this.imgs[i])
         }
       },
       change() {
@@ -122,7 +118,7 @@ mp4:'mp4',
       see(index) {
         let storage = window.localStorage;
         storage.faId = index
-        // this.$router.go(0)
+
       },
       add() {
         store.commit('addName', {
@@ -317,6 +313,11 @@ mp4:'mp4',
 
   img {
     max-width: 730px;
+    max-height: 700px;
+  }
+  video {
+    max-width: 730px;
+    max-height: 700px;
   }
 
   .value {

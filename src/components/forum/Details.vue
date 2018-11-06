@@ -59,7 +59,7 @@
     <span v-if="dellike" class="s glyphicon glyphicon-heart" @click="delLike()"
           title="取消收藏">{{value.like[0].like_sum}}</span>
 
-    <span>&nbsp{{value.sum[0][0].sum_count-1}}回复</span>
+
     </span>
             </div>
 
@@ -99,7 +99,7 @@
           </div>
           <!--</div>-->
         </div>
-
+        <h4>评论&nbsp({{value.sum[0][0].sum_count-1}})</h4>
         <!--评论区域-->
         <div v-if="value1.length>0" class="com">
           <ul>
@@ -204,7 +204,7 @@
               </div>
             </li>
           </ul>
-          <br>
+          <!--<br>-->
 
           <span v-if="value.comment">
         <button v-if="(value.comment.length)>6&&(value1.length<value.comment.length)" type="button"
@@ -377,6 +377,8 @@
       },
       //加载更多
       next() {
+        console.log(this.cou);
+        console.log(this.page);
         this.q = this.q + 6
         if (this.page < this.cou - 1) {
           this.w = this.w + 6
@@ -384,8 +386,7 @@
           for (let i = this.q; i < this.w; i++) {
             this.value1.push(this.value.comment[i])
           }
-          // console.log(this.value)
-          // console.log(this.value1)
+
         }
         //最后一页的，要取出最后一页多少个帖子
         else if (this.page === this.cou - 1) {
@@ -400,10 +401,12 @@
       //收起显示第一页
       one() {
         this.value1 = []
+        this.page=1 //记录当前页
+        this.q = 0
+        this.w = 6
         for (let i = 0; i < 6; i++) {
           this.value1.push(this.value.comment[i])
         }
-
       },
 
       onDivInput: function (e) {
@@ -888,7 +891,8 @@ margin-top: 15px;
   }
 
   .name {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 700;
   }
 
   .r {
@@ -986,39 +990,46 @@ margin-top: 15px;
   }
 
   .name1 {
-    font-size: 15px;
+    font-size: 16px;
     /*color: #285f8f;*/
-    color: #0a498f;
+    color: #494949;
+    font-weight: 700;
   }
 
   .img1 {
-    width: 44px;
-    height: 44px;
-    border-radius: 22px;
+    width: 46px;
+    height: 46px;
+    border-radius: 23px;
     background: url("../../assets/forum/6.jpg");
     vertical-align: unset;
     position: relative;
-    top:3px;
+    top:-1px;
+    margin-right:10px;
   }
-
+  .but{
+    margin-left:10px;
+  }
   .val1 {
     margin-left: 50px;
     font-size: 15px;
-
     word-wrap: break-word;
   }
-
+.com1 .but{
+  margin-left: 60px;
+}
   .com1 {
     margin-bottom: 0px;
     margin-top: 20px;
 
     word-wrap: break-word;
-    /*border-bottom: 1px dotted #ccc;*/
+    border-left: 4px solid #ebebeb;
+    padding-left:10px;
   }
 
   .com11 {
     margin-top: -10px;
     margin-bottom: 5px;
+
 
     word-wrap: break-word;
   }
@@ -1032,28 +1043,28 @@ margin-top: 15px;
   }
 
   .border1 {
-    border-bottom: 1px solid #e0e0e0;
+    /*border-left: 3px solid #e0e0e0;*/
     padding-bottom: 20px;
     margin-bottom: 20px;
     margin-top: -35px;
   }
 
   .cominp0 {
-    width: 660px;
+    width: 665px;
     min-height: 35px;
     margin-top: 10px;
   }
 
   .cominp1 {
     min-height: 35px;
-    width: 610px;
+    width:605px;
 
     word-wrap: break-word;
   }
 
   .cominp2 {
     min-height: 35px;
-    width: 560px;
+    width: 530px;
 
     word-wrap: break-word;
   }
@@ -1071,6 +1082,7 @@ margin-top: 15px;
 
   .time {
     font-size: 14px;
+    margin-top:15px;
   }
   .foot{
     margin-top:30px;
