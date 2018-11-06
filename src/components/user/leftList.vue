@@ -31,7 +31,7 @@
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="3">
-        <span slot="title">论坛</span>
+        <span slot="title">我的帖子</span>
         <el-menu-item-group>
           <el-menu-item index="3-2"><router-link tag="li" active-class="active"  role="presentation" to="/user/diary">养宠日记</router-link></el-menu-item>
           <el-menu-item index="3-3"><router-link tag="li" active-class="active"  role="presentation" to="/user/dailylife">交流日常</router-link></el-menu-item>
