@@ -1,6 +1,7 @@
 <template>
     <div class="tol">
-      <div class="top"></div>
+      <div class="top" :style="{height:height1}"
+      ></div>
       <!--<sildes-show></sildes-show>-->
       <div class="cont container">
 
@@ -102,7 +103,9 @@
         name: "Adoption",
       data(){
           return{
-            myaddress:''
+            myaddress:'',
+            height1:window.screen.height*0.56+'px'
+
           }
       },
       components:{
