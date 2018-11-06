@@ -1,7 +1,7 @@
 <template>
   <div class="tol" >
     <div class="top">
-      <div class="top1"></div>
+      <div class="top1" :style="{height:height1}"></div>
       <div class="col-xs-8 col-xs-offset-2 text" style="">
         <!--<div style="float: left;position: relative;z-index: 20; width: 30px;height: 30px;">-->
           <!--<img src="../../assets/homeless/8639acb25039bc5a92e3ea84dc3677ce0d0fa58aa3c6c-EbtJL9_fw658.gif" alt="">-->
@@ -27,10 +27,16 @@
 </template>
 
 <script>
+
   import fenlei from './fenlei'
   import cat from './cat'
   import  footBlack from '../../components/footBlack.vue'
   export default {
+    data(){
+      return{
+        height1:window.screen.height*0.56+'px'
+      }
+    },
     methods: {
       toHome() {
         this.$router.push({path: '/'})
@@ -63,12 +69,13 @@
   }
   .top{
     width: 100%;
-    height: 700px;}
+    height: 700px;
+  }
   .top1{
     width: 100%;
-    height: 66%;
+    /*height: 66%;*/
     background:0 33% url("../../assets/homeless/homeless7.jpg") no-repeat;
-    background-size: 100% auto;
+    background-size:  100% auto;
     /*min-height: 900px;*/
     position: relative;
   }

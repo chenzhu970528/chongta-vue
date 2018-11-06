@@ -9,7 +9,7 @@
     <div class="tol" v-for="(activity,index) in activitys">
       <el-row class="card">
         <div class="stamp" v-if="activity.adostate==1"></div>
-        <router-link  tag="li" active-class="active" role="presentation" :to="'/adoption/details/'+activity.homeId" style="list-style: none;cursor: pointer" exact>
+        <router-link  tag="li" active-class="active" role="presentation" :to="'/adoption/details/'+activity.adoId" style="list-style: none;cursor: pointer" exact>
           <el-col :span="7" class="petPic">
           <div class="pic"><img :src="urlImg(activity.adoPic)"></div>
         </el-col>

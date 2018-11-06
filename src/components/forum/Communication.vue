@@ -49,7 +49,6 @@
     data :function (){
       return{
         height1:window.screen.height*0.56+'px'
-
       }
     },
   }
