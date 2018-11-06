@@ -5,10 +5,12 @@
       <div class="pic" v-for="(list,index) in list1">
         <img v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))!=mp4"
              :src='s+img[index]' class="pic-image">
-        <video v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))==mp4"
-               :src='s+img[index]'
-               style="width:360px;max-height: 240px;"
-               class="pic-image"></video>
+        <div class="video" v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))==mp4">
+          <video :src='s+img[index]'
+
+                 class="pic-image"></video>
+        </div>
+
 
         <span class="pic-caption bottom-to-top">
                <h1 class="pic-title" @click="see(list[0].faId)">
@@ -69,9 +71,15 @@
   margin:40px 0;
 }
   video{
-    max-height: 285px;
+    max-height: 240px;
     vertical-align: bottom;
-
+    width:360px;
+  }
+  .video{
+    max-height: 280px;
+    width:360px;
+    background: #5a5a5a;
+    text-align: center;
   }
   .text{
     font-size:16px;

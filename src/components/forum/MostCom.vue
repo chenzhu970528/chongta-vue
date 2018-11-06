@@ -192,6 +192,8 @@ video{
 .video{
   border-radius: 5px;
   overflow: hidden;
+  background: #5a5a5a;
+  text-align: center;
 }
   .p {
     background: #000000;

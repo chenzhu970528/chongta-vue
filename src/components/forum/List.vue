@@ -313,17 +313,15 @@ mp4:'mp4',
 
   img {
     max-width: 730px;
-    max-height: 700px;
+    max-height: 500px;
   }
   video {
     max-width: 730px;
-    max-height: 700px;
+    max-height: 500px;
   }
 
   .value {
     margin: 30px 0;
-
-
     word-wrap:break-word;
   }
 
