@@ -1,6 +1,6 @@
 <template>
   <div class="tol">
-    <div class="top"></div>
+    <div class="top" :style="{height:height1}"></div>
     <div id="content">
 
       <div class="publish">
@@ -48,6 +48,7 @@
     },
     data :function (){
       return{
+        height1:window.screen.height*0.56+'px'
 
       }
     },
