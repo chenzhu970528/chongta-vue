@@ -58,6 +58,15 @@
 </script>
 
 <style scoped>
+  .goTop{
+    position: fixed;
+    right: 60px;
+    bottom: 190px;
+    width: 80px;
+    height: 80px;
+    z-index: 50;
+  }
+
   #foot{
     height: 180px;
     width: 100%;
@@ -90,16 +99,6 @@
     color: white;
     width: 300px;
   }
-  .goTop{
-    position: fixed;
-    right: 60px;
-    bottom: 190px;
-    width: 80px;
-    height: 80px;
-  }
-  .goTop:hover{
-
-  }
   .goTopIcon{
     display: block;
     width: 80px;
@@ -109,6 +108,10 @@
     background-position: center center;
     background-size: 100% 100%;
   }
+
+.goTop:hover{
+  cursor:pointer
+}
 
 
 </style>

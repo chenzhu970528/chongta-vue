@@ -8,9 +8,11 @@
   <div class="inner_ado">
     <div class="tol" v-for="(lostlist,index) in lostlists">
       <el-row class="card">
+        <router-link  tag="li" active-class="active" role="presentation" :to="'/homeless/lostdetails/'+lostlist.lpId" style="list-style: none;cursor: pointer" exact>
         <el-col :span="7" class="petPic">
           <div class="pic"><img :src="urlImg(lostlist.lppic)"></div>
         </el-col>
+        </router-link>
         <el-col :span="15">
           <p class="title">标题：<span>{{lostlist.lpmes}}</span></p>
           <p>发布时间：<span>{{lostlist.pbTime}}</span></p>
@@ -105,7 +107,7 @@
           //   $ ('#f1').addClass('animated rotateln')
           // },
         urlImg(str){
-          let strs=str.split(',')[0]
+          let strs=str.split(',')[1]
           // console.log(this.url+str)
           return this.url+strs
         },

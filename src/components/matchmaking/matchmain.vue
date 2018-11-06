@@ -96,11 +96,6 @@
       }
     },
     methods:{
-      shows(){
-        console.log('高度为'+this.height1)
-        // $('.top').style.height=this.height
-        // return this.height+'px'
-      },
       // 判断是否完善个人信息
       ajaxuser(){
         console.log('++++++++++++')

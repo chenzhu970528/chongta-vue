@@ -118,6 +118,7 @@
                    accept="image/gif,image/jpeg,image/jpg,image/png,.mp4"
                    ref="avatarInput"
                    multiple><span style="line-height: 30px"><b>上传视频请在图片后</b></span>
+            <b class="size">全部文件不能大于50M/{{size}}M</b>
             <br/>
           </div>
         </div>
@@ -185,6 +186,7 @@
         city:'',
         block:'',
         street:'',
+        size:0,
 
         hp:{
         phone:'',
@@ -200,6 +202,7 @@
         upath:'',
         check1:false,
         check2:false,
+        check3:false,
 
         pickerOptions1: {
           shortcuts: [{
@@ -271,11 +274,24 @@
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
         this.upath = e.target.files;
+
+        let size=0
+        for (let i = 0; i < this.upath.length; i++) {
+          size = size + this.upath[i].size
+        }
+        let s = size / (1024 * 1024)
+        this.size = s.toFixed(2)
         if(this.upath.length<2||this.upath.length>6){
           alert("请上传2-6张图片")
           this.check1=false
         }else {
           this.check1=true
+          if(this.size >50){
+            alert("文件大小超出限制")
+            this.check3=false
+          }else {
+            this.check3=true
+          }
         }
       },
 
@@ -352,7 +368,7 @@
 
       // 表单验证
       islogin(){
-        if(this.check1&&this.check2) {
+        if(this.check1&&this.check2&&this.check3) {
           this.addhomeless()
         }else {
           alert('不符合上传要求，请重新输入并同意相关协议')

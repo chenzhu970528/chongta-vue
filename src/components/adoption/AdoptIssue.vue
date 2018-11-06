@@ -150,6 +150,7 @@
                    accept="image/gif,image/jpeg,image/jpg,image/png,.mp4"
                    ref="avatarInput"
                    multiple><span style="line-height: 30px"><b>上传视频请在图片后</b></span>
+            <b class="size">全部文件不能大于50M/{{size}}M</b>
             <br/>
           </div>
         </div>
@@ -189,6 +190,8 @@
         block:'',
         street:'',
 
+        size:0,
+
         check1: false,
         check2: false,
         check3: false,
@@ -196,6 +199,7 @@
         check5: false,
         check6: false,
         check7: false,
+        check8: false,
 
         adoForm: {
           sex: '0',
@@ -333,6 +337,14 @@
           this.check5 = true
         }
       },
+      verify8(){
+        if(this.size >50){
+          alert("文件大小超出限制")
+          this.check8 = false
+        }else {
+          this.check8 = true
+        }
+      },
       verify6() {
         if (!this.checked) {
           alert("请确认并同意《宠它网》领养协议")
@@ -345,10 +357,11 @@
           this.check6 = false
         } else {
           this.check6 = true
+          this.verify8()
         }
       },
       verify() {
-          if(this.check1&&this.check2&&this.check3&&this.check4&&this.check5&&this.check6&&this.check7){
+          if(this.check1&&this.check2&&this.check3&&this.check4&&this.check5&&this.check6&&this.check7&&this.check8){
             this.huoqu()
             this.edit()
           }else {
@@ -390,6 +403,12 @@
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
         this.upath = e.target.files;
+        let size=0
+        for (let i = 0; i < this.upath.length; i++) {
+          size = size + this.upath[i].size
+        }
+        let s = size / (1024 * 1024)
+        this.size = s.toFixed(2)
         this.verify6()
       },
       // 发布

@@ -93,12 +93,10 @@
   .goTop{
     position: fixed;
     right: 60px;
-    bottom: 220px;
+    bottom: 190px;
     width: 80px;
     height: 80px;
-  }
-  .goTop:hover{
-
+    z-index: 50;
   }
   .goTopIcon{
     display: block;

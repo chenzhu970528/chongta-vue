@@ -27,6 +27,7 @@
 </template>
 
 <script>
+
   import fenlei from './fenlei'
   import cat from './cat'
   import  footBlack from '../../components/footBlack.vue'
@@ -68,12 +69,13 @@
   }
   .top{
     width: 100%;
-    height: 700px;}
+    height: 700px;
+  }
   .top1{
     width: 100%;
-    height: 66%;
+    /*height: 66%;*/
     background:0 33% url("../../assets/homeless/homeless7.jpg") no-repeat;
-    background-size: 100% auto;
+    background-size:  100% auto;
     /*min-height: 900px;*/
     position: relative;
   }

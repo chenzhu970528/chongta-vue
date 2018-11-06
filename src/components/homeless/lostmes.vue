@@ -19,7 +19,7 @@
       </li>
       <li class="list-group-item list-group-item-info">
         <span class="glyphicon glyphicon-user" aria-hidden="true"> 发布者：</span>
-        <a href="../user/accManagement/personal.vue" style="text-decoration: none">{{jsondata1.userName}}</a>
+       {{jsondata1.userName}}
         &nbsp;&nbsp;&nbsp; <span>联系方式： {{jsondata1.userPhone}}</span>
       </li>
 
