@@ -20,10 +20,10 @@
           <div class="photo">
             <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
               <img v-if="(imgs1[index].substring(imgs1[index].indexOf('.')+1,imgs1[index].length))!=mp4"
-                @click="see(val.faId)" :src='url+imgs1[index]' alt="图片">
+                @click="see(val.faId)" :src='url+imgs1[index]' title="这是一张图片" alt="图片">
               <video v-if="(imgs1[index].substring(imgs1[index].indexOf('.')+1,imgs1[index].length))==mp4"
                      :src='url+imgs1[index]'
-                     style="max-width:730px;">
+                    title="这是一个视频">
               </video>
             </router-link>
             <a></a>
@@ -313,6 +313,11 @@ mp4:'mp4',
 
   img {
     max-width: 730px;
+    max-height: 700px;
+  }
+  video {
+    max-width: 730px;
+    max-height: 700px;
   }
 
   .value {

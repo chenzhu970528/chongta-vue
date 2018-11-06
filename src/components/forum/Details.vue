@@ -204,7 +204,7 @@
               </div>
             </li>
           </ul>
-          <br>
+          <!--<br>-->
 
           <span v-if="value.comment">
         <button v-if="(value.comment.length)>6&&(value1.length<value.comment.length)" type="button"
