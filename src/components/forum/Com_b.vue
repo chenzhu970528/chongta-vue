@@ -14,16 +14,24 @@
         </div>
         <div class="form-group">
           <br>
-          <textarea class="form-control" v-model="text" placeholder="分享你的趣事吧"></textarea>
+          <textarea class="form-control" v-model="text" placeholder="分享你的趣事吧/图片视频最多上传六个"></textarea>
         </div>
         <div class="form-group">
 
           <div class="col-sm-6">
+
+            <div class="input">
+              <span class="glyphicon glyphicon-picture"></span>
+              <span  class="glyphicon  glyphicon-film"></span>
+              <span  class="btn btn-default fileinput-button">
             <input class="left" type="file" name="avatar"
                    @change="changeImage($event)"
                    accept="image/gif,image/jpeg,image/jpg,image/png,.mp4"
                    ref="avatarInput"
                    multiple>
+                上传
+              </span>
+            </div>
             <span class="size">全部文件不能大于50M/{{size}}M</span>
           </div>
           <div class="col-sm-5">
@@ -173,6 +181,37 @@
 </script>
 
 <style scoped>
+  .fileinput-button {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    left:-365px;
+    margin-bottom:10px;
+    margin-top:-4px;
+    width: 60px;
+    padding-right:25px;
+    opacity: 0;
+  }
+  .glyphicon-picture{
+    margin-top:-10px;
+    font-size:25px;
+    color: #8e8e8e;
+    margin-left:-10px;
+  }
+  .glyphicon-film{
+    font-size:25px;
+    margin-top:-10px;
+    color: #8e8e8e;
+  }
+  .fileinput-button input{
+    position:absolute;
+    right: 0px;
+    top: 0px;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 200px;
+  }
+
   .img{
     height: 60px;
     float: right;

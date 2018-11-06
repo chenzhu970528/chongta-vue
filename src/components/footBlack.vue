@@ -58,15 +58,6 @@
 </script>
 
 <style scoped>
-  .goTopIcon{
-    display: block;
-    width: 80px;
-    height: 80px;
-    background-image: url("../assets/gotop.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 100% 100%;
-  }
   .goTop{
     position: fixed;
     right: 60px;
@@ -117,13 +108,7 @@
     background-position: center center;
     background-size: 100% 100%;
   }
-  .goTop{
-    position: fixed;
-    right: 15px;
-    bottom: 190px;
-    width: 80px;
-    height: 80px;
-  }
+
 .goTop:hover{
   cursor:pointer
 }

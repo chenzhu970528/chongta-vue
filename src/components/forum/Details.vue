@@ -42,7 +42,6 @@
               <!--v-model="visible2[index]"-->
               <p>确定删除吗？</p>
               <div style="text-align: right; margin: 0">
-                <el-button size="mini" type="text">取消</el-button>
                 <el-button type="primary" size="mini" @click="delart(value.art[0].faId)">确定</el-button>
               </div>
               <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -91,11 +90,15 @@
 
           <!--添加评论-->
           <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
-          <div class="input">
-            <input type="file" name="avatar"
-                   @change="changeImage($event)"
-                   accept="image/gif,image/jpeg,image/jpg,image/png"
-                   ref="avatarInput"><br/>
+          <div class="input glyphicon glyphicon-picture">
+            <span  class="btn btn-default fileinput-button">
+                  <input type="file" name="avatar"
+                         @change="changeImage($event)"
+                         accept="image/gif,image/jpeg,image/jpg,image/png"
+                         ref="avatarInput"><br/>
+            </span>
+
+
           </div>
           <!--</div>-->
         </div>
@@ -128,7 +131,6 @@
 
                       <p>确定删除吗？</p>
                       <div style="text-align: right; margin: 0">
-                        <el-button size="mini" type="text">取消</el-button>
                         <el-button type="primary" size="mini" @click="delcom(com.fcId)">确定</el-button>
                       </div>
                       <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -177,7 +179,6 @@
                         <!--v-model="visible2[index]"-->
                         <p>确定删除吗？</p>
                         <div style="text-align: right; margin: 0">
-                          <el-button size="mini" type="text">取消</el-button>
                           <el-button type="primary" size="mini" @click="delrep(reply.frId)">确定</el-button>
                         </div>
                         <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -205,7 +206,6 @@
             </li>
           </ul>
           <!--<br>-->
-
           <span v-if="value.comment">
         <button v-if="(value.comment.length)>6&&(value1.length<value.comment.length)" type="button"
                 @click="next" class="blue btn btn-primary btn-lg btn-block">加载更多
@@ -235,7 +235,6 @@
   import Ranking from './Ranking'
   import axios from 'axios'
   import Com_b from './Com_b'
-  import store from './store.js'
   import {mapGetters} from 'vuex';
   import  footBlack from '../../components/footBlack.vue'
   export default {
@@ -303,7 +302,6 @@
           get.value.comment = []
           get.comhead = []
           axios.get(get.$store.state.url + `/forumSee/all/?faId=${faId}`).then((result) => {
-            // get.comhead = result.data.data.comhead
             get.value = result.data.data;
             get.q = 0//加载更多需要的范围值
             get.w = 6
@@ -363,9 +361,9 @@
                 }
               }
               else {
-                for (let i = 0; i < get.value.comment.length; i++) {
-                  get.value1.push(get.value.comment[i])
-                }
+
+                  get.value1=get.value.comment
+
 
               }
             }
@@ -677,9 +675,6 @@
         this.rec = 0
         let faId = window.localStorage.faId;
         let get = this
-        get.value = []
-        get.value1 = [],
-          get.comhead = [],
           axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
 
             get.value = result.data.data;
@@ -720,7 +715,8 @@
 
 
             //评论
-
+            get.value1 = []
+              get.comhead = []
             if (get.value.comment) {
               get.cou = Math.ceil(this.value.comment.length / 6)
               for (let i = 0; i < get.value.comment.length; i++) {
@@ -769,6 +765,36 @@
 </script>
 
 <style scoped>
+  .input{
+    margin-top:-5px;
+    margin-left:2px;
+    font-size:25px;
+    color: #8e8e8e;
+
+  }
+  .fileinput-button {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    left:-30px;
+    margin-bottom:10px;
+    margin-top:-4px;
+   width: 30px;
+    padding-right:25px;
+    opacity: 0;
+  }
+ .glyphicon-picture{
+   /*font-size:30px;*/
+ }
+  .fileinput-button input{
+    position:absolute;
+    right: 0px;
+    top: 0px;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 200px;
+  }
+
   .glyphicon-star{
     color: #f6d576;
   }
@@ -784,17 +810,18 @@
 margin-bottom: 15px;
 margin-top: 15px;
   }
-.input{
-  border-bottom:1px solid #e0e0e0;
+h4{
+  padding-bottom:7px;
+  border-bottom:1px solid #bebebe;
 }
   span {
     display: inline-block;
   }
 
   .blue {
-    background: #4c8abe;
+    background: #0a498f;
     border: none;
-    width: 722px;
+    width: 723px;
   }
 
   input {
@@ -847,8 +874,8 @@ margin-top: 15px;
 
   .top {
     background: white;
-    height: 90px;
-    margin-top: 150px;
+    height:90px;
+    margin-top: 160px;
     margin-bottom: -300px;
     box-shadow: -2px 2px 10px 2px #f0f0f0;
   }
@@ -875,10 +902,10 @@ margin-top: 15px;
     width: 800px;
     background: white;
     /*border:1px solid #989898;*/
-    margin: 55px 0 0 25px;
+    margin: 64px 0 50px 25px;
     padding-left: 38px;
     padding-right: 40px;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
     word-wrap: break-word;
     box-shadow: -2px 2px 10px 2px #f3f3f3;
     background: rgba(255, 255, 255, 0.95);
@@ -935,7 +962,7 @@ margin-top: 15px;
 
   .val {
     border-bottom: 1px dotted #ddd;
-    padding-bottom: 60px;
+    /*padding-bottom: 60px;*/
     margin-bottom: 20px;
 
   }

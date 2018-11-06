@@ -1,7 +1,7 @@
 <!--婚介中心-->
 <template>
   <div class="tol">
-    <div class="top"  :style="{height:height1}"></div>
+    <div class="top" :style="{height:height1}"></div>
     <div class="cont container">
       <!--<div class="route">您的当前位置：<span>宠物婚介</span></div>-->
       <el-row>
