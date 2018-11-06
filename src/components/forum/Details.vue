@@ -42,7 +42,6 @@
               <!--v-model="visible2[index]"-->
               <p>确定删除吗？</p>
               <div style="text-align: right; margin: 0">
-                <el-button size="mini" type="text">取消</el-button>
                 <el-button type="primary" size="mini" @click="delart(value.art[0].faId)">确定</el-button>
               </div>
               <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -132,7 +131,6 @@
 
                       <p>确定删除吗？</p>
                       <div style="text-align: right; margin: 0">
-                        <el-button size="mini" type="text">取消</el-button>
                         <el-button type="primary" size="mini" @click="delcom(com.fcId)">确定</el-button>
                       </div>
                       <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -181,7 +179,6 @@
                         <!--v-model="visible2[index]"-->
                         <p>确定删除吗？</p>
                         <div style="text-align: right; margin: 0">
-                          <el-button size="mini" type="text">取消</el-button>
                           <el-button type="primary" size="mini" @click="delrep(reply.frId)">确定</el-button>
                         </div>
                         <el-button slot="reference" icon="el-icon-delete" circle></el-button>
