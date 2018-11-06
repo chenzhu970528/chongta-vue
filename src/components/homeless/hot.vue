@@ -12,7 +12,7 @@
         <el-row v-for="(diary,index) in diarys" :key="index" class="ROW">
           <router-link  tag="li" :to="'/homeless/lostdetails/'+diary.lpId" style="list-style: none;cursor: pointer" exact>
           <el-col :span="5">
-            <img alt="" :src="urlImg(diary.lppic.split(',')[0])">
+            <img alt="" :src="urlImg(diary.lppic.split(',')[1])">
           </el-col>
           <el-col :span="17" :push="2">
             <span>时间：{{diary.lpTime}}</span>

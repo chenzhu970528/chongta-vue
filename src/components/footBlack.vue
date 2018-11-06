@@ -93,9 +93,10 @@
   .goTop{
     position: fixed;
     right: 60px;
-    bottom: 220px;
+    bottom: 190px;
     width: 80px;
     height: 80px;
+    z-index: 50;
   }
   .goTop:hover{
 
@@ -107,6 +108,7 @@
     background-image: url("../assets/gotop.png");
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: 100% 100%;
   }
 
 
