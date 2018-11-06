@@ -71,8 +71,7 @@
                 <img :src='url+Img' alt=""><br><br>
                 <video v-if="(Img.substring(Img.indexOf('.')+1, Img.length))==mp4"
                        :src='url+Img'
-                       controls="controls"
-                       style="max-width: 700px;"></video>
+                       controls="controls"></video>
 
 
               </div>
@@ -765,6 +764,10 @@
 </script>
 
 <style scoped>
+  video{
+   max-width: 700px;
+   max-height: 450px;
+  }
   .input{
     margin-top:-5px;
     margin-left:2px;
@@ -956,7 +959,7 @@ h4{
   .center > img {
     margin: auto;
     max-width: 725px;
-
+    max-height: 600px;
     word-wrap: break-word;
   }
 
@@ -964,6 +967,7 @@ h4{
     border-bottom: 1px dotted #ddd;
     /*padding-bottom: 60px;*/
     margin-bottom: 20px;
+    padding-bottom: 20px;
 
   }
 

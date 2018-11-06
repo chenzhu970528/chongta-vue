@@ -21,9 +21,11 @@
    <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[0].faId">
      <img v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))!=mp4"
           :src='s+faImg[index]' title="这是一个图片" alt="">
-     <div v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))==mp4"
-       class="video" title="这是一个视频">
+
+       <div v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))==mp4"
+            class="video" title="这是一个视频">
          <video :src='s+faImg[index]'></video>
+
      </div>
 
      <p class="title">{{val[0].faTitle}}</p>
@@ -202,7 +204,8 @@
     width: 260px;
     height:200px;
     overflow: hidden;
-
+background: #5a5a5a;
+    text-align: center;
   }
   .con {
     background: white;
