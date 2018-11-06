@@ -205,6 +205,7 @@
   .cont{
     background:rgba(255,255,255,0.9);
     margin-top:150px ;
+    width: 1240px;
     box-shadow:-2px 2px 10px 2px #bcbcbc;
     position: relative;
   }
