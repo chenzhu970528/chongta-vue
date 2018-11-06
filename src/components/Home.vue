@@ -2,7 +2,7 @@
 
   <div class="home">
     <div class="top">
-        <span>treat your pet like royalty</span>
+        <!--<span>treat your pet like royalty</span>-->
     </div>
     <div class="q1"></div>
     <div class="bottom">
@@ -127,7 +127,7 @@
   }
   .top{
     height: 750px;
-    background: url("../assets/HomePage/photo-1518640165980-d3e0e2aa6c1e.jpg") no-repeat center;
+    background: url("../assets/HomePage/homepage.jpg") no-repeat center;
     background-size: 100% auto;
     position: relative;
   }

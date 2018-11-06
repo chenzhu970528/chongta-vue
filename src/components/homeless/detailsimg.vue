@@ -5,7 +5,7 @@
     class="pic">
       <el-carousel-item v-for="(img,index) in imgList" :key="index">
         <img :src="img">
-        <video :src="img" controls="controls" style="width: 500px;"></video>
+        <video :src="img" controls="controls" style="height: 300px;"></video>
 
       </el-carousel-item>
     </el-carousel>
