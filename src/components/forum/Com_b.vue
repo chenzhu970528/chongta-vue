@@ -67,7 +67,7 @@
         this.type = 'b'
       },
       diary() {
-        this.aa = '宠物日记'
+        this.aa = '养宠日记'
         this.type = 'a'
       },
       //选中文件后，将文件保存到实例的变量中
