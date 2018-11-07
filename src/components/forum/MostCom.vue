@@ -1,84 +1,88 @@
 <template>
-  <div>
+  <div v-cloak>
+    <div>
 
-    <br>
-    <br>
-    <p class="top">热门文章</p>
-    <div id="carousel-example-generic"  class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-      </ol>
+      <br>
+      <br>
+      <p class="top">热门文章</p>
+      <div id="carousel-example-generic"  class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
 
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <ul class="ul">
-            <li class="li" v-for="(val,index) in value">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <ul class="ul">
+              <li class="li" v-for="(val,index) in value">
 
-              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
-                <img v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))!=mp4"
-                     class="img" @click="see(val[0].faId)" :src='url+img[index]'>
-                <div class="video">
-                  <video v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))==mp4"
-                         :src='url+img[index]'></video>
-                </div>
+                <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
+                  <img v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))!=mp4"
+                       class="img" @click="see(val[0].faId)" :src='url+img[index]'>
+                  <div class="video">
+                    <video v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))==mp4"
+                           @click="see(val[0].faId)"    :src='url+img[index]'></video>
+                  </div>
 
-                <p class="p"><span class="left0"></span><a @click="see(val[0].faId)"
-                                                           class="a title">{{val[0].faTitle}}</a></p>
-              </router-link>
+                  <p class="p">
+                    <span class="left0"></span>
+                    <a @click="see(val[0].faId)" class="a title">{{val[0].faTitle}}</a></p>
+                </router-link>
 
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="item">
+            <ul class="ul">
+              <li class="li" v-for="(val,index) in value1">
+
+                <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
+                  <img class="img" @click="see(val[0].faId)" :src='url+img1[index]'
+                       v-if="(img1[index].substring(img1[index].indexOf('.')+1,img1[index].length))!=mp4">
+                  <div class="video">
+                    <video  v-if="(img1[index].substring(img1[index].indexOf('.')+1,img1[index].length))==mp4"
+                            @click="see(val[0].faId)"    :src='url+img1[index]'></video>
+                  </div>
+
+                  <p class="p" @click="see(val[0].faId)"><span class="left0"></span><a
+                    class="a title">{{val[0].faTitle}}</a></p>
+                </router-link>
+
+              </li>
+            </ul>
+          </div>
+          <div class="item">
+            <ul class="ul">
+              <li class="li" v-for="(val,index) in value2">
+                <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
+                  <img class="img" @click="see(val[0].faId)" :src='url+img2[index]'
+                       v-if="(img2[index].substring(img2[index].indexOf('.')+1,img2[index].length))!=mp4">
+                  <div class="video">
+                    <video v-if="(img2[index].substring(img2[index].indexOf('.')+1,img2[index].length))==mp4"
+                           @click="see(val[0].faId)"  :src='url+img2[index]'></video>
+                  </div>
+
+                  <p class="p" @click="see(val[0].faId)"><span class="left0"></span><a
+                    class="a title">{{val[0].faTitle}}</a></p>
+                </router-link>
+              </li>
+            </ul>
+          </div>
+          &nbsp
         </div>
-        <div class="item">
-          <ul class="ul">
-            <li class="li" v-for="(val,index) in value1">
+        <!-- Controls -->
+        <a class="carousel-control" data-slide="prev">
+        </a>
+        <a class="carousel-control" data-slide="next">
+        </a>
 
-              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
-                <img class="img" @click="see(val[0].faId)" :src='url+img1[index]'
-                     v-if="(img1[index].substring(img1[index].indexOf('.')+1,img1[index].length))!=mp4">
-               <div class="video">
-                 <video  v-if="(img1[index].substring(img1[index].indexOf('.')+1,img1[index].length))==mp4"
-                         :src='url+img1[index]'></video>
-               </div>
-
-                <p class="p" @click="see(val[0].faId)"><span class="left0"></span><a
-                  class="a title">{{val[0].faTitle}}</a></p>
-              </router-link>
-
-            </li>
-          </ul>
-        </div>
-        <div class="item">
-          <ul class="ul">
-            <li class="li" v-for="(val,index) in value2">
-              <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
-                <img class="img" @click="see(val[0].faId)" :src='url+img2[index]'
-                     v-if="(img2[index].substring(img2[index].indexOf('.')+1,img2[index].length))!=mp4">
-              <div class="video">
-                <video v-if="(img2[index].substring(img2[index].indexOf('.')+1,img2[index].length))==mp4"
-                       :src='url+img2[index]'></video>
-              </div>
-
-                <p class="p" @click="see(val[0].faId)"><span class="left0"></span><a
-                  class="a title">{{val[0].faTitle}}</a></p>
-              </router-link>
-            </li>
-          </ul>
-        </div>
-        &nbsp
       </div>
-      <!-- Controls -->
-      <a class="carousel-control" data-slide="prev">
-      </a>
-      <a class="carousel-control" data-slide="next">
-      </a>
-
     </div>
   </div>
+
 </template>
 
 <script>
@@ -106,7 +110,7 @@
     },
     methods: {
       see(index) {
-        console.log(index)
+        // console.log(index)
         window.localStorage.faId = index;
       },
 
@@ -139,7 +143,7 @@
 </script>
 
 <style scoped>
-
+  [v-cloak]{display:none}
   .top {
     text-align: center;
     font-size: 22px;

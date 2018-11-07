@@ -128,30 +128,10 @@
           success: function (result) {
             _this.show()
             _this.visible1 = []
-            // _this.publishdets = []
             //重新渲染数据
-            let userId = _this.UserId.replace(/\"/g, "")
-            axios.get(_this.$store.state.url + `/forumSee/user/diary?userId=${userId}`).then((result) => {
-              // console.log('测试测试')
-              _this.value = []
-              _this.value = result.data.data;
-              _this.img=[]
-              _this.img1=[]
-              for (let i = 0; i < this.value.length; i++) {
-                let img = this.value[i].faImg.split(',')
-                this.img.push(img[0].replace('，', ''))
-              }
-              if (_this.value.length < 1) {
-                _this.lostlists = [];
-                this.showPic()
-              }
-              _this.pageCount = _this.value.length;
-              _this.loadData()
-
-            })
+           _this.ajax()
           }
         })
-        // this.visible2 = false
       },
       see(index) {
         let storage = window.localStorage;
@@ -171,22 +151,31 @@
       showPic() {
         this.isshow = true
       },
+      ajax(){
+        let _this = this
+        let userId = _this.UserId.replace(/\"/g, "")
+        axios.get(_this.$store.state.url + `/forumSee/user/diary?userId=${userId}`).then((result) => {
+          // console.log('测试测试')
+          _this.value = []
+          _this.value = result.data.data;
+          _this.img=[]
+          _this.img1=[]
+          for (let i = 0; i < this.value.length; i++) {
+            let img = this.value[i].faImg.split(',')
+            this.img.push(img[0].replace('，', ''))
+          }
+          if (_this.value.length < 1) {
+            _this.lostlists = [];
+            this.showPic()
+          }
+          _this.pageCount = _this.value.length;
+          _this.loadData()
+
+        })
+      }
     },
     mounted() {
-      let id = this.UserId.replace(/\"/g, "")
-      axios.get(this.$store.state.url + `/forumSee/user/diary?userId=${id}`).then((result) => {
-        this.value = result.data.data;
-        this.pageCount = this.value.length;
-        for (let i = 0; i < this.value.length; i++) {
-          let img = this.value[i].faImg.split(',')
-          this.img.push(img[0].replace('，', ''))
-        }
-
-        this.loadData()
-        if (this.value.length < 1) {
-          this.showPic()
-        }
-      })
+     this.ajax()
     }
   }
 </script>
@@ -249,8 +238,8 @@ padding-top:10px;
     margin-left:20px;
   }
   video{
-    width: 250px;
-    height: 150px;
+    width: 110px;
+    height: 110px;
 
   }
   .video{
@@ -259,7 +248,7 @@ padding-top:10px;
     line-height: 100px;
     border-radius: 10px;
     overflow:hidden;
-    /*border: 1px solid #768dae;*/
+    background: #5a5a5a;
     text-align: center;
   }
   .pic img{

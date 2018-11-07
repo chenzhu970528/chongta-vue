@@ -1,25 +1,52 @@
 <template>
-  <div>
+  <div id="ap">
     <div>
       <app-header></app-header>
       <router-view></router-view>
+
     </div>
-    <div id="bg">
+    <div id="bg" v-show="aa">
       <canvas></canvas>
       <canvas></canvas>
       <canvas></canvas>
     </div>
+    <!--<div class="foot">-->
+      <!--<foot></foot>-->
+    <!--</div>-->
   </div>
 </template>
 
 <script>
+  // import  foot from './components/foot.vue'
   import Header from './components/Header.vue'
 
-export default {
-  name: 'App',
-  components:{
-    'app-header':Header,
-  },mounted(){
+  export default {
+    name: 'App',
+    components:{
+      'app-header':Header,
+    },
+    data(){
+      return{
+        aa:true
+      }
+    },
+
+    watch: {
+      '$route' (to, from) {
+        let faId=window.localStorage.faId
+        if(to.path == `/forum/${faId}`){
+          this.aa=false
+          this.$forceUpdate();
+        }
+        else{
+          this.aa=true
+          this.$forceUpdate();
+        }
+        // console.log(this.aa);
+
+      },
+    },
+    mounted(){
     // 动态背景
 (function($){
   var canvas = $('#bg').children('canvas'),
@@ -266,9 +293,11 @@ export default {
 </script>
 
 <style>
+
   a{
     cursor: pointer;
     text-decoration: none;
+    color: transparent;
   }
 
   body {

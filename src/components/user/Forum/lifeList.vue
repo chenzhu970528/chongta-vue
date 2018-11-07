@@ -127,26 +127,9 @@ img:[],
           type: "get",
           success: function (result) {
             _this.show()
-            _this.visible1 = []
-            // _this.publishdets = []
-            //重新渲染数据
-            let userId = _this.UserId.replace(/\"/g, "")
-            axios.get(_this.$store.state.url + `/forumSee/user/share?userId=${userId}`).then((result) => {
-             // console.log('测试测试')
-              _this.value = []
-              _this.img=[]
-              _this.img1=[]
-              _this.value = result.data.data;
-              if( _this.value.length<1){
-                _this.lostlists = [];
-                this.showPic()
-              }
-                _this.pageCount=_this.value.length;
-                _this.loadData()
-
-            })
-          }
-        })
+           _this.ajax()
+            }
+          })
         // this.visible2 = false
       },
       see(index) {
@@ -165,28 +148,45 @@ img:[],
       showPic() {
         this.isshow = true
       },
+      ajax(){
+        let _this = this
+
+        let id = this.UserId.replace(/\"/g, "")
+        axios.get(this.$store.state.url + `/forumSee/user/share?userId=${id}`).then((result) => {
+          _this.value = result.data.data;
+          _this.visible1 = []
+          //重新渲染数据
+          _this.img=[]
+          _this.img1=[]
+          for (let i = 0; i < this.value.length; i++) {
+            let img = this.value[i].faImg.split(',')
+            this.img.push(img[0].replace('，', ''))
+          }
+          this.pageCount=this.value.length;
+          this.loadData()
+          if(this.value .length<1){
+            this.showPic()
+          }
+        })
+
+      }
     },
 
     mounted() {
-      let id = this.UserId.replace(/\"/g, "")
-      axios.get(this.$store.state.url + `/forumSee/user/share?userId=${id}`).then((result) => {
-        this.value = result.data.data;
-        for (let i = 0; i < this.value.length; i++) {
-          let img = this.value[i].faImg.split(',')
-          this.img.push(img[0].replace('，', ''))
-        }
-        this.pageCount=this.value.length;
-        this.loadData()
-        if(this.value .length<1){
-          this.showPic()
-        }
-      })
+     this.ajax()
     }
   }
 </script>
 
 
 <style scoped>
+  .block{
+    width: 60%;
+    margin-left: 20%;
+    text-align: center;
+    margin-top: 90px;
+    margin-bottom: 30px;
+  }
   .cc {
     width: 180px;
     height: 60px;
@@ -201,14 +201,8 @@ img:[],
     font-size: 18px;
     z-index:100;
   }
-  .block{
-    width: 60%;
-    margin-left: 20%;
-    text-align: center;
-    margin-top: 90px;
-    margin-bottom: 30px;
-  }
-  .inner_ado {
+
+  .inner_ado{
     width: 80%;
     margin-left: 9%;
     margin-top: 5%;
@@ -217,25 +211,21 @@ img:[],
     min-height: 500px;
     font-size: 13px;
     color: #737373;
-
-
   }
-
-  .card {
+  .card{
     width: 100%;
     height: 200px;
-padding-top:10px;
+    padding-top:10px;
+
     word-wrap:break-word;
   }
-
-  .tol {
+  .tol{
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgb(255,255,255);
     margin-bottom: 25px;
     box-shadow: -2px 2px 10px 0px #eeeeee;
 
   }
-
   .pic {
     width: 110px;
     height: 110px;
@@ -244,8 +234,8 @@ padding-top:10px;
     margin-left:20px;
   }
   video{
-    width: 250px;
-    height: 150px;
+    max-width: 110px;
+    max-height: 110px;
 
   }
   .video{
@@ -254,8 +244,8 @@ padding-top:10px;
     line-height: 100px;
     border-radius: 10px;
     overflow:hidden;
-    /*border: 1px solid #768dae;*/
- text-align: center;
+    background: #5a5a5a;
+    text-align: center;
   }
   .pic img{
     width: 110px;
@@ -268,10 +258,13 @@ padding-top:10px;
     /*background-color: red;*/
   }
 
-  p {
+
+  p{
     padding-top: 7px;
 
     word-wrap:break-word;
+
+
   }
   .text{
     word-wrap:break-word;
@@ -281,27 +274,24 @@ padding-top:10px;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
-
-  .detail {
+  .detail{
     display: inline-block;
     /*height: 70px;*/
     overflow: hidden;
     /*background-color: plum;*/
     text-overflow: ellipsis;
   }
-
-  .noList {
+  .noList{
     text-align: center;
     color: #575757;
     /*position: relative;*/
     /*top:-500px;*/
   }
-
-  .showList {
+  .showList{
     text-align: center;
     color: #575757;
     position: relative;
-    top: -500px;
+    top:-500px;
   }
   a{
     text-decoration: none;

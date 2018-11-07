@@ -31,6 +31,8 @@
                    multiple>
                 上传
               </span>
+              <span id="p"></span>
+
             </div>
             <span class="size">全部文件不能大于50M/{{size}}M</span>
           </div>
@@ -85,6 +87,8 @@
         for (let i = 0; i < this.upath.length; i++) {
           size = size + this.upath[i].size
         }
+        document.getElementById('p').innerText = this.upath.length+'个文件'
+
         let s = size / (1024 * 1024)
         this.size = s.toFixed(2)
       },
@@ -163,6 +167,8 @@
             window.localStorage.a++
 
             store.commit('add')
+            document.getElementById('p').innerText =''
+
             // console.log(store.state.a)
           }
         }
@@ -181,6 +187,12 @@
 </script>
 
 <style scoped>
+  #p{
+    margin-left:0px;
+    font-size:14px;
+    color: #8e8e8e;
+
+  }
   .fileinput-button {
     position: relative;
     display: inline-block;

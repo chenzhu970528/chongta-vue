@@ -96,6 +96,7 @@
                          accept="image/gif,image/jpeg,image/jpg,image/png"
                          ref="avatarInput"><br/>
             </span>
+            <span id="p"></span>
 
 
           </div>
@@ -286,10 +287,13 @@
     },
 
     methods: {
+
+
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
         console.log(e.target.files)
         this.upath = e.target.files;
+        document.getElementById('p').innerText = this.upath[0].name
       },
       //重新渲染数据
       ajax() {
@@ -307,27 +311,27 @@
             get.page = 1
             get.aaa = []
             get.bbb = []
-            if (get.UserId) {
+            // if (get.UserId) {
               //查看用户是否点赞
-              let faId = get.value.art[0].faId
-              get.userId = get.UserId.replace(/\"/g, "")
-              axios.get(get.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
-                if (result.data.data == 1) {
-                  get.addlike = false
-                  get.dellike = true
-                }
-              });
-              //判断是不是管理员
-              if (get.userId == 33) {
-                get.admin = true
-              }
-              //查看是否是精品推荐
-              axios.get(get.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
-                if (result.data.data == 1) {
-                  get.rec = 1;
-                }
-              })
-            }
+              // let faId = get.value.art[0].faId
+              // get.userId = get.UserId.replace(/\"/g, "")
+              // axios.get(get.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
+              //   if (result.data.data == 1) {
+              //     get.addlike = false
+              //     get.dellike = true
+              //   }
+              // // });
+              // //判断是不是管理员
+              // if (get.userId == 33) {
+              //   get.admin = true
+              // }
+              // //查看是否是精品推荐
+              // axios.get(get.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
+              //   if (result.data.data == 1) {
+              //     get.rec = 1;
+              //   }
+              // })
+            // }
 
             if (get.value.comment) {
               get.cou = Math.ceil(get.value.comment.length / 6)
@@ -348,8 +352,6 @@
                   }
                 }
               }
-
-
             }
             //当前评论数
             get.value1 = []//先清空
@@ -360,16 +362,13 @@
                 }
               }
               else {
-
-                  get.value1=get.value.comment
-
-
+                get.value1=get.value.comment
               }
             }
 
           })
 
-        },200)
+        },300)
 
       },
       //加载更多
@@ -471,13 +470,11 @@
           userName: this.UserName.replace(/\"/g, ""),
         }
         document.getElementById('dd0').innerText = ''
-// console.log(this.upath)
         var zipFormData = new FormData();
         //依次添加多个文件
 
-          zipFormData.append('filename', this.upath[0]);
+        zipFormData.append('filename', this.upath[0]);
         this.upath=[0]
-
         //添加其他的表单元素
         zipFormData.append('faId', dd.faId)
         zipFormData.append('faText', dd.faText)
@@ -486,6 +483,7 @@
         let config = {headers: {'Content-Type': 'multipart/form-data'}};
         this.$axios.post(this.$store.state.url + '/forumAdd/comment', zipFormData, config)
           .then(function (response) {
+            _this.$forceUpdate()
 
           }).catch((err) => {
           alert(err)
@@ -494,14 +492,20 @@
 
       //添加评论
       addCom() {
+        this.bbb[this.y[0]][this.y[1]] = false
+        this.aaa[this.x] = false
+
         if (!this.UserId) {
           this.tips = '先去登录吧'
           this.show()
         }
         else {
           if (this.myHtmlCode.length >= 2) {
-            document.getElementById('dd0').innerText = ''
             this.addImg()
+            document.getElementById('dd0').innerText = ''
+
+            this.$forceUpdate()
+            document.getElementById('p').innerText =''
             this.ajax()
             this.tips = '评论成功'
             this.show()
@@ -510,10 +514,13 @@
             this.show()
           }
         }
-        this.$forceUpdate()
+
       },
       //添加回复
       addReply(index, key) {
+        this.bbb[this.y[0]][this.y[1]] = false
+        this.aaa[this.x] = false
+
         if (!this.UserId) {
 
           this.tips = '先去登录吧'
@@ -551,6 +558,7 @@
                 _this.show()
                 //重新渲染数据用
                 _this.ajax()
+                this.$forceUpdate()
 
               }
             })
@@ -565,7 +573,6 @@
       //评论点击弹框
       aaaa(index) {
         //点击当前，其他框框关闭
-
         this.bbb[this.y[0]][this.y[1]] = false
         if (this.aaa[this.x] == this.aaa[index]) {
           this.k++
@@ -580,6 +587,8 @@
         this.x = index
         this.$forceUpdate()
       },
+
+      //回复
       bb(keys, index) {
         //点击当前，其他框框关闭
         this.aaa[this.x] = false
@@ -674,82 +683,79 @@
         this.rec = 0
         let faId = window.localStorage.faId;
         let get = this
-          axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
-
-            get.value = result.data.data;
-            let img = get.value.art[0].faImg.split(',')
-            if (img.length > 1) {
-              img.pop()
-            }
-
-            this.img = img
-
-            this.addlike = true
-            this.dellike = false
-            if (this.UserId) {
-              //查看用户是否点赞
-              let faId = this.value.art[0].faId
-              get.userId = this.UserId.replace(/\"/g, "")
-              axios.get(this.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
-                if (result.data.data == 1) {
-                  this.addlike = false
-                  this.dellike = true
-                }
-              });
-              //判断是不是管理员
-              if (get.userId == 33) {
-                get.admin = true
+        axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
+          get.value = result.data.data;
+          let img = get.value.art[0].faImg.split(',')
+          if (img.length > 1) {
+            img.pop()
+          }
+          this.img = img
+          this.addlike = true
+          this.dellike = false
+          if (this.UserId) {
+            //查看用户是否点赞
+            let faId = this.value.art[0].faId
+            get.userId = this.UserId.replace(/\"/g, "")
+            axios.get(this.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
+              if (result.data.data == 1) {
+                this.addlike = false
+                this.dellike = true
               }
-              //查看是否是精品推荐
-              // console.log('看看id咋回事'+faId)
-              axios.get(this.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
-                // console.log(result.data.data )
-                if (result.data.data == 1) {
-                  // console.log('是0不中')
-
-                  this.rec = 1;
-                }
-              })
+            });
+            //判断是不是管理员
+            if (get.userId == 33) {
+              get.admin = true
             }
+            //查看是否是精品推荐
+            // console.log('看看id咋回事'+faId)
+            axios.get(this.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
+              // console.log(result.data.data )
+              if (result.data.data == 1) {
+                // console.log('是0不中')
+
+                this.rec = 1;
+              }
+            })
+          }
 
 
-            //评论
-            get.value1 = []
-              get.comhead = []
-            if (get.value.comment) {
-              get.cou = Math.ceil(this.value.comment.length / 6)
-              for (let i = 0; i < get.value.comment.length; i++) {
-                //定义评论数组
-                get.value.comment[i].replys = []
-                this.aaa.push(false)
-                this.bbb.push([])
+          //评论
+          get.value1 = []
+          get.comhead = []
+          if (get.value.comment) {
+            get.cou = Math.ceil(this.value.comment.length / 6)
+            for (let i = 0; i < get.value.comment.length; i++) {
+              //定义评论数组
+              get.value.comment[i].replys = []
+              this.aaa.push(false)
+              this.bbb.push([])
 
-                //添加回复到对应的评论里
-                if (get.value.reply) {
+              //添加回复到对应的评论里
+              if (get.value.reply) {
 
-                  for (let j = 0; j < get.value.reply.length; j++) {
+                for (let j = 0; j < get.value.reply.length; j++) {
 
-                    if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
-                      get.bbb[i].push(false)
-                      get.value.comment[i].replys.push(get.value.reply[j])
-                    }
+                  if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
+                    get.bbb[i].push(false)
+                    get.value.comment[i].replys.push(get.value.reply[j])
                   }
                 }
-
               }
 
-              //当前评论数
-              if (this.value.comment.length > 6) {
-                for (let i = 0; i < 6; i++) {
-                  this.value1.push(this.value.comment[i])
-                }
-              } else {
-                for (let i = 0; i < this.value.comment.length; i++) {
-                  this.value1.push(this.value.comment[i])
-                }
+            }
+
+            //当前评论数
+            if (this.value.comment.length > 6) {
+              for (let i = 0; i < 6; i++) {
+                this.value1.push(this.value.comment[i])
+              }
+            } else {
+              for (let i = 0; i < this.value.comment.length; i++) {
+                this.value1.push(this.value.comment[i])
               }
             }
-          })
+          }
+        })
       },
     },
     //监听路由
@@ -764,16 +770,21 @@
 </script>
 
 <style scoped>
+  #p{
+
+margin-left:-60px;
+margin-top:-20px;
+    font-size:14px;
+  }
   video{
-   max-width: 700px;
-   max-height: 450px;
+    max-width: 700px;
+    max-height: 450px;
   }
   .input{
     margin-top:-5px;
     margin-left:2px;
     font-size:25px;
     color: #8e8e8e;
-
   }
   .fileinput-button {
     position: relative;
@@ -782,13 +793,13 @@
     left:-30px;
     margin-bottom:10px;
     margin-top:-4px;
-   width: 30px;
+    width: 30px;
     padding-right:25px;
     opacity: 0;
   }
- .glyphicon-picture{
-   /*font-size:30px;*/
- }
+  .glyphicon-picture{
+    /*font-size:30px;*/
+  }
   .fileinput-button input{
     position:absolute;
     right: 0px;
@@ -805,18 +816,18 @@
     color: #f60000;
   }
 
-.comP{
-  margin-bottom:-10px;
-}
+  .comP{
+    margin-bottom:-10px;
+  }
   .comimg {
     max-width: 500px;
-margin-bottom: 15px;
-margin-top: 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
   }
-h4{
-  padding-bottom:7px;
-  border-bottom:1px solid #bebebe;
-}
+  h4{
+    padding-bottom:7px;
+    border-bottom:1px solid #bebebe;
+  }
   span {
     display: inline-block;
   }
@@ -1045,9 +1056,9 @@ h4{
     font-size: 15px;
     word-wrap: break-word;
   }
-.com1 .but{
-  margin-left: 60px;
-}
+  .com1 .but{
+    margin-left: 60px;
+  }
   .com1 {
     margin-bottom: 0px;
     margin-top: 20px;

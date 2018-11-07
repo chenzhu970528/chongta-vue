@@ -15,16 +15,12 @@
           </el-col>
         </el-row>
         <p>{{val.faText}}{{val.frText}}</p>
-        <!--<el-row style="margin-top: 10px" class="row2">-->
-          <!--<el-col :span="9" class="release">-->
-            <!--<img :src='url+Artpic[index].headPic' alt="" class="head1">-->
-          <!--</el-col>-->
-          <!--<el-col :span="12" class="toto">-->
+
 
           <div class="span" @click="go(val.faId)">
             <router-link  :to="`/forum/`+val.faId"> <p>{{val.userName}}:{{val.faTitle}} </p>
             <br>
-            <p class="text">{{val.faText1}}000</p></router-link>
+            <p class="text" style="font-weight: 500;">{{val.faText1}}</p></router-link>
           </div>
 
 
@@ -109,13 +105,9 @@ console.log(index+'30才对')
     margin-bottom:5px;
     margin-top:5px;
   }
-  /*.head1{*/
-    /*width: 70px;*/
-    /*height:70px;*/
-    /*border-radius: 35px;*/
-    /*background: url("../../../assets/forum/8.jpg");*/
-
-  /*}*/
+.span p{
+  font-weight: bold;
+}
   #scroll {
     padding: 0 35px;
     width: 80%;
@@ -204,11 +196,9 @@ console.log(index+'30才对')
     font-weight: normal;
   }
 
-  .release {
-    width: 80px;
-    height: 80px;
-    /*background-color: rgba(255,255,255,0.3);*/
-  }
+
+
+
 
   .row2 {
     width: 96%;
@@ -230,7 +220,7 @@ console.log(index+'30才对')
 
   p {
     padding-left: 2%;
-    margin-bottom: -5px;
+    margin-bottom: -15px;
 
     word-wrap: break-word;
     overflow : hidden;
@@ -249,7 +239,7 @@ console.log(index+'30才对')
   margin-left:10px;
   padding:10px;
   padding-left:0;
-  background: #dbdbdb;
+  background: #e4eaf0;
   width:490px;
   height: 90px;
 cursor:pointer;

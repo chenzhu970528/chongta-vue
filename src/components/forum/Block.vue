@@ -18,7 +18,7 @@
         <ul class="body">
           <li class="li1">
 <span @click="see(val[0].faId)">
-   <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[0].faId">
+   <router-link tag="a"  :to="`forum/`+val[0].faId">
      <img v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))!=mp4"
           :src='s+faImg[index]' title="这是一个图片" alt="">
 
@@ -38,7 +38,7 @@
         </ul>
         <ul class="foot">
           <li>
-            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[1].faId">
+            <router-link tag="a"  :to="`forum/`+val[1].faId">
               <a class="a" href="" @click="see(val[1].faId)">{{val[1].faTitle}}</a>
               <span class="span">{{val[1].time.slice(5,10)}}</span>
             </router-link>
@@ -61,12 +61,7 @@
               <span class="span">{{val[4].time.slice(5,10)}}</span>
             </router-link>
           </li>
-          <!--<li>-->
-          <!--<router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[5].faId">-->
-          <!--<a class="a" href="" @click="see(val[5].faId)">{{val[5].faTitle}}</a>-->
-          <!--<span class="span">{{val[5].time.slice(5,10)}}</span>-->
-          <!--</router-link>-->
-          <!--</li>-->
+
         </ul>
       </div>
     </div>

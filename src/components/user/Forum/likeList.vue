@@ -235,18 +235,18 @@ padding-top:10px;
     margin-left:20px;
   }
   video{
-    width: 250px;
-    height: 150px;
+    max-width: 110px;
+    max-height: 110px;
 
   }
   .video{
     width: 110px;
     height: 110px;
-    line-height: 100px;
     border-radius: 10px;
     overflow:hidden;
     /*border: 1px solid #768dae;*/
     text-align: center;
+    background: #5a5a5a;
   }
   .pic img{
     width: 110px;
