@@ -42,7 +42,10 @@
     padding: 0
   }
 .body{
+  position: relative;
   width:100%;
+  min-width:1240px;
+  min-height: 1000px;
   background-color: #f6f6f6;
   margin:-200px 0;
 }
@@ -77,6 +80,10 @@
     width: 360px;
     margin-top:65px;
   }
-
+  .foot{
+    position: absolute;
+    bottom:0px;
+    width:100%;
+  }
 
 </style>

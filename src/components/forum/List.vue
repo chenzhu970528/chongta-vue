@@ -4,7 +4,11 @@
       <div class="com_d">
         <com_d></com_d>
       </div>
+      <div v-if="activitys.length<1" class="no">
 
+        <img src="../../assets/forum/ku.jpg" alt="">
+        <h4>抱歉，暂时没有找到相关内容的帖子</h4>
+      </div>
       <ul>
         <li :key="index" v-model="val.faId" v-for="(val,index) in activitys">
           <div class="head">
@@ -221,6 +225,12 @@ mp4:'mp4',
 </script>
 
 <style scoped>
+  .no{
+    text-align:center;
+  }
+  .no img{
+    height:300px;
+  }
   /*.cc {*/
     /*width: 180px;*/
     /*height: 60px;*/
@@ -236,7 +246,9 @@ mp4:'mp4',
   /*}*/
 
  .com_d{
+   position: relative;
    margin-left:-30px;
+   z-index:100;
  }
   button {
     border-radius: 3px;

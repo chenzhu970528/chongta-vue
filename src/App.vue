@@ -297,7 +297,6 @@
   a{
     cursor: pointer;
     text-decoration: none;
-    color: transparent;
   }
 
   body {
