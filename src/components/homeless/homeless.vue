@@ -56,6 +56,8 @@
 <style scoped>
   .tol{
     background-color: white;
+    width: 100%;
+    min-width:1280px;
   }
   .container{
     width: 1240px;

@@ -116,6 +116,7 @@
   .listbox {
     border: 1px solid #becee1;
     border-radius: 10px;
+    overflow: hidden;
   }
   .listbox:hover{
     border: 1px solid #6d9eff;
@@ -129,7 +130,7 @@
 
   }
   .listbox img:hover{
-    transform: scale(1,0.95);
+    transform: scale(1,1.2);
   }
   .clearfix {
     display: block;

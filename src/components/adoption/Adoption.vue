@@ -207,6 +207,8 @@
   .tol{
     /*margin-top: 70px;*/
     background-color: white;
+    width: 100%;
+    min-width:1280px;
     /*padding-bottom: 20px;*/
   }
   /*a{*/
