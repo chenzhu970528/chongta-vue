@@ -8,16 +8,16 @@
       </div>
 
       <div>
-        <mostCom>评论多的</mostCom>
+
+        <mostCom></mostCom>
+        <br>
+        <com_d></com_d>
       </div>
-      <com_d></com_d>
       <div>
         <div class="left">
           <block></block>
         </div>
-        <!--<div class="right">-->
-          <!--<ranking></ranking>-->
-        <!--</div>-->
+
         <hot></hot>
       </div>
     </div>
@@ -33,6 +33,7 @@
   import Com_d from './Com_d.vue'
   import Ranking from './Ranking'
   import MostCom from './MostCom.vue'
+
   import hot from './hot.vue'
   import  footBlack from '../../components/footBlack.vue'
   export default {
@@ -44,7 +45,8 @@
       'com_d': Com_d,
       'mostCom': MostCom,
       'hot': hot,
-      'foot-black':footBlack
+      'foot-black':footBlack,
+
     },
     data :function (){
       return{
@@ -60,6 +62,17 @@
     background-color: #f6f6f6;
     /*padding-bottom: 150px;*/
     /*margin-bottom: -200px;*/
+
+
+    /*position: relative;*/
+    width:100%;
+    min-width:1280px;
+    /*min-height: 1000px;*/
+    /*background-color: #f6f6f6;*/
+    /*margin:-200px 0;*/
+
+
+
   }
   .top{
     width: 100%;
@@ -76,10 +89,7 @@
     margin-bottom:40px;
     margin-left: 20%;
   }
-  body {
-    margin: 0;
-    padding: 0
-  }
+
 
   #content {
     /*box-shadow: -2px 2px 10px 2px #bcbcbc;*/

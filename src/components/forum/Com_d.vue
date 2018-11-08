@@ -57,12 +57,12 @@
     margin-bottom: 10px;
     position: relative;
     left: 840px;
+    z-index:-1;
   }
 
   .form-control {
     width: 323px;
     margin-right:-3px;
-    z-index:1;
   }
 span{
   z-index:0;

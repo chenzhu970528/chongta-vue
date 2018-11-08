@@ -126,7 +126,7 @@
     margin-bottom:-100px;
     top: 0;
     z-index: 3;
-    box-shadow: -2px 2px 10px 2px #f8f8f8;
+    /*box-shadow: -2px 2px 10px 2px #f8f8f8;*/
   }
   .adoTitle{
     width: 1136px;

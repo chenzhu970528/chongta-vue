@@ -79,6 +79,7 @@
     right: 25px;
     width: 360px;
     margin-top:65px;
+    z-index: 0;
   }
   .foot{
     position: absolute;

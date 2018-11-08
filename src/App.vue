@@ -37,6 +37,9 @@
         if(to.path == `/forum/${faId}`){
           this.aa=false
           this.$forceUpdate();
+        }else if(to.path == '/forum'){
+          this.aa=false
+          this.$forceUpdate();
         }
         else{
           this.aa=true

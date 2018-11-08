@@ -248,19 +248,12 @@ mp4:'mp4',
  .com_d{
    position: relative;
    margin-left:-30px;
-   z-index:100;
+   z-index:1;
  }
   button {
     border-radius: 3px;
   }
 
-  .left {
-    color: #848484;
-  }
-
-  .right {
-    float: right;
-  }
 
   .con {
     margin: 25px;

@@ -151,7 +151,11 @@
         }
         else if (_this.text != '' && _this.title != '') {
           if (_this.title.length > 15) {
-            _this.tips = '标题字数超出'
+            _this.tips = '标题字数过多'
+            _this.c()
+          }
+          else if (_this.text.length > 3000) {
+            _this.tips = '内容过多'
             _this.c()
           }
           else if (this.upath.length < 1) {

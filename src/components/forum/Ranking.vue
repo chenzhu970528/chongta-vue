@@ -1,5 +1,5 @@
 <template>
-  <div>
+
     <div class="d1">
       <div class="top"><span class="left">最多收藏</span></div>
       <img style="height:50px;margin-top:-115px;margin-left: 85px;" src="../../assets/forum/22.gif" alt="">
@@ -11,7 +11,7 @@
         </span>
       </div>
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -31,12 +31,16 @@
         storage.faId=index
         // this.$router.go(0)
 
-      }
+      },
+      ajax(){  axios.get(this.$store.state.url+"/forumSee/likes").then((result) => {
+        this.list1 = result.data.data;
+      })}
+    },
+    watch:{
+      "$route":"ajax"
     },
     mounted() {
-      axios.get(this.$store.state.url+"/forumSee/likes").then((result) => {
-        this.list1 = result.data.data;
-      })
+    this.ajax()
 
     }
   }
@@ -53,6 +57,7 @@
     display: inline-block;
     margin-top: 150px;
     margin-bottom: 20px;
+    /*z-index:0;*/
   }
 
   .top {

@@ -11,7 +11,6 @@
                  class="pic-image"></video>
         </div>
 
-
         <span class="pic-caption bottom-to-top">
                <h1 class="pic-title" @click="see(list[0].faId)">
                  <router-link tag="p" active-class="active" role="presentation" :to="`/forum/`+list[0].faId">
@@ -98,94 +97,10 @@
     text-align: center;
     width: 1250px;
   }
-  html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-  }
 
-  article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-    display: block;
-  }
-
-  body {
-    line-height: 1;
-  }
-
-  ol, ul {
-    list-style: none;
-  }
-
-  blockquote, q {
-    quotes: none;
-  }
-
-  blockquote:before, blockquote:after, q:before, q:after {
-    content: '';
-    content: none;
-  }
-
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-
-  body {
-    background: rgba(83, 117, 149, 0.92);
-    color: #fff;
-    font-size: 14px;
-    font-family: 'Open Sans', sans-serif, 'trebuhet ms', HelveticaNeue, arial;
-    height: 100%;
-    line-height: 20px;
-  }
-
-  * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-
-  p {
-    line-height: 2.0em;
-  }
-
-  h1 {
-    font-size: 3.0em;
-    line-height: 40px;
-  }
-
-  a {
-    text-decoration: none;
-    color: rgba(113, 144, 171, 0.92);
-  }
-
-  a:hover {
-    color: #fff;
-  }
 
   img {
     max-width: 100%;
-  }
-
-  header {
-    padding: 30px 20px;
-    background: rgba(105, 129, 159, 0.92);
-    color: #ffffff;
-    margin-bottom: 20px;
-  }
-
-  footer {
-    margin-top: 30px;
-    background: rgba(41, 70, 102, 0.92);
-    color: rgba(124, 142, 160, 0.92);
-    padding: 20px 0;
-    text-align: left;
-    font-size: 0.9em;
   }
 
   @keyframes anima {

@@ -78,8 +78,9 @@
 
             </div>
           </div>
-          <!--<div class="com0">-->
-          <div id="dd0" class="test_box cominp0"
+
+          <!--添加评论-->
+          <div id="dd0" class="test_box cominp0" @click="com0"
                contenteditable="true"
                v-html="myHtmlcode"
                @input="onDivInput($event)">
@@ -87,10 +88,9 @@
           </div>
 
 
-          <!--添加评论-->
           <button type="button" @click="addCom()" class="rbtn1 btn btn-primary btn-sm active">发表</button>
           <div class="input glyphicon glyphicon-picture">
-            <span  class="btn btn-default fileinput-button">
+            <span class="btn btn-default fileinput-button">
                   <input type="file" name="avatar"
                          @change="changeImage($event)"
                          accept="image/gif,image/jpeg,image/jpg,image/png"
@@ -236,13 +236,14 @@
   import axios from 'axios'
   import Com_b from './Com_b'
   import {mapGetters} from 'vuex';
-  import  footBlack from '../../components/footBlack.vue'
+  import footBlack from '../../components/footBlack.vue'
+
   export default {
     name: "Details",
     components: {
       'ranking': Ranking,
       'com_b': Com_b,
-      'foot-black':footBlack
+      'foot-black': footBlack
     },
     computed: mapGetters([
       'UserId',
@@ -288,10 +289,9 @@
 
     methods: {
 
-
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
-        console.log(e.target.files)
+        // console.log(e.target.files)
         this.upath = e.target.files;
         document.getElementById('p').innerText = this.upath[0].name
       },
@@ -301,37 +301,21 @@
         return setTimeout(function () {
           //重新渲染数据用
 
+          // console.log( get.w+'chang')
+          //
+          // console.log( get.value.comment.length+'value')
+          // console.log( get.cou+'页数')
+          // console.log( get.page+'当前页数')
+          // console.log( get.value1.length+'value1')
           let faId = window.localStorage.faId;
           get.value.comment = []
           get.comhead = []
           axios.get(get.$store.state.url + `/forumSee/all/?faId=${faId}`).then((result) => {
             get.value = result.data.data;
-            get.q = 0//加载更多需要的范围值
-            get.w = 6
-            get.page = 1
+
             get.aaa = []
             get.bbb = []
-            // if (get.UserId) {
-              //查看用户是否点赞
-              // let faId = get.value.art[0].faId
-              // get.userId = get.UserId.replace(/\"/g, "")
-              // axios.get(get.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
-              //   if (result.data.data == 1) {
-              //     get.addlike = false
-              //     get.dellike = true
-              //   }
-              // // });
-              // //判断是不是管理员
-              // if (get.userId == 33) {
-              //   get.admin = true
-              // }
-              // //查看是否是精品推荐
-              // axios.get(get.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
-              //   if (result.data.data == 1) {
-              //     get.rec = 1;
-              //   }
-              // })
-            // }
+
 
             if (get.value.comment) {
               get.cou = Math.ceil(get.value.comment.length / 6)
@@ -353,28 +337,41 @@
                 }
               }
             }
+
             //当前评论数
-            get.value1 = []//先清空
+
             if (get.value.comment) {
-              if (get.value.comment.length > 6) {
-                for (let i = 0; i < 6; i++) {
-                  get.value1.push(get.value.comment[i])
-                }
+              console.log(get.value.comment.length+'看看现在几个')
+              //点开完评论，添加删除完还是点开完
+              if(get.value.comment.length <6&& get.w!==6){
+                console.log('(get.w===get.value1.length||get.value.comment.length <6)')
+                get.value1 = []//先清空
+                get.value1 = get.value.comment
               }
-              else {
-                get.value1=get.value.comment
+              //加载更多状态 添加删除完还是加载更多状态 的w
+              // else if (get.w >= 6) {
+              else{
+                console.log('get.w >= 6')
+
+                // if(get.w<=get.value.comment.length){
+                  get.value1 = []//先清空
+                  for (let i = 0; i < get.w; i++) {
+                    get.value1.push(get.value.comment[i])
+                  }
+                // }
+
               }
+
             }
 
           })
-
-        },300)
+        }, 300)
 
       },
       //加载更多
       next() {
-        console.log(this.cou);
-        console.log(this.page);
+        // console.log(this.cou);
+        // console.log(this.page);
         this.q = this.q + 6
         if (this.page < this.cou - 1) {
           this.w = this.w + 6
@@ -386,7 +383,6 @@
         }
         //最后一页的，要取出最后一页多少个帖子
         else if (this.page === this.cou - 1) {
-
           this.w = this.value.comment.length
           for (let i = this.q; i < this.w; i++) {
             this.value1.push(this.value.comment[i])
@@ -397,7 +393,7 @@
       //收起显示第一页
       one() {
         this.value1 = []
-        this.page=1 //记录当前页
+        this.page = 1 //记录当前页
         this.q = 0
         this.w = 6
         for (let i = 0; i < 6; i++) {
@@ -474,7 +470,7 @@
         //依次添加多个文件
 
         zipFormData.append('filename', this.upath[0]);
-        this.upath=[0]
+        this.upath = [0]
         //添加其他的表单元素
         zipFormData.append('faId', dd.faId)
         zipFormData.append('faText', dd.faText)
@@ -492,24 +488,31 @@
 
       //添加评论
       addCom() {
-        this.bbb[this.y[0]][this.y[1]] = false
-        this.aaa[this.x] = false
-
+        if(this.w===this.value.comment.length){
+          // console.log(this.w+'++')
+          this.w++
+        }
         if (!this.UserId) {
           this.tips = '先去登录吧'
           this.show()
         }
         else {
-          if (this.myHtmlCode.length >= 2) {
+          if (this.myHtmlCode.length >= 2 && this.myHtmlCode.length <= 250) {
+
             this.addImg()
             document.getElementById('dd0').innerText = ''
 
             this.$forceUpdate()
-            document.getElementById('p').innerText =''
+            document.getElementById('p').innerText = ''
             this.ajax()
             this.tips = '评论成功'
             this.show()
-          } else {
+          }
+          else if (document.getElementById('dd0').innerText.length > 250) {
+            this.tips = '最多输入250字'
+            this.show()
+          }
+          else {
             this.tips = '最少两个字哦'
             this.show()
           }
@@ -518,15 +521,14 @@
       },
       //添加回复
       addReply(index, key) {
-        this.bbb[this.y[0]][this.y[1]] = false
-        this.aaa[this.x] = false
 
         if (!this.UserId) {
-
           this.tips = '先去登录吧'
           this.show()
         } else {
-          if (this.myHtmlCode1.length >= 2) {
+          if (this.myHtmlCode1.length >= 2 && this.myHtmlCode1.length <= 250) {
+            this.bbb[this.y[0]][this.y[1]] = false
+            this.aaa[this.x] = false
             if (key === 1) {
               let a = document.getElementsByClassName('dd1')
               for (let i = 0; i < a.length; i++) {
@@ -563,6 +565,10 @@
               }
             })
           }
+          else if (this.myHtmlCode1.length > 250) {
+            this.tips = '最多输入250字'
+            this.show()
+          }
           else {
             this.tips = '最少两个字哦'
             this.show()
@@ -570,8 +576,9 @@
         }
         this.$forceUpdate()
       },
-      //评论点击弹框
+      //评论回复表层点击弹框
       aaaa(index) {
+        document.getElementById('dd0').innerText = ''
         //点击当前，其他框框关闭
         this.bbb[this.y[0]][this.y[1]] = false
         if (this.aaa[this.x] == this.aaa[index]) {
@@ -585,11 +592,14 @@
         }
         this.aaa[index] = !this.aaa[index]
         this.x = index
+
         this.$forceUpdate()
       },
 
       //回复
       bb(keys, index) {
+        document.getElementById('dd0').innerText = ''
+
         //点击当前，其他框框关闭
         this.aaa[this.x] = false
         //添加z点击同一个z+1
@@ -602,12 +612,19 @@
         if (this.z % 2 == 0) {
           this.bbb[this.y[0]][this.y[1]] = false
         }
-
-
         this.bbb[keys][index] = !this.bbb[keys][index]
 
         this.y = [keys, index]
         this.$forceUpdate()
+
+      },
+//点击评论框其他框框关闭
+      com0() {
+
+        this.aaa[this.x] = false
+        this.bbb[this.y[0]][this.y[1]] = false
+        this.$forceUpdate()
+
       },
       //删除帖子
       delart(faId) {
@@ -615,14 +632,19 @@
         axios.get(this.$store.state.url + `/forumDel/art/?faId=${faId}`).then((result) => {
           _this.tips = '删除成功'
           _this.show()
-          history.go(-1)
-
+          history.back(-1)
         })
       },
       //删除评论
       delcom(fcId) {
-        // console.log('000000000000')
-        // console.log(fcId)
+//收起
+// console.log(this.w+'www')
+// console.log(this.value.comment.length+'000')
+        if(this.w===this.value.comment.length){
+          // console.log(this.w+'==')
+          this.w--
+        }
+
         let _this = this
         axios.get(this.$store.state.url + `/forumDel/comment?fcId=${fcId}`).then((result) => {
           _this.tips = '评论删除成功'
@@ -635,7 +657,7 @@
       },
       //删除回复
       delrep(frId) {
-        console.log(frId)
+        // console.log(frId)
         let _this = this
         axios.get(this.$store.state.url + `/forumDel/reply?frId=${frId}`).then((result) => {
           _this.tips = '回复删除成功'
@@ -676,7 +698,7 @@
         setTimeout(function () {
           _this.hide = false
           // _this.comf = 0
-        }, 3000)
+        }, 2000)
       },
 
       require() {
@@ -684,78 +706,84 @@
         let faId = window.localStorage.faId;
         let get = this
         axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
+
           get.value = result.data.data;
-          let img = get.value.art[0].faImg.split(',')
-          if (img.length > 1) {
-            img.pop()
-          }
-          this.img = img
-          this.addlike = true
-          this.dellike = false
-          if (this.UserId) {
-            //查看用户是否点赞
-            let faId = this.value.art[0].faId
-            get.userId = this.UserId.replace(/\"/g, "")
-            axios.get(this.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
-              if (result.data.data == 1) {
-                this.addlike = false
-                this.dellike = true
-              }
-            });
-            //判断是不是管理员
-            if (get.userId == 33) {
-              get.admin = true
+          console.log(get.value.art[0])
+          if(!get.value.art[0]){
+            this.$router.push({path:'/forum'});
+          }else{
+            let img = get.value.art[0].faImg.split(',')
+            if (img.length > 1) {
+              img.pop()
             }
-            //查看是否是精品推荐
-            // console.log('看看id咋回事'+faId)
-            axios.get(this.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
-              // console.log(result.data.data )
-              if (result.data.data == 1) {
-                // console.log('是0不中')
-
-                this.rec = 1;
+            this.img = img
+            this.addlike = true
+            this.dellike = false
+            if (this.UserId) {
+              //查看用户是否点赞
+              let faId = this.value.art[0].faId
+              get.userId = this.UserId.replace(/\"/g, "")
+              axios.get(this.$store.state.url + `/forumSee/selike?faId=${faId}&&userId=${get.userId}`).then((result) => {
+                if (result.data.data == 1) {
+                  this.addlike = false
+                  this.dellike = true
+                }
+              });
+              //判断是不是管理员
+              if (get.userId == 33) {
+                get.admin = true
               }
-            })
-          }
+              //查看是否是精品推荐
+              // console.log('看看id咋回事'+faId)
+              axios.get(this.$store.state.url + `/forumSee/seeEss?faId=${faId}`).then((result) => {
+                // console.log(result.data.data )
+                if (result.data.data == 1) {
+                  // console.log('是0不中')
 
+                  this.rec = 1;
+                }
+              })
+            }
+            //评论
+            get.value1 = []
+            get.comhead = []
+            if (get.value.comment) {
+              get.cou = Math.ceil(this.value.comment.length / 6)
+              for (let i = 0; i < get.value.comment.length; i++) {
+                //定义评论数组
+                get.value.comment[i].replys = []
+                this.aaa.push(false)
+                this.bbb.push([])
 
-          //评论
-          get.value1 = []
-          get.comhead = []
-          if (get.value.comment) {
-            get.cou = Math.ceil(this.value.comment.length / 6)
-            for (let i = 0; i < get.value.comment.length; i++) {
-              //定义评论数组
-              get.value.comment[i].replys = []
-              this.aaa.push(false)
-              this.bbb.push([])
+                //添加回复到对应的评论里
+                if (get.value.reply) {
 
-              //添加回复到对应的评论里
-              if (get.value.reply) {
+                  for (let j = 0; j < get.value.reply.length; j++) {
 
-                for (let j = 0; j < get.value.reply.length; j++) {
-
-                  if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
-                    get.bbb[i].push(false)
-                    get.value.comment[i].replys.push(get.value.reply[j])
+                    if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
+                      get.bbb[i].push(false)
+                      get.value.comment[i].replys.push(get.value.reply[j])
+                    }
                   }
                 }
+
               }
 
-            }
-
-            //当前评论数
-            if (this.value.comment.length > 6) {
-              for (let i = 0; i < 6; i++) {
-                this.value1.push(this.value.comment[i])
-              }
-            } else {
-              for (let i = 0; i < this.value.comment.length; i++) {
-                this.value1.push(this.value.comment[i])
+              //当前评论数
+              if (this.value.comment.length > 6) {
+                for (let i = 0; i < 6; i++) {
+                  this.value1.push(this.value.comment[i])
+                }
+              } else {
+                for (let i = 0; i < this.value.comment.length; i++) {
+                  this.value1.push(this.value.comment[i])
+                }
               }
             }
           }
+
         })
+        document.getElementById('dd0').innerText = ''
       },
     },
     //监听路由
@@ -765,43 +793,49 @@
 
     created() {
       this.require()
+
     }
   }
 </script>
 
 <style scoped>
-  #p{
+  #p {
 
-margin-left:-60px;
-margin-top:-20px;
-    font-size:14px;
+    margin-left: -60px;
+    margin-top: -20px;
+    font-size: 14px;
   }
-  video{
+
+  video {
     max-width: 700px;
     max-height: 450px;
   }
-  .input{
-    margin-top:-5px;
-    margin-left:2px;
-    font-size:25px;
+
+  .input {
+    margin-top: -5px;
+    margin-left: 2px;
+    font-size: 25px;
     color: #8e8e8e;
   }
+
   .fileinput-button {
     position: relative;
     display: inline-block;
     overflow: hidden;
-    left:-30px;
-    margin-bottom:10px;
-    margin-top:-4px;
+    left: -30px;
+    margin-bottom: 10px;
+    margin-top: -4px;
     width: 30px;
-    padding-right:25px;
+    padding-right: 25px;
     opacity: 0;
   }
-  .glyphicon-picture{
+
+  .glyphicon-picture {
     /*font-size:30px;*/
   }
-  .fileinput-button input{
-    position:absolute;
+
+  .fileinput-button input {
+    position: absolute;
     right: 0px;
     top: 0px;
     opacity: 0;
@@ -809,31 +843,35 @@ margin-top:-20px;
     font-size: 200px;
   }
 
-  .glyphicon-star{
+  .glyphicon-star {
     color: #f6d576;
   }
-  .glyphicon-heart{
+
+  .glyphicon-heart {
     color: #f60000;
   }
 
-  .comP{
-    margin-bottom:-10px;
+  .comP {
+    margin-bottom: -10px;
   }
+
   .comimg {
     max-width: 500px;
     margin-bottom: 15px;
     margin-top: 15px;
   }
-  h4{
-    padding-bottom:7px;
-    border-bottom:1px solid #bebebe;
+
+  h4 {
+    padding-bottom: 7px;
+    border-bottom: 1px solid #bebebe;
   }
+
   span {
     display: inline-block;
   }
 
   .blue {
-    background: #0a498f;
+    background: #285f8f;
     border: none;
     width: 723px;
   }
@@ -877,18 +915,18 @@ margin-top:-20px;
   }
 
   #con {
-    /*background: url("../../assets/forum/7.jpg");*/
+
     background: #f5f5f5;
     width: 100%;
     height: 100%;
     margin-top: -240px;
-    /*margin-bottom: -240px;*/
-    /*padding-bottom: 100px;*/
+
+    min-width: 1280px;
   }
 
   .top {
     background: white;
-    height:90px;
+    height: 90px;
     margin-top: 160px;
     margin-bottom: -300px;
     box-shadow: -2px 2px 10px 2px #f0f0f0;
@@ -1045,33 +1083,36 @@ margin-top:-20px;
     background: url("../../assets/forum/6.jpg");
     vertical-align: unset;
     position: relative;
-    top:-1px;
-    margin-right:10px;
+    top: -1px;
+    margin-right: 10px;
   }
-  .but{
-    margin-left:10px;
+
+  .but {
+    margin-left: 10px;
   }
+
   .val1 {
     margin-left: 50px;
     font-size: 15px;
     word-wrap: break-word;
   }
-  .com1 .but{
+
+  .com1 .but {
     margin-left: 60px;
   }
+
   .com1 {
     margin-bottom: 0px;
     margin-top: 20px;
 
     word-wrap: break-word;
     border-left: 4px solid #ebebeb;
-    padding-left:10px;
+    padding-left: 10px;
   }
 
   .com11 {
     margin-top: -10px;
     margin-bottom: 5px;
-
 
     word-wrap: break-word;
   }
@@ -1099,7 +1140,7 @@ margin-top:-20px;
 
   .cominp1 {
     min-height: 35px;
-    width:605px;
+    width: 605px;
 
     word-wrap: break-word;
   }
@@ -1124,9 +1165,10 @@ margin-top:-20px;
 
   .time {
     font-size: 14px;
-    margin-top:15px;
+    margin-top: 15px;
   }
-  .foot{
-    margin-top:30px;
+
+  .foot {
+    margin-top: 30px;
   }
 </style>
