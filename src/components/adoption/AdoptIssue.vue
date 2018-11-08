@@ -424,6 +424,10 @@
     box-shadow: -2px 2px 10px 2px #bcbcbc;
     position: relative;
   }
+  .tol{
+    width: 100%;
+    min-width: 1280px;
+  }
   .top{
     width: 100%;
     height: 110px;
@@ -434,6 +438,7 @@
     /*box-shadow: -2px 2px 10px 2px #f8f8f8;*/
     margin-top:5px;
     margin-bottom:-90px;
+    min-width: 1280px;
   }
   form {
     margin-top: 50px;

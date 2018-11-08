@@ -109,21 +109,28 @@
     background: url(../assets/forum/15.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: 100% auto;
-    background-blend-mode: darken
+    background-blend-mode: darken;
+    min-width:1280px;
+
   }
   .q2{
     height: 450px;
+    min-width:1280px;
     background: url(../assets/forum/1.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: 100% auto;
-    background-blend-mode: darken
+    background-blend-mode: darken;
+
+
   }
 
   .home{
     width: 100%;
     background: rgb(242, 244,241);
     position: relative;
-    /*padding-bottom:150px;*/
+
+    min-width:1280px;
+
   }
   .top{
     height: 750px;

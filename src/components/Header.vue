@@ -31,7 +31,7 @@
             <li><a href="#" @click="cleanUser">退出登录</a></li>
           </ul>
         </li>
-        <li><span><i class="el-icon-location"></i>{{address}}</span></li>
+        <li class="r"><span><i class="el-icon-location"></i>{{address}}</span></li>
         <div id="allmap"></div>
       </ul>
   </div>
@@ -102,6 +102,8 @@
     height: 80px;
     position: relative;
     margin-bottom:-100px;
+    min-width:1280px;
+
   }
   .nav>li>a:focus {
     text-decoration: none;
@@ -116,6 +118,10 @@
   .right{
     float: right;
     min-width: 250px;
+
+  }
+  .r{
+    padding-right:20px;
   }
   .left{
     width: 750px;
@@ -169,5 +175,7 @@
     background: url("../assets/HomePage/right3.jpg")  no-repeat ;
     background-size: 100% 100%;
   }
-
+  .navbar-nav {
+     margin:0;
+  }
 </style>

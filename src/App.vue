@@ -296,7 +296,10 @@
 </script>
 
 <style>
-
+#ap{
+  width: 100%;
+  min-width: 1280px;
+}
   a{
     cursor: pointer;
     text-decoration: none;
@@ -323,6 +326,7 @@
   top:0;
   left:0;
   width:100%;
+  min-width: 1280px;
   height:100%;
   z-index:-1;
 }

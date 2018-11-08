@@ -77,6 +77,8 @@
     /*margin-top: 80px;*/
     background: #4f4f4f;
     /*margin-bottom: -20px;*/
+    min-width:1280px;
+
   }
   ul{
     position: relative;
