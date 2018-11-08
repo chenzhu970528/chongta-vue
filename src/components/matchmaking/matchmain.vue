@@ -117,6 +117,8 @@
 <style scoped>
   .tol{
     background-color: white;
+    width: 100%;
+    min-width:1280px;
   }
   .top{
     width: 100%;
