@@ -31,6 +31,9 @@
           if(this.scrollTop>500){
             this.goTopShow=true
           }
+          if(this.scrollTop<500){
+            this.goTopShow=false
+          }
         },
         goTop(){
           let timer=null,_that=this;

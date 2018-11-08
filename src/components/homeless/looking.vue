@@ -125,6 +125,11 @@
     z-index: 20;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
+    transition: all 0.8s;
+
+  }
+  .listbox img:hover{
+    transform: scale(1,0.95);
   }
   .clearfix {
     display: block;
