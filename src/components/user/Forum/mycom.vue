@@ -5,7 +5,7 @@
     <div class="main" id="scroll" v-for="">
       <div class="comment" v-for="(val,index) in value">
         <el-row>
-          <el-col :span="7">
+          <el-col :span="7" class="img">
             <!--我的用户头像-->
             <img :src='url+pic.headPic' alt="" class="head">
           </el-col>
@@ -97,6 +97,17 @@ console.log(index+'30才对')
 </script>
 
 <style scoped>
+  .img{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background: url("../../../assets/HomePage/right3.jpg");
+    margin-bottom:5px;
+    margin-top:5px;
+    vertical-align: unset;
+    background-size: 100% 100%;
+
+  }
   img{
     width: 46px;
     height: 46px;
@@ -114,9 +125,9 @@ console.log(index+'30才对')
     width: 50px;
     height: 50px;
     border-radius: 25px;
-    background: url("../../../assets/forum/8.jpg");
+
     margin-bottom:5px;
-    margin-top:5px;
+    /*margin-top:5px;*/
   }
 .span p{
   font-weight: bold;

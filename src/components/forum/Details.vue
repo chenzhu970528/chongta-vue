@@ -12,7 +12,9 @@
 
             <div class="headpic">
               <!--<img class='headimg' :src='url+value.pic[0].headPic' alt="">-->
-              <span class='headimg'><img class='headimg' :src='url+value.pic[0].headPic' alt=""></span>
+              <span class='headimg0'>
+                <img class='headimg' :src='url+value.pic[0].headPic' alt="">
+              </span>
               <span class="name">{{value.art[0].userName}}</span>
 
               <span>{{value.art[0].time.slice(0,16).replace('T',' ')}}</span>
@@ -301,12 +303,12 @@
         return setTimeout(function () {
           //重新渲染数据用
 
-          console.log( get.w+'chang')
-
-          console.log( get.value.comment.length+'value')
-          console.log( get.cou+'页数')
-          console.log( get.page+'当前页数')
-          console.log( get.value1.length+'value1')
+          // console.log( get.w+'chang')
+          //
+          // console.log( get.value.comment.length+'value')
+          // console.log( get.cou+'页数')
+          // console.log( get.page+'当前页数')
+          // console.log( get.value1.length+'value1')
           let faId = window.localStorage.faId;
           get.value.comment = []
           get.comhead = []
@@ -646,7 +648,7 @@
 console.log('www')
 console.log(this.value.comment.length+'000')
         if(this.w===this.value.comment.length){
-          console.log(this.w+'==')
+          // console.log(this.w+'==')
           this.w--
         }
 
@@ -799,10 +801,10 @@ console.log(this.value.comment.length+'000')
           }
 
         })
-        if(get.myHtmlCode!=''){
-          console.log('>>>>>')
-          document.getElementById('dd0').innerText = ''
-        }
+       if(get.myHtmlCode!=''){
+         console.log('>>>>>')
+         document.getElementById('dd0').innerText = ''
+       }
 
       },
     },
@@ -1004,9 +1006,25 @@ console.log(this.value.comment.length+'000')
     cursor: pointer;
   }
 
+  .headimg0 {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background: url("../../assets/HomePage/right3.jpg") no-repeat;
+    background-size: 100% 100%;
+    vertical-align: unset;
+    /*background-color: red;*/
+    position: relative;
+    /*top: -1px;*/
+    /*margin-right: 10px;*/
+
+  }
   .headimg {
     width: 60px;
     height: 60px;
+    border-radius:30px;
+    position: relative;
+    top: -6px;
     border-radius: 60px;
     background: url("../../assets/HomePage/right3.jpg") no-repeat;
     background-size: 100% 100%;
@@ -1101,13 +1119,15 @@ console.log(this.value.comment.length+'000')
     width: 46px;
     height: 46px;
     border-radius: 23px;
-    background: url("../../assets/HomePage/right3.jpg") no-repeat;
-    background-size: 100% 100%;
+    background: url("../../assets/HomePage/right3.jpg");
     vertical-align: unset;
     /*background-color: red;*/
     position: relative;
-    top: -1px;
+    top: 0px;
     margin-right: 10px;
+    background-size: 100% 100%;
+
+
   }
 
   .but {

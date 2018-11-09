@@ -1,5 +1,7 @@
 <template>
   <div class="header">
+
+
       <!-- Collect the nav links, forms, and other content for toggling -->
       <ul class="nav navbar-nav left" >
         <img class="logo" src="../assets/logo.png" alt="">
@@ -19,7 +21,7 @@
         <!--登录成功-->
         <li v-if="isLogin">
           <div class="headimg">
-            <img :src="HeadPic" alt="">
+            <img :src="url+userPic.headPic" alt="">
           </div>
         </li>
         <li class="dropdown" v-if="isLogin">
@@ -41,11 +43,15 @@
 <script>
   import Login from '../components/user/Login.vue'
   import {mapGetters} from 'vuex';
+  import axios from 'axios'
+
   export default {
     name: "Header",
     data(){
       return{
-        address:''
+        address:'',
+        userPic:'',
+        url:this.$store.state.url,
       }
     },
     components:{
@@ -80,10 +86,11 @@
     },
     mounted(){
       this.myaddress()
-      // $(window).scroll(function () {
-      //   if ($(".bgsty").offset().top > 360) {$(".navbar-fixed-top").addClass("top-nav");
-      //   }else {$(".navbar-fixed-top").removeClass("top-nav");}
-      // })
+      let id = this.UserId.replace(/\"/g, "")
+      axios.get(this.$store.state.url + `/forumSee/user/pic?userId=${id}`).then((result) => {
+        this.userPic = result.data.data[0];
+        console.log( this.userPic)
+      })
     }
 
   }
