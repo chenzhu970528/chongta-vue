@@ -301,12 +301,12 @@
         return setTimeout(function () {
           //重新渲染数据用
 
-          // console.log( get.w+'chang')
-          //
-          // console.log( get.value.comment.length+'value')
-          // console.log( get.cou+'页数')
-          // console.log( get.page+'当前页数')
-          // console.log( get.value1.length+'value1')
+          console.log( get.w+'chang')
+
+          console.log( get.value.comment.length+'value')
+          console.log( get.cou+'页数')
+          console.log( get.page+'当前页数')
+          console.log( get.value1.length+'value1')
           let faId = window.localStorage.faId;
           get.value.comment = []
           get.comhead = []
@@ -338,23 +338,23 @@
               }
 
               if (get.value.comment.length>0) {
-                console.log(get.value.comment.length+'看看现在几个')
+                // console.log(get.value.comment.length+'看看现在几个')
                 //点开完评论，添加删除完还是点开完
                 if(get.w <6){
-                  console.log('(get.w===get.value1.length||get.value.comment.length <6)')
+                  // console.log('(get.w===get.value1.length||get.value.comment.length <6)')
 
                   get.value1 = get.value.comment
                 }
                 //加载更多状态 添加删除完还是加载更多状态 的w
                 else if (get.w >= 6) {
-                  
+
                   for (let i = 0; i < get.w; i++) {
                     get.value1.push(get.value.comment[i])
                   }
                 }
               }
               else{
-               get.w=0
+                get.w=0
               }
             }
             else{
@@ -495,7 +495,7 @@
             this.w=1
           }
         }
-console.log(this.w+'??????????')
+// console.log(this.w+'??????????')
         if (!this.UserId) {
           this.tips = '先去登录吧'
           this.show()
@@ -642,10 +642,11 @@ console.log(this.w+'??????????')
       //删除评论
       delcom(fcId) {
 //收起
-// console.log(this.w+'www')
-// console.log(this.value.comment.length+'000')
+        console.log ('pppppppp')
+console.log('www')
+console.log(this.value.comment.length+'000')
         if(this.w===this.value.comment.length){
-          // console.log(this.w+'==')
+          console.log(this.w+'==')
           this.w--
         }
 
@@ -654,7 +655,10 @@ console.log(this.w+'??????????')
           _this.tips = '评论删除成功'
           _this.show()
           //重新渲染数据用
+          console.log ('pppppppp')
+
           _this.ajax()
+
         })
 
 
@@ -792,10 +796,14 @@ console.log(this.w+'??????????')
             else{
               get.w=0
             }
-            }
+          }
 
         })
-        document.getElementById('dd0').innerText = ''
+        if(get.myHtmlCode!=''){
+          console.log('>>>>>')
+          document.getElementById('dd0').innerText = ''
+        }
+
       },
     },
     //监听路由
@@ -1000,7 +1008,8 @@ console.log(this.w+'??????????')
     width: 60px;
     height: 60px;
     border-radius: 60px;
-    background: url("../../assets/forum/6.jpg");
+    background: url("../../assets/HomePage/right3.jpg") no-repeat;
+    background-size: 100% 100%;
   }
 
   .img {
@@ -1092,8 +1101,10 @@ console.log(this.w+'??????????')
     width: 46px;
     height: 46px;
     border-radius: 23px;
-    background: url("../../assets/forum/6.jpg");
+    background: url("../../assets/HomePage/right3.jpg") no-repeat;
+    background-size: 100% 100%;
     vertical-align: unset;
+    /*background-color: red;*/
     position: relative;
     top: -1px;
     margin-right: 10px;

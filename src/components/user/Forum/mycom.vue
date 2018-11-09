@@ -97,6 +97,19 @@ console.log(index+'30才对')
 </script>
 
 <style scoped>
+  img{
+    width: 46px;
+    height: 46px;
+    border-radius: 23px;
+    background: url("../../../assets/HomePage/right3.jpg") no-repeat;
+    background-size: 100% 100%;
+    vertical-align: unset;
+    /*background-color: red;*/
+    position: relative;
+    top: -1px;
+    margin-right: 10px;
+
+  }
   .head{
     width: 50px;
     height: 50px;
