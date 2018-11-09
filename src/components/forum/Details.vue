@@ -12,7 +12,9 @@
 
             <div class="headpic">
               <!--<img class='headimg' :src='url+value.pic[0].headPic' alt="">-->
-              <span class='headimg'><img class='headimg' :src='url+value.pic[0].headPic' alt=""></span>
+              <span class='headimg0'>
+                <img class='headimg' :src='url+value.pic[0].headPic' alt="">
+              </span>
               <span class="name">{{value.art[0].userName}}</span>
 
               <span>{{value.art[0].time.slice(0,16).replace('T',' ')}}</span>
@@ -1000,11 +1002,25 @@
     cursor: pointer;
   }
 
+  .headimg0 {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background: url("../../assets/HomePage/right3.jpg") no-repeat;
+    background-size: 100% 100%;
+    vertical-align: unset;
+    /*background-color: red;*/
+    position: relative;
+    /*top: -1px;*/
+    /*margin-right: 10px;*/
+
+  }
   .headimg {
     width: 60px;
     height: 60px;
-    border-radius: 60px;
-    background: url("../../assets/forum/6.jpg");
+    border-radius:30px;
+    position: relative;
+    top: -6px;
   }
 
   .img {
@@ -1096,11 +1112,16 @@
     width: 46px;
     height: 46px;
     border-radius: 23px;
-    background: url("../../assets/forum/6.jpg");
+    background: url("../../assets/HomePage/right3.jpg");
     vertical-align: unset;
     position: relative;
-    top: -1px;
+    top: 0px;
     margin-right: 10px;
+
+    background-size: 100% 100%;
+    vertical-align: unset;
+
+
   }
 
   .but {
