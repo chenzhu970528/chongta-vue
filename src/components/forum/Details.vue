@@ -315,7 +315,7 @@
 
             get.aaa = []
             get.bbb = []
-
+            get.value1 = []//先清空
 
             if (get.value.comment) {
               get.cou = Math.ceil(get.value.comment.length / 6)
@@ -336,33 +336,42 @@
                   }
                 }
               }
+
+              if (get.value.comment.length>0) {
+                console.log(get.value.comment.length+'看看现在几个')
+                //点开完评论，添加删除完还是点开完
+                if(get.value.comment.length <6&& get.w!==6){
+                  console.log('(get.w===get.value1.length||get.value.comment.length <6)')
+
+                  get.value1 = get.value.comment
+                }
+                //加载更多状态 添加删除完还是加载更多状态 的w
+                // else if (get.w >= 6) {
+                else{
+                  console.log('get.w >= 6')
+
+                  // if(get.w<=get.value.comment.length){
+
+                  for (let i = 0; i < get.w; i++) {
+                    get.value1.push(get.value.comment[i])
+                  }
+                  // }
+
+                }
+
+              }
+              else{
+               get.w=0
+              }
+
+            }
+            else{
+              get.w=0
             }
 
             //当前评论数
 
-            if (get.value.comment) {
-              console.log(get.value.comment.length+'看看现在几个')
-              //点开完评论，添加删除完还是点开完
-              if(get.value.comment.length <6&& get.w!==6){
-                console.log('(get.w===get.value1.length||get.value.comment.length <6)')
-                get.value1 = []//先清空
-                get.value1 = get.value.comment
-              }
-              //加载更多状态 添加删除完还是加载更多状态 的w
-              // else if (get.w >= 6) {
-              else{
-                console.log('get.w >= 6')
 
-                // if(get.w<=get.value.comment.length){
-                  get.value1 = []//先清空
-                  for (let i = 0; i < get.w; i++) {
-                    get.value1.push(get.value.comment[i])
-                  }
-                // }
-
-              }
-
-            }
 
           })
         }, 300)
@@ -488,10 +497,13 @@
 
       //添加评论
       addCom() {
-        if(this.w===this.value.comment.length){
-          // console.log(this.w+'++')
-          this.w++
+        if(this.value.comment){
+          if(this.w===this.value.comment.length&&this.value.comment.length>0){
+            // console.log(this.w+'++')
+            this.w++
+          }
         }
+
         if (!this.UserId) {
           this.tips = '先去登录吧'
           this.show()
@@ -747,40 +759,46 @@
             //评论
             get.value1 = []
             get.comhead = []
-            if (get.value.comment) {
-              get.cou = Math.ceil(this.value.comment.length / 6)
-              for (let i = 0; i < get.value.comment.length; i++) {
-                //定义评论数组
-                get.value.comment[i].replys = []
-                this.aaa.push(false)
-                this.bbb.push([])
+            if(get.value.comment){
+              if (get.value.comment.length>0) {
+                get.cou = Math.ceil(this.value.comment.length / 6)
+                for (let i = 0; i < get.value.comment.length; i++) {
+                  //定义评论数组
+                  get.value.comment[i].replys = []
+                  this.aaa.push(false)
+                  this.bbb.push([])
 
-                //添加回复到对应的评论里
-                if (get.value.reply) {
+                  //添加回复到对应的评论里
+                  if (get.value.reply) {
 
-                  for (let j = 0; j < get.value.reply.length; j++) {
+                    for (let j = 0; j < get.value.reply.length; j++) {
 
-                    if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
-                      get.bbb[i].push(false)
-                      get.value.comment[i].replys.push(get.value.reply[j])
+                      if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
+                        get.bbb[i].push(false)
+                        get.value.comment[i].replys.push(get.value.reply[j])
+                      }
                     }
                   }
+
                 }
 
+                //当前评论数
+                if (this.value.comment.length > 6) {
+                  for (let i = 0; i < 6; i++) {
+                    this.value1.push(this.value.comment[i])
+                  }
+                  this.w=6
+                } else {
+                  this.w=this.value.comment.length
+                  this.value1=this.value.comment
+                }
               }
-
-              //当前评论数
-              if (this.value.comment.length > 6) {
-                for (let i = 0; i < 6; i++) {
-                  this.value1.push(this.value.comment[i])
-                }
-              } else {
-                for (let i = 0; i < this.value.comment.length; i++) {
-                  this.value1.push(this.value.comment[i])
-                }
+              else{
+                get.w=0
               }
             }
-          }
+
+            }
 
         })
         document.getElementById('dd0').innerText = ''
