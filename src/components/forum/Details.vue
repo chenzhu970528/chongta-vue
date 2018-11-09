@@ -338,16 +338,16 @@
               }
 
               if (get.value.comment.length>0) {
-                console.log(get.value.comment.length+'看看现在几个')
+                // console.log(get.value.comment.length+'看看现在几个')
                 //点开完评论，添加删除完还是点开完
                 if(get.w <6){
-                  console.log('(get.w===get.value1.length||get.value.comment.length <6)')
+                  // console.log('(get.w===get.value1.length||get.value.comment.length <6)')
 
                   get.value1 = get.value.comment
                 }
                 //加载更多状态 添加删除完还是加载更多状态 的w
                 else if (get.w >= 6) {
-                  
+
                   for (let i = 0; i < get.w; i++) {
                     get.value1.push(get.value.comment[i])
                   }
@@ -495,7 +495,7 @@
             this.w=1
           }
         }
-console.log(this.w+'??????????')
+// console.log(this.w+'??????????')
         if (!this.UserId) {
           this.tips = '先去登录吧'
           this.show()
@@ -795,7 +795,11 @@ console.log(this.w+'??????????')
             }
 
         })
-        document.getElementById('dd0').innerText = ''
+       if(get.myHtmlCode!=''){
+         console.log('>>>>>')
+         document.getElementById('dd0').innerText = ''
+       }
+
       },
     },
     //监听路由
