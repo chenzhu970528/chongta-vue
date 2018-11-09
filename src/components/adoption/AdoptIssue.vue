@@ -149,7 +149,7 @@
                    @change="changeImage($event)"
                    accept="image/gif,image/jpeg,image/jpg,image/png,.mp4"
                    ref="avatarInput"
-                   multiple><span style="line-height: 30px"><b>上传视频请在图片后</b></span>
+                   multiple><span style="line-height: 30px"><b>上传视频请在图片后,按住Ctrl进行多选</b></span>
             <b class="size">全部文件不能大于50M/{{size}}M</b>
             <br/>
           </div>
@@ -418,6 +418,9 @@
 </script>
 
 <style scoped>
+  .breadcrumb{
+    background-color: transparent;
+  }
   .container {
     background: rgba(255, 255, 255, 0.9);
     margin-top: 150px;

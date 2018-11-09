@@ -3,7 +3,7 @@
       <el-carousel height="300px" >
         <el-carousel-item style="text-align: center" v-for="(img,index) in imgList" :key="index">
           <img style="height: 300px" :src="img">
-          <video :src='img' controls="controls" style="width: 500px;"> </video>
+          <video :src='img' controls="controls" style="width: 470px;height: 300px;"></video>
         </el-carousel-item>
       </el-carousel>
     </div>
