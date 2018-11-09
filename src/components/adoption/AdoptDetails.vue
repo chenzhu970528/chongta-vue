@@ -111,6 +111,9 @@
 </script>
 
 <style scoped>
+  .breadcrumb{
+    background-color: transparent;
+  }
   .cont{
     background:rgba(255,255,255,0.9);
     margin-top:150px ;

@@ -148,7 +148,7 @@
     content: '';
     position: absolute;
     bottom: 100%;
-    height: 15em;
+    height: 25em;
     width: 0.2em;
     background-color: #000;
   }
