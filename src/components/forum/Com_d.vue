@@ -40,7 +40,8 @@
     },
     methods: {
       ss() {
-        let storage=window.localStorage;
+        let storage=window.sessionStorage;
+
         let val=this.aa
         storage.plate=4
         storage.text=val
@@ -57,7 +58,7 @@
     margin-bottom: 10px;
     position: relative;
     left: 840px;
-    z-index:-1;
+    z-index:0;
   }
 
   .form-control {
@@ -65,7 +66,7 @@
     margin-right:-3px;
   }
 span{
-  z-index:0;
+  z-index:1;
 }
   .ul > li {
     height: 30px;

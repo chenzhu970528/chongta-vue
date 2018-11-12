@@ -21,7 +21,6 @@
 <script>
   import List from './List'
   import Ranking from './Ranking'
-  import Com_paging from './Com_paging'
   import Com_d from './Com_d.vue'
   import  footBlack from '../../components/footBlack.vue'
   export default {
@@ -29,7 +28,6 @@
     components: {
       'list': List,
       'ranking': Ranking,
-      'com_paging': Com_paging,
       'com_d': Com_d,
       'foot-black':footBlack
     }

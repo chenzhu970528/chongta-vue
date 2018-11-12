@@ -1,14 +1,14 @@
 <template>
 
     <div class="d1">
-      <div class="top"><span class="left">最多收藏</span></div>
-      <img style="height:50px;margin-top:-115px;margin-left: 85px;" src="../../assets/forum/22.gif" alt="">
-      <div class="bot" v-for="(list,index) in list1">
-        <span @click="see(list[0].faId)">
-        <router-link tag="p" active-class="active"  role="presentation" :to="`/forum/`+list[0].faId">
+      <div class="top"><span class="left">最多收藏</span>
+        <img class="img" src="../../assets/forum/22.gif" alt="">
+      </div>
+
+      <div v-for="(list,index) in list1">
+        <router-link tag="p"  :to="`/forum/`+list[0].faId">
           <h4 ><span>{{index+1}}&nbsp </span><a>{{list[0].faTitle}}</a></h4>
         </router-link>
-        </span>
       </div>
     </div>
 
@@ -26,12 +26,6 @@
       }
     },
     methods: {
-      see(index) {
-        let storage=window.localStorage;
-        storage.faId=index
-        // this.$router.go(0)
-
-      },
       ajax(){  axios.get(this.$store.state.url+"/forumSee/likes").then((result) => {
         this.list1 = result.data.data;
       })}
@@ -39,7 +33,7 @@
     watch:{
       "$route":"ajax"
     },
-    mounted() {
+    created() {
     this.ajax()
 
     }
@@ -47,6 +41,10 @@
 </script>
 
 <style scoped>
+  .img{
+   height:50px;
+    margin-top: -20px;
+  }
   .d1 {
     box-shadow: -2px 2px 10px 2px #f3f3f3;
     background: rgba(255, 255, 255, 0.9);

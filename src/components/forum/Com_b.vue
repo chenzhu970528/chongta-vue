@@ -35,6 +35,10 @@
 
             </div>
             <span class="size">全部文件不能大于50M/{{size}}M</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" :style='loading'>
+              </div>
+            </div>
           </div>
           <div class="col-sm-5">
             <img class="img" src="../../assets/forum/23.gif" alt="">
@@ -61,6 +65,7 @@
     ]),
     data() {
       return {
+        loading:'width:50%',
         upath: '',  //保存选中的文件
         aa: '交流分享',
         title: '',
@@ -68,7 +73,8 @@
         type: 'b',
         tips: '发表成功',
         vv: false,
-        size: 0
+        size: 0,
+        xhr:0
       }
     },
     methods: {
@@ -121,14 +127,12 @@
           zipFormData.append('faType', aa.faType)
           let config = {headers: {'Content-Type': 'multipart/form-data'}};
           this.$axios.post(this.$store.state.url + '/forumAdd/art', zipFormData, config)
-            .then(function (response) {
-
+           .then(function (response) {
               _this.tips = '发表成功'
               _this.c()
             }).catch((err) => {
             alert(err)
-          });
-
+          })
         }
         else {
           _this.tips = '最多上传六个文件'
@@ -191,6 +195,12 @@
 </script>
 
 <style scoped>
+  .progress {
+    display:inline-block;
+    height: 3px;
+    width:100px;
+    margin-bottom:3px;
+  }
   #p{
     margin-left:0px;
     font-size:14px;

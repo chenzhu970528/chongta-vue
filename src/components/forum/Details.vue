@@ -309,7 +309,8 @@
           // console.log( get.cou+'页数')
           // console.log( get.page+'当前页数')
           // console.log( get.value1.length+'value1')
-          let faId = window.localStorage.faId;
+          // let faId = window.localStorage.faId;
+          let faId =get.$route.params.faId;
           get.value.comment = []
           get.comhead = []
           axios.get(get.$store.state.url + `/forumSee/all/?faId=${faId}`).then((result) => {
@@ -709,12 +710,13 @@
 
       require() {
         this.rec = 0
-        let faId = window.localStorage.faId;
+        // let faId = window.localStorage.faId;
+        let faId =this.$route.params.faId;
         let get = this
         axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
 
           get.value = result.data.data;
-          console.log(get.value.art[0])
+          // console.log(get.value.art[0])
           if(!get.value.art[0]){
             this.$router.push({path:'/forum'});
           }else{
@@ -798,7 +800,7 @@
 
         })
        if(get.myHtmlCode!=''){
-         console.log('>>>>>')
+         // console.log('>>>>>')
          document.getElementById('dd0').innerText = ''
        }
 

@@ -7,16 +7,16 @@
                  arrow="never" indicator-position="outside">
       <el-carousel-item v-for="item in 3" :key="item">
         <ul class="ul">
-          <li class="li" v-for="(val,index) in value[item-1]" @click="see(val[0].faId)">
+          <li class="li" v-for="(val,index) in value[item-1]">
 
-            <router-link class="pic" tag="a" active-class="active" role="presentation" :to="`/forum/`+val[0].faId">
+            <router-link class="pic" tag="a"  :to="`/forum/`+val[0].faId">
               <img
                 v-if="(img[item-1][index].substring(img[item-1][index].indexOf('.')+1,img[item-1][index].length))!=mp4"
                 class="img pic-image"  :src='url+img[item-1][index]'>
               <div class="video">
                 <video
                   v-if="(img[item-1][index].substring(img[item-1][index].indexOf('.')+1,img[item-1][index].length))==mp4"
-                  class="   pic-image" :src='url+img[item-1][index]'></video>
+                  class="pic-image" :src='url+img[item-1][index]'></video>
               </div>
 
               <span class="pic-caption bottom-to-top">
@@ -53,10 +53,7 @@
       }
     },
     methods: {
-      see(index) {
-        // console.log(index)
-        window.localStorage.faId = index;
-      },
+
       ajax() {
         axios.get(this.$store.state.url + "/forumSee/com").then((result) => {
           this.mydata = result.data.data;
@@ -84,7 +81,7 @@
     watch: {
       'route': 'ajax'
     },
-    mounted() {
+    created() {
       this.ajax()
     }
   }
