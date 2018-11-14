@@ -299,8 +299,10 @@
     },
 
     methods: {
+
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
+        // console.log(e.target.files)
         this.upath = e.target.files;
         document.getElementById('p').innerText = this.upath[0].name
       },
@@ -322,6 +324,7 @@
           get.comhead = []
           axios.get(get.$store.state.url + `/forumSee/all/?faId=${faId}`).then((result) => {
             get.value = result.data.data;
+
             get.aaa = []
             get.bbb = []
             get.value1 = []//先清空
@@ -350,6 +353,7 @@
                 //点开完评论，添加删除完还是点开完
                 if (get.w < 6) {
                   // console.log('(get.w===get.value1.length||get.value.comment.length <6)')
+
                   get.value1 = get.value.comment
                 }
                 //加载更多状态 添加删除完还是加载更多状态 的w
@@ -526,6 +530,7 @@
 
             this.addImg()
             document.getElementById('dd0').innerText = ''
+
             this.$forceUpdate()
             document.getElementById('p').innerText = ''
 
@@ -577,7 +582,7 @@
               type: "post",
               data: rr,
               success: function (result) {
-                // console.log(result.data)
+                console.log(result.data)
                 _this.tips = '回复成功'
                 _this.show()
                 //重新渲染数据用
