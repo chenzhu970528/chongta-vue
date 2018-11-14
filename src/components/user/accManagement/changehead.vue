@@ -61,6 +61,7 @@
       },
       //上传头像
       up:function () {
+
         let _this=this
         console.log(this.upath);
         var zipFormData = new FormData();

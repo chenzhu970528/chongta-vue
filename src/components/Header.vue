@@ -82,7 +82,7 @@
         }
         var myCity = new BMap.LocalCity();
         myCity.get(myFun);
-      }
+      },
     },
     mounted(){
       this.myaddress()
@@ -166,9 +166,13 @@
   }
 
   .headimg img{
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
+    width: 52px;
+    height: 52px;
+    border-radius: 52px;
+    position:relative;
+    left:-1px;
+   top:-1px;
+
   }
   .headimg {
     margin-top: 10px;
