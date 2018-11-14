@@ -38,19 +38,23 @@
                 <!--删除文章-->
                <span v-if="admin ||value.art[0].userId==userId ">
 
-            <el-popover
+            <el-popover v-if="comdel==0"
               placement="top"
               width="160">
               <!--v-model="visible2[index]"-->
               <p>确定删除吗？</p>
               <div style="text-align: right; margin: 0">
-                <el-button type="primary" size="mini" @click="delart(value.art[0].faId)">确定</el-button>
+               <!--<el-button size="mini" type="text" @click="del">取消</el-button>-->
+               <el-button type="primary" size="mini" @click="delart(value.art[0].faId)">确定</el-button>
               </div>
               <el-button slot="reference" icon="el-icon-delete" circle></el-button>
 
             </el-popover>
 
-               </span>
+            <el-button v-if="comdel==1" slot="reference" icon="el-icon-delete" circle></el-button>
+  </span>
+
+
 
 &nbsp
                 <!--增加收藏-->
@@ -126,17 +130,18 @@
                       <span @click.prevent="aaaa(index)" class="rr">回复</span>
                       <!--删除评论-->
                       <span v-if="admin ||com.userId==userId ">
-                       <el-popover
+                       <el-popover  v-if="comdel==0"
                          placement="top"
-                         width="160"
-                       >
-
+                         width="160">
                       <p>确定删除吗？</p>
                       <div style="text-align: right; margin: 0">
+                     <!--<el-button size="mini" type="text" @click="del">取消</el-button>-->
                         <el-button type="primary" size="mini" @click="delcom(com.fcId)">确定</el-button>
                       </div>
-                      <el-button slot="reference" icon="el-icon-delete" circle></el-button>
+                     <el-button slot="reference" icon="el-icon-delete" circle></el-button>
                     </el-popover>
+
+                     <el-button v-if="comdel==1" slot="reference" icon="el-icon-delete" circle></el-button>
 
 
                     </span>
@@ -175,17 +180,20 @@
                           <a @click="bb(index,keys)" class="rr">回复</a>
                           <!--删除回复-->
                           <span v-if="admin ||reply.frman==userId ">
-                         <el-popover
+                         <el-popover v-if="comdel==0"
                            placement="top"
                            width="160">
                         <!--v-model="visible2[index]"-->
                         <p>确定删除吗？</p>
                         <div style="text-align: right; margin: 0">
+                          <!--<el-button size="mini" type="text" @click="del">取消</el-button>-->
                           <el-button type="primary" size="mini" @click="delrep(reply.frId)">确定</el-button>
                         </div>
                         <el-button slot="reference" icon="el-icon-delete" circle></el-button>
-
                       </el-popover>
+                    <el-button v-if="comdel==1" slot="reference" icon="el-icon-delete" circle></el-button>
+
+
                         </span>
                           <div v-if="bbb[index][keys]" class="h">
                             <div class="dd2 test_box cominp2" contenteditable="true"
@@ -284,16 +292,14 @@
         cou: 0,//总页数,
         rec: 0,//推荐显示，
         admin: false,
-
         upath: [0],
+        comdel: 0
       }
     },
 
     methods: {
-
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
-        // console.log(e.target.files)
         this.upath = e.target.files;
         document.getElementById('p').innerText = this.upath[0].name
       },
@@ -310,12 +316,11 @@
           // console.log( get.page+'当前页数')
           // console.log( get.value1.length+'value1')
           // let faId = window.localStorage.faId;
-          let faId =get.$route.params.faId;
+          let faId = get.$route.params.faId;
           get.value.comment = []
           get.comhead = []
           axios.get(get.$store.state.url + `/forumSee/all/?faId=${faId}`).then((result) => {
             get.value = result.data.data;
-
             get.aaa = []
             get.bbb = []
             get.value1 = []//先清空
@@ -339,13 +344,11 @@
                   }
                 }
               }
-
-              if (get.value.comment.length>0) {
+              if (get.value.comment.length > 0) {
                 // console.log(get.value.comment.length+'看看现在几个')
                 //点开完评论，添加删除完还是点开完
-                if(get.w <6){
+                if (get.w < 6) {
                   // console.log('(get.w===get.value1.length||get.value.comment.length <6)')
-
                   get.value1 = get.value.comment
                 }
                 //加载更多状态 添加删除完还是加载更多状态 的w
@@ -356,17 +359,16 @@
                   }
                 }
               }
-              else{
-               get.w=0
+              else {
+                get.w = 0
               }
             }
-            else{
-              get.w=0
+            else {
+              get.w = 0
             }
             //当前评论数
-
           })
-        }, 300)
+        }, 200)
 
       },
       //加载更多
@@ -467,9 +469,10 @@
           userName: this.UserName.replace(/\"/g, ""),
         }
         document.getElementById('dd0').innerText = ''
+        this.myHtmlCode = ''
         var zipFormData = new FormData();
         //依次添加多个文件
-
+        let complete
         zipFormData.append('filename', this.upath[0]);
         this.upath = [0]
         //添加其他的表单元素
@@ -477,9 +480,23 @@
         zipFormData.append('faText', dd.faText)
         zipFormData.append('userId', dd.userId)
         zipFormData.append('userName', dd.userName)
-        let config = {headers: {'Content-Type': 'multipart/form-data'}};
+        let config = {
+          onUploadProgress: progressEvent => {
+            complete = (progressEvent.loaded / progressEvent.total * 100 | 0)
+            // console.log(complete)//进度值
+          },
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+
         this.$axios.post(this.$store.state.url + '/forumAdd/comment', zipFormData, config)
           .then(function (response) {
+            if (complete == 100) {
+              _this.ajax()
+              _this.tips = '评论成功'
+              _this.show()
+            }
             _this.$forceUpdate()
 
           }).catch((err) => {
@@ -489,15 +506,15 @@
 
       //添加评论
       addCom() {
-        if(this.value.comment){
-          if(this.w===this.value.comment.length&&this.value.comment.length>0){
-            // console.log(this.w+'++')
-            this.w++
-          }
-          else if(this.value.comment.length==0){
-            this.w=1
-          }
-        }
+        // if(this.value.comment){
+        //   if(this.w===this.value.comment.length&&this.value.comment.length>0){
+        //     // console.log(this.w+'++')
+        //     this.w++
+        //   }
+        //   else if(this.value.comment.length==0){
+        //     this.w=1
+        //   }
+        // }
 // console.log(this.w+'??????????')
         if (!this.UserId) {
           this.tips = '先去登录吧'
@@ -508,12 +525,9 @@
 
             this.addImg()
             document.getElementById('dd0').innerText = ''
-
             this.$forceUpdate()
             document.getElementById('p').innerText = ''
-            this.ajax()
-            this.tips = '评论成功'
-            this.show()
+
           }
           else if (document.getElementById('dd0').innerText.length > 250) {
             this.tips = '最多输入250字'
@@ -562,12 +576,12 @@
               type: "post",
               data: rr,
               success: function (result) {
-                console.log(result.data)
+                // console.log(result.data)
                 _this.tips = '回复成功'
                 _this.show()
                 //重新渲染数据用
                 _this.ajax()
-                this.$forceUpdate()
+                // this.$forceUpdate()
 
               }
             })
@@ -644,10 +658,11 @@
       },
       //删除评论
       delcom(fcId) {
+        this.comdel = 1
 //收起
 // console.log(this.w+'www')
 // console.log(this.value.comment.length+'000')
-        if(this.w===this.value.comment.length){
+        if (this.w === this.value.comment.length) {
           // console.log(this.w+'==')
           this.w--
         }
@@ -664,7 +679,7 @@
       },
       //删除回复
       delrep(frId) {
-        // console.log(frId)
+        this.comdel = 1
         let _this = this
         axios.get(this.$store.state.url + `/forumDel/reply?frId=${frId}`).then((result) => {
           _this.tips = '回复删除成功'
@@ -698,28 +713,37 @@
           _this.show()
         })
       },
+      del(){
+        let _this = this
+        _this.comdel =1
+        setTimeout(function () {
+          _this.comdel =0
+
+        }, 10)
+      },
       //发表成功提示框
       show() {
         let _this = this
         _this.hide = true
+        _this.comdel = 0
         setTimeout(function () {
           _this.hide = false
-          // _this.comf = 0
-        }, 2000)
+
+        }, 1000)
       },
 
       require() {
         this.rec = 0
         // let faId = window.localStorage.faId;
-        let faId =this.$route.params.faId;
+        let faId = this.$route.params.faId;
         let get = this
         axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
 
           get.value = result.data.data;
           // console.log(get.value.art[0])
-          if(!get.value.art[0]){
-            this.$router.push({path:'/forum'});
-          }else{
+          if (!get.value.art[0]) {
+            this.$router.push({path: '/forum'});
+          } else {
             let img = get.value.art[0].faImg.split(',')
             if (img.length > 1) {
               img.pop()
@@ -755,8 +779,8 @@
             //评论
             get.value1 = []
             get.comhead = []
-            if(get.value.comment){
-              if (get.value.comment.length>0) {
+            if (get.value.comment) {
+              if (get.value.comment.length > 0) {
                 get.cou = Math.ceil(this.value.comment.length / 6)
                 for (let i = 0; i < get.value.comment.length; i++) {
                   //定义评论数组
@@ -783,26 +807,26 @@
                   for (let i = 0; i < 6; i++) {
                     this.value1.push(this.value.comment[i])
                   }
-                  this.w=6
+                  this.w = 6
                 } else {
-                  this.w=this.value.comment.length
-                  this.value1=this.value.comment
+                  this.w = this.value.comment.length
+                  this.value1 = this.value.comment
                 }
               }
-              else{
-                get.w=0
+              else {
+                get.w = 0
               }
             }
-            else{
-              get.w=0
+            else {
+              get.w = 0
             }
-            }
+          }
 
         })
-       if(get.myHtmlCode!=''){
-         // console.log('>>>>>')
-         document.getElementById('dd0').innerText = ''
-       }
+        if (get.myHtmlCode != '') {
+          // console.log('>>>>>')
+          document.getElementById('dd0').innerText = ''
+        }
 
       },
     },
@@ -1017,10 +1041,11 @@
     /*margin-right: 10px;*/
 
   }
+
   .headimg {
     width: 60px;
     height: 60px;
-    border-radius:30px;
+    border-radius: 30px;
     position: relative;
     top: -6px;
   }
@@ -1122,7 +1147,6 @@
 
     background-size: 100% 100%;
     vertical-align: unset;
-
 
   }
 

@@ -87,6 +87,7 @@ console.log(index+'30才对')
       })
  axios.get(this.$store.state.url + `/forumSee/user/pic?userId=${id}`).then((result) => {
         this.pic = result.data.data[0];
+
       })
 
 

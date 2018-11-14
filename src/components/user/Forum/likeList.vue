@@ -222,9 +222,9 @@ padding-top:10px;
   }
   .tol{
     border-radius: 20px;
-    background-color: rgb(255,255,255);
+    background-color: rgba(255, 255, 255,0.9);
     margin-bottom: 25px;
-    box-shadow: -2px 2px 10px 0px #eeeeee;
+    /*box-shadow: -2px 2px 10px 0px #eeeeee;*/
 
   }
   .pic {

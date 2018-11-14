@@ -33,7 +33,7 @@
 
     watch: {
       '$route' (to, from) {
-        let faId=window.localStorage.faId
+        let faId=this.$route.params.faId;
         if(to.path == `/forum/${faId}`){
           this.aa=false
           this.$forceUpdate();

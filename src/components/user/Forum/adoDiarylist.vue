@@ -27,12 +27,11 @@
             v-model="visible1[index]">
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">
-
               <el-button type="primary" size="mini" @click="delart(val.faId)">确定</el-button>
             </div>
             <el-button slot="reference" icon="el-icon-delete" circle></el-button>
-            <!--<el-button slot="reference">删除</el-button>-->
           </el-popover>
+
         </div>
       </el-row>
     </div>
@@ -89,6 +88,7 @@
         value: [],//放数据库取得数据
         url: this.$store.state.url,
         mp4:'mp4',
+        delup:0
 
       }
     },
@@ -144,7 +144,7 @@
         setTimeout(function () {
           _this.hide = false
           // _this.comf = 0
-        }, 3000)
+        }, 1000)
 
       },
 
@@ -225,9 +225,9 @@ padding-top:10px;
 
   .tol {
     border-radius: 20px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255,0.9);
     margin-bottom: 25px;
-    box-shadow: -2px 2px 10px 0px #eeeeee;
+    /*box-shadow: -2px 2px 10px 0px #eeeeee;*/
   }
 
   .pic {

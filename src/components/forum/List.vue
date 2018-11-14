@@ -1,12 +1,9 @@
 <template>
   <div>
     <div class="con">
+      {{activitys.length}}
       <div class="com_d">
         <com_d></com_d>
-      </div>
-      <div v-if="activitys.length<1" class="no">
-        <img src="../../assets/forum/ku.jpg" alt="">
-        <h4>抱歉，暂时没有找到相关内容的帖子</h4>
       </div>
       <ul>
         <li :key="index" v-model="val.faId" v-for="(val,index) in activitys">
@@ -54,11 +51,13 @@
           </el-pagination>
 
         </div>
-        <a name="a" style="margin-bottom:100px;"></a>
 
       </ul>
+      <div v-if="activitys.length==0" class="no">
+        <img src="../../assets/forum/ku.jpg" alt="">
+        <h4>抱歉，暂时没有找到相关内容的帖子</h4>
+      </div>
     </div>
-    <!--<p v-if="vv" class="cc">没有了哦</p>-->
 
   </div>
 </template>
@@ -82,7 +81,6 @@ mp4:'mp4',
         faId: '',
         name: 0,
         // a: 1,//翻页第几页
-        vv: false,
         pageIndex: 1,
         pagesize: 4,  //每页条数
         pageCount: 0,//总数量
@@ -127,13 +125,6 @@ mp4:'mp4',
 
       },
 
-      cc() {
-        let _this = this
-        _this.vv = true
-        setTimeout(function () {
-          _this.vv = false
-        }, 3000)
-      },
       Keyword() {
         let storage = window.sessionStorage;
         // console.log('0000'+storage.text)
@@ -215,6 +206,7 @@ mp4:'mp4',
         this.Keyword()
 
       }
+      console.log(this.myActData.length)
     }
   }
 </script>
