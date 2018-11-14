@@ -644,9 +644,9 @@
       //删除评论
       delcom(fcId) {
 //收起
-        console.log ('pppppppp')
-console.log('www')
-console.log(this.value.comment.length+'000')
+//console.log ('pppppppp')
+// console.log('www')
+// console.log(this.value.comment.length+'000')
         if(this.w===this.value.comment.length){
           // console.log(this.w+'==')
           this.w--
@@ -770,7 +770,6 @@ console.log(this.value.comment.length+'000')
                   if (get.value.reply) {
 
                     for (let j = 0; j < get.value.reply.length; j++) {
-
                       if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
                         get.bbb[i].push(false)
                         get.value.comment[i].replys.push(get.value.reply[j])

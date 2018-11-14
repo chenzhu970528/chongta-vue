@@ -98,7 +98,7 @@
     methods:{
       // 判断是否完善个人信息
       ajaxuser(){
-        console.log('++++++++++++')
+        // console.log('++++++++++++')
         axios.get(this.$store.state.url + `/user/showUser/${this.relId}`).then((result) => {
           console.log(result.data.data[0].address.length)
           if(result.data.data[0].address.length==0){
