@@ -22,8 +22,8 @@
 
             <div class="input">
               <span class="glyphicon glyphicon-picture"></span>
-              <span  class="glyphicon  glyphicon-film"></span>
-              <span  class="btn btn-default fileinput-button">
+              <span class="glyphicon  glyphicon-film"></span>
+              <span class="btn btn-default fileinput-button">
             <input class="left" type="file" name="avatar"
                    @change="changeImage($event)"
                    accept="image/gif,image/jpeg,image/jpg,image/png,.mp4"
@@ -31,14 +31,18 @@
                    multiple>
                 上传
               </span>
-              <span id="p"></span>
+              <span id="p"></span><span v-if="up" class="up">正在上传..</span>
 
             </div>
             <span class="size">全部文件不能大于50M/{{size}}M</span>
+            <!--<div id="progress" v-if="upath.length>0" :style="">-->
+            <!--<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"-->
+            <!--:style="{width:loading}">-->
+            <!--</div>-->
+            <!--</div>-->
           </div>
           <div class="col-sm-5">
             <img class="img" src="../../assets/forum/23.gif" alt="">
-
           </div>
 
         </div>
@@ -61,6 +65,7 @@
     ]),
     data() {
       return {
+        loading: 0,
         upath: '',  //保存选中的文件
         aa: '交流分享',
         title: '',
@@ -68,7 +73,9 @@
         type: 'b',
         tips: '发表成功',
         vv: false,
-        size: 0
+        size: 0,
+        // color:'background:red'
+        up: false
       }
     },
     methods: {
@@ -83,14 +90,20 @@
       //选中文件后，将文件保存到实例的变量中
       changeImage(e) {
         this.upath = e.target.files;
-        let size=0
+        let size = 0
         for (let i = 0; i < this.upath.length; i++) {
           size = size + this.upath[i].size
         }
-        document.getElementById('p').innerText = this.upath.length+'个文件'
+        document.getElementById('p').innerText = this.upath.length + '个文件'
+        this.$nextTick(() => {
+          this.color = 'background:red'
+          console.log('正在上传')
+
+        })
 
         let s = size / (1024 * 1024)
         this.size = s.toFixed(2)
+
       },
       addImg() {
         let _this = this;
@@ -102,7 +115,7 @@
           userName: this.UserName.replace(/\"/g, ""),
           faType: this.type,
         }
-
+        let complete
         this.title = '';
         this.text = '';
         // console.log(this.upath);
@@ -112,30 +125,54 @@
           for (var i = 0; i < this.upath.length; i++) {
             zipFormData.append('filename', this.upath[i]);
           }
-
           //添加其他的表单元素
           zipFormData.append('faTitle', aa.faTitle)
           zipFormData.append('faText', aa.faText)
           zipFormData.append('userId', aa.userId)
           zipFormData.append('userName', aa.userName)
           zipFormData.append('faType', aa.faType)
-          let config = {headers: {'Content-Type': 'multipart/form-data'}};
+          // let config = {headers: {'Content-Type': 'multipart/form-data'}};
+          let config = {
+            onUploadProgress: progressEvent => {
+              complete = (progressEvent.loaded / progressEvent.total * 100 | 0)
+              // console.log(complete)//进度值
+              _this.loading = complete
+              if (complete == 100) {
+                _this.$nextTick(() => {
+                  this.color = 'background:green'
+
+                })
+              }
+            },
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
           this.$axios.post(this.$store.state.url + '/forumAdd/art', zipFormData, config)
             .then(function (response) {
 
-              _this.tips = '发表成功'
-              _this.c()
+              if (complete == 100) {
+                _this.tips = '发表成功'
+                _this.c()
+                _this.loading = 0
+                _this.upath = ''
+                store.commit('add')
+              }
             }).catch((err) => {
             alert(err)
-          });
+          })
 
         }
         else {
           _this.tips = '最多上传六个文件'
           this.c()
+
         }
-      },
+      }
+      ,
       addForum() {
+        this.up = true
+
         let _this = this;
         if (!_this.UserId) {
           _this.tips = '先去登录吧'
@@ -162,18 +199,14 @@
             _this.tips = '最少上传一个文件'
             _this.c()
           }
-          else if (this.size >50) {
+          else if (this.size > 50) {
             _this.tips = '文件大小超出限制'
             _this.c()
           }
           else {
             _this.addImg()
-            window.localStorage.a++
+            document.getElementById('p').innerText = ''
 
-            store.commit('add')
-            document.getElementById('p').innerText =''
-
-            // console.log(store.state.a)
           }
         }
       },
@@ -181,9 +214,10 @@
       c() {
         let _this = this
         _this.vv = true
+        _this.up = false
         setTimeout(function () {
           _this.vv = false
-        }, 3000)
+        }, 1000)
       },
 
     }
@@ -191,36 +225,51 @@
 </script>
 
 <style scoped>
-  #p{
-    margin-left:0px;
-    font-size:14px;
-    color: #8e8e8e;
+  /*#progress {*/
+  /*display: inline-block;*/
+  /*height: 14px;*/
+  /*width: 14px;*/
+  /*border-radius: 7px;*/
+  /*margin-bottom: 3px;*/
+  /*}*/
+
+  #p {
+    margin-left: 0px;
 
   }
+
+  #p, .up {
+    font-size: 14px;
+    color: #8e8e8e;
+  }
+
   .fileinput-button {
     position: relative;
     display: inline-block;
     overflow: hidden;
-    left:-365px;
-    margin-bottom:10px;
-    margin-top:-4px;
+    left: -365px;
+    margin-bottom: 10px;
+    margin-top: -4px;
     width: 60px;
-    padding-right:25px;
+    padding-right: 25px;
     opacity: 0;
   }
-  .glyphicon-picture{
-    margin-top:-10px;
-    font-size:25px;
+
+  .glyphicon-picture {
+    margin-top: -10px;
+    font-size: 25px;
     color: #8e8e8e;
-    margin-left:-10px;
+    margin-left: -10px;
   }
-  .glyphicon-film{
-    font-size:25px;
-    margin-top:-10px;
+
+  .glyphicon-film {
+    font-size: 25px;
+    margin-top: -10px;
     color: #8e8e8e;
   }
-  .fileinput-button input{
-    position:absolute;
+
+  .fileinput-button input {
+    position: absolute;
     right: 0px;
     top: 0px;
     opacity: 0;
@@ -228,15 +277,17 @@
     font-size: 200px;
   }
 
-  .img{
+  .img {
     height: 60px;
     float: right;
-    margin-top:-15px;
+    margin-top: -15px;
   }
-  .size{
+
+  .size {
     color: #7f7f7f;
-    margin-left:-15px;
+    margin-left: -15px;
   }
+
   .leftnav {
     position: absolute;
     width: 150px;

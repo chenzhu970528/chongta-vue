@@ -1,19 +1,15 @@
 <template>
   <div>
     <div class="con">
+      {{activitys.length}}
       <div class="com_d">
         <com_d></com_d>
-      </div>
-      <div v-if="activitys.length<1" class="no">
-
-        <img src="../../assets/forum/ku.jpg" alt="">
-        <h4>抱歉，暂时没有找到相关内容的帖子</h4>
       </div>
       <ul>
         <li :key="index" v-model="val.faId" v-for="(val,index) in activitys">
           <div class="head">
-            <router-link tag="h1" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-              <h1 @click="see(val.faId)" class="title"><a>{{val.faTitle}}</a></h1>
+            <router-link tag="h1" :to="`/forum/`+val.faId">
+              <h1 class="title"><a>{{val.faTitle}}</a></h1>
             </router-link>
             <p class="name">
               <span>{{val.userName}}</span>
@@ -22,9 +18,9 @@
             </p>
           </div>
           <div class="photo">
-            <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
+            <router-link tag="a"  :to="`/forum/`+val.faId">
               <img v-if="(imgs1[index].substring(imgs1[index].indexOf('.')+1,imgs1[index].length))!=mp4"
-                @click="see(val.faId)" :src='url+imgs1[index]' title="这是一张图片" alt="图片">
+                :src='url+imgs1[index]' title="这是一张图片" alt="图片">
               <video v-if="(imgs1[index].substring(imgs1[index].indexOf('.')+1,imgs1[index].length))==mp4"
                      :src='url+imgs1[index]'
                     title="这是一个视频">
@@ -35,8 +31,8 @@
 
           <div class="value">
             <p class="val">{{val.faText}}</p>
-            <router-link tag="a" active-class="active" role="presentation" :to="`/forum/`+val.faId">
-              <button @click="see(val.faId)" type="button" class="btn btn-default">阅读全文</button>
+            <router-link tag="a"  :to="`/forum/`+val.faId">
+              <button  type="button" class="btn btn-default">阅读全文</button>
             </router-link>
             <hr>
             <p class="c">#{{Names[name]}}</p>
@@ -55,11 +51,13 @@
           </el-pagination>
 
         </div>
-        <a name="a" style="margin-bottom:100px;"></a>
 
       </ul>
+      <div v-if="activitys.length==0" class="no">
+        <img src="../../assets/forum/ku.jpg" alt="">
+        <h4>抱歉，暂时没有找到相关内容的帖子</h4>
+      </div>
     </div>
-    <!--<p v-if="vv" class="cc">没有了哦</p>-->
 
   </div>
 </template>
@@ -83,7 +81,6 @@ mp4:'mp4',
         faId: '',
         name: 0,
         // a: 1,//翻页第几页
-        vv: false,
         pageIndex: 1,
         pagesize: 4,  //每页条数
         pageCount: 0,//总数量
@@ -119,11 +116,7 @@ mp4:'mp4',
       change() {
         return this.loadData();
       },
-      see(index) {
-        let storage = window.localStorage;
-        storage.faId = index
 
-      },
       add() {
         store.commit('addName', {
           amount: '交流分享',
@@ -132,15 +125,8 @@ mp4:'mp4',
 
       },
 
-      cc() {
-        let _this = this
-        _this.vv = true
-        setTimeout(function () {
-          _this.vv = false
-        }, 3000)
-      },
       Keyword() {
-        let storage = window.localStorage;
+        let storage = window.sessionStorage;
         // console.log('0000'+storage.text)
         axios.get(this.$store.state.url+`/forumSee/query/?Keyword=${storage.text}`).then((result) => {
           this.myActData = result.data.data[0];
@@ -158,9 +144,9 @@ mp4:'mp4',
     watch: {
       '$route': 'Keyword'
     },
-    mounted() {
+    created() {
       let _this = this
-      let storage = window.localStorage;
+      let storage = window.sessionStorage;
       let plate = storage.plate
       this.name = plate
       //只有四个模块 最大3
@@ -220,6 +206,7 @@ mp4:'mp4',
         this.Keyword()
 
       }
+      console.log(this.myActData.length)
     }
   }
 </script>

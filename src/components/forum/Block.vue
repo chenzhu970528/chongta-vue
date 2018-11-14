@@ -17,7 +17,7 @@
 
         <ul class="body">
           <li class="li1">
-<span @click="see(val[0].faId)">
+<span>
    <router-link tag="a"  :to="`forum/`+val[0].faId">
      <img v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))!=mp4"
           :src='s+faImg[index]' title="这是一个图片" alt="">
@@ -39,25 +39,25 @@
         <ul class="foot">
           <li>
             <router-link tag="a"  :to="`forum/`+val[1].faId">
-              <a class="a" href="" @click="see(val[1].faId)">{{val[1].faTitle}}</a>
+              <a class="a" href="">{{val[1].faTitle}}</a>
               <span class="span">{{val[1].time.slice(5,10)}}</span>
             </router-link>
           </li>
           <li>
             <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[2].faId">
-              <a class="a" href="" @click="see(val[2].faId)">{{val[2].faTitle}}</a>
+              <a class="a" href="" >{{val[2].faTitle}}</a>
               <span class="span">{{val[2].time.slice(5,10)}}</span>
             </router-link>
           </li>
           <li>
             <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[3].faId">
-              <a class="a" href="" @click="see(val[3].faId)">{{val[3].faTitle}}</a>
+              <a class="a" href="" >{{val[3].faTitle}}</a>
               <span class="span">{{val[3].time.slice(5,10)}}</span>
             </router-link>
           </li>
           <li>
             <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[4].faId">
-              <a class="a" href="" @click="see(val[4].faId)">{{val[4].faTitle}}</a>
+              <a class="a" href="" >{{val[4].faTitle}}</a>
               <span class="span">{{val[4].time.slice(5,10)}}</span>
             </router-link>
           </li>
@@ -92,22 +92,15 @@
     computed: {
       a() {
         return store.state.a
-
-
       },
     },
     methods: {
       but(index) {
-        let storage = window.localStorage;
+        let storage = window.sessionStorage;
         storage.plate = index
         // console.log(storage.plate)
       },
-      see(index) {
-        // console.log('aaaaaaaaaaaaa' + index)
-        let storage = window.localStorage;
-        storage.faId = index
-        // console.log(index)
-      },
+
 
       time() {
         // setTimeout(alert('= ='),5000)
@@ -169,7 +162,7 @@
     watch: {
       "a": "time"
     },
-    mounted() {
+    created() {
       this.time()
 
     }

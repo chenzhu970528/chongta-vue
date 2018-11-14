@@ -6,16 +6,13 @@
         <img v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))!=mp4"
              :src='s+img[index]' class="pic-image">
         <div class="video" v-if="(img[index].substring(img[index].indexOf('.')+1,img[index].length))==mp4">
-          <video :src='s+img[index]'
-
-                 class="pic-image"></video>
+          <video :src='s+img[index]' class="pic-image"></video>
         </div>
-
         <span class="pic-caption bottom-to-top">
-               <h1 class="pic-title" @click="see(list[0].faId)">
-                 <router-link tag="p" active-class="active" role="presentation" :to="`/forum/`+list[0].faId">
-		     {{list[0].faTitle}}
-                </router-link></h1>
+             <router-link tag="p"  :to="`/forum/`+list[0].faId">
+
+               <h1 class="pic-title">  {{list[0].faTitle}}  </h1>
+      </router-link>
              <p class="text">{{list[0].faText}}</p>
 
 		    </span>
@@ -41,13 +38,8 @@
         mp4:'mp4'
       }
     },
-    methods: {
-      see(index) {
-        let storage = window.localStorage;
-        storage.faId = index
-      }
-    },
-    mounted() {
+
+    created() {
       axios.get(this.$store.state.url + "/forumSee/likes").then((result) => {
         this.mydata = result.data.data;
         for (let i=0 ;i<6;i++) {

@@ -26,7 +26,7 @@
         </li>
         <li class="dropdown" v-if="isLogin">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-             aria-expanded="false">{{UserName.replace(/\"/g, "")}}<i class="caret"></i></a>
+             aria-expanded="false">{{userPic.userName}}<i class="caret"></i></a>
           <ul class="dropdown-menu">
             <router-link tag="li" active-class="active" role="presentation" to="/user"><a>个人中心</a></router-link>
             <li role="separator" class="divider"></li>
@@ -89,7 +89,6 @@
       let id = this.UserId.replace(/\"/g, "")
       axios.get(this.$store.state.url + `/forumSee/user/pic?userId=${id}`).then((result) => {
         this.userPic = result.data.data[0];
-        console.log( this.userPic)
       })
     }
 
