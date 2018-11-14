@@ -61,6 +61,7 @@
       },
       //上传头像
       up:function () {
+
         let _this=this
         console.log(this.upath);
         var zipFormData = new FormData();
@@ -117,8 +118,8 @@
     opacity: 0.5;
     box-sizing: border-box;
     position: absolute;
-    top: 0px;
-    left: 119px;
+    top: 1px;
+    left: 120px;
     display: none;
   }
 

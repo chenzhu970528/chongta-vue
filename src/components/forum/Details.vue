@@ -1049,9 +1049,9 @@
   }
 
   .headimg {
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
+    width: 61px;
+    height: 61px;
+    border-radius: 61px;
     position: relative;
     top: -6px;
   }
