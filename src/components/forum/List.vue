@@ -1,9 +1,16 @@
 <template>
   <div>
     <div class="con">
+
       <div class="com_d">
         <com_d></com_d>
       </div>
+
+      <div v-if="activitys.length==0" class="no">
+        <img src="../../assets/forum/ku.jpg" alt="">
+        <h4>抱歉，暂时没有找到相关内容的帖子</h4>
+      </div>
+
       <ul>
         <li :key="index" v-model="val.faId" v-for="(val,index) in activitys">
           <div class="head">
@@ -52,10 +59,6 @@
         </div>
 
       </ul>
-      <div v-if="activitys.length==0" class="no">
-        <img src="../../assets/forum/ku.jpg" alt="">
-        <h4>抱歉，暂时没有找到相关内容的帖子</h4>
-      </div>
     </div>
 
   </div>

@@ -99,9 +99,9 @@ console.log(index+'30才对')
 
 <style scoped>
   .img{
-    width: 51px;
-    height: 51px;
-    border-radius: 51px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
     background: url("../../../assets/HomePage/right3.jpg");
     margin-bottom:5px;
     margin-top:5px;
@@ -109,24 +109,14 @@ console.log(index+'30才对')
     background-size: 100% 100%;
 
   }
-  img{
-    width: 46px;
-    height: 46px;
-    border-radius: 23px;
-    background: url("../../../assets/HomePage/right3.jpg") no-repeat;
-    background-size: 100% 100%;
-    vertical-align: unset;
-    position: relative;
-    margin-right: 10px;
 
-  }
   .head{
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-
-    margin-bottom:5px;
-    /*margin-top:5px;*/
+    width: 52px;
+    height: 52px;
+    border-radius: 52px;
+position:relative;
+    left:-1px;
+    top:-1px;
   }
 .span p{
   font-weight: bold;
