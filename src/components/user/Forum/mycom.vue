@@ -99,9 +99,9 @@ console.log(index+'30才对')
 
 <style scoped>
   .img{
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
+    width: 51px;
+    height: 51px;
+    border-radius: 51px;
     background: url("../../../assets/HomePage/right3.jpg");
     margin-bottom:5px;
     margin-top:5px;
@@ -116,9 +116,7 @@ console.log(index+'30才对')
     background: url("../../../assets/HomePage/right3.jpg") no-repeat;
     background-size: 100% 100%;
     vertical-align: unset;
-    /*background-color: red;*/
     position: relative;
-    top: -1px;
     margin-right: 10px;
 
   }

@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="con">
-      {{activitys.length}}
       <div class="com_d">
         <com_d></com_d>
       </div>
@@ -98,6 +97,7 @@ mp4:'mp4',
 
     methods: {
       loadData() {
+        window.scrollTo(0,0);
         this.activitys = [];
         // console.log('this.pageInedx:' + this.pageIndex)
         // console.log('this.pageCount:' + this.pageCount)
@@ -206,7 +206,7 @@ mp4:'mp4',
         this.Keyword()
 
       }
-      console.log(this.myActData.length)
+      // console.log(this.myActData.length)
     }
   }
 </script>

@@ -166,8 +166,6 @@
   }
 
   .headimg img{
-    margin-left: -1px;
-    margin-top: -1px;
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -176,7 +174,7 @@
     margin-top: 10px;
     width: 50px;
     height: 50px;
-    border: 1px solid #23527c;
+    /*border: 1px solid #23527c;*/
     border-radius: 50px;
     background: url("../assets/HomePage/right3.jpg")  no-repeat ;
     background-size: 100% 100%;

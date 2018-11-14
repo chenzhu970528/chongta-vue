@@ -49,7 +49,6 @@
           userPhone: '',
           userPwd: '',
           hide:false,
-          tips:'发表成功'
         },
         centerDialogVisible: false
       }
@@ -81,7 +80,8 @@
             }
           }
         })
-      }
+      },
+
     },
   }
 </script>

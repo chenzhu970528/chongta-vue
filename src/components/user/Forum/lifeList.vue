@@ -104,6 +104,7 @@ img:[],
 
     methods:{
       loadData() {
+        window.scrollTo(0,0);
         this.lostlists = [];
         let start = (this.pageIndex-1) * this.pagesize;
         let end = start + this.pagesize;
