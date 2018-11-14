@@ -190,6 +190,7 @@
                           <el-button type="primary" size="mini" @click="delrep(reply.frId)">确定</el-button>
                         </div>
                         <el-button slot="reference" icon="el-icon-delete" circle></el-button>
+
                       </el-popover>
                     <el-button v-if="comdel==1" slot="reference" icon="el-icon-delete" circle></el-button>
 
@@ -1147,6 +1148,7 @@
 
     background-size: 100% 100%;
     vertical-align: unset;
+
 
   }
 
