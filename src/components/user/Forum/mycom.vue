@@ -101,7 +101,7 @@ console.log(index+'30才对')
   .img{
     width: 50px;
     height: 50px;
-    border-radius: 25px;
+    border-radius: 50px;
     background: url("../../../assets/HomePage/right3.jpg");
     margin-bottom:5px;
     margin-top:5px;
@@ -109,30 +109,18 @@ console.log(index+'30才对')
     background-size: 100% 100%;
 
   }
-  img{
-    width: 46px;
-    height: 46px;
-    border-radius: 23px;
-    background: url("../../../assets/HomePage/right3.jpg") no-repeat;
-    background-size: 100% 100%;
-    vertical-align: unset;
-    /*background-color: red;*/
-    position: relative;
-    top: -1px;
-    margin-right: 10px;
 
-  }
   .head{
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-
-    margin-bottom:5px;
-    /*margin-top:5px;*/
+    width: 52px;
+    height: 52px;
+    border-radius: 52px;
+    position:relative;
+    left:-1px;
+    top:-1px;
   }
-.span p{
-  font-weight: bold;
-}
+  .span p{
+    font-weight: bold;
+  }
   #scroll {
     padding: 0 35px;
     width: 80%;
@@ -259,23 +247,23 @@ console.log(index+'30才对')
     text-decoration: none;
     color: #575757;
   }
-.span{
-  margin-top:20px;
-  margin-left:10px;
-  padding:10px;
-  padding-left:0;
-  background: #e4eaf0;
-  width:490px;
-  height: 90px;
-cursor:pointer;
+  .span{
+    margin-top:20px;
+    margin-left:10px;
+    padding:10px;
+    padding-left:0;
+    background: #e4eaf0;
+    width:490px;
+    height: 90px;
+    cursor:pointer;
 
-  word-wrap: break-word;
-  overflow : hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
+    word-wrap: break-word;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
   .noList {
     text-align: center;
     color: #575757;
@@ -284,4 +272,5 @@ cursor:pointer;
   }
 
 </style>
+
 

@@ -71,9 +71,9 @@
             <textarea id="inputask" class="form-control" rows="5" v-model="value1.request"></textarea>
           </div>
         </div>
-        <div class="row">
-          <div class="watch col-sm-6 col-sm-offset-3">注明宠物种类，例如‘哈士奇’</div>
-        </div>
+        <!--<div class="row">-->
+          <!--<div class="watch col-sm-6 col-sm-offset-3">注明宠物种类，例如‘哈士奇’</div>-->
+        <!--</div>-->
         <div class="form-group">
           <label for="inputdetaildetail" class="col-sm-3 control-label">详情描述：</label>
           <div class="col-sm-6">

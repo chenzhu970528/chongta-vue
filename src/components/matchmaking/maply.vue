@@ -47,12 +47,13 @@
                   <el-input placeholder="以月为单位" v-model="aplymatch.age" clearable></el-input>
                 </p>
               </div>
-            <label class="control-label">上传图片：</label>
-              <input type="file" name="avatar"
+            <span class="control-label">上传图片：</span>
+              <input type="file" name="avatar" class="tupian"
                      @change="changeImage($event)"
                      accept="image/gif,image/jpeg,image/jpg,image/png,.img"
                      ref="avatarInput"
-                     multiple><span style="line-height: 30px"><b>上传视频请在图片后,按住Ctrl进行多选</b></span>
+                     multiple><br/>
+            <span style="line-height: 30px"><b>上传视频请在图片后,按住Ctrl进行多选</b></span>
             <br/>
               <div>
                 详&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;情：
@@ -158,7 +159,7 @@
           .then(function (response) {
 
             alert("发布成功！！！")
-            // location.href = _this.$store.state.myurl + '/homeless'
+            location.reload()
           }).catch((err) => {
           console.log(err)
           alert(err)
@@ -241,4 +242,8 @@
     height: 40px;
     text-align: center;
   }
+  .tupian{
+    display: inline-block;
+  }
+
 </style>
