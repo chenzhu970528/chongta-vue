@@ -53,7 +53,7 @@
       </div>
       <div v-if="isshow" class="noList">
         <img src="../../../assets/user/default8.png" alt="">
-        <p>还没有任何发布哦，快去发布吧</p>
+        <p>还没有任何申请哦，快去申请吧</p>
       </div>
     </div>
 </template>
