@@ -114,13 +114,13 @@ console.log(index+'30才对')
     width: 52px;
     height: 52px;
     border-radius: 52px;
-position:relative;
+    position:relative;
     left:-1px;
     top:-1px;
   }
-.span p{
-  font-weight: bold;
-}
+  .span p{
+    font-weight: bold;
+  }
   #scroll {
     padding: 0 35px;
     width: 80%;
@@ -247,23 +247,23 @@ position:relative;
     text-decoration: none;
     color: #575757;
   }
-.span{
-  margin-top:20px;
-  margin-left:10px;
-  padding:10px;
-  padding-left:0;
-  background: #e4eaf0;
-  width:490px;
-  height: 90px;
-cursor:pointer;
+  .span{
+    margin-top:20px;
+    margin-left:10px;
+    padding:10px;
+    padding-left:0;
+    background: #e4eaf0;
+    width:490px;
+    height: 90px;
+    cursor:pointer;
 
-  word-wrap: break-word;
-  overflow : hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
+    word-wrap: break-word;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
   .noList {
     text-align: center;
     color: #575757;
@@ -272,4 +272,5 @@ cursor:pointer;
   }
 
 </style>
+
 

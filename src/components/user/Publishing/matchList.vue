@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="fabu" v-if="!isshow">
-      <router-link  tag="button" class="btn btn-primary"  to="/homeless/publish" style="list-style: none;text-decoration: none" exact>
+      <router-link  tag="button" class="btn btn-primary"  to="/matchmaking/mpublish" style="list-style: none;text-decoration: none" exact>
         发布
       </router-link>
     </div>
