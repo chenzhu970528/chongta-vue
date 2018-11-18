@@ -11,85 +11,77 @@
           </div>
         </el-alert>
       </div>
-      <div class="bg">
-        <form class="form-horizontal" style="padding-top: 40px; margin-top: 220px;margin-left: 10px">
-          <div class="form-group first">
-            <label  class="col-sm-2 control-label col-sm-offset-2">用户名</label>
-            <div class="col-sm-4">
-              <input @change="checkname" type="text" class="form-control" v-model="userName"  id="inputuser" placeholder="请输入用户名（2-10位中英文数字）">
-            </div>
-            <div class="col-sm-2 text-danger" v-if="nameflag">{{msgname}}</div>
-          </div>
+      <div class="row">
+        <div class="col-xs-3">
+          <img src="../assets/forum3.jpg" alt="">
+        </div>
+        <div class="col-xs-7 col-xs-offset-2">
+          <div class="bg">
+            <form class="form-horizontal">
+              <div class="form-group first">
+                <label  class="col-sm-2 control-label col-sm-offset-1">用户名</label>
+                <div class="col-sm-4">
+                  <input @change="checkname" type="text" class="form-control" v-model="userName"  id="inputuser" placeholder="请输入用户名（2-10位中英文数字）">
+                </div>
+                <div class="col-sm-2 text-danger" v-if="nameflag">{{msgname}}</div>
+              </div>
 
+              <div class="form-group">
+                <label  class="col-sm-2 control-label col-sm-offset-1">密码</label>
+                <div class="col-sm-4">
+                  <input @change="checkPwd" type="password" v-model="userPwd1" class="form-control"  placeholder="请输入密码(6-10位字母和数字)">
+                </div>
+                <div class="col-sm-2 text-danger" v-if="pwdflag1">{{msgPassword1}}</div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-2 control-label col-sm-offset-1">确认密码</label>
+                <div class="col-sm-4">
+                  <input @change="checkPwds" type="password" v-model="userPwd2" class="form-control"  placeholder="再次输入密码">
+                </div>
+                <div class="col-sm-2 text-danger" v-if="pwdflag">{{msgPassword}}</div>
+              </div>
 
+              <div class="form-group">
+                <label  class="col-sm-2 control-label col-sm-offset-1">手机号</label>
+                <div class="col-sm-4">
+                  <input @change="checkphone" type="text" v-model="userPhone" class="form-control"  placeholder="填写正确手机号">
+                </div>
+                <div class="col-sm-2 text-danger" v-if="phoneflag">{{msgphone}}</div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-2 control-label col-sm-offset-1">短信验证码</label>
+                <div class="col-sm-2" style="padding-right: 0;width: 162px">
+                  <input type="text" @change="checkCode" class=" form-control formStyle3" placeholder="请输入验证码" v-model="vCode">
+                </div>
+                <div class="col-sm-1" style="padding:0">
+                  <button type="button" v-if="show" class="btn btn-primary formStyle3" @click="sendCode">获取验证码</button>
+                  <button type="button" v-if="!show" class="btn btn-primary formStyle3"disabled="disabled" >{{countdown}}秒后尝试</button>
+                </div>
+                <div style="margin-left: 42px" class=" col-sm-2 text-danger" v-if="codeflag">{{msgcode}}</div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-2 control-label col-sm-offset-1">电子邮箱</label>
+                <div class="col-sm-4">
+                  <input type="text" @change="checkemail" v-model="userEmail" class="form-control"  placeholder="请输入有效邮箱">
+                </div>
+                <div class="col-sm-2 text-danger" v-if="mailflag">{{msgmail}}</div>
+              </div>
 
-          <div class="form-group">
-            <label  class="col-sm-2 control-label col-sm-offset-2">密码</label>
-            <div class="col-sm-4">
-              <input @change="checkPwd" type="password" v-model="userPwd1" class="form-control"  placeholder="请输入密码(6-10位字母和数字)">
-            </div>
-            <div class="col-sm-2 text-danger" v-if="pwdflag1">{{msgPassword1}}</div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label col-sm-offset-1"></label>
+                <div class="col-sm-5">
+                  <input type="checkbox" v-model="checked"> 我已阅读并同意 <a style="color: #0a89cd" href="">《宠它网注册协议》</a>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label col-sm-offset-1"></label>
+                <div class="col-sm-4">
+                  <el-button @click="register" type="primary" style="font-size: 20px;background-color: #0a89cd;color: whitesmoke">立即注册 完成绑定</el-button>
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="form-group">
-            <label  class="col-sm-2 control-label col-sm-offset-2">确认密码</label>
-            <div class="col-sm-4">
-              <input @change="checkPwds" type="password" v-model="userPwd2" class="form-control"  placeholder="再次输入密码">
-            </div>
-            <div class="col-sm-2 text-danger" v-if="pwdflag">{{msgPassword}}</div>
-          </div>
-
-          <div class="form-group">
-            <label  class="col-sm-2 control-label col-sm-offset-2">手机号</label>
-            <div class="col-sm-4">
-              <input @change="checkphone" type="text" v-model="userPhone" class="form-control"  placeholder="填写正确手机号">
-            </div>
-            <div class="col-sm-2 text-danger" v-if="phoneflag">{{msgphone}}</div>
-          </div>
-          <div class="form-group">
-            <label  class="col-sm-2 control-label col-sm-offset-2">短信验证码</label>
-            <div class="col-sm-2" style="padding-right: 0;width: 162px">
-              <input type="text" @change="checkCode" class=" form-control formStyle3" placeholder="请输入验证码" v-model="vCode">
-            </div>
-            <div class="col-sm-1" style="padding:0">
-              <button type="button" v-if="show" class="btn btn-primary formStyle3" @click="sendCode">获取验证码</button>
-              <button type="button" v-if="!show" class="btn btn-primary formStyle3"disabled="disabled" >{{countdown}}秒后尝试</button>
-            </div>
-            <div style="margin-left: 42px" class=" col-sm-2 text-danger" v-if="codeflag">{{msgcode}}</div>
-            <!--<span :vCode="vCode" class="spanW">{{tiShi3}}</span>-->
-          </div>
-          <!--<div class="form-group">-->
-          <!--<label class="col-sm-2 control-label col-sm-offset-2">短信验证码</label>-->
-          <!--<div class="col-sm-4">-->
-          <!--<input type="text" class="form-control" placeholder="短信请输入验证码">-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--<div class="form-group">-->
-          <!--<label  class="col-sm-2 control-label col-sm-offset-2">所在地:</label>-->
-          <!--<div class="col-sm-4">-->
-          <!--<input type="text" v-model="address" class="form-control"  placeholder="请输入有效地址">-->
-          <!--</div>-->
-          <!--</div>-->
-          <div class="form-group">
-            <label  class="col-sm-2 control-label col-sm-offset-2">电子邮箱</label>
-            <div class="col-sm-4">
-              <input type="text" @change="checkemail" v-model="userEmail" class="form-control"  placeholder="请输入有效邮箱">
-            </div>
-            <div class="col-sm-2 text-danger" v-if="mailflag">{{msgmail}}</div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label col-sm-offset-2"></label>
-            <div class="col-sm-5">
-              <input type="checkbox" v-model="checked"> 我已阅读并同意 <a style="color: #b3ccfd" href="">《宠它网注册协议》</a>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label col-sm-offset-2"></label>
-            <div class="col-sm-4">
-              <el-button @click="register" type="primary" style="font-size: 20px"><a>立即注册 完成绑定</a></el-button>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -304,30 +296,21 @@
 
 <style scoped>
 .container{
-  background: url('../assets/homeless/bg1.jpg');
+  background-color: #ffffff;
   width: 100%;
-  background-size: 100% 100%;
+  height:auto;
 }
-.alrady{
-  margin-top: 110px;
-}
+/*.alrady{*/
+  /*margin-top: 110px;*/
+/*}*/
 a{
   text-decoration: none;
 }
 .bg{
   height: 600px;
-  width: 800px;
+  position: relative;
+  top: -50px;
   border-radius: 10px;
-  background-color: rgba(255,255,255,0.2);
-  margin: 100px auto;
-}
-.top{
-  width: 100%;
-  height: 70px;
-  background-color: #fff;
-  position: fixed;
-  top: 0;
-  z-index: 3;
 }
 form{
   margin-top: 60px;
@@ -343,4 +326,7 @@ h3{
   border-radius: 5px;
   border: 1px solid #a12c14;
 }
+  img{
+    margin-left: 20px;
+  }
 </style>

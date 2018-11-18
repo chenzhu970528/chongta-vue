@@ -133,6 +133,7 @@ mp4:'mp4',
         // console.log('0000'+storage.text)
         axios.get(this.$store.state.url+`/forumSee/query/?Keyword=${storage.text}`).then((result) => {
           this.myActData = result.data.data[0];
+          this.imgs=[]
           for(let i=0;i<this.myActData.length;i++){
             let img = this.myActData[i].faImg.split(',')
             this.imgs.push(img[0].replace('，',''))

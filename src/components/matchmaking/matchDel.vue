@@ -135,6 +135,8 @@
   }
   .msg{
     margin-top: 10px;
+    position:relative;
+    left: 12px;
     border: 2px dotted #bd7dfb;
     border-radius: 10px;
     margin-bottom: 30px;
@@ -147,6 +149,7 @@
     margin-top: 30px;
   }
   .msg div{
+    text-indent: 2em;
     font-size: 15px;
     color: grey;
     margin-left: 30px;

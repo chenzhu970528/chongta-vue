@@ -280,7 +280,7 @@
   .img {
     height: 60px;
     float: right;
-    margin-top: -15px;
+    margin-top: -10px;
   }
 
   .size {

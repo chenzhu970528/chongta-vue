@@ -4,7 +4,6 @@
       <span ref="numberGrow" :data-time="time" class="number-grow" >0</span>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -62,7 +61,7 @@
           }
           current = start
           ele.innerHTML = current.toString().replace(/(\d)(?=(?:\d{3}[+]?)+$)/g, '$1,')
-        }, 50)
+        }, 60)
       }
     },
     mounted () {
