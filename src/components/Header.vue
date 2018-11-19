@@ -8,7 +8,7 @@
         <!--exact可以避免根路由使用始终激活的样式-->
         <router-link tag="li" active-class="active" role="presentation" to="/" exact><a>首页</a></router-link>
         <router-link tag="li" active-class="active" role="presentation" to="/adoption"><a>领养中心</a></router-link>
-        <router-link tag="li" active-class="active" role="presentation" to="/homeless"><a>寻宠之家</a></router-link>
+        <router-link tag="li" active-class="active" role="presentation" to="/homeless"><a>流浪寻宠</a></router-link>
         <router-link tag="li" active-class="active" role="presentation" to="/matchmaking/TimeDesc"><a>宠物婚恋</a></router-link>
         <router-link tag="li" active-class="active" role="presentation" to="/forum"><a>宠宠交流</a></router-link>
       </ul>
