@@ -169,7 +169,7 @@
               alert("发布成功！！！")
               location.href=_this.$store.state.myurl+'/matchmaking/TimeDesc'
             }).catch((err) => {
-            console.log(err)
+            // console.log(err)
             alert(err)
           });
         },

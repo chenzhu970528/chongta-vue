@@ -162,11 +162,11 @@
               num += Math.floor(Math.random()*10);
             }
             self.Num = num;
-            console.log(self.Num)
+            // console.log(self.Num)
             axios.get('/proxy?mobile=' + self.userPhone + '&tpl_id=109274&tpl_value=%23code%23%3D' +
             self.Num + '&key=7de7348eb9dd99ab08bcc7e7063a53ad')
             .then((res)=>{
-              console.log(res)
+              // console.log(res)
             }).catch(err=>{console.log(err)})
           this.getCode()
           },
@@ -250,7 +250,7 @@
                 userEmail:_this.userEmail,
               },
               success: function (result) {
-                console.log(result.data)
+                // console.log(result.data)
                 if(result.data.length==0){
                   alert("该用户已存在")
                 }else {

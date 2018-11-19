@@ -103,7 +103,7 @@
           this.activitys = [];
           let start = (this.pageIndex-1) * this.pagesize;
           let end = start + this.pagesize;
-          console.log(this.myActData[1]);
+          // console.log(this.myActData[1]);
           if(end>=this.pageCount){
             end=this.pageCount
           }
@@ -134,8 +134,8 @@
                 type: "get",
                 // data: homeId,
                 success: function (result) {
-                  console.log("success:" + homeId);
-                  console.log(result.data)
+                  // console.log("success:" + homeId);
+                  // console.log(result.data)
                   // alert("删除成功！！！")
                   try {
                     _this.mydata=[]
@@ -160,10 +160,10 @@
         ajaxall(){
           let _this=this;
           axios.get(this.$store.state.url+`/homeless/details/${this.userId}`).then((result) => {
-            console.log(result.data.data);
+            // console.log(result.data.data);
             _this.myActData = result.data.data;
             _this.pageCount=_this.myActData.length;
-            console.log(_this.pageCount)
+            // console.log(_this.pageCount)
             _this.loadData()
             // for (let i = 0; i < this.matchdata.length; i++) {
             //   this.activitys.push(this.myActData[i])

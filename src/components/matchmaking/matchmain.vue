@@ -100,14 +100,14 @@
       ajaxuser(){
         // console.log('++++++++++++')
         axios.get(this.$store.state.url + `/user/showUser/${this.relId}`).then((result) => {
-          console.log(result.data.data[0].address.length)
+          // console.log(result.data.data[0].address.length)
           if(result.data.data[0].address.length==0){
             alert('请完善个人信息后提交');
             location.href=this.$store.state.myurl+'/user/update'
           }
         })
           .catch((err) => {
-            console.log(err)
+            // console.log(err)
           })
       },
     }
