@@ -119,7 +119,7 @@
     box-sizing: border-box;
     position: absolute;
     top: 1px;
-    left: 120px;
+    left: 132px;
     display: none;
   }
 
