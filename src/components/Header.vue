@@ -66,7 +66,7 @@
     ,methods:{
       cleanUser(){
         localStorage.clear();
-        location.href=this.$store.state.myurl
+        location.href=this.$store.state.url
       },
       myaddress(){
         let _this = this

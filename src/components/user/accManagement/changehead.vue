@@ -63,7 +63,7 @@
       up:function () {
 
         let _this=this
-        console.log(this.upath);
+        // console.log(this.upath);
         var zipFormData = new FormData();
         //依次添加多个文件
         for(var i = 0 ; i< this.upath.length ; i++){
@@ -74,16 +74,16 @@
         let config = { headers: { 'Content-Type': 'multipart/form-data' } };
         this.$axios.post(this.$store.state.url+'/user/upheadpic', zipFormData,config)
           .then(function (response) {
-            console.log(response);
-            console.log(response.data);
-            console.log(response.bodyText);
+            // console.log(response);
+            // console.log(response.data);
+            // console.log(response.bodyText);
             alert("上传成功！！！")
             _this.isSaveHead = false;
             // personal:[]
             // this.imgajax()
             // this.headpic= this.url+this.personal.headPic
           }).catch((err) => {
-          console.log(err)
+          // console.log(err)
           alert(err)
         });
 
