@@ -135,7 +135,7 @@
           this.lostlists = [];
           let start = (this.pageIndex-1) * this.pagesize;
           let end = start + this.pagesize;
-          console.log(this.myActData[1]);
+          // console.log(this.myActData[1]);
           if(end>=this.pageCount){
             end=this.pageCount
           }

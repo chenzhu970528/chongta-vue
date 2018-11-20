@@ -96,8 +96,8 @@
         }
         document.getElementById('p').innerText = this.upath.length + '个文件'
         this.$nextTick(() => {
-          this.color = 'background:red'
-          console.log('正在上传')
+          // this.color = 'background:red'
+          // console.log('正在上传')
 
         })
 
@@ -139,7 +139,7 @@
               _this.loading = complete
               if (complete == 100) {
                 _this.$nextTick(() => {
-                  this.color = 'background:green'
+                  // this.color = 'background:green'
 
                 })
               }

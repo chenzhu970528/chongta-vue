@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div id="con">
     <div class="top"></div>
     <div id="content">
@@ -6,18 +7,18 @@
       <div class="left">
         <div class="a">
           <!--详细内容     -->
-          <div>&nbsp &nbsp<h2>{{value.art[0].faTitle}}&nbsp
+          <div>&nbsp &nbsp<h2>{{faTitle}}&nbsp
+
             <span v-if="rec===1" title="推荐标识" class="glyphicon glyphicon-star"></span></h2></div>
           <div class="val">
 
             <div class="headpic">
-              <!--<img class='headimg' :src='url+value.pic[0].headPic' alt="">-->
               <span class='headimg0'>
-                <img class='headimg' :src='url+value.pic[0].headPic' alt="">
+                <img class='headimg' :src='url+pic' alt="">
               </span>
-              <span class="name">{{value.art[0].userName}}</span>
+              <span class="name">{{name}}</span>
 
-              <span>{{value.art[0].time.slice(0,16).replace('T',' ')}}</span>
+              <span>{{time}}</span>
 
               <span class="r">
             <!--管理员推荐,判断管理员帐号-->
@@ -35,16 +36,15 @@
             </span>
 
 &nbsp
-                <!--删除文章-->
-               <span v-if="admin ||value.art[0].userId==userId ">
+                <!--&lt;!&ndash;删除文章&ndash;&gt;-->
+               <span v-if="admin ||art.userId==userId ">
 
             <el-popover v-if="comdel==0"
               placement="top"
               width="160">
-              <!--v-model="visible2[index]"-->
               <p>确定删除吗？</p>
               <div style="text-align: right; margin: 0">
-               <!--<el-button size="mini" type="text" @click="del">取消</el-button>-->
+
                <el-button type="primary" size="mini" @click="delart(value.art[0].faId)">确定</el-button>
               </div>
               <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -57,12 +57,15 @@
 
 
 &nbsp
-                <!--增加收藏-->
-    <span v-if="addlike" class="s glyphicon glyphicon-heart-empty" @click="addLike()" title="收藏">{{value.like[0].like_sum}}</span>
+                <!--&lt;!&ndash;&lt;!&ndash;增加收藏&ndash;&gt;&ndash;&gt;-->
+    <span v-if="addlike" class="s glyphicon glyphicon-heart-empty" @click="addLike()" title="收藏">
+      {{like}}
+    </span>
 
-                <!--取消收藏-->
-    <span v-if="dellike" class="s glyphicon glyphicon-heart" @click="delLike()"
-          title="取消收藏">{{value.like[0].like_sum}}</span>
+                <!--&lt;!&ndash;&lt;!&ndash;取消收藏&ndash;&gt;&ndash;&gt;-->
+    <span v-if="dellike" class="s glyphicon glyphicon-heart" @click="delLike()" title="取消收藏">
+      {{like}}
+    </span>
 
 
     </span>
@@ -72,16 +75,13 @@
 
             <div class="img">
 
-              <p>{{value.art[0].faText}}</p>
+              <p>{{art.faText}}</p>
               <div class="center" v-for="Img in img">
                 <img :src='url+Img' alt=""><br><br>
                 <video v-if="(Img.substring(Img.indexOf('.')+1, Img.length))==mp4"
                        :src='url+Img'
                        controls="controls"></video>
-
-
               </div>
-
             </div>
           </div>
 
@@ -104,11 +104,10 @@
             </span>
             <span id="p"></span>
 
-
           </div>
-          <!--</div>-->
         </div>
-        <h4>评论&nbsp({{value.sum[0][0].sum_count-1}})</h4>
+        <h4>评论&nbsp({{sum}})</h4>
+
         <!--评论区域-->
         <div v-if="value1.length>0" class="com">
           <ul>
@@ -117,7 +116,7 @@
                 <div class="head1">
                   <span class="img1"><img :src='url+value.comhead[index][0].headPic' alt="" class="img1"></span>
                   <div class="headRight">
-                    <p class="name1">{{com.userName}}</p>
+                    <p class="name1">{{value.comhead[index][0].userName}}</p>
                     <p class="time">{{com.time.slice(0,16).replace('T',' ')}}</p>
                   </div>
                 </div>
@@ -135,7 +134,7 @@
                          width="160">
                       <p>确定删除吗？</p>
                       <div style="text-align: right; margin: 0">
-                     <!--<el-button size="mini" type="text" @click="del">取消</el-button>-->
+
                         <el-button type="primary" size="mini" @click="delcom(com.fcId)">确定</el-button>
                       </div>
                      <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -166,7 +165,7 @@
                       <div class="head">
                         <span class="img1"> <img :src='url+reply.headPic' alt="" class="img1"></span>
                         <div class="headRight">
-                          <p><span class="name1">{{reply.frName}}</span> 回复<span class="name1">{{reply.fcName}}</span>
+                          <p><span class="name1">{{reply.frName}}</span> 回复<span class="name1">{{value.comhead[index][0].userName}}</span>
                           </p>
                           <p class="time">{{reply.time.slice(0,16).replace('T',' ')}}</p>
                         </div>
@@ -186,7 +185,7 @@
                         <!--v-model="visible2[index]"-->
                         <p>确定删除吗？</p>
                         <div style="text-align: right; margin: 0">
-                          <!--<el-button size="mini" type="text" @click="del">取消</el-button>-->
+
                           <el-button type="primary" size="mini" @click="delrep(reply.frId)">确定</el-button>
                         </div>
                         <el-button slot="reference" icon="el-icon-delete" circle></el-button>
@@ -227,7 +226,6 @@
         </span>
 
         </div>
-
       </div>
       <div class="right">
         <ranking></ranking>
@@ -237,6 +235,7 @@
     </div>
     <div class="foot">
       <foot-black></foot-black>
+    </div>
     </div>
 
   </div>
@@ -262,11 +261,17 @@
     ]),
     data() {
       return {
+        name:'',
+        pic:'',
         visible2: false,
+        sum:0,
         mp4: 'mp4',
-        comhead: [],
         img: [],
         value: [],//文章和全部评论回复
+        art:[],
+        faTitle:'',
+        time:'',
+        like:0,
         value1: [],//存放显示的评论
         imgs: [require("../../assets/mao1.jpg"), require("../../assets/images/a.jpg")],
         url: this.$store.state.url,
@@ -312,19 +317,11 @@
         return setTimeout(function () {
           //重新渲染数据用
 
-          // console.log( get.w+'chang')
-          //
-          // console.log( get.value.comment.length+'value')
-          // console.log( get.cou+'页数')
-          // console.log( get.page+'当前页数')
-          // console.log( get.value1.length+'value1')
-          // let faId = window.localStorage.faId;
           let faId = get.$route.params.faId;
           get.value.comment = []
-          get.comhead = []
+
           axios.get(get.$store.state.url + `/forumSee/all/?faId=${faId}`).then((result) => {
             get.value = result.data.data;
-
             get.aaa = []
             get.bbb = []
             get.value1 = []//先清空
@@ -343,22 +340,21 @@
 
                     if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
                       get.bbb[i].push(false)
+                      axios.get(get.$store.state.url + `/forumSee/user/pic/?userId=${get.value.reply[j].frman}`).then((result) => {
+                        get.value.reply[j].frName=result.data.data[0].userName
+                      })
                       get.value.comment[i].replys.push(get.value.reply[j])
                     }
                   }
                 }
               }
+              // console.log(get.value.comment)
               if (get.value.comment.length > 0) {
-                // console.log(get.value.comment.length+'看看现在几个')
-                //点开完评论，添加删除完还是点开完
                 if (get.w < 6) {
-                  // console.log('(get.w===get.value1.length||get.value.comment.length <6)')
-
                   get.value1 = get.value.comment
                 }
                 //加载更多状态 添加删除完还是加载更多状态 的w
                 else if (get.w >= 6) {
-
                   for (let i = 0; i < get.w; i++) {
                     get.value1.push(get.value.comment[i])
                   }
@@ -372,6 +368,7 @@
               get.w = 0
             }
             //当前评论数
+            get.sum=get.value.sum[0][0].sum_count-1
           })
         }, 200)
 
@@ -432,7 +429,7 @@
           }
           this.dellike = true;
           this.addlike = false;
-          this.value.like[0].like_sum++
+          this.like++
           $.ajax({
             url: this.$store.state.url + "/forumAdd/like",
             type: "post",
@@ -452,7 +449,7 @@
         }
         this.dellike = false;
         this.addlike = true;
-        this.value.like[0].like_sum--
+        this.like--
         $.ajax({
           url: this.$store.state.url + "/forumDel/like",
           type: "post",
@@ -582,7 +579,7 @@
               type: "post",
               data: rr,
               success: function (result) {
-                console.log(result.data)
+                // console.log(result.data)
                 _this.tips = '回复成功'
                 _this.show()
                 //重新渲染数据用
@@ -743,10 +740,14 @@
         // let faId = window.localStorage.faId;
         let faId = this.$route.params.faId;
         let get = this
-        axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
 
+        axios.get(get.$store.state.url + `/forumSee/all?faId=${faId}`).then((result) => {
           get.value = result.data.data;
-          // console.log(get.value.art[0])
+
+          axios.get(get.$store.state.url + `/forumSee/user/pic/?userId=${get.value.art[0].userId}`).then((result) => {
+           get.pic=result.data.data[0].headPic
+           get.name=result.data.data[0].userName
+          })
           if (!get.value.art[0]) {
             this.$router.push({path: '/forum'});
           } else {
@@ -801,6 +802,9 @@
 
                       if (get.value.comment[i].fcId === get.value.reply[j].fcId) {
                         get.bbb[i].push(false)
+                        axios.get(get.$store.state.url + `/forumSee/user/pic/?userId=${get.value.reply[j].frman}`).then((result) => {
+                          get.value.reply[j].frName=result.data.data[0].userName
+                        })
                         get.value.comment[i].replys.push(get.value.reply[j])
                       }
                     }
@@ -827,12 +831,17 @@
               get.w = 0
             }
           }
-
+          get.sum=get.value.sum[0][0].sum_count-1
+          get.faTitle=get.value.art[0].faTitle
+          get.time=get.value.art[0].time.slice(0,16).replace('T',' ')
+          get.art=get.value.art[0]
+          get.like=get.value.like[0].like_sum
         })
         if (get.myHtmlCode != '') {
-          // console.log('>>>>>')
           document.getElementById('dd0').innerText = ''
         }
+
+
 
       },
     },

@@ -141,7 +141,7 @@
       created(){
           this.getCityData()
         axios.get(this.$store.state.url+`/user/showUser/${this.userId}`).then((result) => {
-          console.log(result.data.data[0]);
+          // console.log(result.data.data[0]);
           this.personal = result.data.data[0];
         })
       },
@@ -221,7 +221,7 @@
               }
             }
             else{
-              console.log(response.status)
+              // console.log(response.status)
             }
           }).catch(function(error){console.log(typeof+ error)})
         },
@@ -268,7 +268,7 @@
           }
         },
         checkname:function(){
-          console.log('检查')
+          // console.log('检查')
           var regName=/^[\u4e00-\u9fa5_a-zA-Z0-9_]{2,10}$/;
           if(this.newName==''){
             this.msgname="请输入用户名";

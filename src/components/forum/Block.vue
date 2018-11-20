@@ -1,67 +1,42 @@
 <template>
   <div class="conn">
-    <span v-show="false">{{value}}</span>
     <!--图片 内容，小版块-->
-    <div class="con" :key='index' v-for="(val,index) in value">
-
+    <div class="con" :key='index' v-for="(val,index) in valueHead">
       <div class="top">
-        <div><span class="left">{{Names[index]}}</span>
+        <div>
+          <span class="left">{{Names[index]}}</span>
           <router-link :to="`/forum/`+url[index]">
             <span class="right" @click="but(index)"><a>>>更多</a></span>
           </router-link>
-          <audio src=""></audio>
         </div>
       </div>
       <div>
-        <span v-show="false">{{val}}</span>
-
+        <span v-if="false">{{val}}</span>
         <ul class="body">
           <li class="li1">
-<span>
-   <router-link tag="a"  :to="`forum/`+val[0].faId">
-     <img v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))!=mp4"
-          :src='s+faImg[index]' title="这是一个图片" alt="">
-
-       <div v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))==mp4"
-            class="video" title="这是一个视频">
-         <video :src='s+faImg[index]'></video>
-
-     </div>
-
-     <p class="title">{{val[0].faTitle}}</p>
-   </router-link>
-
-</span>
-
-            <p class="val">{{val[0].faText}}</p>
+            <span>
+              <router-link tag="a" :to="`forum/`+val['faId']">
+                 <img v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))!=mp4"
+                  :src='s+faImg[index]' title="这是一个图片" alt="">
+                 <div v-if="(faImg[index].substring(faImg[index].indexOf('.')+1,faImg[index].length))==mp4"
+                 class="video" title="这是一个视频">
+                   <video :src='s+faImg[index]'></video>
+                 </div>
+                 <p class="title">{{val['faTitle']}}</p>
+               </router-link>
+            </span>
+            <p class="val">{{val['faText']}}</p>
           </li>
         </ul>
         <ul class="foot">
-          <li>
-            <router-link tag="a"  :to="`forum/`+val[1].faId">
-              <a class="a" href="">{{val[1].faTitle}}</a>
-              <span class="span">{{val[1].time.slice(5,10)}}</span>
+          <!--{{value[index]}}-->
+          <li v-for="val1 in value[index]">
+            <!--{{val1}}-->
+            <router-link tag="a" :to="`forum/`+val1['faId']">
+              <a class="a" href="">{{val1['faTitle']}}</a>
+              <span class="span">{{val1['time'].slice(5,10)}}</span>
             </router-link>
           </li>
-          <li>
-            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[2].faId">
-              <a class="a" href="" >{{val[2].faTitle}}</a>
-              <span class="span">{{val[2].time.slice(5,10)}}</span>
-            </router-link>
-          </li>
-          <li>
-            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[3].faId">
-              <a class="a" href="" >{{val[3].faTitle}}</a>
-              <span class="span">{{val[3].time.slice(5,10)}}</span>
-            </router-link>
-          </li>
-          <li>
-            <router-link tag="a" active-class="active" role="presentation" :to="`forum/`+val[4].faId">
-              <a class="a" href="" >{{val[4].faTitle}}</a>
-              <span class="span">{{val[4].time.slice(5,10)}}</span>
-            </router-link>
-          </li>
-
         </ul>
       </div>
     </div>
@@ -76,17 +51,13 @@
     name: "Block",
     data() {
       return {
-        value: [
-          {values0: []},
-          {values1: []},
-          {values2: []},
-          {values3: []}],
-        faImg: ['0', '1', '2', '3'],
+        value: [[],[],[],[]],
+        valueHead:[[],[],[],[]],
+        faImg: ['', '', '', ''],
         Names: ['最新', '精品推荐', '养宠日记', '交流分享'],
         url: ['new', 'recommend', 'diary', 'share'],
         s: this.$store.state.url,
-        // faId: 0,
-        mp4: 'mp4'
+        mp4: 'mp4',
       }
     },
     computed: {
@@ -98,63 +69,64 @@
       but(index) {
         let storage = window.sessionStorage;
         storage.plate = index
-        // console.log(storage.plate)
       },
+      ajax() {
+        let _this = this
+        axios.get(_this.$store.state.url + "/forumSee/time").then((result) => {
+          let img = result.data.data[0].faImg.split(',')
+          _this.faImg[0] = img[0]
+          let arr=[]
+          for (let i = 1; i < 5; i++) {
+           arr.push(result.data.data[i])
+          }
+          this.value[0]=arr
+          this.valueHead[0]=result.data.data[0]
+          this.$forceUpdate()
+        })
+        axios.get(_this.$store.state.url + "/forumSee/essence").then((result) => {
+          let img =  result.data.data[0].faImg.split(',')
+          _this.faImg[1] = img[0]
+          let arr=[]
+          for (let i = 1; i < 5; i++) {
+           arr.push(result.data.data[i])
+          }
+          this.value[1]=arr
+          this.valueHead[1]=result.data.data[0]
+          this.$forceUpdate()
+        })
 
+        axios.get(_this.$store.state.url + "/forumSee/diary").then((result) => {
+          let img =result.data.data[0].faImg.split(',')
+          _this.faImg[2] = img[0]
+          let arr=[]
+          for (let i = 1; i < 5; i++) {
+          arr.push(result.data.data[i])
+          }   this.value[2]=arr
+          this.valueHead[2]=result.data.data[0]
+          this.$forceUpdate()
+        })
 
+        axios.get(_this.$store.state.url + "/forumSee/gossip").then((result) => {
+          let img = result.data.data[0].faImg.split(',')
+          _this.faImg[3] = img[0]
+          let arr=[]
+          for (let i = 1; i < 5; i++) {
+          arr.push(result.data.data[i])
+          }
+          this.value[3]=arr
+
+          this.valueHead[3]=result.data.data[0]
+          this.$forceUpdate()
+        })
+
+      },
       time() {
-        // setTimeout(alert('= ='),5000)
         let _this = this
         return setTimeout(function () {
           _this.value = [
-            {values0: []},
-            {values1: []},
-            {values2: []},
-            {values3: []}],
-            axios.get(_this.$store.state.url + "/forumSee/time").then((result) => {
-
-              _this.mydata = result.data.data;
-              let img = _this.mydata[0].faImg.split(',')
-              _this.faImg[0] = img[0]
-              for (let i = 0; i < 6; i++) {
-                _this.value[0].values0.push(_this.mydata[i])
-              }
-              _this.value[0] = _this.value[0].values0
-
-              // console.log( _this.mydata)
-            })
-          axios.get(_this.$store.state.url + "/forumSee/essence").then((result) => {
-
-            _this.mydata1 = result.data.data;
-
-            let img = _this.mydata1[0].faImg.split(',')
-            _this.faImg[1] = img[0]
-            for (let i = 0; i < 6; i++) {
-              _this.value[1].values1.push(_this.mydata1[i])
-            }
-            _this.value[1] = _this.value[1].values1
-          })
-
-          axios.get(_this.$store.state.url + "/forumSee/diary").then((result) => {
-
-            _this.mydata2 = result.data.data;
-            let img = _this.mydata2[0].faImg.split(',')
-            _this.faImg[2] = img[0]
-            for (let i = 0; i < 6; i++) {
-              _this.value[2].values2.push(_this.mydata2[i])
-            }
-            _this.value[2] = _this.value[2].values2
-          })
-
-          axios.get(_this.$store.state.url + "/forumSee/gossip").then((result) => {
-            _this.mydata3 = result.data.data;
-            let img = _this.mydata3[0].faImg.split(',')
-            _this.faImg[3] = img[0]
-            for (let i = 0; i < 6; i++) {
-              _this.value[3].values3.push(_this.mydata3[i])
-            }
-            _this.value[3] = _this.value[3].values3
-          })
+            [],[],[],[]
+          ]
+          _this.ajax()
 
         }, 500)
       }
@@ -162,9 +134,8 @@
     watch: {
       "a": "time"
     },
-    created() {
-      this.time()
-
+    mounted() {
+      this.ajax()
     }
   }
 </script>
@@ -183,18 +154,21 @@
   span > a {
     color: #768dae;
   }
-  video{
+
+  video {
     height: 200px;
     vertical-align: bottom;
 
   }
-  .video{
+
+  .video {
     width: 260px;
-    height:200px;
+    height: 200px;
     overflow: hidden;
-background: #5a5a5a;
+    background: #5a5a5a;
     text-align: center;
   }
+
   .con {
     background: white;
     position: relative;

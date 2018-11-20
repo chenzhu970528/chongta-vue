@@ -161,7 +161,7 @@
             alert("发布成功！！！")
             location.reload()
           }).catch((err) => {
-          console.log(err)
+          // console.log(err)
           alert(err)
         });
       },

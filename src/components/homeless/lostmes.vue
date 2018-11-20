@@ -54,7 +54,7 @@
     },
     created(){
       axios.get(this.$store.state.url+`/homeless/lostpetsdetails/${this.lpId}`).then((result) => {
-        console.log(result);
+        // console.log(result);
         this.jsondata1 = result.data.data;
       })
     }

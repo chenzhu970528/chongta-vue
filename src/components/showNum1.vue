@@ -38,7 +38,7 @@
           this.num1=parseInt(this.nums)
           // console.log(typeof this.num1);
           // this.props.value.default=this.num1;
-          console.log(this.nums)
+          // console.log(this.nums)
           this.getNum()
         })
       },
@@ -46,7 +46,7 @@
         getNum(){
           let _this=this;
           _this.value=_this.num1
-          console.log(_this.value)
+          // console.log(_this.value)
         },
         numberGrow (ele) {
           let _this = this

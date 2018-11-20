@@ -54,9 +54,7 @@
         >
         </el-pagination>
       </div>
-      <!--<el-col :span="10" :push="7">-->
-      <!--<change-page></change-page>-->
-      <!--</el-col>-->
+
     </el-row>
     <p v-if="hide" class="cc">删除成功</p>
   </div>

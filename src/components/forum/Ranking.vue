@@ -62,7 +62,7 @@
     width: 317px;
     height: 35px;
     border-bottom: 1px solid #a8a8a8;
-    color: #a8a8a8;
+    color: #7288a4;
     margin-bottom: 20px;
   }
 

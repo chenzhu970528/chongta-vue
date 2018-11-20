@@ -45,7 +45,7 @@
       },
       methods: {
         handleClick(tab, event) {
-          console.log(tab, event);
+          // console.log(tab, event);
         }
       },
       computed:{
@@ -62,7 +62,7 @@
       },
       mounted(){
         axios.get(this.$store.state.url+`/user/showUser/${this.userId}`).then((result) => {
-          console.log(result.data.data[0]);
+          // console.log(result.data.data[0]);
           this.personal = result.data.data[0];
         })
       }

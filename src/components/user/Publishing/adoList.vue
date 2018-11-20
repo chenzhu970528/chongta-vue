@@ -116,7 +116,7 @@
         ajax() {
           axios.get(this.$store.state.url + `/adoptions/adodetails/${this.userId}`).then((result) => {
             this.mydata = result.data.data;
-            console.log(this.mydata)
+            // console.log(this.mydata)
             for (let i = 0; i < this.mydata.length; i++) {
               this.activitys.push(this.mydata[i]);
               this.visible2.push(false)
